@@ -1,0 +1,266 @@
+-- dap configuration
+-- python debugging requires debugpy
+return {
+  "rcarriga/nvim-dap-ui",
+  dependencies = {
+    "mfussenegger/nvim-dap",
+    "nvim-neotest/nvim-nio",
+    "rcarriga/cmp-dap",
+    "LiadOz/nvim-dap-repl-highlights",
+  },
+  keys = {
+    {
+      "<leader>db",
+      [[<cmd>lua require('dap').toggle_breakpoint()<cr>]],
+      mode = "n",
+      desc = "Toggle breakpoint (debugger)",
+      noremap = true,
+      silent = true,
+    },
+  },
+  config = function()
+    local utils = require("config.utils")
+    local icons = require("config.icons")
+
+    -- symbols
+    vim.fn.sign_define("DapBreakpoint", { text = icons.dap.breakpoint, texthl = "DapUIStop", linehl = "", numhl = "" })
+    vim.fn.sign_define("DapLogPoint", { text = icons.dap.logpoint, texthl = "DapUIStop", linehl = "", numhl = "" })
+    vim.fn.sign_define("DapBreakpointCondition", { texthl = "DapUIStop", linehl = "", numhl = "" }) -- text default: C
+    vim.fn.sign_define("DapBreakpointRejected", { texthl = "DapUIStop", linehl = "", numhl = "" }) -- text default: R
+    vim.fn.sign_define("DapStopped", {
+      text = icons.dap.stopped,
+      texthl = "DapUIPlayPause",
+      linehl = "",
+      numhl = "",
+    })
+
+    -- completion in DAP
+    require("cmp").setup({
+      enabled = function()
+        return vim.api.nvim_get_option_value("buftype", { buf = 0 }) ~= "prompt" or require("cmp_dap").is_dap_buffer()
+      end,
+    })
+
+    -- syntax highlighting to the REPL buffer using treesitter (requires treesitter highlight to be enabled)
+    require("nvim-dap-repl-highlights").setup()
+
+    -- keybinds
+    vim.api.nvim_set_keymap("n", "<leader>dr", [[<cmd>lua require('dapui').open({reset = true})<cr>]], {
+      noremap = true,
+      silent = true,
+      desc = "Reset windows (debugger)",
+    })
+
+    vim.api.nvim_set_keymap("n", "<leader>dc", [[<cmd>lua require('dap').continue()<cr>]], {
+      noremap = true,
+      silent = true,
+      desc = "Start/continue (debugger)",
+    })
+
+    vim.api.nvim_set_keymap("n", "<leader>dn", [[<cmd>lua require('dap').step_over()<cr>]], {
+      noremap = true,
+      silent = true,
+      desc = "Step over/next (debugger)",
+    })
+
+    vim.api.nvim_set_keymap("n", "<leader>di", [[<cmd>lua require('dap').step_into()<cr>]], {
+      noremap = true,
+      silent = true,
+      desc = "Step into (debugger)",
+    })
+
+    vim.api.nvim_set_keymap("n", "<leader>do", [[<cmd>lua require('dap').step_out()<cr>]], {
+      noremap = true,
+      silent = true,
+      desc = "Step out (debugger)",
+    })
+
+    vim.api.nvim_set_keymap("n", "<leader>dq", [[<cmd>lua require('dap').terminate(); require('dapui').close()<cr>]], {
+      noremap = true,
+      silent = true,
+      desc = "Terminate and close GUI (debugger)",
+    })
+
+    vim.keymap.set("n", "<leader>dl", function()
+      require("dap").set_breakpoint(nil, nil, vim.fn.input("Log point message: "))
+    end, {
+      noremap = true,
+      silent = true,
+      desc = "Set logpoint message (debugger)",
+    })
+
+    -- vim.keymap.set("x", "<leader>ds", function()
+    --   local lines = vim.fn.getregion(vim.fn.getpos("."), vim.fn.getpos("v"))
+    --   if utils.is_debugger_running() then
+    --     require("dap").repl.execute(table.concat(lines, "\n"))
+    --   end
+    -- end)
+
+    -- load debugger
+    local dap, dapui = require("dap"), require("dapui")
+
+    -- set gui layout
+    dapui.setup({
+      mappings = {
+        open = "<cr>",
+        expand = "o",
+      },
+      element_mappings = {
+        stacks = {
+          open = { "<cr>" },
+        },
+      },
+      layouts = {
+        {
+          position = "left",
+          size = 40, -- 40 columns
+          elements = {
+            { id = "scopes", size = 0.4 },
+            { id = "breakpoints", size = 0.1 },
+            { id = "stacks", size = 0.3 },
+            { id = "watches", size = 0.2 },
+          },
+        },
+        {
+          elements = { "repl" },
+          size = 0.45,
+          position = "bottom",
+        },
+        {
+          elements = { "console" },
+          size = 0.25,
+          position = "right",
+        },
+      },
+      controls = {
+        enabled = true,
+        elements = "repl",
+      },
+    })
+
+    -- open and close dapui automatically in debugging mode (based on dap events)
+    dap.listeners.after.event_initialized["dapui_config"] = function()
+      -- close neo-tree/aerial windows if debugger opens
+      local exists_neotree, cmd_neotree = pcall(require, "neo-tree.command")
+      if exists_neotree then
+        cmd_neotree.execute({ action = "close" })
+      end
+      local exists_aerial, cmd_aerial = pcall(require, "aerial")
+      if exists_aerial then
+        cmd_aerial.close_all()
+      end
+      dapui.open()
+    end
+    -- dap.listeners.before.event_terminated["dapui_config"] = function()
+    --   dapui.close()
+    -- end
+    -- dap.listeners.before.event_exited["dapui_config"] = function()
+    --   dapui.close()
+    -- end
+
+    -- use debugpy binary with the following priority order
+    --   1. Mason
+    --   2. Virtual environment
+    --   3. System
+    dap.adapters.python = {
+      type = "executable",
+      command = utils.get_debugpy_path(),
+      args = { "-m", "debugpy.adapter" },
+    }
+
+    -- setup python configurations
+    dap.configurations.python = {
+      {
+        type = "python",
+        request = "launch",
+        name = "Debug/launch current file",
+        program = "${file}",
+        console = "internalConsole",
+        -- makes third party libraries and packages debuggable
+        justMyCode = false,
+        -- dap-adapter-python does not support multiprocess yet (disable multiprocess patch in debugpy)
+        subProcess = false,
+        -- use the current cwd of editor/buffer, not the file's absolute path
+        cwd = function()
+          return vim.fn.getcwd()
+        end,
+        pythonPath = function()
+          return utils.get_python_path()
+        end,
+        -- stop at first line of user code
+        stopOnEntry = false,
+      },
+      {
+        type = "python",
+        request = "launch",
+        name = "Debug/launch current file with arguments",
+        program = "${file}",
+        console = "internalConsole",
+        justMyCode = false,
+        subProcess = false,
+        args = function()
+          local args_string = vim.fn.input("Arguments: ")
+          return vim.split(args_string, " +")
+        end,
+        cwd = function()
+          return vim.fn.getcwd()
+        end,
+        pythonPath = function()
+          return utils.get_python_path()
+        end,
+        stopOnEntry = false,
+      },
+      {
+        -- 1. open the debuggee (application or script to debug) from the folder where "venv" folder is located
+        -- 2. ensure the cwd path is correct (pyproject.toml and src/app folders should all reside in the cwd),
+        --    the cwd may be set in pyproject.toml (see package_name = "..." and project_name = "..." under [tool.kedro])
+        -- 3. update args to fit the pipeline/node to be debugged
+        type = "python",
+        request = "launch",
+        name = "Debug/launch Kedro Run (stop on entry)",
+        console = "integratedTerminal",
+        justMyCode = false,
+        subProcess = false,
+        cwd = vim.env.HOME .. "/projects/python/kedro-environment/iris",
+        module = "kedro",
+        args = "run",
+        -- args = { "run", "--pipeline", "pipeline_name", "--arg1", "value1", "--arg2", "value2" },
+        pythonPath = function()
+          return utils.get_python_path()
+        end,
+        stopOnEntry = true, -- start debugging on first line (virtual breakpoint)
+      },
+      {
+        name = "Debug FastAPI module",
+        type = "python",
+        request = "launch",
+        module = "uvicorn",
+        args = {
+          "main:app",
+          -- "--reload", -- may not work
+          "--port",
+          "8000",
+          "--use-colors",
+        },
+        jinja = true,
+        env = { FastAPI_ENV = "development" },
+        console = "integratedTerminal",
+        pythonPath = function()
+          return utils.get_python_path()
+        end,
+        stopOnEntry = true,
+      },
+      {
+        name = "Debug FastAPI main",
+        type = "python",
+        request = "launch",
+        program = function()
+          return "./main.py"
+        end,
+        pythonPath = function()
+          return utils.get_python_path()
+        end,
+      },
+    }
+  end,
+}

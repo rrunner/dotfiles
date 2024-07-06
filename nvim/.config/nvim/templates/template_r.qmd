@@ -1,0 +1,40 @@
+---
+title: "R"
+author: "Author"
+date: "2023-01-01"
+toc: true
+number-sections: true
+format:
+  html:
+    code-fold: true
+    html-math-method: katex
+    df-print: tibble
+---
+
+## Air Quality
+
+@fig-airquality further explores the impact of temperature on ozone level.
+
+```{r}
+#| label: fig-airquality
+#| fig-cap: Temperature and ozone level
+#| warning: false
+
+# quart with R requires rmarkdown package to be installed
+library(ggplot2)
+
+ggplot(airquality, aes(Temp, Ozone)) + 
+  geom_point() + 
+  geom_smooth(method = "loess")
+```
+
+
+## Math example
+
+$e = mc^2$
+
+
+## Print data
+```{r}
+head(airquality)
+```
