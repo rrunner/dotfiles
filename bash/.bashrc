@@ -2,6 +2,15 @@
 # ~/.bashrc
 #
 
+# if not running interactively, don't do anything
+[[ $- != *i* ]] && return
+
+# check WSL
+IS_WSL=0
+if [[ $(grep -iq microsoft /proc/version) ]]; then
+  IS_WSL=1
+fi
+
 # history related
 export HISTCONTROL=ignoredups:erasedups # no duplicate entries
 export HISTSIZE=100000                  # big history
@@ -17,9 +26,6 @@ bind '"\e[B": history-search-forward'
 
 # check window size after each cmd and if necessary update LINES/COLUMNS
 # shopt -s checkwinsize
-
-# If not running interactively, don't do anything
-[[ $- != *i* ]] && return
 
 # source environment variables
 if [[ -f "$HOME/.env" ]]; then
@@ -43,7 +49,9 @@ PS1='[\u@\h \W]\$ '
 #LANG="sv_SE.UTF-8"
 
 # force Alacritty to use software rendering
-export LIBGL_ALWAYS_SOFTWARE=1
+if [ $IS_WSL -eq 0 ]; then
+  export LIBGL_ALWAYS_SOFTWARE=1
+fi
 
 # vi mode
 # - used to cause conflicts in tmux mode
@@ -51,7 +59,9 @@ export LIBGL_ALWAYS_SOFTWARE=1
 # set -o vi
 
 # dotfiles
-alias dotfiles='/usr/bin/git --git-dir=$HOME/Dropbox/dotfiles --work-tree=$HOME'
+if [ $IS_WSL -eq 0 ]; then
+  alias dotfiles='/usr/bin/git --git-dir=$HOME/Dropbox/dotfiles --work-tree=$HOME'
+fi
 
 # to view manual pages in browser (for example 'man -H man')
 export BROWSER=firefox
@@ -70,9 +80,6 @@ export PATH=$PATH:$GOPATH/bin
 
 # python (mainly for nvim)
 export PYENV_ROOT=/usr/bin/python
-
-# local pypi index location (python)
-export INDEX_URL=
 
 # completion for git
 source /usr/share/git/completion/git-completion.bash
