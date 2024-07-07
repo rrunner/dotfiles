@@ -1,0 +1,27 @@
+$include /etc/inputrc
+
+# set editing-mode vi
+# set keymap vi
+set bell-style none
+
+# $if mode=vi
+#     set keymap vi-insert
+#     # add insert mode mappings below
+#     "jj": vi-movement-mode
+
+#     set keymap vi-command
+#     # add command mode mappings below
+# $endif
+
+# enable case-insensitive tab completion
+set completion-ignore-case On
+
+# faster completion
+set show-all-if-ambiguous On
+
+# color files by type
+set colored-stats On
+set visible-stats On
+set mark-symlinked-directories On
+# set colored-completion-prefix On
+set menu-complete-display-prefix On
