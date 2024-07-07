@@ -1,0 +1,6 @@
+R_HOME_USER=~/.config/r/
+R_LIBS_USER=~/.config/r/packages
+R_HISTFILE=~/.config/r/Rhistory
+R_MAX_VSIZE=10GB
+R_BROWSER=firefox
+EDITOR=nvim
