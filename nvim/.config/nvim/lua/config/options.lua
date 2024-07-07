@@ -66,7 +66,8 @@ vim.opt.listchars = { tab = ">·", trail = "·", nbsp = "+" }
 vim.opt.updatetime = 300
 vim.opt.viewdir = vim.fn.stdpath("data") .. "/view"
 vim.opt.viewoptions:append({ localoptions = true })
-vim.opt.sessionoptions:append({ localoptions = true, terminal = false })
+vim.opt.sessionoptions:append({ "localoptions", "winpos" })
+vim.opt.sessionoptions:remove({ "blank" })
 vim.opt.backup = false
 vim.opt.writebackup = false
 vim.opt.swapfile = false
