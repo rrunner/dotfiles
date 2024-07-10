@@ -1,23 +1,4 @@
--- indent blank lines
-
-local exc_filetypes = {
-  "lspinfo",
-  "checkhealth",
-  "help",
-  "man",
-  "text",
-  "",
-  "noice",
-  "lazy",
-  "neo-tree",
-  "qf",
-  "TelescopePrompt",
-  "TelescopeResults",
-  "gitcommit",
-  "DressingInput",
-  "DressingSelect",
-}
-
+-- mark indentation/scope with vertical line
 return {
   "lukas-reineke/indent-blankline.nvim",
   event = { "BufReadPost", "BufNewFile" },
@@ -25,7 +6,23 @@ return {
   config = function()
     require("ibl").setup({
       exclude = {
-        filetypes = exc_filetypes,
+        filetypes = {
+          "lspinfo",
+          "checkhealth",
+          "help",
+          "man",
+          "text",
+          "",
+          "noice",
+          "lazy",
+          "neo-tree",
+          "qf",
+          "TelescopePrompt",
+          "TelescopeResults",
+          "gitcommit",
+          "DressingInput",
+          "DressingSelect",
+        },
       },
       indent = { char = "┊", highlight = "IblIndent" },
       whitespace = {
