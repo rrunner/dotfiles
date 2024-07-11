@@ -3,7 +3,7 @@ return {
   ft = { "rmd", "markdown", "quarto" },
   dependencies = "nvim-treesitter/nvim-treesitter",
   config = function()
-    require("headlines").setup({
+    local opts = {
       quarto = {
         query = vim.treesitter.query.parse(
           "markdown",
@@ -47,6 +47,10 @@ return {
         fat_headline_upper_string = "▃",
         fat_headline_lower_string = "🬂",
       },
-    })
+    }
+    vim.schedule(function()
+      require("headlines").setup(opts)
+      require("headlines").refresh()
+    end)
   end,
 }
