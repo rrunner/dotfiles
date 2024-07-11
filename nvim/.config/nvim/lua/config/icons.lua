@@ -56,10 +56,14 @@ M._three_dots = "󰇘"
 
 -- LSP diagnosis signs
 M.diagnosis = {
-  error = "",
-  warn = "",
-  info = "",
-  hint = "",
+  error = "",
+  warn = "",
+  info = "",
+  hint = "",
+  -- error = "",
+  -- warn = "",
+  -- info = "",
+  -- hint = "",
 }
 
 M.dap = {
