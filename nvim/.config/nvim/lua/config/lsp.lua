@@ -109,10 +109,15 @@ start_lsp("pyright", {
 })
 
 start_lsp("ruff", {
-  cmd = { mason_bin_path .. "ruff", "server", "--preview" },
+  cmd = { mason_bin_path .. "ruff", "server" },
   filetypes = { "python" },
   markers = python_markers,
   root_dir_fallback = vim.env.PWD,
+  -- enable ruff logging
+  cmd_env = { RUFF_TRACE = "messages" },
+  init_options = {
+    settings = { logLevel = "error" },
+  },
   -- disable ruff as hover provider to avoid conflicts with pyright
   on_attach = function(client)
     if client.name == "ruff" then
