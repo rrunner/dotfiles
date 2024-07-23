@@ -125,7 +125,6 @@ call plug#begin('~/.vim/pack')
   Plug 'jiangmiao/auto-pairs'
   Plug 'machakann/vim-highlightedyank'
   Plug 'preservim/nerdtree'
-  Plug 'AndrewRadev/splitjoin.vim'
   Plug 'chrisbra/improvedft'
   " requires nerdfonts to be installed on system
   Plug 'ryanoasis/vim-devicons'
@@ -213,16 +212,6 @@ command! -bang -nargs=* MyRg
   \ call fzf#vim#grep(
   \   'rg --column --line-number --no-heading --color=always --smart-case -- '.shellescape(<q-args>), 1,
   \   fzf#vim#with_preview('up:60%:hidden:wrap', '?'), <bang>0)
-" }}}
-
-
-" plugin settings: splitjoin.vim  {{{
-let g:r_indent_align_args = 0
-let g:splitjoin_python_brackets_on_separate_lines = 1
-let g:splitjoin_split_mapping = ''
-let g:splitjoin_join_mapping = ''
-noremap gJ :SplitjoinJoin<cr>
-noremap gS :SplitjoinSplit<cr>
 " }}}
 
 
