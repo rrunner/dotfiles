@@ -9,6 +9,7 @@ return {
     "qmd",
     "lua",
     "python",
+    "help",
   },
   opts = {
     "html",
@@ -18,5 +19,6 @@ return {
     "qmd",
     "lua",
     python = { names = false },
+    "help",
   },
 }
