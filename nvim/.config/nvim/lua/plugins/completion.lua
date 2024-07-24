@@ -14,9 +14,9 @@ end
 return {
   "hrsh7th/nvim-cmp",
   version = false,
-  -- do not lazy load when Noice is enabled (cmp.entry.get_documentation), because dressing plugin and completion is used for vim.ui.input/vim.ui.select
-  -- event = { "InsertEnter", "CmdlineEnter" },
-  lazy = false,
+  -- do not lazy load using `event = { "InsertEnter", "CmdlineEnter" }` to
+  -- ensure <leader>{sf,sg} works with dressing/completion/noice etc.
+  event = "VeryLazy",
   dependencies = {
     "hrsh7th/cmp-nvim-lsp",
     "hrsh7th/cmp-buffer",
