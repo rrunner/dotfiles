@@ -72,4 +72,6 @@ M.dap = {
   stopped = "",
 }
 
+M.bullets = { "", "", "󰨓", "󰨔", "󰍴", "󰐕" }
+
 return M
