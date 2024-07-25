@@ -52,7 +52,6 @@ end
 -- global kinds to be used in cmp, neotree, aerial etc.
 M._kinds = kinds
 M._kinds_cmp = kinds_cmp
-M._three_dots = "󰇘"
 
 -- LSP diagnosis signs
 M.diagnosis = {
@@ -73,5 +72,7 @@ M.dap = {
 }
 
 M.bullets = { "", "", "󰨓", "󰨔", "󰍴", "󰐕" }
+
+M.three_dots = "󰇘"
 
 return M
