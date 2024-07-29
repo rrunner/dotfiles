@@ -141,18 +141,15 @@ return {
     end, { desc = "Format buffer/file (or range in visual mode)" })
 
     vim.keymap.set({ "n", "v" }, "<leader>fq", function()
-      if conform.will_fallback_lsp() then
-        vim.notify("Use LSP for formatting (fallback)", vim.log.levels.INFO)
-      else
-        local retstr = "Configured formatters for buffer"
-        local fmt_for_bufnr = conform.list_formatters(0)
-        for _, val in ipairs(fmt_for_bufnr) do
-          if val.available then
-            retstr = retstr .. "\n" .. val.name
-          end
+      local retstr = "Configured formatters for buffer"
+      local fmt_for_bufnr = conform.list_formatters_to_run(0)
+      for _, val in ipairs(fmt_for_bufnr) do
+        if val.available then
+          retstr = retstr .. "\n" .. val.name
         end
-        vim.notify(retstr, vim.log.levels.INFO)
       end
-    end, { desc = "Check if the buffer will use LSP formatting as fallback" })
+      vim.notify(retstr, vim.log.levels.INFO)
+      -- end
+    end, { desc = "List configured formatters for the current buffer" })
   end,
 }
