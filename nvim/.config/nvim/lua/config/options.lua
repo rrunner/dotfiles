@@ -58,7 +58,10 @@ vim.opt.hidden = true
 vim.opt.magic = true
 if not vim.env.SSH_TTY then
   -- only set clipboard if not in ssh, to make sure the OSC 52 integration works automatically
-  vim.opt.clipboard = "unnamedplus"
+  -- also schedule to the event loop since xsel can be slow
+  vim.schedule(function()
+    vim.opt.clipboard = "unnamedplus"
+  end)
 end
 vim.opt.nrformats:append({ "alpha" })
 vim.opt.list = true
