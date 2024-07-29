@@ -2,15 +2,16 @@
 return {
   "nvim-treesitter/nvim-treesitter",
   dependencies = {
-    "nvim-treesitter/nvim-treesitter-textobjects",
+    -- "nvim-treesitter/nvim-treesitter-textobjects",
+    { "PMassicotte/nvim-treesitter-textobjects", branch = "fix-new-r-parser" },
     "nvim-treesitter/nvim-treesitter-context",
   },
   build = ":TSUpdate",
   config = function()
-    local treesitter = require("nvim-treesitter.configs")
+    local configs = require("nvim-treesitter.configs")
     local utils = require("config.utils")
 
-    -- dap-repl-highlights is configured in dap.lua
+    -- dap-repl-highlights is configured in dap.lua (must be installed from within an active debugger session)
     local ts_parsers = {
       "bash",
       "bibtex",
@@ -56,7 +57,7 @@ return {
       utils.remove_value(ts_parsers, { "jsonc" })
     end
 
-    treesitter.setup({
+    configs.setup({
       ensure_installed = ts_parsers,
       sync_install = false,
       auto_install = false,
