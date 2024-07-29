@@ -33,7 +33,6 @@ return {
 
     -- linters, formatters, debuggers etc.
     local tools = {
-      "black",
       "debugpy",
       "jq",
       "mypy",

@@ -102,14 +102,13 @@ return {
     }
 
     -- prefer formatters installed by mason
-    formatters.black.command = mason_bin_path .. "black"
     formatters.prettier.command = mason_bin_path .. "prettier"
     formatters.shfmt.command = mason_bin_path .. "shfmt"
 
     conform.setup({
-      -- use lsp fallback to format: r, rmd, toml, terraform (requires system installation)
+      -- use lsp fallback to format: r, rmd, toml
       formatters_by_ft = {
-        python = { "ruff_fix", "ruff_format", "black" },
+        python = { "ruff_fix", "ruff_format" },
         lua = { "stylua" },
         markdown = { "prettier", "injected" },
         quarto = { "injected" }, -- TODO: format R code blocks in quarto document
