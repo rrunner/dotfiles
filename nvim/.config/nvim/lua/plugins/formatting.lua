@@ -35,8 +35,8 @@ return {
       args = { "fix", "--force", "--dialect=postgres", "-" },
     }
 
-    -- ruff fix
-    -- ruff_organize_imports (select=I001) is already covered by ruff_fix since --select=ALL is used
+    -- ruff fix (apply ruff linter fixes)
+    -- ruff_organize_imports (select=I001) is already covered by ruff_fix since --select=ALL is used below
     conform.formatters.ruff_fix = {
       command = mason_bin_path .. "ruff",
       args = {
@@ -61,7 +61,7 @@ return {
       }),
     }
 
-    -- ruff format (same as ruff format preset but add it below to enforce mason bin path)
+    -- ruff format (runs ruff formatter, same as ruff format preset but add it below to enforce mason bin path)
     conform.formatters.ruff_format = {
       command = mason_bin_path .. "ruff",
       args = {
@@ -107,8 +107,9 @@ return {
 
     conform.setup({
       -- use lsp fallback to format: r, rmd, toml
+      -- use stop_after_first = true to use the first found formatter if the table includes several formatters
       formatters_by_ft = {
-        python = { "ruff_fix", "ruff_format" },
+        python = { "ruff_fix", "ruff_format" }, -- run both for now... see https://github.com/astral-sh/ruff/issues/8232
         lua = { "stylua" },
         markdown = { "prettier", "injected" },
         quarto = { "injected" }, -- TODO: format R code blocks in quarto document
