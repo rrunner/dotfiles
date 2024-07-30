@@ -37,7 +37,6 @@ return {
         },
         prompt_prefix = " ",
         selection_caret = "󰼛 ",
-        -- selection_caret = "> ",
         vimgrep_arguments = {
           "rg",
           "--color=never",
@@ -121,20 +120,8 @@ return {
             },
             shorten = { len = 2, exclude = { 1, -2, -1 } },
           },
-          -- mappings = {
-          -- n = {
-          --   ["cd"] = function(prompt_bufnr)
-          --     local selection = require("telescope.actions.state").get_selected_entry()
-          --     local dir = vim.fn.fnamemodify(selection.path, ":p:h")
-          --     require("telescope.actions").close(prompt_bufnr)
-          --     -- use `cd`, `lcd`, `tcd`
-          --     vim.cmd(string.format("silent lcd %s", dir))
-          --   end,
-          -- },
-          -- },
         },
         oldfiles = {
-          -- path_display = { "tail" },
           path_display = function(_, path)
             local tail = require("telescope.utils").path_tail(path)
             return string.format("%s (%s)", tail, path)
@@ -184,6 +171,15 @@ return {
           },
         },
         git_status = {
+          mappings = {
+            i = {
+              ["<tab>"] = actions.git_staging_toggle,
+              ["<c-t>"] = false,
+            },
+            n = {
+              ["<c-t>"] = false,
+            },
+          },
           preview = {
             hide_on_startup = false,
           },
