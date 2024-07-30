@@ -36,6 +36,7 @@ return {
   },
   config = function()
     local utils = require("config.utils")
+    local icons = require("config.icons")
 
     -- remove the deprecated commands from v1.x
     vim.cmd([[ let g:neo_tree_remove_legacy_commands = 1 ]])
@@ -51,6 +52,9 @@ return {
           expander_collapsed = "",
           expander_expanded = "",
           expander_highlight = "NeoTreeExpander",
+        },
+        git_status = {
+          symbols = icons.git_icons,
         },
       },
 
