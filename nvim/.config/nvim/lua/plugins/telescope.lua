@@ -183,6 +183,11 @@ return {
             hide_on_startup = false,
           },
         },
+        git_status = {
+          preview = {
+            hide_on_startup = false,
+          },
+        },
       },
     })
 
@@ -192,6 +197,17 @@ return {
     pcall(require("telescope").load_extension, "live_grep_args")
   end,
   init = function()
+    vim.api.nvim_set_keymap(
+      "n",
+      "<leader>gg",
+      [[<cmd>lua require("telescope.builtin").git_status({ use_git_root = true, git_icons = require("config.icons").git_icons })<cr>]],
+      {
+        noremap = true,
+        silent = true,
+        desc = "Git status using Telescope (use <tab> to stage/unstage files)",
+      }
+    )
+
     vim.api.nvim_set_keymap(
       "n",
       "<c-tab>",

@@ -71,8 +71,23 @@ M.dap = {
   stopped = "",
 }
 
-M.bullets = { "", "", "󰨓", "󰨔", "󰍴", "󰐕" }
+M.bullets = { "", "", "󰨓", "󰨔", "-", "+" }
 
 M.three_dots = "󰇘"
+
+M.git_icons = {
+  added = "+",
+  deleted = "_",
+  changed = "~",
+  modified = "~",
+  renamed = "r",
+  copied = "c",
+  untracked = "",
+  ignored = "",
+  unstaged = "󰄱",
+  staged = "",
+  conflict = "",
+  unmerged = "",
+}
 
 return M
