@@ -60,7 +60,7 @@ return {
             ["<c-u>"] = false,
             ["<c-v>"] = actions.select_vertical,
             ["<c-x>"] = actions.select_horizontal,
-            -- enable actions below when included in next stable version of telescope
+            -- TODO: enable actions below when included in next stable version of telescope
             -- ["<m-h>"] = actions.preview_scrolling_left,
             -- ["<m-j>"] = actions.preview_scrolling_down,
             -- ["<m-k>"] = actions.preview_scrolling_up,
@@ -173,6 +173,7 @@ return {
         git_status = {
           mappings = {
             i = {
+              -- TODO: the selection caret moves to the top after staging/unstaging each time (multi-select is not yet available)
               ["<tab>"] = actions.git_staging_toggle,
               ["<c-t>"] = false,
             },

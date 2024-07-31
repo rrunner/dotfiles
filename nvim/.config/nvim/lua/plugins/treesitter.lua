@@ -2,6 +2,7 @@
 return {
   "nvim-treesitter/nvim-treesitter",
   dependencies = {
+    -- TODO: replace to standard branch eventually
     -- "nvim-treesitter/nvim-treesitter-textobjects",
     { "PMassicotte/nvim-treesitter-textobjects", branch = "fix-new-r-parser" },
     "nvim-treesitter/nvim-treesitter-context",
