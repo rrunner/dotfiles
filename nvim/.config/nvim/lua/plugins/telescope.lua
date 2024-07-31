@@ -37,6 +37,7 @@ return {
         },
         prompt_prefix = " ",
         selection_caret = "󰼛 ",
+        -- entry_prefix = "...",
         vimgrep_arguments = {
           "rg",
           "--color=never",
@@ -197,11 +198,11 @@ return {
     vim.api.nvim_set_keymap(
       "n",
       "<leader>gg",
-      [[<cmd>lua require("telescope.builtin").git_status({ use_git_root = true, git_icons = require("config.icons").git_icons })<cr>]],
+      [[<cmd>lua require("telescope.builtin").git_status({use_git_root=true, expand_dir=false, git_icons = require("config.icons").git_icons})<cr>]],
       {
         noremap = true,
         silent = true,
-        desc = "Git status using Telescope (use <tab> to stage/unstage files)",
+        desc = "Git status using Telescope (exclude untracked files)",
       }
     )
 
