@@ -195,6 +195,7 @@ return {
     pcall(require("telescope").load_extension, "live_grep_args")
   end,
   init = function()
+    -- TODO: expand_dir has no effect as can be verified from Telescope source
     vim.api.nvim_set_keymap(
       "n",
       "<leader>gg",
