@@ -1,10 +1,9 @@
+; UHK keyboard on Windows - AutoHotkey version 1 script
+
 #NoEnv  ; Recommended for performance and compatibility with future AutoHotkey releases.
 ;#Warn  ; Enable warnings to assist with detecting common errors.
 SendMode Input  ; Recommended for new scripts due to its superior speed and reliability.
 SetWorkingDir %A_ScriptDir%  ; Ensures a consistent starting directory.
-
-; useful for UHK keyboard on Windows
-; only map Swedish characters and arrow keys
 
 ; åäöÅÄÖ via Alt right (US keyboard layout is a system setting)
 >!SC01A::Send {U+00E5}
