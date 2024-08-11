@@ -66,7 +66,8 @@ M.diagnosis = {
 }
 
 M.dap = {
-  breakpoint = "󰬉",
+  breakpoint = "",
+  -- breakpoint = "󰬉",
   logpoint = "",
   stopped = "",
 }
