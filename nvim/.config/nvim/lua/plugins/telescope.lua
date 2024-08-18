@@ -59,6 +59,7 @@ return {
             ["<c-k>"] = actions.nop,
             ["<c-d>"] = actions.nop,
             ["<c-u>"] = false,
+            ["<c-t>"] = false,
             ["<c-v>"] = actions.select_vertical,
             ["<c-x>"] = actions.select_horizontal,
             -- TODO: enable actions below when included in next stable version of telescope
