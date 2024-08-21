@@ -6,6 +6,8 @@
     editor = nvim
     pager = delta
     excludesFile = ~/.gitignore
+    ; ensure line endings in files you checkout are correct for Linux
+    autocrlf = input ; set autocrlf = true on windows
 [branch]
     sort = committerdate
 [credential]
