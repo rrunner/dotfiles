@@ -8,6 +8,14 @@
     excludesFile = ~/.gitignore
     ; ensure line endings in files you checkout are correct for Linux
     autocrlf = input ; set autocrlf = true on windows
+[http]
+  ; configure CNTLM in WSL (avoid storing pw in plaintext)
+  ;proxy = http://127.0.0.1:3128 
+  ;sslVerify = false
+[https]
+  ; configure CNTLM in WSL (avoid storing pw in plaintext)
+  ;proxy = https://127.0.0.1:3128
+  ;sslVerify = false
 [branch]
     sort = committerdate
 [credential]
