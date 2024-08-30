@@ -1,5 +1,4 @@
 -- LSP configuration
--- [[consider to install fswatch for improved performance, see ":h fswatch" on nvim 0.10.0 and above]]
 
 -- LSP diagnosis
 local icons = require("config.icons")
@@ -82,6 +81,7 @@ local python_markers = {
 local mason_bin_path = vim.fn.stdpath("data") .. "/mason/bin/"
 
 start_lsp("pyright", {
+  disable = true,
   cmd = { mason_bin_path .. "pyright-langserver", "--stdio" },
   filetypes = { "python" },
   single_file_support = true,
@@ -127,7 +127,7 @@ start_lsp("ruff", {
 })
 
 start_lsp("basedpyright", {
-  disable = true,
+  disable = false,
   cmd = { mason_bin_path .. "basedpyright-langserver", "--stdio" },
   filetypes = { "python" },
   single_file_support = true,
