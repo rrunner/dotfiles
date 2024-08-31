@@ -3,22 +3,20 @@
 # [tool.pyright]
 # pythonVersion = "3.12"
 # typeCheckingMode = "off" # off, basic, standard, strict
-# ignore = ["*"] # use Ruff for linting, and mypy for type checking (set to empty list for type checking)
-# disableLanguageServices = false
+# ignore = [
+#   "*",
+# ] # use Ruff for linting, and mypy for type checking (set to empty list to enable type checking)
 # disableOrganizeImports = true # use Ruff's import organizer
 # diagnosticMode = "workspace" # openFilesOnly, workspace
 
-# comment out [tool.pyright] section above if using basedpyright
-[tool.basedpyright]
+[tool.basedpyright] # comment out [tool.pyright] section above if using basedpyright
 pythonVersion = "3.12"
-reportImplicitStringConcatenation = false # conflicts with ruff formatter
 typeCheckingMode = "off" # off, basic, standard, strict, all
 ignore = [
   "*",
-] # use Ruff for linting, and mypy for type checking (set to empty list for type checking)
-
-# not yet detectable by basedpyright
-# disableLanguageServices = false
+] # use Ruff for linting, and mypy for type checking (set to empty list to enable type checking)
+reportImplicitStringConcatenation = false # conflicts with ruff formatter
+# below options are not yet detectable by basedpyright
 # disableOrganizeImports = true
 # diagnosticMode = "workspace"
 
