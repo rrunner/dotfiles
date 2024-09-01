@@ -153,12 +153,12 @@ M.get_python_path = function()
   return ""
 end
 
--- retrieve the path to the python debugger (debugpy). Mason is prioritized.
--- Mason picks the virtual python binary (or pyenv python binary) if the
--- virtual environment is active, otherwise defaults to use the python system
--- binary which thus requires the debugpy python package to be installed on the
--- system
----@return string  -- the path to python debugger (debugpy), returns empty string if no python debugger is found
+-- retrieve the path to the python binary running the debugger (debugpy).
+-- Virtual env is prioritized (requires debugpy python package in venv) to use
+-- the debugger as stated in requirements.txt. Otherwise use binary provided by
+-- Mason. Finally, use the python system binary which thus requires the debugpy
+-- python package to be installed on the system.
+---@return string  -- the path to python binary running the debugger (debugpy)
 M.get_debugpy_path = function()
   local do_notify = true
 
@@ -167,18 +167,27 @@ M.get_debugpy_path = function()
     return ""
   end
 
-  local mason_path = vim.fn.stdpath("data") .. "/mason/packages/debugpy/venv/bin/python"
+  if vim.env.VIRTUAL_ENV then
+    local venv_path = vim.env.VIRTUAL_ENV .. "/bin/python"
+    if vim.fn.executable(venv_path) == 1 then
+      if do_notify then
+        vim.notify("run debugpy using python interpreter from venv", vim.log.levels.INFO)
+      end
+      return venv_path
+    end
+  end
 
+  local mason_path = vim.fn.stdpath("data") .. "/mason/packages/debugpy/venv/bin/python"
   if vim.fn.executable(mason_path) == 1 then
     if do_notify then
-      vim.notify("use debugpy (mason)", vim.log.levels.INFO)
+      vim.notify("run debugpy using python interpreter from mason", vim.log.levels.INFO)
     end
     return mason_path
   end
 
   if vim.fn.executable("python") == 1 then
     if do_notify then
-      vim.notify("use debugpy (system)", vim.log.levels.INFO)
+      vim.notify("run debugpy using python interpreter from system", vim.log.levels.INFO)
     end
     return "python"
   end
