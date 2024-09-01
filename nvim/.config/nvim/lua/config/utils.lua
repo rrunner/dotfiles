@@ -182,6 +182,45 @@ M.get_debugpy_path = function()
   return ""
 end
 
+-- set the priority order for a given application's binary package. Binaries
+--  provided by the virtual environment is prioritized over Mason and system
+--  provided binaries.
+---@return string  -- the path to the app binary
+M.app_prio = function(app)
+  local debug = false
+  local venv = vim.env.VIRTUAL_ENV or nil
+  local application
+  if venv then
+    application = venv .. "/bin/" .. app
+
+    -- application is available as a package binary inside the virtual environment
+    if vim.fn.executable(application) == 1 then
+      if debug then
+        vim.notify(application, vim.log.INFO)
+      end
+      return application
+    end
+  end
+
+  -- application is available as a Mason package binary
+  application = vim.fn.stdpath("data") .. "/mason/bin/" .. app
+  if vim.fn.executable(application) == 1 then
+    if debug then
+      vim.notify(application, vim.log.INFO)
+    end
+    return application
+  end
+
+  -- application is available as a system binary
+  if vim.fn.executable(app) == 1 then
+    if debug then
+      vim.notify(application, vim.log.INFO)
+    end
+    return app
+  end
+  return ""
+end
+
 -- retrieve current working directory (cwd) prefixed with 'a snake' followed by
 -- the name of the Python virtual environment if this is active (consumed by
 -- the lualine plugin)

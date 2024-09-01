@@ -3,15 +3,15 @@ return {
   "stevearc/conform.nvim",
   event = { "BufReadPre", "BufNewFile" },
   config = function()
+    local utils = require("config.utils")
     local conform = require("conform")
     local utl = require("conform.util")
     local formatters = require("conform.formatters")
-    local mason_bin_path = vim.fn.stdpath("data") .. "/mason/bin/"
 
     -- stylua (complete overide of default values)
     conform.formatters.stylua = {
       inherit = false,
-      command = mason_bin_path .. "stylua",
+      command = utils.app_prio("stylua"),
       args = {
         "--indent-type",
         "Spaces",
@@ -31,14 +31,14 @@ return {
     -- snowflake, soql, sparksql, sqlite, teradata, tsql
     conform.formatters.sqlfluff = {
       inherit = false,
-      command = mason_bin_path .. "sqlfluff",
+      command = utils.app_prio("sqlfluff"),
       args = { "fix", "--force", "--dialect=postgres", "-" },
     }
 
     -- ruff fix (apply ruff linter fixes)
     -- ruff_organize_imports (select=I001) is already covered by ruff_fix since --select=ALL is used below
     conform.formatters.ruff_fix = {
-      command = mason_bin_path .. "ruff",
+      command = utils.app_prio("ruff"),
       args = {
         "check",
         "--fix",
@@ -61,9 +61,9 @@ return {
       }),
     }
 
-    -- ruff format (runs ruff formatter, same as ruff format preset but add it below to enforce mason bin path)
+    -- ruff format (runs ruff formatter, same as ruff format preset)
     conform.formatters.ruff_format = {
-      command = mason_bin_path .. "ruff",
+      command = utils.app_prio("ruff"),
       args = {
         "format",
         "--force-exclude",
@@ -84,7 +84,7 @@ return {
     -- bigquery,db2,db2i,hive,mariadb,mysql,n1ql,plsql,postgresql,
     -- redshift,singlestoredb,snowflake,spark,sql,sqlite,transactsql,trino,tsql
     conform.formatters.sql_formatter = {
-      command = mason_bin_path .. "sql-formatter",
+      command = utils.app_prio("sql-formatter"),
       prepend_args = {
         "-c",
         '{"language": "postgresql", "tabWidth": 2, "keywordCase": "upper", "dataTypeCase": "upper", "functionCase": "upper", "linesBetweenQueries": 2, "useTabs": false }',
@@ -101,9 +101,9 @@ return {
       },
     }
 
-    -- prefer formatters installed by mason
-    formatters.prettier.command = mason_bin_path .. "prettier"
-    formatters.shfmt.command = mason_bin_path .. "shfmt"
+    -- prefer formatters (with priority order as defined by app_prio function)
+    formatters.prettier.command = utils.app_prio("prettier")
+    formatters.shfmt.command = utils.app_prio("shfmt")
 
     conform.setup({
       -- use lsp fallback to format: r, rmd, toml

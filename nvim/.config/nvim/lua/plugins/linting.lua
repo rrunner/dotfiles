@@ -3,7 +3,7 @@ return {
   event = { "BufReadPre", "BufNewFile" },
   config = function()
     local lint = require("lint")
-    local mason_bin_path = vim.fn.stdpath("data") .. "/mason/bin/"
+    local utils = require("config.utils")
 
     -- modify linters
 
@@ -12,7 +12,7 @@ return {
     --   return vim.api.nvim_buf_get_name(0)
     -- end
 
-    -- lint.linters.ruff.cmd = mason_bin_path .. "ruff"
+    -- lint.linters.ruff.cmd = utils.app_prio("ruff")
 
     -- lint.linters.ruff.args = {
     --   "check",
@@ -33,7 +33,7 @@ return {
     -- }
 
     -- mypy only works with stdin = false (only updates for event BufWritePost in the autocmd below)
-    lint.linters.mypy.cmd = mason_bin_path .. "mypy"
+    lint.linters.mypy.cmd = utils.app_prio("mypy")
     lint.linters.mypy.args = {
       -- "--strict", -- aggressive setting
       "--ignore-missing-imports",
@@ -53,7 +53,7 @@ return {
     -- "duckdb", "exasol", "greenplum", "hive", "materializ", "mysql",
     -- "oracle", "postgres", "redshift", "snowflake", "soql", "sparksql",
     -- "sqlite", "teradata", "trino", "tsql"
-    lint.linters.sqlfluff.cmd = mason_bin_path .. "sqlfluff"
+    lint.linters.sqlfluff.cmd = utils.app_prio("sqlfluff")
     lint.linters.sqlfluff.args = { "lint", "--dialect", "postgres" }
 
     lint.linters_by_ft = {

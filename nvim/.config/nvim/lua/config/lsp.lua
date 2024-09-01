@@ -1,4 +1,5 @@
 -- LSP configuration
+local utils = require("config.utils")
 
 -- LSP diagnosis
 local icons = require("config.icons")
@@ -77,12 +78,9 @@ local python_markers = {
   "Pipfile",
 }
 
--- mason prepend the PATH by default but set path to Mason installed LSPs anyway
-local mason_bin_path = vim.fn.stdpath("data") .. "/mason/bin/"
-
 start_lsp("pyright", {
   disable = true,
-  cmd = { mason_bin_path .. "pyright-langserver", "--stdio" },
+  cmd = { utils.app_prio("pyright-langserver"), "--stdio" },
   filetypes = { "python" },
   single_file_support = true,
   markers = python_markers,
@@ -109,7 +107,7 @@ start_lsp("pyright", {
 })
 
 start_lsp("ruff", {
-  cmd = { mason_bin_path .. "ruff", "server" },
+  cmd = { utils.app_prio("ruff"), "server" },
   filetypes = { "python" },
   markers = python_markers,
   root_dir_fallback = vim.env.PWD,
@@ -128,7 +126,7 @@ start_lsp("ruff", {
 
 start_lsp("basedpyright", {
   disable = false,
-  cmd = { mason_bin_path .. "basedpyright-langserver", "--stdio" },
+  cmd = { utils.app_prio("basedpyright-langserver"), "--stdio" },
   filetypes = { "python" },
   single_file_support = true,
   markers = python_markers,
@@ -150,13 +148,13 @@ start_lsp("basedpyright", {
 })
 
 start_lsp("r_language_server", {
-  cmd = { mason_bin_path .. "r-languageserver" },
+  cmd = { utils.app_prio("r-languageserver") },
   filetypes = { "r", "rmd" },
   root_dir_fallback = vim.env.PWD,
 })
 
 start_lsp("lua_ls", {
-  cmd = { mason_bin_path .. "lua-language-server" },
+  cmd = { utils.app_prio("lua-language-server") },
   filetypes = { "lua" },
   single_file_support = true,
   markers = {
@@ -195,7 +193,7 @@ start_lsp("lua_ls", {
 })
 
 start_lsp("yamlls", {
-  cmd = { mason_bin_path .. "yaml-language-server", "--stdio" },
+  cmd = { utils.app_prio("yaml-language-server"), "--stdio" },
   filetypes = { "yaml", "yaml.docker-compose", "yaml.gitlab" },
   root_dir_fallback = vim.env.PWD,
   settings = {
@@ -211,19 +209,19 @@ start_lsp("yamlls", {
 })
 
 start_lsp("dockerls", {
-  cmd = { mason_bin_path .. "docker-langserver", "--stdio" },
+  cmd = { utils.app_prio("docker-langserver"), "--stdio" },
   filetypes = { "dockerfile" },
   root_dir_fallback = vim.env.PWD,
 })
 
 start_lsp("taplo", {
-  cmd = { mason_bin_path .. "taplo", "lsp", "stdio" },
+  cmd = { utils.app_prio("taplo"), "lsp", "stdio" },
   filetypes = { "toml" },
   root_dir_fallback = vim.env.PWD,
 })
 
 start_lsp("bashls", {
-  cmd = { mason_bin_path .. "bash-language-server", "start" },
+  cmd = { utils.app_prio("bash-language-server"), "start" },
   filetypes = { "sh", "bash" },
   root_dir_fallback = vim.env.PWD,
   settings = {
@@ -234,7 +232,7 @@ start_lsp("bashls", {
 })
 
 start_lsp("sqlls", {
-  cmd = { mason_bin_path .. "sql-language-server", "up", "--method", "stdio" },
+  cmd = { utils.app_prio("sql-language-server"), "up", "--method", "stdio" },
   filetypes = { "sql", "mysql" },
   root_dir_fallback = vim.env.PWD,
   settings = {},
