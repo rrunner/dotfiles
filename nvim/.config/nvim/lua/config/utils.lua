@@ -105,10 +105,9 @@ M.search_notes = function()
   end
 end
 
--- retrieve the path to the active python interpreter based on environment
--- variables VIRTUAL_ENV (incl. pyenv virtual envs), CONDA_PREFIX or system
--- interpreter
----@return string  -- the path to the active python interpreter, returns empty string if no python interpreter is found
+-- retrieve the path to the prioritized python interpreter that executes the
+-- python program about to be debugged
+---@return string  -- the path to the active python interpreter
 M.get_python_path = function()
   local venv_path = os.getenv("VIRTUAL_ENV")
   if venv_path then
@@ -127,19 +126,6 @@ M.get_python_path = function()
       -- regular virtual environment
       vim.notify("python executable (venv)", vim.log.levels.INFO)
     end
-    return bin_path
-  end
-
-  local conda_path = os.getenv("CONDA_PREFIX")
-  if conda_path then
-    if M.IS_WIN then
-      local bin_path = conda_path .. "\\python.exe"
-      vim.notify("python executable (conda)", vim.log.levels.INFO)
-      return bin_path
-    end
-
-    local bin_path = conda_path .. "/bin/python"
-    vim.notify("python executable (conda)", vim.log.levels.INFO)
     return bin_path
   end
 
