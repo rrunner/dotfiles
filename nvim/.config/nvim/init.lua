@@ -50,6 +50,8 @@ require("config.keymaps")
 require("config.options")
 require("config.lsp")
 
+local utils = require("config.utils")
+
 -- initialize lazy.nvim
 require("lazy").setup("plugins", {
   ui = {
@@ -63,11 +65,11 @@ require("lazy").setup("plugins", {
     missing = true,
   },
   checker = {
-    enabled = true,
+    enabled = utils.IS_GITHUB_BLOCKED_INVERSE_BOOL,
     notify = false,
   },
   change_detection = {
-    enabled = true,
+    enabled = utils.IS_GITHUB_BLOCKED_INVERSE_BOOL,
     notify = false,
   },
   performance = {

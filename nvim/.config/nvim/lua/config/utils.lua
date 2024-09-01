@@ -18,6 +18,16 @@ M.IS_WSL = (function()
   return nil
 end)()
 
+-- set IS_GITHUB_BLOCKED to true if site prevents github usage
+M.IS_GITHUB_BLOCKED = false
+M.IS_GITHUB_BLOCKED_INVERSE_BOOL = (function()
+  if M.IS_GITHUB_BLOCKED then
+    return false
+  else
+    return true
+  end
+end)()
+
 -- path separator
 local path_sep = function()
   if M.IS_WIN then

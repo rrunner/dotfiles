@@ -5,6 +5,10 @@ return {
   dependencies = {
     "WhoIsSethDaniel/mason-tool-installer.nvim",
   },
+  cond = function()
+    local utils = require("config.utils")
+    return utils.IS_GITHUB_BLOCKED_INVERSE_BOOL
+  end,
   config = function()
     local utils = require("config.utils")
 
