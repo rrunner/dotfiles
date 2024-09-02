@@ -1,7 +1,7 @@
 -- improved f,t,F,T (respect smartcase and does multiline search)
 return {
   "backdround/improved-ft.nvim",
-  event = "BufEnter",
+  event = "VeryLazy",
   config = function()
     local ift = require("improved-ft")
 
