@@ -1,7 +1,7 @@
 -- marks
 return {
   "chentoast/marks.nvim",
-  event = "BufEnter",
+  event = "VeryLazy",
   opts = {
     default_mappings = false,
     mappings = {
