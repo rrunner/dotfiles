@@ -2,7 +2,7 @@
 local supported_filetypes = { "rmd", "markdown", "quarto" }
 
 return {
-  "MeanderingProgrammer/markdown.nvim",
+  "MeanderingProgrammer/render-markdown.nvim",
   ft = supported_filetypes,
   main = "render-markdown",
   dependencies = {
