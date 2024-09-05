@@ -40,6 +40,7 @@ return {
       "query",
       "r",
       "regex",
+      "requirements",
       "rst",
       "sql",
       "terraform",
