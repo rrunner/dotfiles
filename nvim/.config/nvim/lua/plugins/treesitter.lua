@@ -34,6 +34,7 @@ return {
       "lua",
       "markdown",
       "markdown_inline",
+      "mermaid",
       "ninja",
       "psv",
       "python",
