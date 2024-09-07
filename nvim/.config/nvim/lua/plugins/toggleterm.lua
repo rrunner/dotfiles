@@ -2,6 +2,9 @@
 return {
   "akinsho/toggleterm.nvim",
   version = "*",
+  keys = {
+    { "<c-;>", [[<cmd>ToggleTerm<cr>]], mode = "n", desc = "Toggle Terminal", noremap = true, silent = true },
+  },
   config = function()
     local opts = {
       open_mapping = [[<c-;>]],
@@ -63,7 +66,4 @@ return {
       _CHTSH_R_TOGGLE()
     end, { noremap = true, silent = true, desc = "Open cht.sh shell for the R language" })
   end,
-  keys = {
-    { "<c-;>", [[<cmd>ToggleTerm<cr>]], mode = "n", desc = "Toggle Terminal", noremap = true, silent = true },
-  },
 }
