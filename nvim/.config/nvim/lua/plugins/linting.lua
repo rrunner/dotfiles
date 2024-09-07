@@ -63,12 +63,12 @@ return {
       mysql = { "sqlfluff" },
     }
 
-    local lint_augroup = vim.api.nvim_create_augroup("lint", { clear = true })
+    local linter_augroup = vim.api.nvim_create_augroup("Linting", { clear = true })
     vim.api.nvim_create_autocmd({ "BufReadPost", "InsertLeave", "BufWritePost", "TextChanged" }, {
-      group = lint_augroup,
       callback = function()
         lint.try_lint()
       end,
+      group = linter_augroup,
     })
   end,
 }

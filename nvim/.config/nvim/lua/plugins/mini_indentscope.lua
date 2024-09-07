@@ -25,14 +25,16 @@ return {
     }
     mini_indentscope.setup(opts)
 
-    -- disable for certain filetypes
+    -- disable indentscope for certain filetypes
+    local indent_augroup = vim.api.nvim_create_augroup("Indent", { clear = true })
     vim.api.nvim_create_autocmd({ "FileType" }, {
-      desc = "Disable indentscope for certain filetypes",
       callback = function()
         local ignore_filetypes = {
           "",
           "aerial",
           "checkhealth",
+          "DressingInput",
+          "DressingSelect",
           "gitcommit",
           "help",
           "lazy",
@@ -43,17 +45,17 @@ return {
           "noice",
           "notify",
           "qf",
-          "text",
-          "toggleterm",
-          "DressingInput",
-          "DressingSelect",
+          "query",
           "TelescopePrompt",
           "TelescopeResults",
+          "text",
+          "toggleterm",
         }
         if vim.tbl_contains(ignore_filetypes, vim.bo.filetype) then
           vim.b.miniindentscope_disable = true
         end
       end,
+      group = indent_augroup,
     })
   end,
 }

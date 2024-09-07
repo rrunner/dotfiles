@@ -227,6 +227,7 @@ vim.api.nvim_create_autocmd({ "UIEnter", "ColorScheme" }, {
       modified = true
     end
   end,
+  group = config,
 })
 
 vim.api.nvim_create_autocmd("UILeave", {
@@ -235,4 +236,5 @@ vim.api.nvim_create_autocmd("UILeave", {
       io.write("\027]111\027\\")
     end
   end,
+  group = config,
 })
