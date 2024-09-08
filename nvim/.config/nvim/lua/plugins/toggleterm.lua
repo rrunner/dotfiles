@@ -18,7 +18,7 @@ return {
       shade_terminals = false,
       shell = function()
         -- default setting from options.lua
-        return vim.opt.shell:get()
+        return vim.o.shell
       end,
       winbar = {
         enabled = false,
