@@ -7,12 +7,14 @@ return {
         max_width = { 40, 0.1 },
         min_width = 40,
       },
+      disable_max_lines = 20000,
       -- filter_kind = false, -- display all symbols
-      close_automatic_events = { "unfocus", "switch_buffer", "unsupported" },
+      -- close_automatic_events = { "unfocus", "switch_buffer", "unsupported" },
+      close_automatic_events = {},
       highlight_on_jump = 700,
       post_jump_cmd = "normal! zt",
       lazy_load = false,
-      close_on_select = true,
+      close_on_select = false,
       keymaps = {
         ["<c-v>"] = "actions.jump_vsplit",
         ["<c-x>"] = "actions.jump_split",
