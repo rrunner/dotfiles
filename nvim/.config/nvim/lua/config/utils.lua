@@ -19,7 +19,7 @@ M.IS_WSL = (function()
 end)()
 
 -- set IS_GITHUB_BLOCKED to true if site prevents github usage
-M.IS_GITHUB_BLOCKED = false
+M.IS_GITHUB_BLOCKED = M.IS_WSL
 M.IS_GITHUB_BLOCKED_INVERSE_BOOL = not M.IS_GITHUB_BLOCKED
 
 -- path separator
