@@ -1,0 +1,4 @@
+basedpyright
+ruff
+mypy
+debugpy

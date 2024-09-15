@@ -1,5 +1,3 @@
-# pip install development tools: "basedpyright", "ruff", "mypy", "debugpy"
-
 # [tool.pyright]
 # pythonVersion = "3.12"
 # typeCheckingMode = "off" # off, basic, standard, strict
