@@ -247,6 +247,14 @@ return {
       desc = "Search text from dir using (rip)grep args (user input optional)",
     })
 
+    vim.keymap.set("x", "<leader>sv", function()
+      require("telescope-live-grep-args.shortcuts").grep_word_visual_selection_current_buffer()
+    end, {
+      noremap = true,
+      silent = true,
+      desc = "Search for (visual) selected text in current file",
+    })
+
     vim.api.nvim_set_keymap(
       "n",
       "<leader>sl",
