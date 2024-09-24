@@ -216,6 +216,9 @@ start_lsp("dockerls", {
 
 start_lsp("taplo", {
   cmd = { utils.app_prio("taplo"), "lsp", "stdio" },
+  markers = {
+    ".toml",
+  },
   filetypes = { "toml" },
   root_dir_fallback = vim.env.PWD,
 })
