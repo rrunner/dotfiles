@@ -113,7 +113,7 @@ return {
         python = { "ruff_fix", "ruff_format" }, -- run both for now... see https://github.com/astral-sh/ruff/issues/8232
         lua = { "stylua" },
         markdown = { "prettier", "markdownlint-cli2", "markdown-toc" },
-        quarto = { "injected" }, -- TODO: format R code blocks in quarto document
+        -- quarto = { "injected" }, -- TODO: quarto formatting such as formatting of R code blocks in quarto document is brittle
         yaml = { "prettier", "injected" },
         json = { "prettier" },
         html = { "prettier" },
