@@ -61,6 +61,7 @@ return {
       python = { "mypy" },
       sql = { "sqlfluff" },
       mysql = { "sqlfluff" },
+      markdown = { "markdownlint-cli2" },
     }
 
     local linter_augroup = vim.api.nvim_create_augroup("Linting", { clear = true })

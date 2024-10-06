@@ -33,6 +33,7 @@ return {
       "taplo",
       "bash-language-server", --bashls
       "sqlls",
+      "marksman",
     }
 
     -- linters, formatters, debuggers etc.
@@ -46,6 +47,8 @@ return {
       "sql-formatter",
       "sqlfluff",
       "stylua",
+      "markdownlint-cli2",
+      "markdown-toc",
     }
     local ensure_installed = utils.unique_values(lsp_servers, tools)
     require("mason-tool-installer").setup({ ensure_installed = ensure_installed })

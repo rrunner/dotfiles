@@ -112,7 +112,7 @@ return {
         -- TODO: use ruff LSP for python formatting to enable config via pyproject.toml (ruff format via ruff LSP currently don't cover all use cases)
         python = { "ruff_fix", "ruff_format" }, -- run both for now... see https://github.com/astral-sh/ruff/issues/8232
         lua = { "stylua" },
-        markdown = { "prettier", "injected" },
+        markdown = { "prettier", "markdownlint-cli2", "markdown-toc" },
         quarto = { "injected" }, -- TODO: format R code blocks in quarto document
         yaml = { "prettier", "injected" },
         json = { "prettier" },
@@ -150,7 +150,6 @@ return {
         end
       end
       vim.notify(retstr, vim.log.levels.INFO)
-      -- end
     end, { desc = "List configured formatters for the current buffer" })
   end,
 }

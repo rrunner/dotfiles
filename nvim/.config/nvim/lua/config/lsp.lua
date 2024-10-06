@@ -241,6 +241,13 @@ start_lsp("sqlls", {
   settings = {},
 })
 
+start_lsp("marksman", {
+  cmd = { utils.app_prio("marksman"), "server" },
+  filetypes = { "markdown" },
+  root_dir_fallback = vim.env.PWD,
+  settings = {},
+})
+
 -- LSP keymaps
 local opts = { noremap = true, silent = true }
 
