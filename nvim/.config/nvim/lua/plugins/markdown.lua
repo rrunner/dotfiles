@@ -4,7 +4,6 @@ local supported_filetypes = { "rmd", "markdown", "quarto" }
 return {
   "MeanderingProgrammer/render-markdown.nvim",
   ft = supported_filetypes,
-  main = "render-markdown",
   dependencies = {
     "nvim-treesitter/nvim-treesitter",
     "nvim-tree/nvim-web-devicons",
@@ -27,5 +26,6 @@ return {
       },
     })
     vim.treesitter.language.register("markdown", "quarto")
+    vim.treesitter.language.register("markdown", "rmd")
   end,
 }
