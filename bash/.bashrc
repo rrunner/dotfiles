@@ -125,6 +125,9 @@ fi
 # directory under ~/.config/ where neovim looks for config files (default is "nvim")
 export NVIM_APPNAME="nvim"
 
+# debug python from terminal
+export DEBUG_PYTHON="0"
+
 # zoxide
 eval "$(zoxide init bash)"
 

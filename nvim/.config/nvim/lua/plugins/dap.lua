@@ -17,6 +17,14 @@ return {
       noremap = true,
       silent = true,
     },
+    {
+      "<leader>dc",
+      [[<cmd>lua require('dap').continue()<cr>]],
+      mode = "n",
+      desc = "Start/continue (debugger)",
+      noremap = true,
+      silent = true,
+    },
   },
   config = function()
     local utils = require("config.utils")
@@ -49,12 +57,6 @@ return {
       noremap = true,
       silent = true,
       desc = "Reset windows (debugger)",
-    })
-
-    vim.api.nvim_set_keymap("n", "<leader>dc", [[<cmd>lua require('dap').continue()<cr>]], {
-      noremap = true,
-      silent = true,
-      desc = "Start/continue (debugger)",
     })
 
     vim.api.nvim_set_keymap("n", "<leader>dn", [[<cmd>lua require('dap').step_over()<cr>]], {
@@ -162,11 +164,30 @@ return {
     --   1. Mason
     --   2. Virtual environment
     --   3. System
-    dap.adapters.python = {
-      type = "executable",
-      command = utils.get_debugpy_path(),
-      args = { "-m", "debugpy.adapter" },
-    }
+    ---@param callback fun(arg: table): any
+    ---@param config table<string, any>
+    ---@return any
+    dap.adapters.python = function(callback, config)
+      if config.request == "launch" then
+        callback({
+          type = "executable",
+          command = utils.get_debugpy_path(),
+          args = { "-m", "debugpy.adapter" },
+        })
+      elseif config.request == "attach" then
+        local host = config.connect.host
+        local port = config.connect.port
+
+        callback({
+          type = "server",
+          host = host,
+          port = port,
+          options = {
+            source_filetype = "python",
+          },
+        })
+      end
+    end
 
     -- setup python configurations
     dap.configurations.python = {
@@ -231,9 +252,9 @@ return {
         stopOnEntry = true, -- start debugging on first line (virtual breakpoint)
       },
       {
-        name = "Debug FastAPI module",
         type = "python",
         request = "launch",
+        name = "Debug FastAPI module",
         module = "uvicorn",
         args = {
           "main:app",
@@ -251,14 +272,24 @@ return {
         stopOnEntry = true,
       },
       {
-        name = "Debug FastAPI main",
         type = "python",
         request = "launch",
+        name = "Debug FastAPI main",
         program = function()
           return "./main.py"
         end,
         pythonPath = function()
           return utils.get_python_path()
+        end,
+      },
+      {
+        type = "python",
+        request = "attach",
+        name = "Attach a debugging session",
+        connect = function()
+          local host = vim.fn.input("Host: ")
+          local port = tonumber(vim.fn.input("Port: "))
+          return { host = host, port = port }
         end,
       },
     }
