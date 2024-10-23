@@ -35,16 +35,19 @@ return {
     -- mypy only works with stdin = false (only updates for event BufWritePost in the autocmd below)
     lint.linters.mypy.cmd = utils.app_prio("mypy")
     lint.linters.mypy.args = {
-      -- "--strict", -- aggressive setting
+      "--strict", -- aggressive setting
       "--ignore-missing-imports",
       "--follow-imports=silent",
       "--show-column-numbers",
       "--show-error-end",
-      "--hide-error-codes",
       "--hide-error-context",
       "--no-color-output",
       "--no-error-summary",
       "--no-pretty",
+      "--python-executable",
+      function()
+        return vim.fn.exepath("python3") or vim.fn.exepath("python")
+      end,
     }
 
     -- sqlfluff
