@@ -1,3 +1,4 @@
+[general]
 live_config_reload = true
 
 [colors]
@@ -71,8 +72,8 @@ bindings = [
 [scrolling]
 history = 10000
 
-[shell]
-program = "/bin/bash"
+[terminal]
+shell = "/bin/bash"
 
 [window]
 decorations = "none"
