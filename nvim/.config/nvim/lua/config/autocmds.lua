@@ -33,12 +33,17 @@ vim.api.nvim_create_autocmd("TermClose", {
 vim.api.nvim_create_autocmd("FileType", {
   callback = function(event)
     vim.bo[event.buf].buflisted = false
-    vim.keymap.set(
-      "n",
-      "q",
-      "<cmd>close<cr>",
-      { noremap = true, silent = true, buffer = event.buf, desc = "Close specific filetypes with q (autocmd)" }
-    )
+    vim.schedule(function()
+      vim.keymap.set("n", "q", function()
+        vim.cmd("close")
+        pcall(vim.api.nvim_buf_delete, event.buf, { force = true })
+      end, {
+        noremap = true,
+        silent = true,
+        buffer = event.buf,
+        desc = "Close specific filetypes with q (autocmd)",
+      })
+    end)
   end,
   group = config,
   pattern = { "help", "qf", "checkhealth", "neotest-summary", "neotest-output", "query", "gitsigns-blame" },
