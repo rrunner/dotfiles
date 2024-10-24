@@ -76,6 +76,17 @@ if utils.IS_WIN then
     group = config,
     pattern = "*",
   })
+else
+  -- check if we need to reload the file when it changed (maybe this can replace the autocmd for win above)
+  vim.api.nvim_create_autocmd({ "FocusGained", "TermClose", "TermLeave" }, {
+    callback = function()
+      if vim.o.buftype ~= "nofile" then
+        vim.cmd("checktime")
+      end
+    end,
+    group = config,
+    pattern = "*",
+  })
 end
 
 -- use internal formatting for bindings like gq
@@ -140,15 +151,16 @@ vim.api.nvim_create_autocmd({ "InsertEnter", "WinLeave" }, {
   pattern = "*",
 })
 
--- enable spell checking for certain file types
+-- enable wrap and spell checking for certain file types
 vim.api.nvim_create_autocmd("FileType", {
   callback = function()
     vim.opt_local.spell = true
     vim.opt_local.spelllang = { "en", "sv" }
     vim.opt_local.spelloptions:append({ "camel" })
+    vim.opt_local.wrap = true
   end,
   group = config,
-  pattern = { "text", "tex", "markdown", "quarto", "rmd", "mail", "NeogitCommitMessage" },
+  pattern = { "text", "tex", "markdown", "quarto", "rmd", "mail", "NeogitCommitMessage", "plaintex", "gitcommit" },
 })
 
 -- delete [No Name] buffers
@@ -164,9 +176,13 @@ vim.api.nvim_create_autocmd("BufHidden", {
   pattern = "*",
 })
 
--- resize splits when terminal is resized
-vim.api.nvim_create_autocmd("VimResized", {
-  command = "wincmd =",
+-- resize splits if window got resized
+vim.api.nvim_create_autocmd({ "VimResized" }, {
+  callback = function()
+    local current_tab = vim.fn.tabpagenr()
+    vim.cmd("tabdo wincmd =")
+    vim.cmd("tabnext " .. current_tab)
+  end,
   group = config,
   pattern = "*",
 })
@@ -242,4 +258,22 @@ vim.api.nvim_create_autocmd("UILeave", {
     end
   end,
   group = config,
+})
+
+-- fix conceallevel for json files
+vim.api.nvim_create_autocmd({ "FileType" }, {
+  callback = function()
+    vim.opt_local.conceallevel = 0
+  end,
+  group = config,
+  pattern = { "json", "jsonc", "json5" },
+})
+
+-- make it easier to close man-files when opened inline
+vim.api.nvim_create_autocmd("FileType", {
+  callback = function(event)
+    vim.bo[event.buf].buflisted = false
+  end,
+  group = config,
+  pattern = { "man" },
 })
