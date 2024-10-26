@@ -196,7 +196,19 @@ vim.api.nvim_create_autocmd({ "BufRead", "BufNewFile" }, {
 
 -- open file at the last edited position (for configuration files)
 vim.api.nvim_create_autocmd("BufReadPost", {
-  command = 'silent! normal! g`"zv',
+  callback = function(event)
+    local buf = event.buf
+    if vim.b[buf].last_loc then
+      -- open file normally if the buffer is already open
+      return
+    end
+    vim.b[buf].last_loc = true
+    local mark = vim.api.nvim_buf_get_mark(buf, ".")
+    local lcount = vim.api.nvim_buf_line_count(buf)
+    if mark[1] > 0 and mark[1] <= lcount then
+      pcall(vim.api.nvim_win_set_cursor, 0, mark)
+    end
+  end,
   group = config,
   pattern = { "*.toml", "*.yaml", "*.yml" },
 })
