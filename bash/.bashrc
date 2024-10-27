@@ -75,11 +75,11 @@ export R_ENVIRON_USER=~/.config/r/.Renviron
 export R_PROFILE_USER=~/.config/r/.Rprofile
 
 # go
-export GOPATH=~/projects/go
-export PATH=$PATH:$GOPATH/bin
+# export GOPATH=~/projects/go
+# export PATH=$PATH:$GOPATH/bin
 
 # python (mainly for nvim)
-export PYENV_ROOT=/usr/bin/python
+# export PYENV_ROOT=/usr/bin/python
 
 # completion for git
 source /usr/share/git/completion/git-completion.bash
@@ -139,6 +139,12 @@ eval "$(zoxide init bash)"
 
 # eval "$(pyenv init -)"
 # eval "$(pyenv virtualenv-init -)"
+
+# uv (uses HTTP_PROXY, HTTPS_PROXY, ALL_PROXY)
+export UV_DEFAULT_INDEX="https://pypi.org/simple"
+eval "$(uv generate-shell-completion bash)"
+eval "$(uvx --generate-shell-completion bash)"
+export PATH="${HOME}/.local/bin:$PATH" # tool executables
 
 # starship prompt
 eval "$(starship init bash)"

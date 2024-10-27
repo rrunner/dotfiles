@@ -7,6 +7,8 @@
 # disableOrganizeImports = true # use Ruff's import organizer
 # diagnosticMode = "workspace" # openFilesOnly, workspace
 
+[tool.uv]
+
 [tool.basedpyright] # comment out [tool.pyright] section above if using basedpyright
 pythonVersion = "3.12"
 typeCheckingMode = "off" # off, basic, standard, strict, all
@@ -44,19 +46,19 @@ exclude = [
 ]
 
 [tool.ruff.lint]
-select = ["ALL"]
-ignore = [
-  "D407",
-  "T201",
-  "ERA",
-  "ERA001",
-  "E501",
-  "D406",
-  "RET504",
-  "PLR2004",
-  "PD901",
-  "PLR0913",
-]
+# select = ["ALL"]
+# ignore = [
+#   "D407",
+#   "T201",
+#   "ERA",
+#   "ERA001",
+#   "E501",
+#   "D406",
+#   "RET504",
+#   "PLR2004",
+#   "PD901",
+#   "PLR0913",
+# ]
 dummy-variable-rgx = "^(_+|(_+[a-zA-Z0-9_]*[a-zA-Z0-9]+?))$"
 
 [tool.ruff.format]
