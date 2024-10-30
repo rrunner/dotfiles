@@ -497,10 +497,12 @@ set breakindent
 set mouse=a
 set ttymouse=sgr
 set fillchars=foldopen:-,foldclose:+,fold:\ ,foldsep:\ ,diff:/,eob:\ ,
+set foldenable
+set foldlevel=99
+set foldmethod=manual
+set foldnestmax=5
 set spelloptions=camel
 set smoothscroll
-set foldenable
-set foldmethod=manual
 set spellsuggest=best,10
 set pumheight=15
 set winminwidth=5

@@ -86,14 +86,6 @@ vim.opt.breakindent = true
 vim.opt.mouse = "nvi"
 vim.opt.inccommand = "split"
 vim.opt.shell = "bash"
-vim.opt.fillchars = {
-  foldopen = "",
-  foldclose = "",
-  fold = " ",
-  foldsep = " ",
-  diff = "╱",
-  eob = " ",
-}
 vim.opt.splitkeep = "topline"
 vim.opt.pumheight = 15
 vim.opt.spellsuggest = "best,10"
@@ -137,13 +129,19 @@ vim.opt.statuscolumn = [[%!v:lua.require("config.statuscolumn").statuscolumn()]]
 vim.opt.jumpoptions = "view"
 
 -- folding
+vim.opt.fillchars = {
+  foldopen = "",
+  foldclose = "",
+  fold = " ",
+  foldsep = " ",
+  diff = "╱",
+  eob = " ",
+}
 vim.opt.foldenable = true
 vim.opt.foldlevel = 99 -- open buffers unfolded
 vim.opt.foldmethod = "expr"
 vim.opt.foldexpr = [[v:lua.require("config.folds").foldexpr()]]
--- vim.opt.foldtext = ""
 vim.opt.foldtext = [[v:lua.require("config.folds").foldtext()]]
-vim.opt.fillchars = "fold: "
 
 -- windows specific
 if utils.IS_WIN then
