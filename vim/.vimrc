@@ -37,7 +37,7 @@ augroup vimrc
     autocmd BufRead,BufNewFile *.mail set filetype=mail
 
   " open file at the last edited position (for configuration files)
-  autocmd BufReadPost *.toml,*.yaml silent! normal! g`"zv
+  autocmd BufReadPost *.toml,*.yaml,*.yml,*.json,*.jsonc silent! normal! g`"zv
 
   " only use number in insert mode (not relativenumber) if number option is set
   autocmd InsertEnter * if &number == 1 | setlocal number norelativenumber | endif

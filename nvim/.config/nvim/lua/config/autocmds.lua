@@ -117,7 +117,7 @@ vim.api.nvim_create_autocmd({ "BufWinEnter", "BufFilePost", "WinEnter" }, {
   callback = function()
     -- winbar whitelist
     local ft_with_winbar =
-      { "python", "r", "rmd", "sql", "yaml", "json", "lua", "text", "quarto", "markdown", "tex", "toml" }
+      { "python", "r", "rmd", "sql", "yaml", "json", "jsonc", "lua", "text", "quarto", "markdown", "tex", "toml" }
 
     -- exclusions
     if utils.is_non_normal_buffer() or not vim.tbl_contains(ft_with_winbar, vim.bo[0].filetype) then
@@ -210,7 +210,7 @@ vim.api.nvim_create_autocmd("BufReadPost", {
     end
   end,
   group = config,
-  pattern = { "*.toml", "*.yaml", "*.yml" },
+  pattern = { "*.toml", "*.yaml", "*.yml", "*.json", "*.jsonc" },
 })
 
 -- only use number in insert mode (not relativenumber) if number option is set
@@ -247,7 +247,7 @@ vim.api.nvim_create_autocmd("FileType", {
     })
   end,
   group = config,
-  pattern = { "markdown", "quarto", "rmd", "json" },
+  pattern = { "markdown", "quarto", "rmd" },
 })
 
 -- keep terminal background's color in sync with Neovim's background color using OSC control sequences (https://github.com/neovim/neovim/issues/16572#issuecomment-1954420136)
@@ -278,7 +278,7 @@ vim.api.nvim_create_autocmd({ "FileType" }, {
     vim.opt_local.conceallevel = 0
   end,
   group = config,
-  pattern = { "json", "jsonc", "json5" },
+  pattern = { "json", "jsonc" },
 })
 
 -- make it easier to close man-files when opened inline
