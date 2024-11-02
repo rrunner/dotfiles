@@ -44,6 +44,7 @@ alias gdc="git diff --cached"
 alias gc="git commit -m"
 alias gl="git log"
 alias ds="dotfiles status"
+alias activate="source .venv/bin/activate 2>/dev/null || source venv/bin/activate 2>/dev/null || echo 'No virtual environment for Python available'"
 
 PS1='[\u@\h \W]\$ '
 #LANG="sv_SE.UTF-8"
