@@ -234,7 +234,7 @@ M.venv_with_cwd = function()
   if venv == nil then
     return uv.cwd() or ""
   end
-  return "󱔎 (" .. str.match(venv, "/?([%w_-]+)$") .. ") " .. uv.cwd()
+  return "󱔎 (" .. str.match(venv, "/?([.%w_-]+)$") .. ") " .. uv.cwd()
 end
 
 -- daily vim tip from vtip.43z.one
