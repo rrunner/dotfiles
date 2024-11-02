@@ -148,3 +148,6 @@ export PATH="${HOME}/.local/bin:$PATH" # tool executables
 
 # starship prompt
 eval "$(starship init bash)"
+
+# direnv (project based environment variables set in .envrc)
+eval "$(direnv hook bash)"
