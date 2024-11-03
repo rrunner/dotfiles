@@ -79,9 +79,6 @@ export R_PROFILE_USER=~/.config/r/.Rprofile
 # export GOPATH=~/projects/go
 # export PATH=$PATH:$GOPATH/bin
 
-# python (mainly for nvim)
-# export PYENV_ROOT=/usr/bin/python
-
 # completion for git
 source /usr/share/git/completion/git-completion.bash
 
@@ -131,15 +128,6 @@ export DEBUG_PYTHON="0"
 
 # zoxide
 eval "$(zoxide init bash)"
-
-# pyenv/pyenv-virtualenv (uninstalled)
-# export PYENV_ROOT="$HOME/.pyenv"
-# command -v pyenv >/dev/null || export PATH="$PYENV_ROOT/bin:$PATH"
-
-# export PYENV_VIRTUALENV_DISABLE_PROMPT=1
-
-# eval "$(pyenv init -)"
-# eval "$(pyenv virtualenv-init -)"
 
 # uv (uses HTTP_PROXY, HTTPS_PROXY, ALL_PROXY)
 export UV_DEFAULT_INDEX="https://pypi.org/simple"
