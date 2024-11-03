@@ -18,7 +18,7 @@ return {
             "black",
             "ruff",
             "mypy",
-            "debugpy",
+            -- "debugpy",
             -- R related
             "styler",
             -- lua related

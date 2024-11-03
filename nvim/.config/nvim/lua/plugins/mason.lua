@@ -38,7 +38,7 @@ return {
 
     -- linters, formatters, debuggers etc.
     local tools = {
-      "debugpy",
+      -- "debugpy",
       "jq",
       "mypy",
       "prettier",

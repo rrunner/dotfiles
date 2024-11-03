@@ -109,81 +109,29 @@ M.search_notes = function()
   end
 end
 
--- retrieve the path to the prioritized python interpreter that executes the
--- python program about to be debugged
+-- retrieve the path to the python interpreter that executes the python program
+-- to be debugged
 ---@return string  -- the path to the active python interpreter
-M.get_python_path = function()
-  local venv_path = os.getenv("VIRTUAL_ENV")
-  if venv_path then
-    if M.IS_WIN then
-      local bin_path = venv_path .. "\\Scripts\\python.exe"
-      vim.notify("python executable (venv)", vim.log.levels.INFO)
-      return bin_path
+M.get_python_path = function(log_message)
+  log_message = log_message or false
+  -- issue warning if debugpy is not installed in the virtual environment
+  if vim.env.VIRTUAL_ENV then
+    local _dpath = vim.env.VIRTUAL_ENV .. "/bin/debugpy"
+    if vim.fn.executable(_dpath) == 0 then
+      vim.notify("debugpy is not installed in virtual environment", vim.log.levels.WARN)
     end
-
-    local bin_path = venv_path .. "/bin/python"
-
-    if string.match(bin_path, ".pyenv") then
-      -- pyenv virtual environment
-      vim.notify("python executable (pyenv venv)", vim.log.levels.INFO)
-    else
-      -- regular virtual environment
-      vim.notify("python executable (venv)", vim.log.levels.INFO)
-    end
-    return bin_path
   end
 
-  if vim.fn.executable("python") then
-    local bin_path = vim.fn.exepath("python")
-    vim.notify("python executable (system)", vim.log.levels.INFO)
-    return bin_path
-  end
-
-  vim.notify("python executable not found", vim.log.levels.WARN)
-  return ""
-end
-
--- retrieve the path to the python binary running the debugger (debugpy).
--- Virtual env is prioritized (requires debugpy python package in venv) to use
--- the debugger as stated in requirements.txt. Otherwise use binary provided by
--- Mason. Finally, use the python system binary which thus requires the debugpy
--- python package to be installed on the system.
----@return string  -- the path to python binary running the debugger (debugpy)
-M.get_debugpy_path = function()
-  local do_notify = true
-
-  if M.IS_WIN then
-    vim.notify("debugpy not yet configured on Windows", vim.log.levels.WARN)
+  local py_path = vim.fn.exepath("python3") or vim.fn.exepath("python")
+  if py_path then
+    if log_message then
+      vim.notify("python interpreter: " .. py_path, vim.log.levels.INFO)
+    end
+    return py_path
+  else
+    vim.notify("python executable not found", vim.log.levels.WARN)
     return ""
   end
-
-  if vim.env.VIRTUAL_ENV then
-    local venv_path = vim.env.VIRTUAL_ENV .. "/bin/python"
-    if vim.fn.executable(venv_path) == 1 then
-      if do_notify then
-        vim.notify("run debugpy using python interpreter from venv", vim.log.levels.INFO)
-      end
-      return venv_path
-    end
-  end
-
-  local mason_path = vim.fn.stdpath("data") .. "/mason/packages/debugpy/venv/bin/python"
-  if vim.fn.executable(mason_path) == 1 then
-    if do_notify then
-      vim.notify("run debugpy using python interpreter from mason", vim.log.levels.INFO)
-    end
-    return mason_path
-  end
-
-  if vim.fn.executable("python") == 1 then
-    if do_notify then
-      vim.notify("run debugpy using python interpreter from system", vim.log.levels.INFO)
-    end
-    return "python"
-  end
-
-  vim.notify("debugpy not configured", vim.log.levels.WARN)
-  return ""
 end
 
 -- set the priority order for a given application's binary package. Binaries

@@ -160,10 +160,6 @@ return {
     --   dapui.close()
     -- end
 
-    -- use debugpy binary with the following priority order
-    --   1. Mason
-    --   2. Virtual environment
-    --   3. System
     ---@param callback fun(arg: table): any
     ---@param config table<string, any>
     ---@return any
@@ -171,7 +167,7 @@ return {
       if config.request == "launch" then
         callback({
           type = "executable",
-          command = utils.get_debugpy_path(),
+          command = utils.get_python_path(true),
           args = { "-m", "debugpy.adapter" },
         })
       elseif config.request == "attach" then
