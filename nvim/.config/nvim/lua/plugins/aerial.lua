@@ -1,6 +1,6 @@
 return {
   "stevearc/aerial.nvim",
-  -- the aerial plugin is effectively loaded at startup because lualine uses aerial
+  -- no lazy load since the aerial plugin is effectively loaded at startup because of lualine configuration
   config = function()
     require("aerial").setup({
       layout = {
@@ -12,6 +12,7 @@ return {
       -- close_automatic_events = { "unfocus", "switch_buffer", "unsupported" },
       close_automatic_events = {},
       highlight_on_jump = 700,
+      highlight_on_hover = true,
       post_jump_cmd = "normal! zt",
       lazy_load = false,
       close_on_select = false,
