@@ -34,6 +34,7 @@ return {
       "bash-language-server", --bashls
       "sqlls",
       "marksman",
+      "json-lsp",
     }
 
     -- linters, formatters, debuggers etc.

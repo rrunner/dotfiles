@@ -248,6 +248,18 @@ start_lsp("marksman", {
   settings = {},
 })
 
+start_lsp("json-lsp", {
+  disable = false,
+  cmd = { utils.app_prio("vscode-json-language-server"), "--stdio" },
+  filetypes = { "json", "jsonc" },
+  root_dir_fallback = vim.env.PWD,
+  settings = {
+    init_options = {
+      provideFormatter = true,
+    },
+  },
+})
+
 -- LSP keymaps
 local opts = { noremap = true, silent = true }
 
