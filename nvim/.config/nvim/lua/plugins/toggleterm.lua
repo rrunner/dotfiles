@@ -2,9 +2,7 @@
 return {
   "akinsho/toggleterm.nvim",
   version = "*",
-  keys = {
-    { "<c-;>", [[<cmd>ToggleTerm<cr>]], mode = "n", desc = "Toggle Terminal", noremap = true, silent = true },
-  },
+  event = "VeryLazy",
   config = function()
     local opts = {
       open_mapping = [[<c-;>]],
@@ -54,6 +52,8 @@ return {
     require("toggleterm").setup(opts)
 
     -- additional toggleterm related keybindings
+    vim.keymap.set("n", "<c-;>", [[<cmd>ToggleTerm<cr>]], { noremap = true, silent = true, desc = "Toggle Terminal" })
+
     vim.keymap.set("n", "<leader>vd", function()
       _VISIDATA_TOGGLE()
     end, { noremap = true, silent = true, desc = "Open visidata" })
