@@ -249,7 +249,7 @@ start_lsp("marksman", {
 })
 
 start_lsp("json-lsp", {
-  disable = false,
+  disable = true,
   cmd = { utils.app_prio("vscode-json-language-server"), "--stdio" },
   filetypes = { "json", "jsonc" },
   root_dir_fallback = vim.env.PWD,
