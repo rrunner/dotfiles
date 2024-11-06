@@ -13,10 +13,10 @@ return {
     lint.linters.sqlfluff.args = { "lint", "--dialect", "postgres" }
 
     lint.linters_by_ft = {
+      markdown = { "markdownlint-cli2", "vale" },
+      mysql = { "sqlfluff" },
       python = { "mypy" }, -- use ruff LSP for python linting to enable config via pyproject.toml
       sql = { "sqlfluff" },
-      mysql = { "sqlfluff" },
-      markdown = { "markdownlint-cli2" },
     }
 
     local linter_augroup = vim.api.nvim_create_augroup("Linting", { clear = true })

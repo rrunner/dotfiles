@@ -41,6 +41,8 @@ return {
     local tools = {
       -- "debugpy",
       "jq",
+      "markdown-toc",
+      "markdownlint-cli2",
       "mypy",
       "prettier",
       "ruff",
@@ -48,8 +50,7 @@ return {
       "sql-formatter",
       "sqlfluff",
       "stylua",
-      "markdownlint-cli2",
-      "markdown-toc",
+      "vale",
     }
     local ensure_installed = utils.unique_values(lsp_servers, tools)
     require("mason-tool-installer").setup({ ensure_installed = ensure_installed })
