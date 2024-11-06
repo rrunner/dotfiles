@@ -8,12 +8,7 @@ return {
     -- mypy only works with stdin = false (only updates for event BufWritePost in the autocmd below)
     lint.linters.mypy.cmd = utils.app_prio("mypy")
 
-    -- sqlfluff
-    -- different sql dialects:
-    -- "ansi", "athena", "bigquery", "clickhouse", "databricks", "db2",
-    -- "duckdb", "exasol", "greenplum", "hive", "materializ", "mysql",
-    -- "oracle", "postgres", "redshift", "snowflake", "soql", "sparksql",
-    -- "sqlite", "teradata", "trino", "tsql"
+    -- sqlfluff (see 'sqlfluff dialects' for different dialects)
     lint.linters.sqlfluff.cmd = utils.app_prio("sqlfluff")
     lint.linters.sqlfluff.args = { "lint", "--dialect", "postgres" }
 
@@ -27,7 +22,10 @@ return {
     local linter_augroup = vim.api.nvim_create_augroup("Linting", { clear = true })
     vim.api.nvim_create_autocmd({ "BufReadPost", "InsertLeave", "BufWritePost", "TextChanged" }, {
       callback = function()
-        lint.try_lint()
+        -- run the linter in buffers that you can modify
+        if vim.opt_local.modifiable:get() then
+          lint.try_lint()
+        end
       end,
       group = linter_augroup,
     })
