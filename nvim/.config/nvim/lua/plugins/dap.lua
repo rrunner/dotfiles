@@ -33,8 +33,14 @@ return {
     -- symbols
     vim.fn.sign_define("DapBreakpoint", { text = icons.dap.breakpoint, texthl = "DapUIStop", linehl = "", numhl = "" })
     vim.fn.sign_define("DapLogPoint", { text = icons.dap.logpoint, texthl = "DapUIStop", linehl = "", numhl = "" })
-    vim.fn.sign_define("DapBreakpointCondition", { texthl = "SignColumn", linehl = "", numhl = "" }) -- text default: C
-    vim.fn.sign_define("DapBreakpointRejected", { texthl = "SignColumn", linehl = "", numhl = "" }) -- text default: R
+    vim.fn.sign_define(
+      "DapBreakpointCondition",
+      { text = icons.dap.condition, texthl = "SignColumn", linehl = "", numhl = "" }
+    ) -- text default: C
+    vim.fn.sign_define(
+      "DapBreakpointRejected",
+      { text = icons.dap.rejected, texthl = "SignColumn", linehl = "", numhl = "" }
+    ) -- text default: R
     vim.fn.sign_define("DapStopped", {
       text = icons.dap.stopped,
       texthl = "DapUIPlayPause",

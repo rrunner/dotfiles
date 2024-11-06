@@ -59,17 +59,15 @@ M.diagnosis = {
   warn = "",
   info = "",
   hint = "",
-  -- error = "",
-  -- warn = "",
-  -- info = "",
-  -- hint = "",
 }
 
 M.dap = {
   breakpoint = "",
-  -- breakpoint = "󰬉",
-  logpoint = "",
-  stopped = "",
+  logpoint = "",
+  condition = "",
+  rejected = "",
+  stopped = "",
+  -- stopped = "",
 }
 
 M.bullets = { "", "", "󰨓", "󰨔", "-", "+" }
