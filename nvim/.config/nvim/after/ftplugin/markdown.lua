@@ -1,4 +1,4 @@
--- .txt specific settings
+-- (.md) markdown specific settings
 vim.opt_local.textwidth = 81
 vim.opt_local.wrapmargin = 0
 vim.opt_local.wrap = true

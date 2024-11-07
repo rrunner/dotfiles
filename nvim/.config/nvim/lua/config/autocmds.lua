@@ -151,16 +151,24 @@ vim.api.nvim_create_autocmd({ "InsertEnter", "WinLeave" }, {
   pattern = "*",
 })
 
--- enable wrap and spell checking for certain file types
+-- enable spell checking for certain file types
 vim.api.nvim_create_autocmd("FileType", {
   callback = function()
     vim.opt_local.spell = true
     vim.opt_local.spelllang = { "en", "sv" }
     vim.opt_local.spelloptions:append({ "camel" })
-    vim.opt_local.wrap = true
   end,
   group = config,
   pattern = { "text", "tex", "markdown", "quarto", "rmd", "mail", "NeogitCommitMessage", "plaintex", "gitcommit" },
+})
+
+-- enable wrap for certain file types not covered by "after"
+vim.api.nvim_create_autocmd("FileType", {
+  callback = function()
+    vim.opt_local.wrap = true
+  end,
+  group = config,
+  pattern = { "quarto", "rmd", "NeogitCommitMessage", "plaintex", "gitcommit" },
 })
 
 -- delete [No Name] buffers
