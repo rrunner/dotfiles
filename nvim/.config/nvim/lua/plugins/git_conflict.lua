@@ -5,7 +5,7 @@ return {
   cond = vim.fn.executable("git") == 1,
   event = "BufEnter",
   config = function()
-    require("git-conflict").setup()
+    require("git-conflict").setup({})
     -- default key mappings
     -- co — choose ours (choose change from current branch)
     -- ct — choose theirs (choose change from incoming branch)
