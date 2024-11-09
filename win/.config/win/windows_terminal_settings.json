@@ -5,6 +5,13 @@
     {
       "command": {
         "action": "sendInput",
+        "input": "\u0017"
+      },
+      "keys": "ctrl+backspace"
+    },
+    {
+      "command": {
+        "action": "sendInput",
         "input": "\u001b[47;5u"
       },
       "keys": "ctrl+/"

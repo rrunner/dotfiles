@@ -65,6 +65,8 @@ bindings = [
   { chars = "\u001B[32;2u", key = "Space", mods = "Shift" },
   { chars = "\u001B[32;5u", key = "Space", mods = "Control" },
   { chars = "\u001B[59;5u", key = ";", mods = "Control" },
+  # map <c-bs> to <c-w> to get the same experience in vim/nvim
+  { chars = "\u0017", key = "Back", mods = "Control" },
   # { key = "Return", mods = "Control|Shift", action = "SpawnNewInstance" },
   { key = "Space", mods = "Shift|Control", mode = "~Search", action = "ToggleViMode" },
 ]

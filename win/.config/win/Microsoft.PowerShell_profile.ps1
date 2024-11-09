@@ -8,3 +8,5 @@ Set-PSReadLineKeyHandler -Key "Ctrl+p" -Function HistorySearchBackward
 Set-PSReadLineKeyHandler -Key "Ctrl+n" -Function HistorySearchForward
 Set-PSReadLineKeyHandler -Key "Ctrl+i" -Function ForwardWord
 Set-PSReadLineKeyHandler -Key "Ctrl+m" -Function AcceptLine
+Set-PSReadLineKeyHandler -Key "Ctrl+w" -Function BackwardDeleteWord
+#Set-PSReadLineKeyHandler -Chord Ctrl-w -Function BackwardDeleteWord
