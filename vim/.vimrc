@@ -443,7 +443,7 @@ set wildmode=longest:full,full
 set infercase
 set nowrap
 set noerrorbells
-set ruler
+set noruler
 set laststatus=2
 set number relativenumber
 set title
