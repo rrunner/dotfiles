@@ -135,7 +135,7 @@ vim.opt.foldenable = true
 vim.opt.foldlevel = 99 -- open buffers unfolded
 vim.opt.foldmethod = "expr"
 vim.opt.foldexpr = [[v:lua.require("config.folds").foldexpr()]]
-vim.opt.foldtext = [[v:lua.require("config.folds").foldtext()]]
+vim.opt.foldtext = ""
 
 -- windows specific
 if utils.IS_WIN then
