@@ -56,13 +56,7 @@ vim.opt.signcolumn = "yes:3"
 vim.opt.numberwidth = 4
 vim.opt.hidden = true
 vim.opt.magic = true
-if not vim.env.SSH_TTY then
-  -- only set clipboard if not in ssh, to make sure the OSC 52 integration works automatically
-  -- also schedule to the event loop since xsel can be slow
-  vim.schedule(function()
-    vim.opt.clipboard = "unnamedplus"
-  end)
-end
+vim.opt.clipboard = vim.env.SSH_TTY and "" or "unnamedplus" -- only set clipboard if not in ssh, to make sure the OSC 52 integration works automatically
 vim.opt.nrformats:append({ "alpha" })
 vim.opt.list = true
 vim.opt.listchars = { tab = ">·", trail = "·", nbsp = "+" }
@@ -126,6 +120,7 @@ vim.opt.winminwidth = 5
 vim.opt.virtualedit = "block"
 vim.opt.smoothscroll = true
 vim.opt.jumpoptions = "view"
+vim.opt.conceallevel = 2 -- hide * markup for bold and italic, but not markers with substitutions
 
 -- folding
 vim.opt.fillchars = {
