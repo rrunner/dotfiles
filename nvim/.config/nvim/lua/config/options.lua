@@ -125,7 +125,6 @@ vim.opt.wildmode = { "longest:full", "full" }
 vim.opt.winminwidth = 5
 vim.opt.virtualedit = "block"
 vim.opt.smoothscroll = true
-vim.opt.statuscolumn = [[%!v:lua.require("config.statuscolumn").statuscolumn()]]
 vim.opt.jumpoptions = "view"
 
 -- folding
