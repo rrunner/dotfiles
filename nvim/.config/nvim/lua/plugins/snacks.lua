@@ -32,7 +32,7 @@ return {
     terminal = { enabled = false },
     toggle = { enabled = false },
     win = { enabled = false },
-    words = { enabled = true },
+    words = { enabled = false },
     styles = {},
   },
 }
