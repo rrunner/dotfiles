@@ -6,7 +6,6 @@ return {
     local utils = require("config.utils")
     local conform = require("conform")
     local utl = require("conform.util")
-    local formatters = require("conform.formatters")
 
     -- stylua (complete overide of default values)
     conform.formatters.stylua = {
@@ -31,7 +30,6 @@ return {
     -- snowflake, soql, sparksql, sqlite, teradata, tsql
     conform.formatters.sqlfluff = {
       inherit = false,
-      command = utils.app_prio("sqlfluff"),
       args = { "fix", "--force", "--dialect=postgres", "-" },
     }
 
@@ -79,12 +77,8 @@ return {
       }),
     }
 
-    -- sql-formatter
-    -- different sql dialects:
-    -- bigquery,db2,db2i,hive,mariadb,mysql,n1ql,plsql,postgresql,
-    -- redshift,singlestoredb,snowflake,spark,sql,sqlite,transactsql,trino,tsql
+    -- sql-formatter (different sql dialects available)
     conform.formatters.sql_formatter = {
-      command = utils.app_prio("sql-formatter"),
       prepend_args = {
         "-c",
         '{"language": "postgresql", "tabWidth": 2, "keywordCase": "upper", "dataTypeCase": "upper", "functionCase": "upper", "linesBetweenQueries": 2, "useTabs": false }',
@@ -100,10 +94,6 @@ return {
         },
       },
     }
-
-    -- prefer formatters (with priority order as defined by app_prio function)
-    formatters.prettier.command = utils.app_prio("prettier")
-    formatters.shfmt.command = utils.app_prio("shfmt")
 
     conform.setup({
       -- use lsp fallback to format: r, rmd, toml

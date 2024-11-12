@@ -9,7 +9,6 @@ return {
     lint.linters.mypy.cmd = utils.app_prio("mypy")
 
     -- sqlfluff (see 'sqlfluff dialects' for different dialects)
-    lint.linters.sqlfluff.cmd = utils.app_prio("sqlfluff")
     lint.linters.sqlfluff.args = { "lint", "--dialect", "postgres" }
 
     lint.linters_by_ft = {
