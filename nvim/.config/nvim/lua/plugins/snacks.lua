@@ -3,7 +3,11 @@ return {
   priority = 1000,
   lazy = false,
   opts = {
-    bigfile = { enabled = false },
+    bigfile = {
+      enabled = true,
+      notify = true,
+      size = 1.5 * 1024 * 1024,
+    },
     bufdelete = { enabled = false },
     debug = { enabled = false },
     git = { enabled = false },
