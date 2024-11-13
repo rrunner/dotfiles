@@ -20,5 +20,12 @@ return {
       [[<cmd>lua MiniGit.show_at_cursor()<cr>]],
       { noremap = true, silent = true, desc = "Show at cursor git information (mini-git)" }
     )
+
+    vim.keymap.set(
+      "n",
+      "<leader>gh",
+      [[<cmd>Git log<cr>]],
+      { noremap = true, silent = true, desc = "git log or history... (mini-git)" }
+    )
   end,
 }
