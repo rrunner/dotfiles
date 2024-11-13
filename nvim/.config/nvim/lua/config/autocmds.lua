@@ -46,7 +46,7 @@ vim.api.nvim_create_autocmd("FileType", {
     end)
   end,
   group = config,
-  pattern = { "help", "qf", "checkhealth", "neotest-summary", "neotest-output", "query", "gitsigns-blame" },
+  pattern = { "help", "qf", "checkhealth", "neotest-summary", "neotest-output", "query", "gitsigns-blame", "git" },
 })
 
 -- close command line window (q:, q/ and q? etc.) with "q"
