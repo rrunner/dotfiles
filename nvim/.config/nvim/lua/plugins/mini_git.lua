@@ -39,6 +39,6 @@ return {
 
     vim.keymap.set("n", "<leader>gd", function()
       git_diff_location()
-    end, { noremap = true, silent = true, desc = "Show file state as it was at diff entry (mini-git)" })
+    end, { noremap = true, silent = true, desc = "git diff (or show file state in diff filetype) (mini-git)" })
   end,
 }
