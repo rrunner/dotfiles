@@ -21,6 +21,19 @@ return {
       },
     })
 
+    -- disable cursorline for Mason
+    local mason_augroup = vim.api.nvim_create_augroup("Mason", { clear = true })
+    vim.api.nvim_create_autocmd("FileType", {
+      callback = function(event)
+        local buffers_no_cursorline = { "mason" }
+        if vim.tbl_contains(buffers_no_cursorline, vim.bo[event.buf].filetype) then
+          vim.opt_local.cursorline = false
+        end
+      end,
+      group = mason_augroup,
+      pattern = "*",
+    })
+
     -- LSP servers
     local lsp_servers = {
       "pyright",
