@@ -7,6 +7,15 @@ return {
   config = function()
     require("mini.git").setup()
 
+    local git_diff_location = function()
+      local ft = vim.bo[0].filetype
+      if ft ~= "diff" then
+        vim.cmd([[Git diff]])
+      else
+        MiniGit.show_diff_source()
+      end
+    end
+
     vim.keymap.set(
       "n",
       "<leader>gc",
@@ -27,5 +36,9 @@ return {
       [[<cmd>Git log<cr>]],
       { noremap = true, silent = true, desc = "git log or history... (mini-git)" }
     )
+
+    vim.keymap.set("n", "<leader>gd", function()
+      git_diff_location()
+    end, { noremap = true, silent = true, desc = "Show file state as it was at diff entry (mini-git)" })
   end,
 }
