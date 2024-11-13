@@ -77,6 +77,10 @@ return {
           filter = { event = "notify", find = "No information available" },
           opts = { skip = true },
         },
+        {
+          filter = { event = "msg_show", find = "No changes found" },
+          opts = { skip = true },
+        },
       },
     })
 
