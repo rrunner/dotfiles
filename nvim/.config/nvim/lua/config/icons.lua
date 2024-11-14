@@ -89,4 +89,12 @@ M.git_icons = {
   unmerged = "",
 }
 
+M.snacks = {
+  error = " ",
+  warn = " ",
+  info = " ",
+  debug = " ",
+  trace = " ",
+}
+
 return M
