@@ -69,13 +69,17 @@ local user_provide_path = function(callback)
   end)
 end
 
+M.inside_git_repo = function()
+  local utl = require("telescope.utils")
+  local _, ret, _ = utl.get_os_command_output({ "git", "rev-parse", "--is-inside-work-tree 2>/dev/null" })
+  return ret == 0 and true or false
+end
+
 -- telescope_files_or_git_files (has keybinding <leader>sf):
 -- find files, or git files in .git directory
 M.telescope_files_or_git_files = function()
-  local utl = require("telescope.utils")
   local builtin = require("telescope.builtin")
-  local _, ret, _ = utl.get_os_command_output({ "git", "rev-parse", "--is-inside-work-tree" })
-  if ret == 0 then
+  if M.inside_git_repo() then
     builtin.git_files()
   else
     user_provide_path(require("telescope.builtin").find_files)
