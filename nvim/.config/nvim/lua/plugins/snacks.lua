@@ -10,12 +10,6 @@ return {
         notify = true,
         size = 1.5 * 1024 * 1024,
       },
-      bufdelete = { enabled = false },
-      debug = { enabled = false },
-      git = { enabled = false },
-      gitbrowse = { enabled = false },
-      lazygit = { enabled = false },
-      notify = { enabled = false },
       notifier = {
         enabled = true,
         timeout = 3000,
@@ -27,8 +21,6 @@ return {
         icons = icons.snacks,
         style = "fancy",
       },
-      quickfile = { enabled = false },
-      rename = { enabled = false },
       statuscolumn = {
         enabled = true,
         left = { "mark", "sign" },
@@ -41,10 +33,6 @@ return {
           patterns = { "GitSign" },
         },
       },
-      terminal = { enabled = false },
-      toggle = { enabled = false },
-      win = { enabled = false },
-      words = { enabled = false },
       styles = {
         notification = {
           border = "rounded",
