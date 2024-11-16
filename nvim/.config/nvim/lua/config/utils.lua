@@ -263,9 +263,9 @@ M.unique_values = function(list1, list2)
   return result
 end
 
--- function to retrieve all buffer names in open windows
----@return table -- a table containing the names of all loaded buffers having a name
-M.all_buffer_names_in_open_win = function()
+-- function to retrieve all buffer filetypes in the window
+---@return table -- a table containing the buffer filetypes in the window
+M.all_buffer_filetypes_in_win = function()
   local buffer_names = {}
 
   -- iterate through all open windows
@@ -281,7 +281,7 @@ end
 -- function to identify if there is debugger session (DAP) running
 ---@return boolean -- true if DAP is running, false otherwise
 M.is_debugger_running = function()
-  local buffer_names = M.all_buffer_names_in_open_win()
+  local buffer_filetypes = M.all_buffer_filetypes_in_win()
   local dapui_filetypes = {
     "dapui_scopes",
     "dapui_breakpoints",
@@ -290,8 +290,8 @@ M.is_debugger_running = function()
     "dapui_console",
     "dap-repl",
   }
-  for _, buffer_name in ipairs(buffer_names) do
-    if vim.tbl_contains(dapui_filetypes, buffer_name) then
+  for _, buffer_ft in ipairs(buffer_filetypes) do
+    if vim.tbl_contains(dapui_filetypes, buffer_ft) then
       return true
     end
   end
