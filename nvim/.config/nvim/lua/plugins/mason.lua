@@ -52,7 +52,7 @@ return {
 
     -- linters, formatters, debuggers etc.
     local tools = {
-      -- "debugpy",
+      "debugpy",
       "jq",
       "markdown-toc",
       "markdownlint-cli2",
