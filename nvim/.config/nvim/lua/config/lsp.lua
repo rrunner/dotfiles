@@ -31,50 +31,34 @@ local lsp_group = vim.api.nvim_create_augroup("lsp_group", {})
 
 --- @class LspClientConfig : vim.lsp.ClientConfig
 --- @field filetypes string[]
---- @field cmd string[]
 --- @field markers? string[]
 --- @field disable? boolean
 --- @field root_dir_fallback? string
 
---- @param bufnr integer
---- @param config LspClientConfig
-local lsp_start = function(bufnr, config)
-  if vim.bo[bufnr].buftype == "nofile" then
-    return
-  end
-
-  if vim.fn.executable(config.cmd[1]) == 0 then
-    return
-  end
-
-  config.capabilities = vim.lsp.protocol.make_client_capabilities()
-
-  -- nvim-cmp supports additional completion capabilities
-  config.capabilities =
-    vim.tbl_deep_extend("force", config.capabilities, require("cmp_nvim_lsp").default_capabilities())
-
-  config.markers = config.markers or {}
-  table.insert(config.markers, ".git")
-
-  -- root_dir_fallback: prevent multiple attached LSP servers, of the same kind, to the same buffer if the root directory is not set
-  config.root_dir = vim.fs.root(bufnr, config.markers) or config.root_dir_fallback
-  -- TODO: not sure why this function gets called twice, root_dir prevents multiple duplicate clients are started
-  -- vim.print(config.name)
-  vim.lsp.start(config)
-end
-
---- @param name string
---- @param config LspClientConfig
-local function add(name, config)
-  config.name = name
+--- @param cfg LspClientConfig
+local function config(cfg)
   vim.api.nvim_create_autocmd("FileType", {
-    pattern = config.filetypes,
+    pattern = cfg.filetypes,
     group = lsp_group,
     callback = function(args)
-      if config.disable then
+      local bufnr = args.buf
+      if cfg.disable then
         return
       end
-      lsp_start(args.buf, config)
+      if vim.bo[bufnr].buftype == "nofile" then
+        return
+      end
+
+      if vim.fn.executable(cfg.cmd[1]) == 0 then
+        return
+      end
+
+      cfg.markers = cfg.markers or {}
+      table.insert(cfg.markers, ".git")
+      cfg.root_dir = vim.fs.root(bufnr, cfg.markers) or cfg.root_dir_fallback
+
+      -- vim.print("Attaching LSP " .. cfg.name)
+      vim.lsp.start(cfg)
     end,
   })
 end
@@ -88,7 +72,8 @@ local python_markers = {
   "Pipfile",
 }
 
-add("pyright", {
+config({
+  name = "pyright",
   disable = true,
   cmd = { utils.app_prio("pyright-langserver"), "--stdio" },
   filetypes = { "python" },
@@ -116,7 +101,8 @@ add("pyright", {
   },
 })
 
-add("ruff", {
+config({
+  name = "ruff",
   disable = false,
   cmd = { utils.app_prio("ruff"), "server" },
   filetypes = { "python" },
@@ -135,7 +121,8 @@ add("ruff", {
   end,
 })
 
-add("basedpyright", {
+config({
+  name = "basedpyright",
   disable = false,
   cmd = { utils.app_prio("basedpyright-langserver"), "--stdio" },
   filetypes = { "python" },
@@ -158,14 +145,16 @@ add("basedpyright", {
   },
 })
 
-add("r_language_server", {
+config({
+  name = "r_language_server",
   disable = false,
   cmd = { utils.app_prio("r-languageserver") },
   filetypes = { "r", "rmd" },
   root_dir_fallback = vim.env.PWD,
 })
 
-add("lua_ls", {
+config({
+  name = "lua_ls",
   disable = false,
   cmd = { utils.app_prio("lua-language-server") },
   filetypes = { "lua" },
@@ -205,7 +194,8 @@ add("lua_ls", {
   },
 })
 
-add("yamlls", {
+config({
+  name = "yamlls",
   disable = false,
   cmd = { utils.app_prio("yaml-language-server"), "--stdio" },
   filetypes = { "yaml", "yaml.docker-compose", "yaml.gitlab" },
@@ -222,14 +212,16 @@ add("yamlls", {
   },
 })
 
-add("dockerls", {
+config({
+  name = "dockerls",
   disable = false,
   cmd = { utils.app_prio("docker-langserver"), "--stdio" },
   filetypes = { "dockerfile" },
   root_dir_fallback = vim.env.PWD,
 })
 
-add("taplo", {
+config({
+  name = "taplo",
   disable = false,
   cmd = { utils.app_prio("taplo"), "lsp", "stdio" },
   markers = {
@@ -239,7 +231,8 @@ add("taplo", {
   root_dir_fallback = vim.env.PWD,
 })
 
-add("bashls", {
+config({
+  name = "bashls",
   disable = false,
   cmd = { utils.app_prio("bash-language-server"), "start" },
   filetypes = { "sh", "bash" },
@@ -247,11 +240,18 @@ add("bashls", {
   settings = {
     bashIde = {
       enableSourceErrorDiagnostics = true,
+      shellcheckArguments = {
+        "-e",
+        "SC2086",
+        "-e",
+        "SC2155",
+      },
     },
   },
 })
 
-add("sqlls", {
+config({
+  name = "sqlls",
   disable = false,
   cmd = { utils.app_prio("sql-language-server"), "up", "--method", "stdio" },
   filetypes = { "sql", "mysql" },
@@ -259,7 +259,8 @@ add("sqlls", {
   settings = {},
 })
 
-add("marksman", {
+config({
+  name = "marksman",
   disable = false,
   cmd = { utils.app_prio("marksman"), "server" },
   filetypes = { "markdown" },
@@ -267,7 +268,8 @@ add("marksman", {
   settings = {},
 })
 
-add("json-lsp", {
+config({
+  name = "jsonls",
   disable = true,
   cmd = { utils.app_prio("vscode-json-language-server"), "--stdio" },
   filetypes = { "json", "jsonc" },
