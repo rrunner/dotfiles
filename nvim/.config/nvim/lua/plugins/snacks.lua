@@ -30,6 +30,7 @@ return {
         git = {
           patterns = { "GitSign" },
         },
+        refresh = 20,
       },
       styles = {
         notification = {
