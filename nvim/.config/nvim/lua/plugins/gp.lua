@@ -4,7 +4,7 @@ return {
   "robitx/gp.nvim",
   event = "VeryLazy",
   config = function()
-    local gp_aucmd = vim.api.nvim_create_augroup("Gp", { clear = false })
+    local gp_aucmd = vim.api.nvim_create_augroup("Gp", { clear = true })
 
     -- unset signcolumn and statuscolumn for gp buffers (chatGPT)
     vim.api.nvim_create_autocmd("FileType", {
