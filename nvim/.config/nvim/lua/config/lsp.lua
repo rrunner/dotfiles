@@ -26,6 +26,19 @@ vim.diagnostic.config({
   },
 })
 
+local is_lsp_client_attached = function(name)
+  local clients = vim.lsp.get_clients()
+
+  for _, client in pairs(clients) do
+    if client.name == name then
+      -- vim.print(name .. " is already attached")
+      return true
+    end
+  end
+  -- vim.print("Attach " .. name)
+  return false
+end
+
 -- start LSP servers
 local lsp_group = vim.api.nvim_create_augroup("lsp_group", {})
 
@@ -59,8 +72,10 @@ local function config(cfg)
       table.insert(cfg.markers, ".git")
       cfg.root_dir = vim.fs.root(bufnr, cfg.markers) or cfg.root_dir_fallback
 
-      -- vim.print("Attaching LSP " .. cfg.name)
-      vim.lsp.start(cfg)
+      if not is_lsp_client_attached(cfg.name) then
+        -- attaches twice despite call to vim.lsp.get_clients()
+        vim.lsp.start(cfg)
+      end
     end,
   })
 end
