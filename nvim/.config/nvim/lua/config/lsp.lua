@@ -42,9 +42,11 @@ local function config(cfg)
     group = lsp_group,
     callback = function(args)
       local bufnr = args.buf
+
       if cfg.disable then
         return
       end
+
       if vim.bo[bufnr].buftype == "nofile" then
         return
       end
