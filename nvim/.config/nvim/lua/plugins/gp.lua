@@ -9,14 +9,12 @@ return {
     -- unset signcolumn and statuscolumn for gp buffers (chatGPT)
     vim.api.nvim_create_autocmd("FileType", {
       callback = function(event)
-        vim.schedule(function()
-          local path = vim.api.nvim_buf_get_name(event.buf)
-          local filename = path:match("^.+/(.+)$") or path
-          if filename:match("^%d%d%d%d%-%d%d%-%d%d%.%d%d%-%d%d%-%d%d%.%d+%.md$") then
-            vim.opt_local.signcolumn = "no"
-            vim.opt_local.statuscolumn = ""
-          end
-        end)
+        local path = vim.api.nvim_buf_get_name(event.buf)
+        local filename = path:match("^.+/(.+)$") or path
+        if filename:match("^%d%d%d%d%-%d%d%-%d%d%.%d%d%-%d%d%-%d%d%.%d+%.md$") then
+          vim.opt_local.signcolumn = "no"
+          vim.opt_local.statuscolumn = ""
+        end
       end,
       group = gp_aucmd,
       pattern = { "markdown" },
