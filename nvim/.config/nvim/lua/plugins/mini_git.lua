@@ -5,7 +5,8 @@ return {
   cond = vim.fn.executable("git") == 1,
   event = "BufEnter",
   config = function()
-    require("mini.git").setup()
+    local minigit = require("mini.git")
+    minigit.setup()
     local utils = require("config.utils")
 
     local _git_diff = function()
@@ -13,11 +14,10 @@ return {
         vim.notify("not a git repository", vim.log.levels.ERROR)
         return
       end
-      local ft = vim.bo[0].filetype
-      if ft ~= "diff" then
+      if vim.bo[0].filetype ~= "diff" then
         vim.cmd([[Git diff]])
       else
-        MiniGit.show_diff_source()
+        minigit.show_diff_source()
       end
     end
 

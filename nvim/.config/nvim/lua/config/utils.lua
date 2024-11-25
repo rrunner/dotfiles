@@ -209,7 +209,7 @@ end
 -- telescope via <cr> upon <c-tab> to display buffers)
 ---@return nil  -- nil
 M.open_buffer = function(prompt_bufnr)
-  local entry = require("telescope.actions.state").get_selected_entry(prompt_bufnr)
+  local entry = require("telescope.actions.state").get_selected_entry()
   if not entry then
     return
   end
