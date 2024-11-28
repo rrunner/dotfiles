@@ -2,14 +2,12 @@
 return {
   "folke/lazydev.nvim",
   ft = "lua",
-  dependencies = {
-    "Bilal2453/luvit-meta",
-    lazy = true,
-  },
+  -- cmd = "LazyDev",
   opts = {
     library = {
       -- load luvit types when the `vim.uv` word is found
-      { path = "luvit-meta/library", words = { "vim%.uv" } },
+      { path = "${3rd}/luv/library", words = { "vim%.uv" } },
+      { path = "snacks.nvim", words = { "Snacks" } },
     },
   },
 }
