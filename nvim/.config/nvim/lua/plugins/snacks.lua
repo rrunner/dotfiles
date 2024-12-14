@@ -43,7 +43,6 @@ return {
           statusline = false,
           tabline = false,
         },
-        win = { style = "zen" },
         on_open = function(win)
           -- increase window width for DAP repl buffers
           local ftypes = { "dap-repl" }
@@ -75,6 +74,9 @@ return {
             height = 0.9,
             keys = { q = "close" },
           },
+        },
+        input = {
+          row = 26,
         },
       },
     }

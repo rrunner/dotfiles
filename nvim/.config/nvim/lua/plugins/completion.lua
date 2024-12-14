@@ -374,6 +374,55 @@ return {
       },
     })
 
+    -- completion in snacks_input (vim.ui.input)
+    cmp.setup.filetype({ "snacks_input" }, {
+      -- keybinds below is an attempt to align with readline
+      mapping = cmp.mapping.preset.insert({
+        ["<c-e>"] = cmp.mapping({
+          i = function()
+            feedkey("<end>", "i")
+          end,
+        }),
+        ["<c-a>"] = cmp.mapping({
+          i = function()
+            feedkey("<home>", "i")
+          end,
+        }),
+        ["<c-b>"] = cmp.mapping({
+          i = function()
+            feedkey("<left>", "i")
+          end,
+        }),
+        ["<c-f>"] = cmp.mapping({
+          i = function()
+            feedkey("<right>", "i")
+          end,
+        }),
+        ["<c-d>"] = cmp.mapping({
+          i = function()
+            --nothing
+          end,
+        }),
+        ["<c-n>"] = cmp.mapping({
+          i = function()
+            feedkey("<down>", "i")
+          end,
+        }),
+        ["<c-p>"] = cmp.mapping({
+          i = function()
+            feedkey("<up>", "i")
+          end,
+        }),
+        ["<c-y>"] = cmp.mapping({
+          i = function()
+            if cmp.visible() then
+              cmp.confirm({ behavior = cmp.ConfirmBehavior.Replace, select = true })
+            end
+          end,
+        }),
+      }),
+    })
+
     -- completion source for nvim-dap REPL and nvim-dap-ui buffers
     cmp.setup.filetype({ "dap-repl", "dapui_watches", "dapui_hover" }, {
       sources = {
