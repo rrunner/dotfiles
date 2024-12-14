@@ -14,9 +14,7 @@ end
 return {
   "hrsh7th/nvim-cmp",
   version = false,
-  -- do not lazy load using `event = { "InsertEnter", "CmdlineEnter" }` to
-  -- ensure <leader>{sf,sg} works with dressing/completion/noice etc.
-  event = "VeryLazy",
+  event = { "InsertEnter", "CmdlineEnter" },
   dependencies = {
     "hrsh7th/cmp-nvim-lsp",
     "hrsh7th/cmp-buffer",
@@ -437,41 +435,6 @@ return {
             fallback()
           end
         end, { "i", "s" }),
-      }),
-    })
-
-    -- completion source for dressing input buffers
-    -- must reset the cmp mappings here to get the requested behavior as set in dressing.lua
-    cmp.setup.filetype({ "DressingInput" }, {
-      sources = cmp.config.sources({}, {
-        {
-          name = "omni",
-          max_item_count = 10,
-        },
-      }),
-      mapping = cmp.mapping.preset.insert({
-        ["<c-y>"] = cmp.mapping.confirm({
-          behavior = cmp.ConfirmBehavior.Replace,
-          select = true,
-        }),
-        ["<c-n>"] = cmp.mapping({
-          i = function()
-            if cmp.visible() then
-              cmp.select_next_item()
-            else
-              feedkey("<down>", "i")
-            end
-          end,
-        }),
-        ["<c-p>"] = cmp.mapping({
-          i = function()
-            if cmp.visible() then
-              cmp.select_prev_item()
-            else
-              feedkey("<up>", "i")
-            end
-          end,
-        }),
       }),
     })
   end,

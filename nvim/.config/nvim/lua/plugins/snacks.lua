@@ -63,6 +63,7 @@ return {
           end
         end,
       },
+      input = { enabled = true },
       styles = {
         notification = {
           wo = {
