@@ -1,4 +1,4 @@
--- indentation marker and indentaition textobjects
+-- indentation marker and indentation textobjects
 return {
   "echasnovski/mini.indentscope",
   event = { "BufReadPost", "BufNewFile" },
@@ -27,35 +27,33 @@ return {
 
     -- disable indentscope for certain filetypes
     local indent_augroup = vim.api.nvim_create_augroup("Indent", { clear = true })
-    vim.api.nvim_create_autocmd({ "FileType" }, {
+    vim.api.nvim_create_autocmd("FileType", {
       callback = function()
-        local ignore_filetypes = {
-          "",
-          "aerial",
-          "checkhealth",
-          "DressingInput",
-          "DressingSelect",
-          "gitcommit",
-          "help",
-          "lazy",
-          "lspinfo",
-          "man",
-          "mason",
-          "neo-tree",
-          "noice",
-          "notify",
-          "qf",
-          "query",
-          "TelescopePrompt",
-          "TelescopeResults",
-          "text",
-          "toggleterm",
-        }
-        if vim.tbl_contains(ignore_filetypes, vim.bo.filetype) then
-          vim.b.miniindentscope_disable = true
-        end
+        vim.b.miniindentscope_disable = true
       end,
       group = indent_augroup,
+      pattern = {
+        "",
+        "aerial",
+        "checkhealth",
+        "DressingInput",
+        "DressingSelect",
+        "gitcommit",
+        "help",
+        "lazy",
+        "lspinfo",
+        "man",
+        "mason",
+        "neo-tree",
+        "noice",
+        "notify",
+        "qf",
+        "query",
+        "TelescopePrompt",
+        "TelescopeResults",
+        "text",
+        "toggleterm",
+      },
     })
   end,
 }
