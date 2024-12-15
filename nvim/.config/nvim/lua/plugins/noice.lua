@@ -50,6 +50,12 @@ return {
           ["vim.lsp.util.stylize_markdown"] = true,
           ["cmp.entry.get_documentation"] = true,
         },
+        signature = {
+          auto_open = {
+            -- automatically show signature help when typing a trigger character from the LSP
+            trigger = false,
+          },
+        },
       },
       presets = {
         -- cmdline for / and ? location
