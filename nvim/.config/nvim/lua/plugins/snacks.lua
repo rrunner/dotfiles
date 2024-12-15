@@ -63,6 +63,14 @@ return {
         end,
       },
       input = { enabled = true },
+      terminal = {
+        enabled = true,
+        win = {
+          position = "float",
+          height = 0.95,
+          width = 0.95,
+        },
+      },
       styles = {
         notification = {
           wo = {
@@ -84,5 +92,8 @@ return {
     vim.keymap.set("n", "<leader>z", function()
       Snacks.zen()
     end, { desc = "Toggle zen mode", noremap = true, silent = true })
+    vim.keymap.set({ "n", "t" }, "<c-;>", function()
+      Snacks.terminal.toggle()
+    end, { desc = "Toggle terminal", noremap = true, silent = true })
   end,
 }
