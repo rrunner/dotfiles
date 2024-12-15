@@ -52,7 +52,6 @@ vim.opt.lazyredraw = true -- lazyredraw is changed to false in noice.nvim plugin
 vim.opt.autoread = true
 vim.opt.scrolloff = 8
 vim.opt.sidescrolloff = 3
--- vim.opt.statuscolumn = [[%!v:lua.require'snacks.statuscolumn'.get()]]
 vim.opt.signcolumn = "yes:3"
 vim.opt.numberwidth = 4
 vim.opt.hidden = true

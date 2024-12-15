@@ -3,6 +3,7 @@ return {
   priority = 1000,
   lazy = false,
   config = function()
+    local snacks = require("snacks")
     local icons = require("config.icons")
     local opts = {
       bigfile = {
@@ -12,9 +13,10 @@ return {
       notifier = {
         enabled = true,
         timeout = 3000,
-        width = { min = 30, max = 30 },
-        height = { min = 5, max = 0.3 },
-        margin = { top = 0, right = 0, bottom = 0 },
+        sort = { "added" }, --sort by time
+        width = { min = 30, max = 0.5 },
+        height = { min = 1, max = 0.5 },
+        margin = { right = 0 },
         icons = icons.snacks,
         style = "fancy",
       },
@@ -77,23 +79,48 @@ return {
             winblend = 0,
             wrap = true,
           },
-          history = {
-            width = 0.9,
-            height = 0.9,
-            keys = { q = "close" },
-          },
+        },
+        notification_history = {
+          width = 0.95,
+          height = 0.95,
+          keys = { q = "close" },
         },
         input = {
-          row = 26,
+          row = math.floor(vim.opt.lines:get() / 2) - 1,
+          columns = math.floor(vim.opt.columns:get() / 2),
+        },
+        terminal = {
+          keys = {
+            term_normal = {
+              "<esc>",
+              function()
+                vim.cmd("stopinsert")
+              end,
+              mode = "t",
+              expr = true,
+              desc = "Switch to normal mode from terminal mode (in snacks terminals)",
+            },
+          },
         },
       },
     }
-    require("snacks").setup(opts)
+
+    snacks.setup(opts)
+
     vim.keymap.set("n", "<leader>z", function()
-      Snacks.zen()
+      snacks.zen()
     end, { desc = "Toggle zen mode", noremap = true, silent = true })
+
     vim.keymap.set({ "n", "t" }, "<c-;>", function()
-      Snacks.terminal.toggle()
+      snacks.terminal.toggle()
     end, { desc = "Toggle terminal", noremap = true, silent = true })
+
+    vim.keymap.set("n", "<leader>sm", function()
+      snacks.notifier.show_history()
+    end, {
+      noremap = true,
+      silent = true,
+      desc = "Notification history",
+    })
   end,
 }

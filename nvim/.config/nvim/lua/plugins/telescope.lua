@@ -301,12 +301,6 @@ return {
       }
     )
 
-    vim.api.nvim_set_keymap("n", "<leader>sm", [[<cmd>lua Snacks.notifier.show_history()<cr>]], {
-      noremap = true,
-      silent = true,
-      desc = "Search for messages (notifications)",
-    })
-
     vim.api.nvim_set_keymap("n", "<leader>sk", [[<cmd>lua require('telescope.builtin').keymaps()<cr>]], {
       noremap = true,
       silent = true,
