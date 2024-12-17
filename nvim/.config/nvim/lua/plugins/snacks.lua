@@ -73,6 +73,42 @@ return {
           width = 0.95,
         },
       },
+      indent = {
+        enabled = true,
+        indent = {
+          enabled = false,
+          char = "│",
+          indent = {
+            hl = "Comment",
+          },
+          only_scope = true,
+          only_current = true,
+        },
+        animate = {
+          enabled = false,
+        },
+        scope = {
+          enabled = true,
+          char = "┊",
+          only_current = true,
+        },
+        chunk = {
+          enabled = false,
+        },
+      },
+      scope = {
+        enabled = true,
+        keys = {
+          textobject = {
+            ii = {
+              cursor = true,
+            },
+            ai = {
+              cursor = true,
+            },
+          },
+        },
+      },
       styles = {
         notification = {
           wo = {
