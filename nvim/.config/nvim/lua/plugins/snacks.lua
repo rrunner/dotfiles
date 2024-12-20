@@ -69,8 +69,8 @@ return {
         enabled = true,
         win = {
           position = "float",
-          height = 0.95,
-          width = 0.95,
+          height = 0.90,
+          width = 0.90,
         },
       },
       indent = {
@@ -111,14 +111,16 @@ return {
       },
       styles = {
         notification = {
+          border = "rounded",
           wo = {
             winblend = 0,
             wrap = true,
           },
         },
         notification_history = {
-          width = 0.95,
-          height = 0.95,
+          border = "rounded",
+          width = 0.90,
+          height = 0.90,
           keys = { q = "close" },
         },
         input = {
