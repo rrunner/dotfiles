@@ -1,13 +1,13 @@
 [user]
-    ; set name and email in .env file
-    ; name = "Firstname Lastname"
-    ; email = "work@email.com"
+  ; set name and email in .env file
+  ; name = "Firstname Lastname"
+  ; email = "work@email.com"
 [core]
-    editor = nvim
-    pager = delta
-    excludesFile = ~/.gitignore
-    ; ensure line endings in files you checkout are correct for Linux
-    autocrlf = input ; set autocrlf = true on windows
+  editor = nvim
+  pager = delta
+  excludesFile = ~/.gitignore
+  ; ensure line endings in files you checkout are correct for Linux
+  autocrlf = input ; set autocrlf = true on windows
 [http]
   ; configure CNTLM in WSL (avoid storing pw in plaintext)
   ;proxy = http://127.0.0.1:3128 
@@ -17,48 +17,53 @@
   ;proxy = https://127.0.0.1:3128
   ;sslVerify = false
 [branch]
-    sort = committerdate
+  sort = -committerdate
 [credential]
-    helper = cache
-    ; wsl with credential manager installed on windows
-    ; helper = /mnt/c/Users/<USERNAME>/scoop/apps/git/current/mingw64/bin/git-credential-manager.exe
+  helper = cache
+  ; wsl with credential manager installed on windows
+  ; helper = /mnt/c/Users/<USERNAME>/scoop/apps/git/current/mingw64/bin/git-credential-manager.exe
 [merge]
-    tool = vimdiff
-    conflictstyle = diff3
+  tool = vimdiff
+  conflictstyle = diff3
 [mergetool]
-    prompt = false
+  prompt = false
 [init]
-    defaultBranch = master
+  defaultBranch = master
 [log]
-    date = iso
+  date = iso
 [alias]
-    st = status
-    co = checkout
-    ci = commit
-    di = diff
-    ds = diff --staged
-    br = branch
-    lg = log --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit
-    last = log -1 HEAD --stat
+  st = status
+  co = checkout
+  ci = commit
+  di = diff
+  ds = diff --staged
+  br = branch
+  lg = log --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit
+  last = log -1 HEAD --stat
+  sta = stash --all # stash ignored and untracked files
+  bb = !better_branch.sh
+  pushfwl = push --force-with-lease
 [color]
-    ui = true
+  ui = true
 [fetch]
-    prune = true
+  prune = true
 [push]
-    default = tracking
-    autoSetupRemote = true
+  default = tracking
+  autoSetupRemote = true
 [interactive]
-    diffFilter = delta --color-only
+  diffFilter = delta --color-only
 [delta]
-    navigate = true    # use n and N to move between diff sections
-    light = false      # set to true if you're in a terminal w/o a light background color (e.g. the default macOS terminal)
-    side-by-side = true
-    line-numbers = true
-    plus-color = "#A9FF68"
-    minus-color = "#F70067"
+  navigate = true    # use n and N to move between diff sections
+  light = false      # set to true if you're in a terminal w/o a light background color (e.g. the default macOS terminal)
+  side-by-side = true
+  line-numbers = true
+  plus-color = "#A9FF68"
+  minus-color = "#F70067"
 [diff]
-    colorMoved = default
-    algorithm = patience
+  colorMoved = default
+  algorithm = patience
 [maintenance]
-    auto = false
-    strategy = incremental
+  auto = false
+  strategy = incremental
+[column]
+  ui = auto
