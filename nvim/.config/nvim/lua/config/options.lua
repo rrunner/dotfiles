@@ -134,6 +134,8 @@ vim.opt.fillchars = {
 vim.opt.foldenable = true
 vim.opt.foldlevel = 99 -- open buffers unfolded
 vim.opt.foldmethod = "expr"
+-- may not be needed in nvim 0.11, e.g. use vim.opt.foldexpr = nvim_treesitter#foldexpr()
+-- and remove config/folds.lua
 vim.opt.foldexpr = [[v:lua.require("config.folds").foldexpr()]]
 vim.opt.foldtext = ""
 
