@@ -95,6 +95,14 @@ return {
         chunk = {
           enabled = false,
         },
+        -- filter for buffers to enable indent guides
+        filter = function(buf)
+          local exclude_ft = { "text", "markdown" }
+          return vim.g.snacks_indent ~= false
+            and vim.b[buf].snacks_indent ~= false
+            and vim.bo[buf].buftype == ""
+            and not vim.tbl_contains(exclude_ft, vim.bo[buf].filetype)
+        end,
       },
       scope = {
         enabled = true,
