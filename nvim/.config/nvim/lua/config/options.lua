@@ -79,6 +79,7 @@ vim.opt.completeopt = { "menu", "menuone", "noselect" }
 vim.opt.breakindent = true
 vim.opt.mouse = "nvi"
 vim.opt.inccommand = "split"
+vim.opt.cmdwinheight = 20 -- when inccommand = "split"
 vim.opt.shell = "bash"
 vim.opt.splitkeep = "topline"
 vim.opt.pumheight = 15
