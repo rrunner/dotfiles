@@ -20,7 +20,13 @@ return {
     {
       "<leader>dk",
       function()
-        require("dap").set_breakpoint(vim.fn.input("Conditional breakpoint: "), nil, nil)
+        vim.ui.input({ prompt = "Conditional breakpoint: " }, function(condition)
+          if condition == nil or condition == "" then
+            return
+          end
+          vim.notify(condition, vim.log.levels.INFO)
+          require("dap").set_breakpoint(condition, nil, nil)
+        end)
       end,
       mode = "n",
       desc = "Set conditional breakpoint (debugger)",
