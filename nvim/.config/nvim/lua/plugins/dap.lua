@@ -20,11 +20,12 @@ return {
     {
       "<leader>dk",
       function()
-        vim.ui.input({ prompt = "Conditional breakpoint: " }, function(condition)
+        local prompt = "Conditional breakpoint: "
+        vim.ui.input({ prompt = prompt }, function(condition)
           if condition == nil or condition == "" then
             return
           end
-          vim.notify(condition, vim.log.levels.INFO)
+          vim.notify(prompt .. condition, vim.log.levels.INFO)
           require("dap").set_breakpoint(condition, nil, nil)
         end)
       end,
@@ -106,7 +107,14 @@ return {
     })
 
     vim.keymap.set("n", "<leader>dl", function()
-      require("dap").set_breakpoint(nil, nil, vim.fn.input("Log point message: "))
+      local prompt = "Log point message: "
+      vim.ui.input({ prompt = prompt }, function(message)
+        if message == nil or message == "" then
+          return
+        end
+        vim.notify(prompt .. message, vim.log.levels.INFO)
+        require("dap").set_breakpoint(nil, nil, message)
+      end)
     end, {
       noremap = true,
       silent = true,
