@@ -254,19 +254,21 @@ return {
         stopOnEntry = true, -- start debugging on first line (virtual breakpoint)
       },
       {
+        -- send curl request to endpoints to debug
         type = "python",
         request = "launch",
         name = "Debug FastAPI module",
         module = "uvicorn",
         args = {
           "main:app",
-          -- "--reload", -- may not work
-          "--port",
-          "8000",
-          "--use-colors",
+          "--reload", -- may not work
+          -- "--port",
+          -- "8000",
+          -- "--use-colors",
         },
-        jinja = true,
+        jinja = false,
         env = { FastAPI_ENV = "development" },
+        -- envFile = "${workspaceFolder}/src/.env",
         console = "integratedTerminal",
         pythonPath = function()
           return utils.get_python_path()
