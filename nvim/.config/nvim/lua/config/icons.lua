@@ -66,8 +66,8 @@ M.dap = {
   logpoint = "",
   condition = "",
   rejected = "",
-  stopped = "",
-  -- stopped = "",
+  -- stopped = "",
+  stopped = "",
 }
 
 M.bullets = { "", "", "󰨓", "󰨔", "-", "+" }

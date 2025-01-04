@@ -18,6 +18,16 @@ return {
       silent = true,
     },
     {
+      "<leader>dk",
+      function()
+        require("dap").set_breakpoint(vim.fn.input("Conditional breakpoint: "), nil, nil)
+      end,
+      mode = "n",
+      desc = "Set conditional breakpoint (debugger)",
+      noremap = true,
+      silent = true,
+    },
+    {
       "<leader>dc",
       [[<cmd>lua require('dap').continue()<cr>]],
       mode = "n",
