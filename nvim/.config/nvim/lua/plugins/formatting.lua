@@ -46,7 +46,8 @@ return {
         "--select=ALL",
         -- ERA001: ignores messages about code that is commented out
         -- E501: ensures ruff splits lines (line-length) the same as black
-        "--ignore=ERA001,E501",
+        -- F401: do not remove unused imports (lint rule indicate unused imports still)
+        "--ignore=ERA001,E501,F401",
         "--stdin-filename",
         "$FILENAME",
         "-",
