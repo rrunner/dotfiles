@@ -260,6 +260,24 @@ vim.api.nvim_set_keymap("i", "<c-l>", "<right>", {
   desc = "Move right in insert mode (right arrow)",
 })
 
+vim.api.nvim_set_keymap("n", "H", "^", {
+  noremap = true,
+  silent = true,
+  desc = "Move to the first character on the current line",
+})
+
+vim.api.nvim_set_keymap("n", "L", "g_", {
+  noremap = true,
+  silent = true,
+  desc = "Move to the last character on the current line",
+})
+
+vim.api.nvim_set_keymap("n", "M", "%", {
+  noremap = true,
+  silent = true,
+  desc = "Move to matching parenthesis",
+})
+
 -- start terminal: must hardcode terminal shell on windows to get pwsh (not sure if this needs to be hardcoded any longer or if this is related to fileextension etc.)
 -- local term_str = "<cmd>belowright split term://" .. vim.opt.shell:get() .. " | resize -10<cr>i"
 -- if utils.IS_WIN then
@@ -325,18 +343,6 @@ vim.api.nvim_set_keymap("n", "<leader>cc", "<cmd>cclose<cr>", {
   desc = "Close quickfix list",
 })
 
-vim.api.nvim_set_keymap("n", "<leader>h", "^", {
-  noremap = true,
-  silent = true,
-  desc = "Move to the first character on the current line",
-})
-
-vim.api.nvim_set_keymap("n", "<leader>l", "g_", {
-  noremap = true,
-  silent = true,
-  desc = "Move to the last character on the current line",
-})
-
 vim.api.nvim_set_keymap("n", "<leader>j", "}", {
   noremap = true,
   silent = true,
@@ -347,12 +353,6 @@ vim.api.nvim_set_keymap("n", "<leader>k", "{", {
   noremap = true,
   silent = true,
   desc = "Move to previous paragraph",
-})
-
-vim.api.nvim_set_keymap("n", "<leader>m", "%", {
-  noremap = true,
-  silent = true,
-  desc = "Move to matching parenthesis",
 })
 
 vim.api.nvim_set_keymap("n", "<leader><leader>", "<c-^>", {

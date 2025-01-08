@@ -245,13 +245,10 @@ nnoremap <silent> <leader>sb :Buffers<cr>
 nnoremap <silent> <leader>sf :Files<cr>
 nnoremap <silent> <leader>sg :MyRg<cr>
 nnoremap <silent> <leader>sl :Lines<cr>
-nnoremap <silent> <leader>h ^
 nnoremap <silent> <leader>j }
 " nnoremap <silent> <leader>j :m .+1<cr>==
 nnoremap <silent> <leader>k {
 " nnoremap <silent> <leader>k :m .-2<cr>==
-nnoremap <silent> <leader>l g_
-nnoremap <silent> <leader>m %
 vnoremap <leader>eb64 c<c-r>=system('base64', @")<cr><esc>
 vnoremap <leader>db64 c<c-r>=system('base64 --decode', @")<cr><esc>
 " yank to clipboard register
@@ -290,6 +287,11 @@ nnoremap <localleader><c-enter> :make<cr>
 
 
 " mappings {{{
+
+" directional mappings
+nnoremap <silent> H ^
+nnoremap <silent> L g_
+nnoremap <silent> M %
 
 " search only in visual selected text
 xnoremap / <esc>/\%V
