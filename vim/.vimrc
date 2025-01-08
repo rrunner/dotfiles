@@ -245,9 +245,9 @@ nnoremap <silent> <leader>sb :Buffers<cr>
 nnoremap <silent> <leader>sf :Files<cr>
 nnoremap <silent> <leader>sg :MyRg<cr>
 nnoremap <silent> <leader>sl :Lines<cr>
-nnoremap <silent> <leader>j }
+" nnoremap <silent> <leader>j }
 " nnoremap <silent> <leader>j :m .+1<cr>==
-nnoremap <silent> <leader>k {
+" nnoremap <silent> <leader>k {
 " nnoremap <silent> <leader>k :m .-2<cr>==
 vnoremap <leader>eb64 c<c-r>=system('base64', @")<cr><esc>
 vnoremap <leader>db64 c<c-r>=system('base64 --decode', @")<cr><esc>

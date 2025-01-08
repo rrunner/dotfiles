@@ -343,17 +343,17 @@ vim.api.nvim_set_keymap("n", "<leader>cc", "<cmd>cclose<cr>", {
   desc = "Close quickfix list",
 })
 
-vim.api.nvim_set_keymap("n", "<leader>j", "}", {
-  noremap = true,
-  silent = true,
-  desc = "Move to next paragraph",
-})
-
-vim.api.nvim_set_keymap("n", "<leader>k", "{", {
-  noremap = true,
-  silent = true,
-  desc = "Move to previous paragraph",
-})
+-- vim.api.nvim_set_keymap("n", "<leader>j", "}", {
+--   noremap = true,
+--   silent = true,
+--   desc = "Move to next paragraph",
+-- })
+--
+-- vim.api.nvim_set_keymap("n", "<leader>k", "{", {
+--   noremap = true,
+--   silent = true,
+--   desc = "Move to previous paragraph",
+-- })
 
 vim.api.nvim_set_keymap("n", "<leader><leader>", "<c-^>", {
   noremap = true,
