@@ -14,6 +14,7 @@ return {
         if filename:match("^%d%d%d%d%-%d%d%-%d%d%.%d%d%-%d%d%-%d%d%.%d+%.md$") then
           vim.opt_local.signcolumn = "no"
           vim.opt_local.statuscolumn = ""
+          vim.opt_local.spell = false
         end
       end,
       group = gp_aucmd,
