@@ -3,13 +3,15 @@
 M = {}
 
 function M.foldexpr()
+  -- exclude foldexpr for markdown since gp.nvim keybind <c-g><c-g> triggers InsertLeave Autocommands -> foldupdate_range error
+  local exc_ft = { "markdown" }
   local buf = vim.api.nvim_get_current_buf()
   if vim.b[buf].ts_folds == nil then
     -- treesitter is not available if there is no filetype
     if vim.bo[buf].filetype == "" then
       return "0"
     end
-    if vim.bo[buf].filetype:find("dashboard") then
+    if vim.bo[buf].filetype:find("dashboard") or vim.tbl_contains(exc_ft, vim.bo[buf].filetype) then
       vim.b[buf].ts_folds = false
     else
       vim.b[buf].ts_folds = pcall(vim.treesitter.get_parser, buf)
