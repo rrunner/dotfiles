@@ -16,6 +16,7 @@ return {
       mysql = { "sqlfluff" },
       python = { "mypy" }, -- use ruff LSP for python linting to enable config via pyproject.toml
       sql = { "sqlfluff" },
+      haskell = { "hlint" },
     }
 
     local linter_augroup = vim.api.nvim_create_augroup("Linting", { clear = true })

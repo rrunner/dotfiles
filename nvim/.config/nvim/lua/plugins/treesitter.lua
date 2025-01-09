@@ -26,6 +26,7 @@ return {
       "gitcommit",
       "gitignore",
       "graphql",
+      "haskell",
       "http",
       "hurl",
       "json",
