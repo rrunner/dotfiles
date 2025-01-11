@@ -114,6 +114,7 @@ return {
         bash = { "shfmt" },
         sql = { "sqlfluff" },
         mysql = { "sqlfluff" },
+        haskell = { "ormolu" },
       },
       format_after_save = function(bufnr)
         -- remove carriage return characters in linux/wsl on save
