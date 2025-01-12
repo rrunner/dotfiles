@@ -11,7 +11,7 @@ return {
       map_cr = true,
       map_bs = true,
       map_c_h = true,
-      map_c_w = true,
+      map_c_w = false,
     })
   end,
 }
