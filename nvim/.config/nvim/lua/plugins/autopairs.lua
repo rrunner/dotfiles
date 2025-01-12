@@ -13,6 +13,5 @@ return {
       map_c_h = true,
       map_c_w = true,
     })
-    npairs.remove_rule("`") -- quarto code blocks
   end,
 }
