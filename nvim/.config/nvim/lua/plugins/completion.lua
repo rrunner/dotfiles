@@ -43,7 +43,6 @@ return {
   config = function()
     local cmp = require("cmp")
     local luasnip = require("luasnip")
-    local cmp_autopairs = require("nvim-autopairs.completion.cmp")
 
     -- link quarto and rmarkdown to markdown snippets
     luasnip.filetype_extend("quarto", { "markdown" })
@@ -51,9 +50,6 @@ return {
 
     -- define global highlight group: ghost text in completion
     vim.api.nvim_set_hl(0, "CmpGhostText", { link = "Comment", default = true })
-
-    -- insert `(` after select function or method
-    cmp.event:on("confirm_done", cmp_autopairs.on_confirm_done())
 
     cmp.setup({
       -- prevent preselection of the top menu item
