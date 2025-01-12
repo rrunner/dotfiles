@@ -126,8 +126,22 @@ vim.api.nvim_create_autocmd("RecordingEnter", {
 vim.api.nvim_create_autocmd({ "BufWinEnter", "BufFilePost", "WinEnter" }, {
   callback = function()
     -- winbar whitelist
-    local ft_with_winbar =
-      { "python", "r", "rmd", "sql", "yaml", "json", "jsonc", "lua", "text", "quarto", "markdown", "tex", "toml" }
+    local ft_with_winbar = {
+      "haskell",
+      "json",
+      "jsonc",
+      "lua",
+      "markdown",
+      "python",
+      "quarto",
+      "r",
+      "rmd",
+      "sql",
+      "tex",
+      "text",
+      "toml",
+      "yaml",
+    }
 
     -- exclusions
     if utils.is_non_normal_buffer() or not vim.tbl_contains(ft_with_winbar, vim.bo[0].filetype) then
