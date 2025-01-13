@@ -66,9 +66,6 @@ return {
       },
       input = {
         enabled = true,
-        keys = {
-          i_cr = { "<c-y>", { "cmp_accept", "confirm" }, mode = "i", expr = true },
-        },
       },
       terminal = {
         enabled = true,
