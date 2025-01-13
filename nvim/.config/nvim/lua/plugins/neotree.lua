@@ -1,29 +1,12 @@
 -- file explorer
 return {
   "nvim-neo-tree/neo-tree.nvim",
-  -- event = "BufEnter",
   keys = {
     {
       "<leader>ex",
       [[<cmd>Neotree toggle=true<cr>]],
       mode = "n",
       desc = "Open or close the file explorer (Neotree)",
-      noremap = true,
-      silent = true,
-    },
-    {
-      "<leader>eb",
-      [[<cmd>Neotree buffers toggle=true<cr>]],
-      mode = "n",
-      desc = "Open or close the buffer explorer (Neotree)",
-      noremap = true,
-      silent = true,
-    },
-    {
-      "<leader>eg",
-      [[<cmd>Neotree git_status toggle=true<cr>]],
-      mode = "n",
-      desc = "Open or close the git status explorer (Neotree)",
       noremap = true,
       silent = true,
     },
@@ -36,7 +19,6 @@ return {
   },
   config = function()
     local utils = require("config.utils")
-    local icons = require("config.icons")
 
     -- remove the deprecated commands from v1.x
     vim.cmd([[ let g:neo_tree_remove_legacy_commands = 1 ]])
@@ -53,17 +35,10 @@ return {
           expander_expanded = "",
           expander_highlight = "NeoTreeExpander",
         },
-        git_status = {
-          symbols = icons.git_icons,
-        },
       },
 
-      -- must define this table currently to enable document_symbols (remove later on when document_symbols stabilizes)
       sources = {
         "filesystem",
-        "buffers",
-        "git_status",
-        -- "document_symbols",
       },
 
       -- window options
@@ -167,67 +142,6 @@ return {
             end
           end,
         },
-      },
-
-      -- source buffers
-      buffers = {
-        follow_current_file = {
-          enabled = true,
-        },
-        group_empty_dirs = true,
-        window = {
-          mappings = {
-            ["<c-d>"] = "buffer_delete",
-            ["<bs>"] = "navigate_up",
-            ["sc"] = { "order_by_created", nowait = false },
-            ["sd"] = { "order_by_diagnostics", nowait = false },
-            ["sm"] = { "order_by_modified", nowait = false },
-            ["sn"] = { "order_by_name", nowait = false },
-            ["ss"] = { "order_by_size", nowait = false },
-            ["st"] = { "order_by_type", nowait = false },
-          },
-        },
-      },
-
-      -- source git status
-      git_status = {
-        window = {
-          mappings = {
-            ["gs"] = "git_add_file", -- git stage
-            ["gu"] = "git_unstage_file", -- git unstage
-            -- ["gc"] = "git_commit",
-            -- ["gp"] = "git_push",
-            ["sc"] = { "order_by_created", nowait = false },
-            ["sd"] = { "order_by_diagnostics", nowait = false },
-            ["sm"] = { "order_by_modified", nowait = false },
-            ["sn"] = { "order_by_name", nowait = false },
-            ["ss"] = { "order_by_size", nowait = false },
-            ["st"] = { "order_by_type", nowait = false },
-          },
-        },
-      },
-
-      -- source document_symbols (open with user command 'Neotree document_symbols')
-      document_symbols = {
-        follow_cursor = true,
-        client_filters = {
-          fn = function(name)
-            return name ~= "null-ls"
-          end,
-          allow_only = {},
-          ignore = {},
-        },
-        window = {
-          mappings = {
-            ["<cr>"] = "jump_to_symbol",
-            ["r"] = "rename",
-            ["p"] = "preview",
-            ["/"] = "filter",
-            ["x"] = "open_split",
-            ["v"] = "open_vsplit",
-          },
-        },
-        kinds = icons._kinds,
       },
     })
   end,
