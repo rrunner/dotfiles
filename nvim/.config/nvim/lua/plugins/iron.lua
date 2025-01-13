@@ -1,7 +1,7 @@
 -- ipython/R repl
 return {
   "hkupty/iron.nvim",
-  ft = { "python", "r" },
+  ft = { "python", "r", "haskell" },
   config = function()
     local iron = require("iron.core")
     iron.setup({
@@ -10,6 +10,12 @@ return {
         repl_definition = {
           python = require("iron.fts.python").ipython,
           R = require("iron.fts.r").R,
+          haskell = {
+            command = function(args)
+              local filename = vim.api.nvim_buf_get_name(args.current_bufnr)
+              return { "ghci", filename }
+            end,
+          },
         },
         -- repl_open_cmd = require("iron.view").split.vertical.botright(60),
         -- repl_open_cmd = require("iron.view").bottom(20),
