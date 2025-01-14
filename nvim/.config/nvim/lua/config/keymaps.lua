@@ -1,8 +1,6 @@
 -- general key mappings
 -- note: plugin specific key mappings are generally set in each plugin configuration respectively
 
-local tmux_exists, _ = pcall(require, "tmux")
-
 vim.api.nvim_set_keymap(
   "x",
   "/",
@@ -78,32 +76,29 @@ vim.api.nvim_set_keymap("n", "k", '(v:count == 0 ? "gk" : "k")', {
   desc = "Move up by visual line (when text is wrapped unless count is provided)",
 })
 
--- tmux plugin provides the mappings below out-of-the-box
-if not tmux_exists then
-  vim.api.nvim_set_keymap("n", "<m-h>", ":vertical resize +1<cr>", {
-    noremap = true,
-    silent = true,
-    desc = "Resize x +1",
-  })
+vim.api.nvim_set_keymap("n", "<m-h>", ":vertical resize +1<cr>", {
+  noremap = true,
+  silent = true,
+  desc = "Resize x +1",
+})
 
-  vim.api.nvim_set_keymap("n", "<m-l>", ":vertical resize -1<cr>", {
-    noremap = true,
-    silent = true,
-    desc = "Resize x -1",
-  })
+vim.api.nvim_set_keymap("n", "<m-l>", ":vertical resize -1<cr>", {
+  noremap = true,
+  silent = true,
+  desc = "Resize x -1",
+})
 
-  vim.api.nvim_set_keymap("n", "<m-j>", ":resize +1<cr>", {
-    noremap = true,
-    silent = true,
-    desc = "Resize y +1",
-  })
+vim.api.nvim_set_keymap("n", "<m-j>", ":resize +1<cr>", {
+  noremap = true,
+  silent = true,
+  desc = "Resize y +1",
+})
 
-  vim.api.nvim_set_keymap("n", "<m-k>", ":resize -1<cr>", {
-    noremap = true,
-    silent = true,
-    desc = "Resize y -1",
-  })
-end
+vim.api.nvim_set_keymap("n", "<m-k>", ":resize -1<cr>", {
+  noremap = true,
+  silent = true,
+  desc = "Resize y -1",
+})
 
 vim.api.nvim_set_keymap("n", "[s", "[szz", {
   noremap = true,
@@ -218,32 +213,29 @@ vim.api.nvim_set_keymap("n", "<c-d>", "<c-d>M", {
   desc = "Move cursor to center of viewport after half-page down",
 })
 
--- tmux plugin provides the mappings below out-of-the-box
-if not tmux_exists then
-  vim.api.nvim_set_keymap("n", "<c-h>", "<cmd>wincmd h<cr>", {
-    noremap = true,
-    silent = true,
-    desc = "Move to window to the left",
-  })
+vim.api.nvim_set_keymap("n", "<c-h>", "<cmd>wincmd h<cr>", {
+  noremap = true,
+  silent = true,
+  desc = "Move to window to the left",
+})
 
-  vim.api.nvim_set_keymap("n", "<c-j>", "<cmd>wincmd j<cr>", {
-    noremap = true,
-    silent = true,
-    desc = "Move to window below",
-  })
+vim.api.nvim_set_keymap("n", "<c-j>", "<cmd>wincmd j<cr>", {
+  noremap = true,
+  silent = true,
+  desc = "Move to window below",
+})
 
-  vim.api.nvim_set_keymap("n", "<c-k>", "<cmd>wincmd k<cr>", {
-    noremap = true,
-    silent = true,
-    desc = "Move to window above",
-  })
+vim.api.nvim_set_keymap("n", "<c-k>", "<cmd>wincmd k<cr>", {
+  noremap = true,
+  silent = true,
+  desc = "Move to window above",
+})
 
-  vim.api.nvim_set_keymap("n", "<c-l>", "<cmd>wincmd l<cr>", {
-    noremap = true,
-    silent = true,
-    desc = "Move to window to the right",
-  })
-end
+vim.api.nvim_set_keymap("n", "<c-l>", "<cmd>wincmd l<cr>", {
+  noremap = true,
+  silent = true,
+  desc = "Move to window to the right",
+})
 
 vim.api.nvim_set_keymap("i", "<<", "=", {
   silent = true,
