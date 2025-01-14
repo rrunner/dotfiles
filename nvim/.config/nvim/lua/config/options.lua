@@ -1,4 +1,5 @@
 local utils = require("config.utils")
+local icons = require("config.icons")
 
 -- options
 vim.opt.compatible = false
@@ -125,12 +126,12 @@ vim.opt.conceallevel = 2 -- hide * markup for bold and italic, but not markers w
 
 -- folding
 vim.opt.fillchars = {
-  foldopen = "",
-  foldclose = "",
-  fold = " ",
-  foldsep = " ",
-  diff = "╱",
+  diff = icons.chars.diff,
   eob = " ",
+  fold = " ",
+  foldclose = icons.chars.foldclose,
+  foldopen = icons.chars.foldopen,
+  foldsep = " ",
 }
 vim.opt.foldenable = true
 vim.opt.foldlevel = 99 -- open buffers unfolded

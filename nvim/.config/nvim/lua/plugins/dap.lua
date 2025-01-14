@@ -168,6 +168,11 @@ return {
         enabled = true,
         elements = "repl",
       },
+      icons = {
+        collapsed = icons.chars.foldclose,
+        current_frame = icons.chars.foldclose,
+        expanded = icons.chars.foldopen,
+      },
     })
 
     -- open and close dapui automatically in debugging mode (based on dap events)

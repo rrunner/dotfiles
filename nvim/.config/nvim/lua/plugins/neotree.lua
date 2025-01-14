@@ -19,6 +19,7 @@ return {
   },
   config = function()
     local utils = require("config.utils")
+    local icons = require("config.icons")
 
     -- remove the deprecated commands from v1.x
     vim.cmd([[ let g:neo_tree_remove_legacy_commands = 1 ]])
@@ -31,8 +32,8 @@ return {
       default_component_configs = {
         indent = {
           with_expanders = true,
-          expander_collapsed = "",
-          expander_expanded = "",
+          expander_collapsed = icons.chars.foldclose,
+          expander_expanded = icons.chars.foldopen,
           expander_highlight = "NeoTreeExpander",
         },
       },

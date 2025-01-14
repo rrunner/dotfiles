@@ -97,4 +97,10 @@ M.snacks = {
   trace = " ",
 }
 
+M.chars = {
+  foldopen = "",
+  foldclose = "",
+  diff = "╱",
+}
+
 return M
