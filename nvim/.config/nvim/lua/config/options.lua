@@ -153,6 +153,11 @@ if utils.IS_WIN then
   vim.opt.shellslash = true
 end
 
+-- enable undercurl (comment out to use underline)
+-- might need to create a new terminfo file and add Smulx item
+vim.cmd([[let &t_Cs = "\e[4:3m]"]])
+vim.cmd([[let &t_Ce = "\e[4:0m]"]])
+
 -- global variables
 vim.g.editorconfig = true
 vim.g.loaded_python3_provider = 0 --vim.fn.executable("python3")
