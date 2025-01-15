@@ -358,39 +358,33 @@ vim.api.nvim_create_autocmd("LspAttach", {
     end
 
     if client and client.supports_method(vim.lsp.protocol.Methods.textDocument_definition) then
-      vim.keymap.set(
-        "n",
-        "gd",
-        require("telescope.builtin").lsp_definitions,
-        -- vim.lsp.buf.definition()
-        -- vim.cmd([[normal! zt]])
-        vim.tbl_extend("error", bufopts, { desc = "Jump to the definition of the LSP symbol" })
-      )
+      vim.keymap.set("n", "gd", function()
+        Snacks.picker.lsp_definitions()
+      end, {
+        noremap = true,
+        silent = true,
+        desc = "LSP definition",
+      })
     end
 
     if client and client.supports_method(vim.lsp.protocol.Methods.textDocument_references) then
-      vim.keymap.set(
-        "n",
-        "gh",
-        function()
-          require("telescope.builtin").lsp_references({
-            include_declaration = false,
-            include_current_line = true,
-          })
-        end,
-        -- vim.lsp.buf.references,
-        vim.tbl_extend("error", bufopts, { desc = "Lists all the references to the LSP symbol in telescope" })
-      )
+      vim.keymap.set("n", "gh", function()
+        Snacks.picker.lsp_references()
+      end, {
+        noremap = true,
+        silent = true,
+        desc = "LSP references",
+      })
     end
 
     if client and client.supports_method(vim.lsp.protocol.Methods.textDocument_implementation) then
-      vim.keymap.set(
-        "n",
-        "gi",
-        require("telescope.builtin").lsp_implementations,
-        -- vim.lsp.buf.implementation,
-        vim.tbl_extend("error", bufopts, { desc = "Show implementation for the LSP symbol in telescope" })
-      )
+      vim.keymap.set("n", "gi", function()
+        Snacks.picker.lsp_implementations()
+      end, {
+        noremap = true,
+        silent = true,
+        desc = "LSP implementation",
+      })
     end
 
     vim.keymap.set(
@@ -412,13 +406,13 @@ vim.api.nvim_create_autocmd("LspAttach", {
     )
 
     if client and client.supports_method(vim.lsp.protocol.Methods.textDocument_typeDefinition) then
-      vim.keymap.set(
-        "n",
-        "gt",
-        require("telescope.builtin").lsp_type_definitions,
-        -- vim.lsp.buf.type_definition,
-        vim.tbl_extend("error", bufopts, { desc = "Show type definition for the LSP symbol in telescope" })
-      )
+      vim.keymap.set("n", "gt", function()
+        Snacks.picker.lsp_type_definitions()
+      end, {
+        noremap = true,
+        silent = true,
+        desc = "LSP type definitions",
+      })
     end
 
     if client and client.supports_method(vim.lsp.protocol.Methods.textDocument_rename) then

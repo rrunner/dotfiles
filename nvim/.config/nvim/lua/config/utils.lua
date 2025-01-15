@@ -23,94 +23,17 @@ M.IS_GITHUB_BLOCKED = M.IS_WSL
 M.IS_GITHUB_BLOCKED_INVERSE_BOOL = not M.IS_GITHUB_BLOCKED
 
 -- path separator
-local path_sep = function()
+M.path_sep = (function()
   if M.IS_WIN then
     return "\\"
   else
     return "/"
   end
-end
-
--- telescope_live_grep_in_path (has keybinding <leader>sg):
--- user provides a path for the search (defaults to cwd)
-M.telescope_live_grep_in_path = function()
-  vim.ui.input({
-    prompt = "Enter directory (cwd):",
-    completion = "dir",
-    default = uv.cwd() .. path_sep(),
-  }, function(input)
-    if input == nil then
-      -- window is closed with a keybind
-      return
-    elseif input and vim.fn.isdirectory(input) ~= 0 then
-      require("telescope.builtin").live_grep({ search_dirs = { input } })
-    else
-      vim.notify("No valid directory")
-    end
-  end)
-end
-
--- user_provide_path (local function)
--- user provides a path for the search (defaults to cwd)
-local user_provide_path = function(callback)
-  vim.ui.input({
-    prompt = "Enter directory (cwd):",
-    completion = "dir",
-    default = uv.cwd() .. path_sep(),
-  }, function(input)
-    if input == nil then
-      -- window is closed with a keybind
-      return
-    elseif input and vim.fn.isdirectory(input) ~= 0 then
-      callback({ hidden = true, search_dirs = { input } })
-    else
-      vim.notify("No valid directory")
-    end
-  end)
-end
+end)()
 
 M.inside_git_repo = function()
-  local utl = require("telescope.utils")
-  local _, ret, _ = utl.get_os_command_output({ "git", "rev-parse", "--is-inside-work-tree 2>/dev/null" })
-  return ret == 0 and true or false
-end
-
--- telescope_files_or_git_files (has keybinding <leader>sf):
--- find files, or git files in .git directory
-M.telescope_files_or_git_files = function()
-  local builtin = require("telescope.builtin")
-  if M.inside_git_repo() then
-    builtin.git_files()
-  else
-    user_provide_path(require("telescope.builtin").find_files)
-  end
-end
-
--- telescope_live_grep_args (has keybinding <leader>sa)
--- ripgrep with arguments
-M.telescope_live_grep_args = function()
-  user_provide_path(require("telescope").extensions.live_grep_args.live_grep_args)
-end
-
--- note taking using quarto (select folder where notes are stored)
-local detect_notes_folder = function()
-  local notes_folder
-  notes_folder = vim.fn.stdpath("config") .. "/templates"
-  if vim.fn.isdirectory(notes_folder) ~= 0 then
-    return notes_folder
-  end
-  ---@diagnostic disable-next-line: param-type-mismatch
-  vim.notify("Notes folder is not configured. See utils.lua file", vim.log.levels.WARN)
-  return nil
-end
-
--- search for existing notes or start from any template
-M.search_notes = function()
-  local notes_folder = detect_notes_folder()
-  if notes_folder ~= nil then
-    vim.cmd(str.format("silent lcd %s", vim.env.HOME))
-    require("telescope.builtin").find_files({ search_dirs = { notes_folder } })
-  end
+  local _ = vim.fn.system("git rev-parse --is-inside-work-tree")
+  return vim.v.shell_error == 0
 end
 
 -- retrieve the path to the python interpreter that executes the python program
@@ -203,31 +126,6 @@ M.tip = function()
       end,
     })
     :start()
-end
-
--- move to window if the buffer is already visible in a window (consumed in
--- telescope via <cr> upon <c-tab> to display buffers)
----@return nil  -- nil
-M.open_buffer = function(prompt_bufnr)
-  local entry = require("telescope.actions.state").get_selected_entry()
-  if not entry then
-    return
-  end
-
-  local buffer_number = entry.bufnr
-  for _, window in ipairs(vim.api.nvim_list_wins()) do
-    if vim.api.nvim_win_get_buf(window) == buffer_number then
-      -- move to window if the selected buffer is already visible
-      vim.api.nvim_set_current_win(window)
-      return
-    end
-  end
-
-  -- close telescope window
-  require("telescope.actions").close(prompt_bufnr)
-
-  -- display the selected buffer in the current window
-  vim.api.nvim_win_set_buf(0, buffer_number)
 end
 
 -- function to remove a table item by value, the input_table should be a
