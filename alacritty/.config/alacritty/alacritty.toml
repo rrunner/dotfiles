@@ -37,6 +37,7 @@ shape = "Block"
 
 [env]
 TERM = "xterm-256color"
+# for undercurl in nvim, Smulx=\E[4:%p1%dm property must be added to terminfo
 
 [font]
 size = 11
