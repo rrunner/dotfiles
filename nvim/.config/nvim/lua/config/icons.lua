@@ -2,46 +2,45 @@ local M = {}
 _G.icons = M
 
 local kinds = {
-  Text = { icon = "󰊄", hl = "" },
-  Unit = { icon = "", hl = "" },
-  Value = { icon = "󰎠", hl = "" },
-  Keyword = { icon = "󰌋", hl = "" },
-  Snippet = { icon = "", hl = "" },
-  Color = { icon = "󰏘", hl = "" },
-  Reference = { icon = "", hl = "" },
-  Folder = { icon = "󰉋", hl = "" },
-  Unknown = { icon = "", hl = "" },
-  Root = { icon = "", hl = "NeoTreeRootName" },
-  File = { icon = "󰈙", hl = "Tag" },
-  Module = { icon = "", hl = "Exception" },
-  Namespace = { icon = "󰌗", hl = "Include" },
-  Package = { icon = "󰏖", hl = "Label" },
-  Class = { icon = "󰌗", hl = "Include" },
-  Method = { icon = "󰡱", hl = "Function" },
-  Property = { icon = "󰆧", hl = "@property" },
-  Field = { icon = "", hl = "@field" },
-  Constructor = { icon = "", hl = "@constructor" },
-  Enum = { icon = "󰒻", hl = "@number" },
-  Interface = { icon = "", hl = "Type" },
-  Function = { icon = "󰊕", hl = "Function" },
-  Variable = { icon = "󰫧", hl = "@variable" },
-  Constant = { icon = "", hl = "Constant" },
-  String = { icon = "󱀍", hl = "String" },
-  Number = { icon = "󰎠", hl = "Number" },
-  Boolean = { icon = "", hl = "Boolean" },
   Array = { icon = "", hl = "Type" },
-  Object = { icon = "󰅩", hl = "Type" },
-  Key = { icon = "󰌋", hl = "" },
-  Null = { icon = "󰟢", hl = "Constant" },
-  EnumMember = { icon = "", hl = "Number" },
-  Struct = { icon = "󰌗", hl = "Type" },
-  Event = { icon = "", hl = "Constant" },
-  Operator = { icon = "󰆕", hl = "Operator" },
-  TypeParameter = { icon = "󰊄", hl = "Type" },
-  TypeAlias = { icon = "", hl = "Type" },
-  Parameter = { icon = "", hl = "@parameter" },
-  StaticMethod = { icon = "󰡱", hl = "Function" },
-  Macro = { icon = "", hl = "Macro" },
+  Boolean = { icon = "󰨙 ", hl = "Boolean" },
+  Class = { icon = " ", hl = "Include" },
+  Color = { icon = " ", hl = "" },
+  Collapsed = { icon = " ", hl = "" },
+  Constant = { icon = "󰏿 ", hl = "Constant" },
+  Constructor = { icon = " ", hl = "@constructor" },
+  Copilot = { icon = " ", hl = "" },
+  Enum = { icon = " ", hl = "@number" },
+  EnumMember = { icon = " ", hl = "Number" },
+  Event = { icon = " ", hl = "Constant" },
+  Field = { icon = " ", hl = "@field" },
+  File = { icon = " ", hl = "Tag" },
+  Folder = { icon = " ", hl = "" },
+  Function = { icon = "󰊕 ", hl = "Function" },
+  Interface = { icon = " ", hl = "Type" },
+  Key = { icon = " ", hl = "" },
+  Keyword = { icon = " ", hl = "" },
+  Method = { icon = "󰡱 ", hl = "Function" },
+  Module = { icon = " ", hl = "Exception" },
+  Namespace = { icon = "󰦮 ", hl = "Include" },
+  Null = { icon = " ", hl = "Constant" },
+  Number = { icon = "󰎠 ", hl = "Number" },
+  Object = { icon = " ", hl = "Type" },
+  Operator = { icon = " ", hl = "Operator" },
+  Package = { icon = " ", hl = "Label" },
+  Parameter = { icon = " ", hl = "@parameter" },
+  Property = { icon = " ", hl = "@property" },
+  Reference = { icon = " ", hl = "" },
+  Snippet = { icon = "󱄽 ", hl = "" },
+  StaticMethod = { icon = "󰡱 ", hl = "Function" },
+  String = { icon = " ", hl = "String" },
+  Struct = { icon = "󰆼 ", hl = "Type" },
+  Text = { icon = " ", hl = "" },
+  TypeParameter = { icon = " ", hl = "Type" },
+  Unit = { icon = " ", hl = "" },
+  Unknown = { icon = " ", hl = "" },
+  Value = { icon = " ", hl = "" },
+  Variable = { icon = "󰀫 ", hl = "@variable" },
 }
 
 local kinds_cmp = {}
@@ -66,13 +65,14 @@ M.dap = {
   logpoint = "",
   condition = "",
   rejected = "",
-  -- stopped = "",
   stopped = "",
 }
 
 M.bullets = { "", "", "󰨓", "󰨔", "-", "+" }
 
 M.three_dots = "󰇘"
+
+M.selected = " "
 
 M.git_icons = {
   added = "+",
@@ -89,7 +89,7 @@ M.git_icons = {
   unmerged = "",
 }
 
-M.snacks = {
+M.snacks_notifier = {
   error = " ",
   warn = " ",
   info = " ",
