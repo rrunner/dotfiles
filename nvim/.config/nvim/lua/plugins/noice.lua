@@ -65,7 +65,7 @@ return {
         -- long messages will be sent to a split
         long_message_to_split = true,
         -- enables an input dialog for inc-rename.nvim
-        inc_rename = true,
+        inc_rename = false,
         -- add a border to hover docs and signature help
         lsp_doc_border = true,
       },

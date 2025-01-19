@@ -419,12 +419,8 @@ vim.api.nvim_create_autocmd("LspAttach", {
       vim.keymap.set(
         "n",
         "<leader>rn",
-        -- vim.lsp.buf.rename,
-        -- vim.tbl_extend("error", bufopts, { desc = "Rename symbol using LSP" })
-        function()
-          return ":IncRename "
-        end,
-        vim.tbl_extend("error", bufopts, { expr = true, desc = "Rename symbol using inc-rename" })
+        vim.lsp.buf.rename,
+        vim.tbl_extend("error", bufopts, { desc = "Rename symbol using LSP" })
       )
     end
 
