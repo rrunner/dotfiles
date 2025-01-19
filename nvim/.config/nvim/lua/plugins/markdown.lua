@@ -24,6 +24,9 @@ return {
       bullet = {
         icons = icons.bullets,
       },
+      checkbox = {
+        enabled = false,
+      },
     })
     vim.treesitter.language.register("markdown", "quarto")
     vim.treesitter.language.register("markdown", "rmd")
