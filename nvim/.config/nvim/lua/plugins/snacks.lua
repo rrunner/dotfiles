@@ -440,15 +440,24 @@ return {
       desc = "Search visual selection or word in all open buffers",
     })
 
-    -- fix: snacks picker does not capture spell suggestions
-    -- vim.keymap.set("n", "z=", function(args)
-    --   if vim.opt_local.spell:get() then
-    --     snacks.picker.select()
-    --   end
-    -- end, {
-    --   noremap = true,
-    --   silent = true,
-    --   desc = "Spell suggestions (if spellcheck is active)",
-    -- })
+    vim.keymap.set("n", "z=", function()
+      if vim.opt_local.spell:get() then
+        snacks.picker.spelling({
+          layout = { preset = "select" },
+        })
+      end
+    end, {
+      noremap = true,
+      silent = true,
+      desc = "Spell suggestions (if spellcheck is active)",
+    })
+
+    vim.keymap.set("n", "<leader>sw", function()
+      snacks.picker.lsp_workspace_symbols()
+    end, {
+      noremap = true,
+      silent = true,
+      desc = "Search LSP workspace symbols",
+    })
   end,
 }

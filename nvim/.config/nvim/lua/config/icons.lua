@@ -5,8 +5,8 @@ local kinds = {
   Array = { icon = "", hl = "Type" },
   Boolean = { icon = "󰨙 ", hl = "Boolean" },
   Class = { icon = " ", hl = "Include" },
-  Color = { icon = " ", hl = "" },
   Collapsed = { icon = " ", hl = "" },
+  Color = { icon = " ", hl = "" },
   Constant = { icon = "󰏿 ", hl = "Constant" },
   Constructor = { icon = " ", hl = "@constructor" },
   Copilot = { icon = " ", hl = "" },
@@ -39,8 +39,8 @@ local kinds = {
   TypeParameter = { icon = " ", hl = "Type" },
   Unit = { icon = " ", hl = "" },
   Unknown = { icon = " ", hl = "" },
-  Value = { icon = " ", hl = "" },
-  Variable = { icon = "󰀫 ", hl = "@variable" },
+  Value = { icon = "󰀫 ", hl = "" },
+  Variable = { icon = "󰫧 ", hl = "@variable" },
 }
 
 local kinds_cmp = {}
