@@ -280,6 +280,11 @@ vim.api.nvim_set_keymap("n", "M", "%", {
 --   desc = [[Start a terminal buffer in 'terminal mode']],
 -- })
 
+vim.api.nvim_set_keymap("n", "Y", "yg_", {
+  noremap = true,
+  desc = "Yank to end of line (without end of line whitespace)",
+})
+
 vim.api.nvim_set_keymap("n", "<leader>y", [["+y]], {
   noremap = true,
   desc = "Yank to clipboard register",
