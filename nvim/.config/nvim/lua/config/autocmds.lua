@@ -66,18 +66,6 @@ vim.api.nvim_create_autocmd("CmdwinEnter", {
   pattern = "*",
 })
 
--- unset statuscolumn based on events filetype and bufenter
-vim.api.nvim_create_autocmd({ "FileType", "BufEnter" }, {
-  callback = function(event)
-    local exc_ft = { "neo-tree", "NeogitStatus" }
-    if vim.tbl_contains(exc_ft, vim.bo[event.buf].filetype) then
-      vim.opt_local.statuscolumn = ""
-    end
-  end,
-  group = config,
-  pattern = "*",
-})
-
 -- make autoread work as expected on Windows OS
 if utils.IS_WIN then
   -- auto-reload files when modified externally
