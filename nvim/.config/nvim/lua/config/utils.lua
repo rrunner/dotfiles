@@ -1,4 +1,4 @@
---utility functions
+-- utility functions
 local M = {}
 
 local str = require("string")
@@ -108,24 +108,6 @@ M.venv_with_cwd = function()
     return uv.cwd() or ""
   end
   return "󱔎 (" .. str.match(venv, "/?([.%w_-]+)$") .. ") " .. uv.cwd()
-end
-
--- daily vim tip from vtip.43z.one
-M.tip = function()
-  local job = require("plenary.job")
-  job
-    :new({
-      command = "curl",
-      args = { "https://vtip.43z.one" },
-      on_exit = function(j, exit_code)
-        local res = table.concat(j:result())
-        if exit_code ~= 0 then
-          res = "Error fetching tip: " .. res
-        end
-        require("notify")(res)
-      end,
-    })
-    :start()
 end
 
 -- function to remove a table item by value, the input_table should be a
