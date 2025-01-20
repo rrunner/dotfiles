@@ -184,6 +184,9 @@ return {
               ["<c-k>"] = false,
               ["<c-b>"] = false,
             },
+            wo = {
+              relativenumber = false,
+            },
           },
         },
         icons = {
