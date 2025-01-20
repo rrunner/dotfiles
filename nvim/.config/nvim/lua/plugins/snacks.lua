@@ -206,6 +206,7 @@ return {
             Info = icons.diagnosis.info,
             Hint = icons.diagnosis.hint,
           },
+          kinds = icons._kinds_cmp,
         },
       },
       styles = {
