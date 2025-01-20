@@ -77,6 +77,7 @@ return {
           width = 0.90,
           backdrop = false,
         },
+        shell = vim.o.shell,
       },
       indent = {
         enabled = true,
