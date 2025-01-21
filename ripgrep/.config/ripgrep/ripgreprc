@@ -1,0 +1,27 @@
+# prevent searches on long lines
+--max-columns=150
+
+# notify when search long lines
+--max-columns-preview
+
+# case sensitive only when upper case is provided
+--smart-case
+
+# search hidden files and directories
+--hidden
+
+# follow symbolic links
+--follow
+
+# don't respect ignore files (.gitignore, .ignore etc.)
+--no-ignore
+
+# vimgrep arguments
+--color=never
+--no-heading
+--with-filename
+--line-number
+--column
+
+# exclude directories
+--glob=!{.git,.svn,node_modules,.cache,.npm,.mypy_cache,__pycache__}

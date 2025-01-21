@@ -93,6 +93,9 @@ source /usr/share/fzf/key-bindings.bash
 # bash completion (install bash-completion package)
 [[ $PS1 && -f /usr/share/bash-completion/bash_completion ]] && . /usr/share/bash-completion/bash_completion
 
+# ripgrep configuration file is set via environment variable
+export RIPGREP_CONFIG_PATH="$HOME"/.config/ripgrep/ripgreprc
+
 # use ripgrep as default command to fzf (with bat as previewer)
 # - use git ls-files command inside git repo
 # - use ripgrep to search files (ctrl-t)
