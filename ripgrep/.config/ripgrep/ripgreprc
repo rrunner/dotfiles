@@ -1,5 +1,5 @@
 # prevent searches on long lines
---max-columns=150
+--max-columns=500
 
 # notify when search long lines
 --max-columns-preview
