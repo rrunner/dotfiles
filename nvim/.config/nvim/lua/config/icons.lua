@@ -48,8 +48,7 @@ for kind_type, icon_hl in pairs(kinds) do
   kinds_cmp[kind_type] = icon_hl.icon
 end
 
--- global kinds to be used in cmp, neotree, aerial etc.
-M._kinds = kinds
+-- kinds to be used in cmp, aerial, snacks etc.
 M._kinds_cmp = kinds_cmp
 
 -- LSP diagnosis signs
