@@ -458,7 +458,7 @@ return {
       desc = "Spell suggestions (if spellcheck is active)",
     })
 
-    vim.keymap.set("n", "<leader>sw", function()
+    vim.keymap.set("n", "<leader>sS", function()
       snacks.picker.lsp_workspace_symbols()
     end, {
       noremap = true,
