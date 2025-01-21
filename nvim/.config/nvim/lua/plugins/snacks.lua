@@ -395,7 +395,13 @@ return {
           -- window is closed with a keybind
           return
         elseif input and vim.fn.isdirectory(input) ~= 0 then
-          snacks.picker.grep({ hidden = true, follow = true, dirs = { input }, exclude = exclude_fext })
+          snacks.picker.grep({
+            dirs = { input },
+            hidden = true,
+            follow = true,
+            ignored = true,
+            exclude = exclude_fext,
+          })
         else
           vim.notify("No valid directory")
         end
@@ -415,7 +421,13 @@ return {
     })
 
     vim.keymap.set({ "n", "x" }, "<leader>sc", function()
-      snacks.picker.grep_word({ dirs = { vim.uv.cwd() } })
+      snacks.picker.grep_word({
+        dirs = { vim.uv.cwd() },
+        hidden = true,
+        follow = true,
+        ignored = true,
+        exclude = exclude_fext,
+      })
     end, {
       noremap = true,
       silent = true,
@@ -439,7 +451,7 @@ return {
     })
 
     vim.keymap.set({ "n", "x" }, "<leader>s/", function()
-      snacks.picker.grep_word({ buffers = true, follow = false })
+      snacks.picker.grep_word({ buffers = true })
     end, {
       noremap = true,
       silent = true,
