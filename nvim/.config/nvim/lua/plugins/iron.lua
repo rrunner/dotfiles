@@ -17,6 +17,7 @@ return {
             end,
           },
         },
+        close_window_on_exit = false,
         -- repl_open_cmd = require("iron.view").split.vertical.botright(60),
         -- repl_open_cmd = require("iron.view").bottom(20),
         repl_open_cmd = "below 20 split",
