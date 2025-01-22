@@ -1,4 +1,6 @@
--- exclude by file extension (files and grep pickers)
+-- exclude by file extension (used by files and grep pickers)
+-- grep picker: global rg options are used (see .config/ripgrep/ripgreprc)
+-- files picker: global fd options are used (see .config/fd/fd.toml)
 local exclude_fext = { "*.js", "*.js.map", "*.mjs", "*.jpg", "*.JPG", "*.avi", "*.AVI", "*.pdf", "*.PDF" }
 
 return {
@@ -311,7 +313,12 @@ return {
             -- window is closed with a keybind
             return
           elseif input and vim.fn.isdirectory(input) ~= 0 then
-            snacks.picker.files({ hidden = true, follow = true, dirs = { input }, exclude = exclude_fext })
+            snacks.picker.files({
+              dirs = { input },
+              hidden = true,
+              follow = true,
+              exclude = exclude_fext,
+            })
           else
             vim.notify("No valid directory")
           end
