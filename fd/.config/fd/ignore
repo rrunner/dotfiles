@@ -1,0 +1,7 @@
+.git/
+.svn/
+node_modules/
+.cache/
+.npm/
+.mypy_cache/
+__pycache__/
