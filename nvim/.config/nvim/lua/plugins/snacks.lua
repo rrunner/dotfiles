@@ -385,6 +385,14 @@ return {
       desc = "Search LSP document symbols",
     })
 
+    vim.keymap.set("n", "<leader>sS", function()
+      snacks.picker.lsp_workspace_symbols()
+    end, {
+      noremap = true,
+      silent = true,
+      desc = "Search LSP workspace symbols",
+    })
+
     vim.keymap.set("n", "<leader>sg", function()
       vim.ui.input({
         prompt = "Enter directory (cwd):",
@@ -468,14 +476,6 @@ return {
       noremap = true,
       silent = true,
       desc = "Spell suggestions (if spellcheck is active)",
-    })
-
-    vim.keymap.set("n", "<leader>sS", function()
-      snacks.picker.lsp_workspace_symbols()
-    end, {
-      noremap = true,
-      silent = true,
-      desc = "Search LSP workspace symbols",
     })
   end,
 }
