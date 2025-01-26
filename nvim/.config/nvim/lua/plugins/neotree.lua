@@ -87,8 +87,20 @@ return {
           mappings = {
             ["<bs>"] = "navigate_up",
             ["H"] = "toggle_hidden",
-            ["/"] = "fuzzy_finder",
-            ["a"] = "add",
+            ["/"] = {
+              "fuzzy_finder",
+              config = {
+                title = "Filter (fuzzy find)",
+              },
+            },
+            ["a"] = {
+              "add",
+              nowait = true,
+              config = {
+                -- "none", "relative", "absolute"
+                show_path = "relative",
+              },
+            },
             ["A"] = "add_directory",
             ["d"] = "delete",
             ["y"] = "copy_to_clipboard",
