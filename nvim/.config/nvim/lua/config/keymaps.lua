@@ -100,16 +100,16 @@ vim.api.nvim_set_keymap("n", "<m-k>", ":resize -1<cr>", {
   desc = "Resize y -1",
 })
 
-vim.api.nvim_set_keymap("n", "[s", "[szz", {
+vim.api.nvim_set_keymap("n", "[s", "[s", {
   noremap = true,
   silent = true,
-  desc = "Previous spelling error (centered)",
+  desc = "Previous spelling error",
 })
 
-vim.api.nvim_set_keymap("n", "]s", "]szz", {
+vim.api.nvim_set_keymap("n", "]s", "]s", {
   noremap = true,
   silent = true,
-  desc = "Next spelling error (centered)",
+  desc = "Next spelling error",
 })
 
 vim.api.nvim_set_keymap("n", "[b", "<cmd>bprevious<cr>", {
