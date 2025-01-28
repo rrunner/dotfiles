@@ -267,14 +267,6 @@ return {
       snacks.terminal.toggle()
     end, { desc = "Toggle terminal", noremap = true, silent = true })
 
-    vim.keymap.set("n", "<leader>sm", function()
-      snacks.notifier.show_history()
-    end, {
-      noremap = true,
-      silent = true,
-      desc = "Notification history",
-    })
-
     vim.keymap.set("n", "<leader>gg", function()
       snacks.picker.git_status()
     end, {
@@ -495,6 +487,22 @@ return {
       noremap = true,
       silent = true,
       desc = "Spell suggestions (if spellcheck is active)",
+    })
+
+    -- vim.keymap.set("n", "<leader>sm", function()
+    --   snacks.notifier.show_history()
+    -- end, {
+    --   noremap = true,
+    --   silent = true,
+    --   desc = "Notification history",
+    -- })
+
+    vim.keymap.set("n", "<leader>sm", function()
+      snacks.picker.notifications()
+    end, {
+      noremap = true,
+      silent = true,
+      desc = "Search notification history",
     })
   end,
 }
