@@ -152,11 +152,7 @@ vim.api.nvim_create_autocmd({ "InsertLeave", "WinEnter" }, {
   pattern = "*",
 })
 vim.api.nvim_create_autocmd({ "InsertEnter", "WinLeave" }, {
-  callback = function(event)
-    local whitelist = { "neo-tree" }
-    if vim.tbl_contains(whitelist, vim.bo[event.buf].filetype) then
-      return
-    end
+  callback = function()
     vim.opt_local.cursorline = false
   end,
   group = config,

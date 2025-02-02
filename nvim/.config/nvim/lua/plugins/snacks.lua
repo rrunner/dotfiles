@@ -126,6 +126,10 @@ return {
           },
         },
       },
+      explorer = {
+        enabled = true,
+        replace_netrw = true,
+      },
       picker = {
         enabled = true,
         -- replace `vim.ui.select` with the snacks picker
@@ -157,18 +161,20 @@ return {
               ["<c-h>"] = false,
               ["<c-l>"] = false,
               ["<c-f>"] = false,
-              ["<c-v>"] = { "edit_vsplit", mode = { "i" } },
-              ["<c-x>"] = { "edit_split", mode = { "i" } },
+              ["<c-v>"] = { { "pick_win", "edit_vsplit" }, mode = { "i" } },
+              ["<c-x>"] = { { "pick_win", "edit_split" }, mode = { "i" } },
               ["<c-n>"] = { "list_down", mode = { "i" } },
               ["<c-p>"] = { "list_up", mode = { "i" } },
               ["<c-/>"] = { "toggle_help", mode = { "i" } },
               ["<c-e>"] = { "close", mode = { "i" } },
               ["<a-h>"] = { "preview_scroll_left", mode = { "i", "n" } },
+              ["<a-l>"] = { "preview_scroll_right", mode = { "i", "n" } },
               ["<a-n>"] = { "preview_scroll_down", mode = { "i", "n" } },
               ["<a-p>"] = { "preview_scroll_up", mode = { "i", "n" } },
-              ["<a-l>"] = { "preview_scroll_right", mode = { "i", "n" } },
-              ["v"] = "edit_vsplit",
-              ["x"] = "edit_split",
+              ["<a-j>"] = false,
+              ["<a-k>"] = false,
+              ["v"] = { { "pick_win", "edit_vsplit" }, mode = "n" },
+              ["x"] = { { "pick_win", "edit_split" }, mode = "n" },
               ["j"] = "list_down",
               ["k"] = "list_up",
               ["q"] = "close",
@@ -220,7 +226,59 @@ return {
             Info = icons.diagnosis.info,
             Hint = icons.diagnosis.hint,
           },
+          git = {
+            enabled = true,
+            commit = icons.git_icons.commit .. " ",
+            staged = icons.git_icons.staged,
+            added = icons.git_icons.added,
+            deleted = icons.git_icons.deleted,
+            ignored = icons.git_icons.ignored,
+            modified = icons.git_icons.modified,
+            renamed = icons.git_icons.renamed,
+            unmerged = icons.git_icons.unmerged,
+            untracked = icons.git_icons.untracked,
+          },
           kinds = icons._kinds_cmp,
+        },
+        sources = {
+          explorer = {
+            follow_file = true,
+            auto_close = false,
+            watch = true,
+            git_status = true,
+            git_status_open = true,
+            layout = {
+              preset = "sidebar",
+              layout = { position = "right" },
+            },
+            win = {
+              list = {
+                keys = {
+                  ["<bs>"] = "explorer_up",
+                  ["h"] = false,
+                  ["l"] = false,
+                  ["a"] = "explorer_add",
+                  ["d"] = "explorer_del",
+                  ["r"] = "explorer_rename",
+                  ["c"] = false,
+                  ["m"] = false,
+                  ["o"] = "confirm",
+                  ["y"] = "explorer_copy",
+                  ["u"] = false,
+                  ["]g"] = "explorer_git_next",
+                  ["[g"] = "explorer_git_prev",
+                  ["<c-c>"] = false,
+                  ["."] = "explorer_focus",
+                  ["P"] = false,
+                  ["I"] = "toggle_ignored",
+                  ["H"] = "toggle_hidden",
+                  ["Z"] = false,
+                  ["x"] = { { "pick_win", "edit_split" }, mode = "n" },
+                  ["v"] = { { "pick_win", "edit_vsplit" }, mode = "n" },
+                },
+              },
+            },
+          },
         },
       },
       styles = {
@@ -503,6 +561,14 @@ return {
       noremap = true,
       silent = true,
       desc = "Search notification history",
+    })
+
+    vim.keymap.set("n", "<leader>ex", function()
+      snacks.picker.explorer()
+    end, {
+      noremap = true,
+      silent = true,
+      desc = "Toggle file explorer",
     })
   end,
 }

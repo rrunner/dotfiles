@@ -86,6 +86,7 @@ M.git_icons = {
   ignored = "i",
   conflict = "",
   unmerged = "",
+  commit = "󰜘",
 }
 
 M.snacks_notifier = {
