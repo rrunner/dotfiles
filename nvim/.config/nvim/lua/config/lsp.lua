@@ -314,11 +314,11 @@ vim.keymap.set(
   vim.tbl_extend("error", opts, { desc = "Move all LSP diagnostic messages into a quickfix window" })
 )
 vim.keymap.set("n", "[d", function()
-  vim.diagnostic.goto_prev({ float = false })
+  vim.diagnostic.goto_prev({ float = true })
   vim.cmd([[normal! zz]])
 end, vim.tbl_extend("error", opts, { desc = "Go to previous LSP diagnostic message" }))
 vim.keymap.set("n", "]d", function()
-  vim.diagnostic.goto_next({ float = false })
+  vim.diagnostic.goto_next({ float = true })
   vim.cmd([[normal! zz]])
 end, vim.tbl_extend("error", opts, { desc = "Go to next LSP diagnostic message" }))
 
