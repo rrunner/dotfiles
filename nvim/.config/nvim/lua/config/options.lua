@@ -123,6 +123,7 @@ vim.opt.virtualedit = "block"
 vim.opt.smoothscroll = true
 vim.opt.jumpoptions = "view"
 vim.opt.conceallevel = 2 -- hide * markup for bold and italic, but not markers with substitutions
+vim.opt.diffopt = "internal,filler,closeoff,algorithm:patience,linematch:60"
 
 -- folding
 vim.opt.fillchars = {
