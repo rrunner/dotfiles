@@ -251,6 +251,28 @@ return {
               preset = "sidebar",
               layout = { position = "right" },
             },
+            on_show = function()
+              vim.cmd("wincmd =")
+
+              -- reset debugger windows if DAP is running
+              if utils.is_debugger_running() then
+                local exists_dapui, dapui = pcall(require, "dapui")
+                if exists_dapui and utils.is_debugger_running() then
+                  dapui.open({ reset = true })
+                end
+              end
+            end,
+            on_close = function()
+              vim.cmd("wincmd =")
+
+              -- reset debugger windows if DAP is running
+              if utils.is_debugger_running() then
+                local exists_dapui, dapui = pcall(require, "dapui")
+                if exists_dapui and utils.is_debugger_running() then
+                  dapui.open({ reset = true })
+                end
+              end
+            end,
             win = {
               list = {
                 keys = {
