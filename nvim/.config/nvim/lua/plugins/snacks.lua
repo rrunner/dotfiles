@@ -572,14 +572,6 @@ return {
       desc = "Spell suggestions (if spellcheck is active)",
     })
 
-    -- vim.keymap.set("n", "<leader>sm", function()
-    --   snacks.notifier.show_history()
-    -- end, {
-    --   noremap = true,
-    --   silent = true,
-    --   desc = "Notification history",
-    -- })
-
     vim.keymap.set("n", "<leader>sm", function()
       snacks.picker.notifications()
     end, {
@@ -594,6 +586,31 @@ return {
       noremap = true,
       silent = true,
       desc = "Toggle file explorer",
+    })
+
+    vim.keymap.set("n", "<leader>sp", function()
+      snacks.picker.projects({
+        dev = { "~/dev", "~/projects" },
+        patterns = { ".git", "pyproject.toml" },
+        recent = true,
+        win = {
+          input = {
+            keys = {
+              ["<c-e>"] = { "close", mode = { "i", "n" } },
+              ["<cr>"] = { { "tcd", "picker_explorer" }, mode = { "n", "i" } },
+              ["<c-f>"] = false,
+              ["<c-g>"] = false,
+              ["<c-r>"] = false,
+              ["<c-w>"] = false,
+              ["<c-t>"] = false,
+            },
+          },
+        },
+      })
+    end, {
+      noremap = true,
+      silent = true,
+      desc = "Search projects",
     })
   end,
 }
