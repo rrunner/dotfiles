@@ -166,7 +166,7 @@ return {
               ["<c-n>"] = { "list_down", mode = { "i" } },
               ["<c-p>"] = { "list_up", mode = { "i" } },
               ["<c-/>"] = { "toggle_help", mode = { "i" } },
-              ["<c-e>"] = { "close", mode = { "i" } },
+              ["<c-e>"] = { "close", mode = { "i", "n" } },
               ["<a-h>"] = { "preview_scroll_left", mode = { "i", "n" } },
               ["<a-l>"] = { "preview_scroll_right", mode = { "i", "n" } },
               ["<a-n>"] = { "preview_scroll_down", mode = { "i", "n" } },
