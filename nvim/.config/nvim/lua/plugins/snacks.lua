@@ -469,7 +469,10 @@ return {
     })
 
     vim.keymap.set("n", "<leader>ss", function()
-      snacks.picker.lsp_symbols()
+      snacks.picker.lsp_symbols({
+        focus = "list",
+        layout = { preset = "vscode", preview = "main" },
+      })
     end, {
       noremap = true,
       silent = true,
