@@ -32,7 +32,7 @@ return {
           if vim.wo.diff then
             vim.cmd.normal({ "]c", bang = true })
           else
-            gs.nav_hunk("next", { preview = true })
+            gs.nav_hunk("next")
           end
         end, { desc = "Next git hunk (or diff change)" })
 
@@ -40,7 +40,7 @@ return {
           if vim.wo.diff then
             vim.cmd.normal({ "[c", bang = true })
           else
-            gs.nav_hunk("prev", { preview = true })
+            gs.nav_hunk("prev")
           end
         end, { desc = "Previous git hunk (or diff change)" })
 
