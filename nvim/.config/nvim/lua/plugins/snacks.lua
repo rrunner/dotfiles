@@ -134,6 +134,9 @@ return {
         enabled = true,
         -- replace `vim.ui.select` with the snacks picker
         ui_select = true,
+        layout = {
+          cycle = true,
+        },
         formatters = {
           file = {
             filename_first = true,
@@ -348,6 +351,30 @@ return {
 
     snacks.setup(opts)
 
+    local layout1 = {
+      layout = {
+        box = "horizontal",
+        width = 0.9,
+        min_width = 120,
+        height = 0.9,
+        {
+          box = "vertical",
+          border = "rounded",
+          title = "{title} {live} {flags}",
+          { win = "input", height = 1, border = "bottom" },
+          { win = "list", border = "none", width = 0.35 },
+        },
+        { win = "preview", title = "{preview}", border = "rounded", width = 0.65 },
+      },
+    }
+
+    local layout2 = {
+      layout = {
+        width = 0.9,
+        height = 0.9,
+      },
+    }
+
     vim.keymap.set("n", "<leader>z", function()
       snacks.zen()
     end, { desc = "Toggle zen mode", noremap = true, silent = true })
@@ -357,7 +384,7 @@ return {
     end, { desc = "Toggle terminal", noremap = true, silent = true })
 
     vim.keymap.set("n", "<leader>gg", function()
-      snacks.picker.git_status()
+      snacks.picker.git_status({ layout = layout1 })
     end, {
       noremap = true,
       silent = true,
@@ -395,6 +422,7 @@ return {
         snacks.picker.git_files({
           untracked = false,
           submodules = false,
+          layout = layout2,
         })
       else
         vim.ui.input({
@@ -411,6 +439,7 @@ return {
               hidden = true,
               follow = true,
               exclude = exclude_fext,
+              layout = layout2,
             })
           else
             vim.notify("No valid directory")
@@ -432,7 +461,7 @@ return {
     })
 
     vim.keymap.set("n", "<leader>sd", function()
-      snacks.picker.files({ hidden = true, cwd = vim.env.HOME .. "/.config/nvim", follow = true })
+      snacks.picker.files({ hidden = true, cwd = vim.env.HOME .. "/.config/nvim", follow = true, layout = layout2 })
     end, {
       noremap = true,
       silent = true,
@@ -440,7 +469,7 @@ return {
     })
 
     vim.keymap.set("n", "<leader>so", function()
-      snacks.picker.recent()
+      snacks.picker.recent({ layout = layout2 })
     end, {
       noremap = true,
       silent = true,
@@ -448,7 +477,7 @@ return {
     })
 
     vim.keymap.set("n", "<leader>sh", function()
-      snacks.picker.help()
+      snacks.picker.help({ layout = layout2 })
     end, {
       noremap = true,
       silent = true,
@@ -456,7 +485,7 @@ return {
     })
 
     vim.keymap.set("n", "<leader>sq", function()
-      snacks.picker.qflist()
+      snacks.picker.qflist({ layout = layout2 })
     end, {
       noremap = true,
       silent = true,
@@ -470,7 +499,7 @@ return {
         vim.notify("Notes folder is not configured. See snacks.lua file", vim.log.levels.WARN)
         return nil
       end
-      snacks.picker.files({ cwd = notes_folder })
+      snacks.picker.files({ cwd = notes_folder, layout = layout2 })
     end, {
       noremap = true,
       silent = true,
@@ -489,7 +518,7 @@ return {
     })
 
     vim.keymap.set("n", "<leader>sS", function()
-      snacks.picker.lsp_workspace_symbols()
+      snacks.picker.lsp_workspace_symbols({ layout = layout2 })
     end, {
       noremap = true,
       silent = true,
@@ -512,6 +541,7 @@ return {
             follow = true,
             ignored = true,
             exclude = exclude_fext,
+            layout = layout2,
           })
         else
           vim.notify("No valid directory")
@@ -524,7 +554,7 @@ return {
     })
 
     vim.keymap.set("n", "<leader>sk", function()
-      snacks.picker.keymaps()
+      snacks.picker.keymaps({ layout = layout2 })
     end, {
       noremap = true,
       silent = true,
@@ -538,6 +568,7 @@ return {
         follow = true,
         ignored = true,
         exclude = exclude_fext,
+        layout = layout2,
       })
     end, {
       noremap = true,
@@ -546,7 +577,7 @@ return {
     })
 
     vim.keymap.set("n", "<leader>sr", function()
-      snacks.picker.resume()
+      snacks.picker.resume({ layout = layout2 })
     end, {
       noremap = true,
       silent = true,
@@ -554,7 +585,11 @@ return {
     })
 
     vim.keymap.set({ "n", "x" }, "<leader>st", function()
-      snacks.picker.grep_word({ buf = true, dirs = { vim.fn.expand("%:p") } })
+      snacks.picker.grep_word({
+        buf = true,
+        dirs = { vim.fn.expand("%:p") },
+        layout = layout2,
+      })
     end, {
       noremap = true,
       silent = true,
@@ -562,7 +597,7 @@ return {
     })
 
     vim.keymap.set({ "n", "x" }, "<leader>s/", function()
-      snacks.picker.grep_word({ buffers = true })
+      snacks.picker.grep_word({ buffers = true, layout = layout2 })
     end, {
       noremap = true,
       silent = true,
@@ -582,7 +617,7 @@ return {
     })
 
     vim.keymap.set("n", "<leader>sm", function()
-      snacks.picker.notifications()
+      snacks.picker.notifications({ layout = layout2 })
     end, {
       noremap = true,
       silent = true,
