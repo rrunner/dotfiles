@@ -375,6 +375,14 @@ return {
       },
     }
 
+    local layout3 = {
+      preset = "select",
+      layout = {
+        width = 0.3,
+        height = 0.2,
+      },
+    }
+
     vim.keymap.set("n", "<leader>z", function()
       snacks.zen()
     end, { desc = "Toggle zen mode", noremap = true, silent = true })
@@ -393,7 +401,7 @@ return {
 
     vim.keymap.set("n", "<leader>sb", function()
       snacks.picker.buffers({
-        layout = { preset = "select" },
+        layout = layout3,
         current = true,
         sort_lastused = true,
         -- delete buffer with dd in normal mode (default keymap set by picker)
@@ -406,7 +414,7 @@ return {
 
     vim.keymap.set("n", "<c-tab>", function()
       snacks.picker.buffers({
-        layout = { preset = "select" },
+        layout = layout3,
         current = false,
         sort_lastused = true,
         -- delete buffer with dd in normal mode (default keymap set by picker)
