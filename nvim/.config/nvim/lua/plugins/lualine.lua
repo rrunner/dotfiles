@@ -16,8 +16,9 @@ return {
         disabled_filetypes = {
           statusline = {
             "help",
-            "neo-tree",
-            "toggleterm",
+            "snacks_picker_list",
+            "snacks_picker_input",
+            "snacks_terminal",
             "NeogitStatus",
           },
         },
