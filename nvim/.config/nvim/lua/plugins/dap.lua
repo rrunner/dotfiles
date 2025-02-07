@@ -177,11 +177,8 @@ return {
 
     -- open and close dapui automatically in debugging mode (based on dap events)
     dap.listeners.after.event_initialized["dapui_config"] = function()
-      -- close neo-tree/aerial windows when debugger opens
-      local exists_neotree, cmd_neotree = pcall(require, "neo-tree.command")
-      if exists_neotree then
-        cmd_neotree.execute({ action = "close" })
-      end
+      -- close aerial windows when debugger opens
+      -- TODO: close explorer picker using Snacks API?
       local exists_aerial, cmd_aerial = pcall(require, "aerial")
       if exists_aerial then
         cmd_aerial.close_all()

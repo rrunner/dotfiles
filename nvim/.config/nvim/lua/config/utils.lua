@@ -175,7 +175,7 @@ M.is_debugger_running = function()
       return true
     end
   end
-  -- -- alternative solution: however, it loads the dap plugin when neotree/zen mode is activated
+  -- -- alternative solution: however, it loads the dap plugin when explorer/zen mode is activated
   -- local exist_dap, dap = pcall(require, "dap")
   -- if exist_dap and dap.session() then
   --   return true
