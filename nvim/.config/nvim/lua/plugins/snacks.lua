@@ -600,8 +600,16 @@ return {
     vim.keymap.set("n", "<leader>sp", function()
       snacks.picker.projects({
         dev = { "~/dev", "~/projects" },
-        patterns = { ".git", "pyproject.toml" },
-        recent = true,
+        patterns = {
+          ".git",
+          "pyproject.toml",
+          "requirements.txt",
+          "pyrightconfig.json",
+          "Pipfile",
+          ".venv",
+          "venv",
+        },
+        recent = false,
         win = {
           input = {
             keys = {
