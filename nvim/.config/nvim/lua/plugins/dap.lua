@@ -177,8 +177,8 @@ return {
 
     -- open and close dapui automatically in debugging mode (based on dap events)
     dap.listeners.after.event_initialized["dapui_config"] = function()
-      -- close aerial windows when debugger opens
-      -- TODO: close explorer picker using Snacks API?
+      -- close Snacks explorer picker and aerial windows when debugger opens
+      utils.close_explorer_picker()
       local exists_aerial, cmd_aerial = pcall(require, "aerial")
       if exists_aerial then
         cmd_aerial.close_all()
