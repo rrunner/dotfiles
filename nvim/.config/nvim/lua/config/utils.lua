@@ -184,17 +184,17 @@ M.is_debugger_running = function()
   return false
 end
 
--- function to close Snacks explorer picker
+-- function to close Snacks explorer pickers
 ---@return nil
 M.close_explorer_picker = function()
-  -- iterate through all open windows
-  for _, winid in ipairs(vim.api.nvim_list_wins()) do
-    local bufnr = vim.api.nvim_win_get_buf(winid)
-    if vim.api.nvim_buf_is_loaded(bufnr) then
-      if vim.bo[bufnr].filetype == "snacks_picker_list" then
-        vim.api.nvim_win_hide(winid)
-      end
-    end
+  local exists_snacks, snacks = pcall(require, "snacks")
+  if not exists_snacks then
+    return
+  end
+  -- get all active explorer pickers
+  local exp = snacks.picker.get({ source = "explorer" })
+  for _, picker in ipairs(exp) do
+    picker:close()
   end
 end
 
