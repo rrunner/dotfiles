@@ -245,6 +245,7 @@ return {
         },
         sources = {
           explorer = {
+            hidden = false,
             follow_file = true,
             auto_close = false,
             watch = true,
