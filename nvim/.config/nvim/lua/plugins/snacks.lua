@@ -4,6 +4,39 @@
 -- exclude by file extension (can be used by files and grep pickers)
 local exclude_fext = { "*.js", "*.js.map", "*.mjs", "*.jpg", "*.JPG", "*.avi", "*.AVI", "*.pdf", "*.PDF" }
 
+-- picker layouts
+local layout1 = {
+  layout = {
+    box = "horizontal",
+    width = 0.9,
+    min_width = 120,
+    height = 0.9,
+    {
+      box = "vertical",
+      border = "rounded",
+      title = "{title} {live} {flags}",
+      { win = "input", height = 1, border = "bottom" },
+      { win = "list", border = "none", width = 0.35 },
+    },
+    { win = "preview", title = "{preview}", border = "rounded", width = 0.65 },
+  },
+}
+
+local layout2 = {
+  layout = {
+    width = 0.9,
+    height = 0.9,
+  },
+}
+
+local layout3 = {
+  preset = "select",
+  layout = {
+    width = 0.3,
+    height = 0.2,
+  },
+}
+
 return {
   "folke/snacks.nvim",
   priority = 1000,
@@ -244,6 +277,91 @@ return {
           kinds = icons._kinds_cmp,
         },
         sources = {
+          files = {
+            hidden = true,
+            follow = true,
+            layout = layout2,
+          },
+          git_files = {
+            untracked = false,
+            submodules = false,
+            layout = layout2,
+          },
+          grep = {
+            hidden = true,
+            follow = true,
+            ignored = true,
+            layout = layout2,
+          },
+          grep_word = {
+            hidden = true,
+            follow = true,
+            ignored = true,
+            layout = layout2,
+          },
+          buffers = {
+            sort_lastused = true,
+            layout = layout3,
+            -- delete buffer with dd in normal mode (default keymap set by picker)
+          },
+          git_status = {
+            ignored = false,
+            layout = layout1,
+          },
+          recent = {
+            layout = layout2,
+          },
+          help = {
+            layout = layout2,
+          },
+          qflist = {
+            layout = layout2,
+          },
+          lsp_symbols = {
+            focus = "list",
+            layout = { preset = "vscode", preview = "main" },
+          },
+          lsp_workspace_symbols = {
+            layout = layout2,
+          },
+          keymaps = {
+            layout = layout2,
+          },
+          resume = {
+            layout = layout2,
+          },
+          spelling = {
+            layout = { preset = "select" },
+          },
+          notifications = {
+            layout = layout2,
+          },
+          projects = {
+            dev = { "~/dev", "~/projects" },
+            patterns = {
+              ".git",
+              "pyproject.toml",
+              "requirements.txt",
+              "pyrightconfig.json",
+              "Pipfile",
+              ".venv",
+              "venv",
+            },
+            recent = false,
+            win = {
+              input = {
+                keys = {
+                  ["<c-e>"] = { "close", mode = { "i", "n" } },
+                  ["<cr>"] = { { "tcd", "picker_explorer" }, mode = { "n", "i" } },
+                  ["<c-f>"] = false,
+                  ["<c-g>"] = false,
+                  ["<c-r>"] = false,
+                  ["<c-w>"] = false,
+                  ["<c-t>"] = false,
+                },
+              },
+            },
+          },
           explorer = {
             hidden = false,
             follow_file = true,
@@ -251,7 +369,7 @@ return {
             watch = true,
             git_status = true,
             git_status_open = true,
-            git_untracked = true,
+            git_untracked = true, -- display untracked icon
             diagnostics = true,
             diagnostics_open = true,
             layout = {
@@ -352,38 +470,6 @@ return {
 
     snacks.setup(opts)
 
-    local layout1 = {
-      layout = {
-        box = "horizontal",
-        width = 0.9,
-        min_width = 120,
-        height = 0.9,
-        {
-          box = "vertical",
-          border = "rounded",
-          title = "{title} {live} {flags}",
-          { win = "input", height = 1, border = "bottom" },
-          { win = "list", border = "none", width = 0.35 },
-        },
-        { win = "preview", title = "{preview}", border = "rounded", width = 0.65 },
-      },
-    }
-
-    local layout2 = {
-      layout = {
-        width = 0.9,
-        height = 0.9,
-      },
-    }
-
-    local layout3 = {
-      preset = "select",
-      layout = {
-        width = 0.3,
-        height = 0.2,
-      },
-    }
-
     vim.keymap.set("n", "<leader>z", function()
       snacks.zen()
     end, { desc = "Toggle zen mode", noremap = true, silent = true })
@@ -393,7 +479,7 @@ return {
     end, { desc = "Toggle terminal", noremap = true, silent = true })
 
     vim.keymap.set("n", "<leader>gg", function()
-      snacks.picker.git_status({ layout = layout1 })
+      snacks.picker.git_status()
     end, {
       noremap = true,
       silent = true,
@@ -402,10 +488,7 @@ return {
 
     vim.keymap.set("n", "<leader>sb", function()
       snacks.picker.buffers({
-        layout = layout3,
         current = true,
-        sort_lastused = true,
-        -- delete buffer with dd in normal mode (default keymap set by picker)
       })
     end, {
       noremap = true,
@@ -415,10 +498,7 @@ return {
 
     vim.keymap.set("n", "<c-tab>", function()
       snacks.picker.buffers({
-        layout = layout3,
         current = false,
-        sort_lastused = true,
-        -- delete buffer with dd in normal mode (default keymap set by picker)
       })
     end, {
       noremap = true,
@@ -428,11 +508,7 @@ return {
 
     vim.keymap.set("n", "<leader>sf", function()
       if utils.inside_git_repo() then
-        snacks.picker.git_files({
-          untracked = false,
-          submodules = false,
-          layout = layout2,
-        })
+        snacks.picker.git_files()
       else
         vim.ui.input({
           prompt = "Enter directory (cwd):",
@@ -445,10 +521,7 @@ return {
           elseif input and vim.fn.isdirectory(input) ~= 0 then
             snacks.picker.files({
               dirs = { input },
-              hidden = true,
-              follow = true,
               exclude = exclude_fext,
-              layout = layout2,
             })
           else
             vim.notify("No valid directory")
@@ -458,7 +531,7 @@ return {
     end, {
       noremap = true,
       silent = true,
-      desc = "Search files",
+      desc = "Search files (tracked git files inside git repo)",
     })
 
     vim.keymap.set("n", "<leader>sl", function()
@@ -470,7 +543,7 @@ return {
     })
 
     vim.keymap.set("n", "<leader>sd", function()
-      snacks.picker.files({ hidden = true, cwd = vim.env.HOME .. "/.config/nvim", follow = true, layout = layout2 })
+      snacks.picker.files({ cwd = vim.env.HOME .. "/.config/nvim" })
     end, {
       noremap = true,
       silent = true,
@@ -478,7 +551,7 @@ return {
     })
 
     vim.keymap.set("n", "<leader>so", function()
-      snacks.picker.recent({ layout = layout2 })
+      snacks.picker.recent()
     end, {
       noremap = true,
       silent = true,
@@ -486,7 +559,7 @@ return {
     })
 
     vim.keymap.set("n", "<leader>sh", function()
-      snacks.picker.help({ layout = layout2 })
+      snacks.picker.help()
     end, {
       noremap = true,
       silent = true,
@@ -494,7 +567,7 @@ return {
     })
 
     vim.keymap.set("n", "<leader>sq", function()
-      snacks.picker.qflist({ layout = layout2 })
+      snacks.picker.qflist()
     end, {
       noremap = true,
       silent = true,
@@ -508,7 +581,7 @@ return {
         vim.notify("Notes folder is not configured. See snacks.lua file", vim.log.levels.WARN)
         return nil
       end
-      snacks.picker.files({ cwd = notes_folder, layout = layout2 })
+      snacks.picker.files({ cwd = notes_folder })
     end, {
       noremap = true,
       silent = true,
@@ -516,10 +589,7 @@ return {
     })
 
     vim.keymap.set("n", "<leader>ss", function()
-      snacks.picker.lsp_symbols({
-        focus = "list",
-        layout = { preset = "vscode", preview = "main" },
-      })
+      snacks.picker.lsp_symbols()
     end, {
       noremap = true,
       silent = true,
@@ -527,7 +597,7 @@ return {
     })
 
     vim.keymap.set("n", "<leader>sS", function()
-      snacks.picker.lsp_workspace_symbols({ layout = layout2 })
+      snacks.picker.lsp_workspace_symbols()
     end, {
       noremap = true,
       silent = true,
@@ -546,11 +616,7 @@ return {
         elseif input and vim.fn.isdirectory(input) ~= 0 then
           snacks.picker.grep({
             dirs = { input },
-            hidden = true,
-            follow = true,
-            ignored = true,
             exclude = exclude_fext,
-            layout = layout2,
           })
         else
           vim.notify("No valid directory")
@@ -563,7 +629,7 @@ return {
     })
 
     vim.keymap.set("n", "<leader>sk", function()
-      snacks.picker.keymaps({ layout = layout2 })
+      snacks.picker.keymaps()
     end, {
       noremap = true,
       silent = true,
@@ -573,11 +639,7 @@ return {
     vim.keymap.set({ "n", "x" }, "<leader>sc", function()
       snacks.picker.grep_word({
         dirs = { vim.uv.cwd() },
-        hidden = true,
-        follow = true,
-        ignored = true,
         exclude = exclude_fext,
-        layout = layout2,
       })
     end, {
       noremap = true,
@@ -586,7 +648,7 @@ return {
     })
 
     vim.keymap.set("n", "<leader>sr", function()
-      snacks.picker.resume({ layout = layout2 })
+      snacks.picker.resume()
     end, {
       noremap = true,
       silent = true,
@@ -597,7 +659,6 @@ return {
       snacks.picker.grep_word({
         buf = true,
         dirs = { vim.fn.expand("%:p") },
-        layout = layout2,
       })
     end, {
       noremap = true,
@@ -606,7 +667,9 @@ return {
     })
 
     vim.keymap.set({ "n", "x" }, "<leader>s/", function()
-      snacks.picker.grep_word({ buffers = true, layout = layout2 })
+      snacks.picker.grep_word({
+        buffers = true,
+      })
     end, {
       noremap = true,
       silent = true,
@@ -615,9 +678,7 @@ return {
 
     vim.keymap.set("n", "z=", function()
       if vim.opt_local.spell:get() then
-        snacks.picker.spelling({
-          layout = { preset = "select" },
-        })
+        snacks.picker.spelling()
       end
     end, {
       noremap = true,
@@ -626,7 +687,7 @@ return {
     })
 
     vim.keymap.set("n", "<leader>sm", function()
-      snacks.picker.notifications({ layout = layout2 })
+      snacks.picker.notifications()
     end, {
       noremap = true,
       silent = true,
@@ -642,32 +703,7 @@ return {
     })
 
     vim.keymap.set("n", "<leader>sp", function()
-      snacks.picker.projects({
-        dev = { "~/dev", "~/projects" },
-        patterns = {
-          ".git",
-          "pyproject.toml",
-          "requirements.txt",
-          "pyrightconfig.json",
-          "Pipfile",
-          ".venv",
-          "venv",
-        },
-        recent = false,
-        win = {
-          input = {
-            keys = {
-              ["<c-e>"] = { "close", mode = { "i", "n" } },
-              ["<cr>"] = { { "tcd", "picker_explorer" }, mode = { "n", "i" } },
-              ["<c-f>"] = false,
-              ["<c-g>"] = false,
-              ["<c-r>"] = false,
-              ["<c-w>"] = false,
-              ["<c-t>"] = false,
-            },
-          },
-        },
-      })
+      snacks.picker.projects()
     end, {
       noremap = true,
       silent = true,
