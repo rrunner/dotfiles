@@ -247,6 +247,12 @@ vnoremap <leader>db64 c<c-r>=system('base64 --decode', @")<cr><esc>
 noremap <leader>y "+y
 " paste from clipboard register
 noremap <leader>p "+p
+" yank without trailing blanks (block visual mode)
+xnoremap y zy
+" paste a block of text without trailing blanks
+nnoremap p zp
+" paste a block of text before cursor without trailing blanks
+nnoremap P zP
 " }}}
 
 

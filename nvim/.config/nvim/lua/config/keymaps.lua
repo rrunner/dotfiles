@@ -290,9 +290,24 @@ vim.api.nvim_set_keymap("n", "<leader>y", [["+y]], {
   desc = "Yank to clipboard register",
 })
 
+vim.api.nvim_set_keymap("x", "y", "zy", {
+  noremap = true,
+  desc = "Yank without trailing blanks (block visual mode)",
+})
+
 vim.api.nvim_set_keymap("n", "<leader>p", [["+p]], {
   noremap = true,
   desc = "Paste from clipboard register",
+})
+
+vim.api.nvim_set_keymap("n", "p", "zp", {
+  noremap = true,
+  desc = "Paste a block of text without trailing blanks",
+})
+
+vim.api.nvim_set_keymap("n", "P", "zP", {
+  noremap = true,
+  desc = "Paste a block of text before cursor without trailing blanks",
 })
 
 vim.api.nvim_set_keymap("n", "<leader>w", "<cmd>up<cr>", {
