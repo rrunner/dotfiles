@@ -5,6 +5,8 @@ setlocal softtabstop=4
 setlocal shiftwidth=4
 setlocal foldmethod=indent
 "setlocal colorcolumn=89
+" avoid reindenting for certain keys in insert mode
+"setlocal indentkeys=
 
 " vim-tmux-runner python specific settings
 let g:VtrStripLeadingWhitespace = 0
