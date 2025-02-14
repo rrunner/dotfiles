@@ -377,7 +377,7 @@ return {
               layout = { position = "right" },
             },
             on_show = function()
-              vim.cmd("wincmd =")
+              vim.cmd("horizontal wincmd =")
 
               -- reset debugger windows if DAP is running
               if utils.is_debugger_running() then
@@ -388,7 +388,7 @@ return {
               end
             end,
             on_close = function()
-              vim.cmd("wincmd =")
+              vim.cmd("horizontal wincmd =")
 
               -- reset debugger windows if DAP is running
               if utils.is_debugger_running() then
