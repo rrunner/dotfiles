@@ -372,8 +372,12 @@ return {
             git_untracked = true, -- display untracked icon
             diagnostics = true,
             diagnostics_open = true,
+            include = {}, -- always include
+            exclude = { ".mypy_cache", "__pycache__" },
             layout = {
               preset = "sidebar",
+              hidden = { "input" },
+              -- auto_hide = { "input" },
               layout = { position = "right" },
             },
             on_show = function()
