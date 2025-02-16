@@ -302,7 +302,6 @@ return {
           buffers = {
             sort_lastused = true,
             layout = layout3,
-            -- delete buffer with dd in normal mode (default keymap set by picker)
           },
           git_status = {
             ignored = false,
@@ -377,7 +376,7 @@ return {
             layout = {
               preset = "sidebar",
               hidden = { "input" },
-              -- auto_hide = { "input" },
+              auto_hide = { "input" },
               layout = { position = "right" },
             },
             on_show = function()
@@ -414,11 +413,13 @@ return {
                   ["c"] = false,
                   ["m"] = false,
                   ["o"] = "confirm",
-                  ["y"] = "explorer_copy",
+                  ["y"] = { "explorer_yank", mode = { "n", "x" } },
+                  ["p"] = "explorer_paste",
                   ["u"] = false,
                   ["]g"] = "explorer_git_next",
                   ["[g"] = "explorer_git_prev",
                   ["<c-c>"] = false,
+                  ["<c-t>"] = false,
                   ["."] = "explorer_focus",
                   ["P"] = false,
                   ["I"] = "toggle_ignored",
