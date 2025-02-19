@@ -85,6 +85,9 @@ return {
           statusline = false,
           tabline = false,
         },
+        win = {
+          backdrop = { transparent = false },
+        },
         on_open = function(win)
           -- increase window width for DAP repl buffers
           local ftypes = { "dap-repl" }
