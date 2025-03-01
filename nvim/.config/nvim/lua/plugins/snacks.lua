@@ -320,7 +320,7 @@ return {
             layout = layout2,
           },
           lsp_symbols = {
-            focus = "list",
+            focus = "input",
             layout = { preset = "vscode", preview = "main" },
           },
           lsp_workspace_symbols = {
