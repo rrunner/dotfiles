@@ -31,7 +31,7 @@ return {
     require("gp").setup({
       curl_params = curl, -- curl_params = { "--proxy", "http://X.X.X.X:XXXX" }
       chat_user_prefix = "human>",
-      chat_topic_gen_model = "gpt-4o",
+      chat_topic_gen_model = "gpt-4o-mini",
       toggle_target = "vsplit",
       providers = {
         openai = {
@@ -41,10 +41,10 @@ return {
       },
       agents = {
         {
-          name = "ChatGPT4",
+          name = "gpt-4o-mini",
           chat = true,
           command = true,
-          model = { model = "gpt-4o", temperature = 1.1, top_p = 1 },
+          model = { model = "gpt-4o-mini", temperature = 1.1, top_p = 1 },
           -- system prompt (use this to specify the persona/role of the AI)
           system_prompt = require("gp.defaults").chat_system_prompt,
         },
