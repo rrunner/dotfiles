@@ -20,6 +20,9 @@ shopt -s histappend                     # append to history, do not overwrite
 # save and reload the history after each command finishes
 # export PROMPT_COMMAND="history -a; history -c; history -r; $PROMPT_COMMAND"
 
+# manpager
+export MANPAGER="nvim +Man!"
+
 # bind up/down key to search the history; useful for cmd args: nvim <up>/<down>
 bind '"\e[A": history-search-backward'
 bind '"\e[B": history-search-forward'
