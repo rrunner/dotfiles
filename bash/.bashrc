@@ -21,6 +21,7 @@ shopt -s histappend                     # append to history, do not overwrite
 # export PROMPT_COMMAND="history -a; history -c; history -r; $PROMPT_COMMAND"
 
 # manpager
+# `gO` to list man sections in quickfix list
 export MANPAGER="nvim +Man!"
 
 # bind up/down key to search the history; useful for cmd args: nvim <up>/<down>
