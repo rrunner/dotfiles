@@ -333,7 +333,10 @@ return {
             layout = layout2,
           },
           spelling = {
-            layout = { preset = "select" },
+            layout = {
+              preset = "select",
+              layout = { height = 0.53 },
+            },
           },
           notifications = {
             layout = layout2,
@@ -686,7 +689,12 @@ return {
 
     vim.keymap.set("n", "z=", function()
       if vim.opt_local.spell:get() then
-        snacks.picker.spelling()
+        if vim.v.count == 0 then
+          snacks.picker.spelling()
+        else
+          -- use count to select from suggestion list, e.g. 1z= to select the first item
+          vim.cmd("normal! " .. vim.v.count .. "z=")
+        end
       end
     end, {
       noremap = true,
