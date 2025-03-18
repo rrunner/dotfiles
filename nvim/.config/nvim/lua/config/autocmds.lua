@@ -305,3 +305,12 @@ vim.api.nvim_create_autocmd("FileType", {
   group = config,
   pattern = { "man" },
 })
+
+vim.api.nvim_create_autocmd("BufWinEnter", {
+  callback = function()
+    local ft = vim.bo.ft
+    if ft == "dap-repl" or ft:match("^dapui_") then
+      vim.opt_local.statuscolumn = ""
+    end
+  end,
+})
