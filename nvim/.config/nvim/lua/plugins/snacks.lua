@@ -386,25 +386,23 @@ return {
               layout = { position = "right" },
             },
             on_show = function()
-              vim.cmd("horizontal wincmd =")
-
-              -- reset debugger windows if DAP is running
               if utils.is_debugger_running() then
-                local exists_dapui, dapui = pcall(require, "dapui")
-                if exists_dapui and utils.is_debugger_running() then
-                  dapui.open({ reset = true })
-                end
+                vim.schedule(function()
+                  -- TODO: console window is not reset properly
+                  require("dapui").open({ reset = true })
+                end)
+              else
+                vim.cmd("horizontal wincmd =")
               end
             end,
             on_close = function()
-              vim.cmd("horizontal wincmd =")
-
-              -- reset debugger windows if DAP is running
               if utils.is_debugger_running() then
-                local exists_dapui, dapui = pcall(require, "dapui")
-                if exists_dapui and utils.is_debugger_running() then
-                  dapui.open({ reset = true })
-                end
+                vim.schedule(function()
+                  -- TODO: console window is not reset properly
+                  require("dapui").open({ reset = true })
+                end)
+              else
+                vim.cmd("horizontal wincmd =")
               end
             end,
             win = {
