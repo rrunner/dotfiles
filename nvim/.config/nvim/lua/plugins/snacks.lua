@@ -337,9 +337,19 @@ return {
               preset = "select",
               layout = { height = 0.53 },
             },
+            win = {
+              list = {
+                wo = { number = true },
+              },
+            },
           },
           notifications = {
             layout = layout2,
+            win = {
+              preview = {
+                wo = { statuscolumn = "", signcolumn = "no" },
+              },
+            },
           },
           projects = {
             dev = { "~/dev", "~/projects" },
