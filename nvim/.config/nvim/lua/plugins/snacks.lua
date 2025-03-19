@@ -196,10 +196,8 @@ return {
               ["<c-s>"] = false,
               ["<c-j>"] = false,
               ["<c-k>"] = false,
-              ["<c-b>"] = false,
               ["<c-h>"] = false,
               ["<c-l>"] = false,
-              ["<c-f>"] = false,
               ["<c-v>"] = { { "pick_win", "edit_vsplit" }, mode = { "i" } },
               ["<c-x>"] = { { "pick_win", "edit_split" }, mode = { "i" } },
               ["<c-n>"] = { "list_down", mode = { "i" } },
@@ -218,11 +216,17 @@ return {
               ["k"] = "list_up",
               ["q"] = "close",
               ["?"] = "toggle_help",
+              ["<c-a>"] = { "<home>", mode = "i", expr = true, desc = "start of line" },
+              -- ["<c-e>"] = { "<end>", mode = "i", expr = true, desc = "end of line" },
+              ["<c-f>"] = { "<right>", mode = "i", expr = true, desc = "move cursor to the right" },
+              ["<c-b>"] = { "<left>", mode = "i", expr = true, desc = "move cursor to the left" },
+              ["<c-w>"] = { "<c-s-w>", mode = { "i" }, expr = true, desc = "delete word" },
             },
           },
           -- result list window
           list = {
             keys = {
+              ["<c-a>"] = false,
               ["<c-c>"] = false,
               ["<c-s>"] = false,
               ["<c-j>"] = false,
@@ -236,6 +240,7 @@ return {
           -- preview window
           preview = {
             keys = {
+              ["<c-a>"] = false,
               ["<c-c>"] = false,
               ["<c-s>"] = false,
               ["<c-j>"] = false,
