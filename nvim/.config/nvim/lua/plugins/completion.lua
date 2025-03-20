@@ -115,7 +115,7 @@ return {
         ["<c-d>"] = cmp.mapping.scroll_docs(2),
         ["<c-f>"] = cmp.mapping.scroll_docs(-2),
         ["<c-space>"] = cmp.mapping.complete(),
-        ["<c-e>"] = cmp.mapping({
+        ["<c-c>"] = cmp.mapping({
           i = function()
             if cmp.visible() then
               cmp.abort()

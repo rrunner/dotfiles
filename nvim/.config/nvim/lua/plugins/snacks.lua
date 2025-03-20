@@ -192,7 +192,6 @@ return {
           -- input window
           input = {
             keys = {
-              ["<c-c>"] = false,
               ["<c-s>"] = false,
               ["<c-j>"] = false,
               ["<c-k>"] = false,
@@ -203,7 +202,7 @@ return {
               ["<c-n>"] = { "list_down", mode = { "i" } },
               ["<c-p>"] = { "list_up", mode = { "i" } },
               ["<c-/>"] = { "toggle_help", mode = { "i" } },
-              ["<c-e>"] = { "close", mode = { "i", "n" } },
+              ["<c-c>"] = { "close", mode = { "i", "n" } },
               ["<a-h>"] = { "preview_scroll_left", mode = { "i", "n" } },
               ["<a-l>"] = { "preview_scroll_right", mode = { "i", "n" } },
               ["<a-n>"] = { "preview_scroll_down", mode = { "i", "n" } },
@@ -217,7 +216,7 @@ return {
               ["q"] = "close",
               ["?"] = "toggle_help",
               ["<c-a>"] = { "<home>", mode = "i", expr = true, desc = "start of line" },
-              -- ["<c-e>"] = { "<end>", mode = "i", expr = true, desc = "end of line" },
+              ["<c-e>"] = { "<end>", mode = "i", expr = true, desc = "end of line" },
               ["<c-f>"] = { "<right>", mode = "i", expr = true, desc = "move cursor to the right" },
               ["<c-b>"] = { "<left>", mode = "i", expr = true, desc = "move cursor to the left" },
               ["<c-w>"] = { "<c-s-w>", mode = { "i" }, expr = true, desc = "delete word" },
@@ -371,7 +370,7 @@ return {
             win = {
               input = {
                 keys = {
-                  ["<c-e>"] = { "close", mode = { "i", "n" } },
+                  ["<c-e>"] = false,
                   ["<cr>"] = { { "tcd", "picker_explorer" }, mode = { "n", "i" } },
                   ["<c-f>"] = false,
                   ["<c-g>"] = false,
@@ -437,7 +436,7 @@ return {
                   ["u"] = false,
                   ["]g"] = "explorer_git_next",
                   ["[g"] = "explorer_git_prev",
-                  ["<c-c>"] = false,
+                  ["<c-c>"] = "close",
                   ["<c-t>"] = false,
                   ["."] = "explorer_focus",
                   ["P"] = false,

@@ -14,7 +14,7 @@ return {
             -- must reset mappings in completion.lua (see DressingInput filetype mappings)
             ["<c-n>"] = false,
             ["<c-p>"] = false,
-            ["<c-e>"] = "Close",
+            ["<c-c>"] = "Close",
           },
         },
       },

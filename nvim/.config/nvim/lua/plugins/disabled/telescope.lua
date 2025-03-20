@@ -73,7 +73,7 @@ return {
           i = {
             ["<c-n>"] = actions.move_selection_next,
             ["<c-p>"] = actions.move_selection_previous,
-            ["<c-e>"] = actions.close,
+            ["<c-c>"] = actions.close,
             ["<cr>"] = actions.select_default,
             ["<c-h>"] = false,
             ["<c-j>"] = actions.nop,

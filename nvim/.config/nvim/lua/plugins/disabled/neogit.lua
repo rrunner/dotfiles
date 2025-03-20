@@ -28,7 +28,7 @@ return {
       mappings = {
         finder = {
           ["<cr>"] = "Select",
-          ["<c-e>"] = "Close",
+          ["<c-c>"] = "Close",
           ["<esc>"] = "Close",
           ["<c-n>"] = "Next",
           ["<c-p>"] = "Previous",
