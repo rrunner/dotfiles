@@ -426,8 +426,8 @@ return {
               list = {
                 keys = {
                   ["<bs>"] = "explorer_up",
-                  ["h"] = false,
-                  ["l"] = false,
+                  ["h"] = "explorer_close",
+                  ["l"] = "confirm",
                   ["a"] = "explorer_add",
                   ["d"] = "explorer_del",
                   ["r"] = "explorer_rename",
