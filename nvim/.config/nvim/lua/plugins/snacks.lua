@@ -195,7 +195,7 @@ return {
               ["<c-s>"] = false,
               ["<c-j>"] = false,
               ["<c-k>"] = { "<esc>lDa", mode = { "i" }, expr = true },
-              ["<c-u>"] = { "<esc>ddi", mode = { "i" }, expr = true },
+              ["<c-u>"] = { "<esc>d^xi", mode = { "i" }, expr = true },
               ["<c-h>"] = false,
               ["<c-l>"] = false,
               ["<c-v>"] = { { "pick_win", "edit_vsplit" }, mode = { "i" } },
