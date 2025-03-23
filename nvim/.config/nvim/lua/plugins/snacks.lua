@@ -330,6 +330,14 @@ return {
             focus = "input",
             layout = { cycle = false, preset = "vscode", preview = "main" },
           },
+          treesitter = {
+            focus = "input",
+            layout = { cycle = false, preset = "vscode", preview = "main" },
+            filter = {
+              -- json = true,
+              -- jsonc = true,
+            },
+          },
           lsp_workspace_symbols = {
             layout = layout2,
           },
@@ -739,6 +747,14 @@ return {
       noremap = true,
       silent = true,
       desc = "Search projects",
+    })
+
+    vim.keymap.set("n", "<leader>sT", function()
+      snacks.picker.treesitter()
+    end, {
+      noremap = true,
+      silent = true,
+      desc = "Search treesitter symbols",
     })
   end,
 }
