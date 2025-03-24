@@ -3,6 +3,8 @@ return {
   -- no lazy load since the aerial plugin is effectively loaded at startup because of lualine configuration
   config = function()
     require("aerial").setup({
+      show_guides = true,
+      backends = { "treesitter", "markdown" },
       layout = {
         max_width = { 40, 0.1 },
         min_width = 40,
@@ -21,10 +23,17 @@ return {
         ["<c-x>"] = "actions.jump_split",
         ["<c-n>"] = "actions.down_and_scroll",
         ["<c-p>"] = "actions.up_and_scroll",
+        ["<"] = "actions.tree_decrease_fold_level",
+        [">"] = "actions.tree_increase_fold_level",
       },
       icons = icons._kinds_cmp,
     })
 
-    vim.keymap.set("n", "<leader>ea", "<cmd>AerialToggle<cr>", { desc = "Aerial toogle (display LSP symbols)" })
+    vim.keymap.set(
+      "n",
+      "<leader>ea",
+      "<cmd>AerialToggle<cr>",
+      { desc = "Aerial toogle (display treesitter/markdown symbols)" }
+    )
   end,
 }
