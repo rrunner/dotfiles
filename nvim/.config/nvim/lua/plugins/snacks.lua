@@ -194,15 +194,15 @@ return {
             keys = {
               ["<c-s>"] = false,
               ["<c-j>"] = false,
-              ["<c-k>"] = { "<esc>lDa", mode = { "i" }, expr = true },
-              ["<c-u>"] = { "<esc>d^xi", mode = { "i" }, expr = true },
+              ["<c-k>"] = { "<esc>lDa", mode = "i", expr = true, desc = "delete from cursor to the right" },
+              ["<c-u>"] = { "<esc>d^xi", mode = "i", expr = true, desc = "delete from cursor to the left" },
               ["<c-h>"] = false,
               ["<c-l>"] = false,
-              ["<c-v>"] = { { "pick_win", "edit_vsplit" }, mode = { "i" } },
-              ["<c-x>"] = { { "pick_win", "edit_split" }, mode = { "i" } },
-              ["<c-n>"] = { "list_down", mode = { "i" } },
-              ["<c-p>"] = { "list_up", mode = { "i" } },
-              ["<c-/>"] = { "toggle_help", mode = { "i" } },
+              ["<c-v>"] = { { "pick_win", "edit_vsplit" }, mode = "i" },
+              ["<c-x>"] = { { "pick_win", "edit_split" }, mode = "i" },
+              ["<c-n>"] = { "list_down", mode = "i" },
+              ["<c-p>"] = { "list_up", mode = "i" },
+              ["<c-/>"] = { "toggle_help", mode = "i" },
               ["<c-c>"] = { "close", mode = { "i", "n" } },
               ["<a-h>"] = { "preview_scroll_left", mode = { "i", "n" } },
               ["<a-l>"] = { "preview_scroll_right", mode = { "i", "n" } },
@@ -220,7 +220,7 @@ return {
               ["<c-e>"] = { "<end>", mode = "i", expr = true, desc = "end of line" },
               ["<c-f>"] = { "<right>", mode = "i", expr = true, desc = "move cursor to the right" },
               ["<c-b>"] = { "<left>", mode = "i", expr = true, desc = "move cursor to the left" },
-              ["<c-w>"] = { "<c-s-w>", mode = { "i" }, expr = true, desc = "delete word" },
+              ["<c-w>"] = { "<c-s-w>", mode = "i", expr = true, desc = "delete word" },
             },
           },
           -- result list window
@@ -485,6 +485,12 @@ return {
         input = {
           row = math.floor(vim.opt.lines:get() / 2) - 1,
           columns = math.floor(vim.opt.columns:get() / 2),
+          keys = {
+            ["<c-a>"] = { "<home>", mode = "i", expr = true, desc = "start of line (input)" },
+            ["<c-e>"] = { "<end>", mode = "i", expr = true, desc = "end of line (input)" },
+            ["<c-f>"] = { "<right>", mode = "i", expr = true, desc = "move cursor to the right (input)" },
+            ["<c-k>"] = { "<esc>lDa", mode = "i", expr = true, desc = "delete from cursor to the right (input)" },
+          },
         },
         terminal = {
           keys = {
