@@ -23,6 +23,7 @@ return {
         ["<c-x>"] = "actions.jump_split",
         ["<c-n>"] = "actions.down_and_scroll",
         ["<c-p>"] = "actions.up_and_scroll",
+        ["<c-c>"] = "actions.close",
         ["<"] = "actions.tree_decrease_fold_level",
         [">"] = "actions.tree_increase_fold_level",
       },
