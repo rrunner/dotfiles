@@ -4,7 +4,7 @@ local icons = require("config.icons")
 -- options
 vim.opt.compatible = false
 vim.cmd([[
-  syntax enable
+  syntax off
   filetype plugin indent on
 ]])
 if vim.fn.executable("rg") == 1 then
