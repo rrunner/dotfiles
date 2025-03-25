@@ -99,7 +99,7 @@ return {
       desc = "Scroll forward (set in Noice config)",
     })
 
-    vim.keymap.set({ "n", "s", "i" }, "<c-f>", function()
+    vim.keymap.set({ "n", "s" }, "<c-f>", function()
       if not require("noice.lsp").scroll(-2) then
         return "<c-f>"
       end

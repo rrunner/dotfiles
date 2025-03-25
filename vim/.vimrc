@@ -387,6 +387,9 @@ inoremap <c-b> <left>
 " move right in insert mode (right arrow)
 inoremap <c-l> <right>
 
+" move right in insert mode (right arrow)
+inoremap <c-f> <right>
+
 " delete line but do not write to yank register
 nnoremap <leader>DD ""dd
 
