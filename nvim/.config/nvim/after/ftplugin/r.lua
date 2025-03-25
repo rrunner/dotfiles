@@ -19,6 +19,3 @@ vim.api.nvim_set_keymap("i", ">>", "%>%<space>", {
 -- R specific abbreviations
 vim.cmd([[iabbrev <buffer> true TRUE]])
 vim.cmd([[iabbrev <buffer> false FALSE]])
-
--- autoset compiler
-vim.cmd([[compiler r]])

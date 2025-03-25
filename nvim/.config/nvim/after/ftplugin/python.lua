@@ -11,6 +11,3 @@ vim.opt_local.shiftwidth = 4
 -- python specific abbreviations
 vim.cmd([[iabbrev <buffer> true True]])
 vim.cmd([[iabbrev <buffer> false False]])
-
--- autoset compiler
-vim.cmd([[compiler python]])
