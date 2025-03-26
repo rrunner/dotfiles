@@ -120,7 +120,7 @@ call plug#begin('~/.vim/pack')
   Plug 'kshenoy/vim-signature'
   Plug 'vim-test/vim-test'
   " requires python-doq to be installed on system
-  Plug 'heavenshell/vim-pydocstring', { 'for': 'python' }
+  " Plug 'heavenshell/vim-pydocstring', { 'for': 'python' }
   Plug 'Vimjas/vim-python-pep8-indent', { 'for': 'python' }
   Plug 'jiangmiao/auto-pairs'
   Plug 'machakann/vim-highlightedyank'
@@ -156,10 +156,10 @@ let test#python#runner = 'pyunit'
 
 
 " plugin settings: vim-pydocstring {{{
-let g:pydocstring_doq_path = "/usr/bin/doq"
-let g:pydocstring_formatter = 'google'
-let g:pydocstring_ignore_init = 1
-let g:pydocstring_enable_mapping = 0
+" let g:pydocstring_doq_path = "/usr/bin/doq"
+" let g:pydocstring_formatter = 'google'
+" let g:pydocstring_ignore_init = 1
+" let g:pydocstring_enable_mapping = 0
 " }}}
 
 
