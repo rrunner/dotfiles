@@ -62,7 +62,7 @@ return {
       },
       -- same as in options.lua
       completion = {
-        completeopt = "menu,menuone,noselect",
+        completeopt = "menuone,noselect",
       },
       -- mappings
       mapping = cmp.mapping.preset.insert({
