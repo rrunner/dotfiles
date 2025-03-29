@@ -1,6 +1,16 @@
 return {
   "stevearc/aerial.nvim",
-  -- no lazy load since the aerial plugin is effectively loaded at startup because of lualine integration configuration
+  -- remove lazy load if lualine integration is in effect
+  keys = {
+    {
+      "<leader>ea",
+      [[<cmd>AerialToggle<cr>]],
+      mode = "n",
+      desc = "Aerial toogle (display treesitter/markdown symbols)",
+      noremap = true,
+      silent = true,
+    },
+  },
   config = function()
     require("aerial").setup({
       show_guides = true,
@@ -35,12 +45,5 @@ return {
       },
       icons = icons._kinds_cmp,
     })
-
-    vim.keymap.set(
-      "n",
-      "<leader>ea",
-      "<cmd>AerialToggle<cr>",
-      { desc = "Aerial toogle (display treesitter/markdown symbols)" }
-    )
   end,
 }
