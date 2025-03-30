@@ -48,7 +48,7 @@ require("config.filetype")
 require("config.abbreviations")
 require("config.keymaps")
 require("config.options")
-require("config.lsp")
+require("lsp")
 
 local utils = require("config.utils")
 
