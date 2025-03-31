@@ -138,10 +138,10 @@ vim.opt.fillchars = {
 vim.opt.foldenable = true
 vim.opt.foldlevel = 99 -- open buffers unfolded
 vim.opt.foldmethod = "expr"
--- may not be needed in nvim 0.11, e.g. use vim.opt.foldexpr = nvim_treesitter#foldexpr()
--- and remove config/folds.lua
+-- vim treesitter default: vim.opt.foldexpr = "v:lua.vim.treesitter.foldexpr()"
 vim.opt.foldexpr = [[v:lua.require("config.folds").foldexpr()]]
 vim.opt.foldtext = ""
+-- vim.opt.foldcolumn = "0"
 
 -- windows specific
 if utils.IS_WIN then
