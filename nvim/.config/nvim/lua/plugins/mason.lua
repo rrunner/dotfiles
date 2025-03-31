@@ -52,6 +52,7 @@ return {
 
     -- linters, formatters, debuggers etc.
     local tools = {
+      "air",
       "debugpy",
       "hlint",
       "jq",

@@ -97,14 +97,15 @@ return {
     }
 
     conform.setup({
-      -- use lsp fallback to format: r, rmd, toml
-      -- use stop_after_first = true to use the first found formatter if the table includes several formatters
+      -- use lsp fallback to format: toml
+      -- stop_after_first = true -- to use the first found formatter if the table includes several formatters
       formatters_by_ft = {
-        -- TODO: use ruff LSP for python formatting to enable config via pyproject.toml (ruff format via ruff LSP currently don't cover all use cases)
-        python = { "ruff_fix", "ruff_format" }, -- run both for now... see https://github.com/astral-sh/ruff/issues/8232
+        -- TODO: use ruff LSP for python formatting to enable config via pyproject.toml (however formating via ruff LSP currently don't cover all use cases)
+        -- run both for now below... see https://github.com/astral-sh/ruff/issues/8232
+        python = { "ruff_fix", "ruff_format" },
         lua = { "stylua" },
         markdown = { "prettier", "markdownlint-cli2", "markdown-toc" },
-        -- quarto = { "injected" }, -- TODO: quarto formatting such as formatting of R code blocks in quarto document is brittle
+        quarto = { "injected" },
         yaml = { "prettier", "injected" },
         json = { "prettier" },
         html = { "prettier" },
@@ -115,6 +116,8 @@ return {
         sql = { "sqlfluff" },
         mysql = { "sqlfluff" },
         haskell = { "ormolu" },
+        r = { "air" },
+        rmd = { "injected" },
       },
       format_after_save = function(bufnr)
         -- remove carriage return characters in linux/wsl on save
