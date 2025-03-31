@@ -5,25 +5,25 @@ return {
   config = true, -- start plugin with empty config
   init = function()
 
-    vim.api.nvim_set_keymap("n", "gr", [[<cmd>lua require('substitute').operator()<cr>]], {
+    vim.api.nvim_set_keymap("n", "cr", [[<cmd>lua require('substitute').operator()<cr>]], {
       noremap = true,
       silent = true,
-      desc = "Substitute (go-replace) selection (normal mode)",
+      desc = "Substitute (change-replace) selection (normal mode)",
     })
 
-    vim.api.nvim_set_keymap("n", "grr", [[<cmd>lua require('substitute').line()<cr>]], {
+    vim.api.nvim_set_keymap("n", "crr", [[<cmd>lua require('substitute').line()<cr>]], {
       noremap = true,
       silent = true,
-      desc = "Substitute (go-replace) line",
+      desc = "Substitute (change-replace) line",
     })
 
-    vim.api.nvim_set_keymap("n", "grl", [[<cmd>lua require('substitute').eol()<cr>]], {
+    vim.api.nvim_set_keymap("n", "crl", [[<cmd>lua require('substitute').eol()<cr>]], {
       noremap = true,
       silent = true,
-      desc = "Substitute (go-replace) end of line from cursor location",
+      desc = "Substitute (change-replace) end of line from cursor location",
     })
 
-    vim.api.nvim_set_keymap("x", "gr", [[<cmd>lua require('substitute').visual()<cr>]], {
+    vim.api.nvim_set_keymap("x", "cr", [[<cmd>lua require('substitute').visual()<cr>]], {
       noremap = true,
       silent = true,
       desc = "Substitute (go-replace) selection (visual/select mode)",

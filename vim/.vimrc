@@ -141,6 +141,13 @@ let g:netrw_browse_split = 4
 " }}}
 
 
+" plugin settings: vim-ReplaceWithRegister {{{
+nmap cr <Plug>ReplaceWithRegisterOperator
+nmap crr <Plug>ReplaceWithRegisterLine
+xmap cr <Plug>ReplaceWithRegisterVisual
+" }}}
+
+
 " plugin settings: vim-tmux-runner {{{
 " see also .vim/after/ftplugin/*.vim
 let g:VtrPercentage = 25
