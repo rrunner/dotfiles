@@ -138,8 +138,8 @@ vim.opt.fillchars = {
 vim.opt.foldenable = true
 vim.opt.foldlevel = 99 -- open buffers unfolded
 vim.opt.foldmethod = "expr"
--- vim treesitter default: vim.opt.foldexpr = "v:lua.vim.treesitter.foldexpr()"
-vim.opt.foldexpr = [[v:lua.require("config.folds").foldexpr()]]
+-- LSP foldexpr if LSP server supports it (see lsp.lua)
+vim.opt.foldexpr = [[v:lua.require("config.folds").foldexpr()]] --vim.opt.foldexpr = "v:lua.vim.treesitter.foldexpr()"
 vim.opt.foldtext = ""
 -- vim.opt.foldcolumn = "0"
 

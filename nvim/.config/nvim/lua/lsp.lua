@@ -181,6 +181,17 @@ vim.api.nvim_create_autocmd("LspAttach", {
       end, vim.tbl_extend("error", bufopts, { desc = "Toggle inlay hints" }))
     end
 
+    if client and client:supports_method(vim.lsp.protocol.Methods.textDocument_foldingRange) then
+      local win = vim.api.nvim_get_current_win()
+      vim.wo[win][0].foldmethod = "expr"
+      vim.wo[win][0].foldexpr = "v:lua.vim.lsp.foldexpr()"
+
+      vim.api.nvim_create_autocmd("LspDetach", {
+        group = vim.api.nvim_create_augroup("lsp_detach_folds", { clear = true }),
+        command = "setlocal foldexpr<",
+      })
+    end
+
     -- highlight/clear references of the word under your cursor
     if client and client:supports_method(vim.lsp.protocol.Methods.textDocument_documentHighlight) then
       local highlight_augroup = vim.api.nvim_create_augroup("lsp_highlight", { clear = false })
