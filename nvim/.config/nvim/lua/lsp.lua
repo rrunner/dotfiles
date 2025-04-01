@@ -84,13 +84,6 @@ vim.api.nvim_create_autocmd("LspAttach", {
 
     -- buffer local mappings
     -- see `:help vim.lsp.*` for documentation on any of the below functions
-
-    -- unmap in Nvim 0.11 (make sure go-replace-line using grr works after unmap)
-    -- vim.keymap.del("n", "grn", { buffer = bufnr, desc = "Unmap Neovim default LSP keybind" })
-    -- vim.keymap.del("n", "grr", { buffer = bufnr, desc = "Unmap Neovim default LSP keybind" })
-    -- vim.keymap.del({ "n", "x" }, "gra", { buffer = bufnr, desc = "Unmap Neovim default LSP keybind" })
-    -- vim.keymap.del("i", "<c-s>", { buffer = bufnr, desc = "Unmap Neovim default LSP keybind" })
-
     if client and client:supports_method(vim.lsp.protocol.Methods.textDocument_declaration) then
       vim.keymap.set(
         "n",
@@ -111,7 +104,7 @@ vim.api.nvim_create_autocmd("LspAttach", {
     end
 
     if client and client:supports_method(vim.lsp.protocol.Methods.textDocument_references) then
-      vim.keymap.set("n", "gh", function()
+      vim.keymap.set("n", "grr", function()
         Snacks.picker.lsp_references()
       end, {
         noremap = true,
@@ -121,7 +114,7 @@ vim.api.nvim_create_autocmd("LspAttach", {
     end
 
     if client and client:supports_method(vim.lsp.protocol.Methods.textDocument_implementation) then
-      vim.keymap.set("n", "gi", function()
+      vim.keymap.set("n", "gri", function()
         Snacks.picker.lsp_implementations()
       end, {
         noremap = true,
@@ -130,9 +123,17 @@ vim.api.nvim_create_autocmd("LspAttach", {
       })
     end
 
+    if client and client:supports_method(vim.lsp.protocol.Methods.textDocument_documentSymbol) then
+      vim.keymap.set("n", "gO", vim.lsp.buf.document_symbol, {
+        noremap = true,
+        silent = true,
+        desc = "LSP document symbol",
+      })
+    end
+
     vim.keymap.set(
       "i",
-      "<c-k>",
+      "<c-s>",
       vim.lsp.buf.signature_help,
       vim.tbl_extend(
         "error",
@@ -161,7 +162,7 @@ vim.api.nvim_create_autocmd("LspAttach", {
     if client and client:supports_method(vim.lsp.protocol.Methods.textDocument_rename) then
       vim.keymap.set(
         "n",
-        "<leader>rn",
+        "grn",
         vim.lsp.buf.rename,
         vim.tbl_extend("error", bufopts, { desc = "Rename symbol using LSP" })
       )
@@ -170,7 +171,7 @@ vim.api.nvim_create_autocmd("LspAttach", {
     if client and client:supports_method(vim.lsp.protocol.Methods.textDocument_codeAction) then
       vim.keymap.set(
         { "n", "v" },
-        "<leader>ca",
+        "gra",
         vim.lsp.buf.code_action,
         vim.tbl_extend("error", bufopts, { desc = "Display code actions using LSP" })
       )
@@ -182,6 +183,7 @@ vim.api.nvim_create_autocmd("LspAttach", {
       end, vim.tbl_extend("error", bufopts, { desc = "Toggle inlay hints" }))
     end
 
+    -- folding using LSP
     -- if client and client:supports_method(vim.lsp.protocol.Methods.textDocument_foldingRange) then
     --   local win = vim.api.nvim_get_current_win()
     --   vim.wo[win][0].foldmethod = "expr"
@@ -191,6 +193,11 @@ vim.api.nvim_create_autocmd("LspAttach", {
     --     group = vim.api.nvim_create_augroup("lsp_detach_folds", { clear = true }),
     --     command = "setlocal foldexpr<",
     --   })
+    -- end
+
+    -- LSP built-in auto-completion
+    -- if client and client:supports_method("textDocument/completion") then
+    --   vim.lsp.completion.enable(true, client.id, event.buf, { autotrigger = true })
     -- end
 
     -- highlight/clear references of the word under your cursor
