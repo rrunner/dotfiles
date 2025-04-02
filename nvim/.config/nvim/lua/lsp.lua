@@ -85,12 +85,9 @@ vim.api.nvim_create_autocmd("LspAttach", {
     -- buffer local mappings
     -- see `:help vim.lsp.*` for documentation on any of the below functions
     if client and client:supports_method(vim.lsp.protocol.Methods.textDocument_declaration) then
-      vim.keymap.set(
-        "n",
-        "gD",
-        vim.lsp.buf.declaration,
-        vim.tbl_extend("error", bufopts, { desc = "Jump to the declaration of the LSP symbol" })
-      )
+      vim.keymap.set("n", "gD", function()
+        Snacks.picker.lsp_declarations()
+      end, vim.tbl_extend("error", bufopts, { desc = "LSP declaration" }))
     end
 
     if client and client:supports_method(vim.lsp.protocol.Methods.textDocument_definition) then
@@ -107,6 +104,7 @@ vim.api.nvim_create_autocmd("LspAttach", {
       vim.keymap.set("n", "grr", function()
         Snacks.picker.lsp_references()
       end, {
+        nowait = true,
         noremap = true,
         silent = true,
         desc = "LSP references",
@@ -135,18 +133,14 @@ vim.api.nvim_create_autocmd("LspAttach", {
       "i",
       "<c-s>",
       vim.lsp.buf.signature_help,
-      vim.tbl_extend(
-        "error",
-        bufopts,
-        { desc = "Display signature information for the LSP symbol in a floating window (insert mode)" }
-      )
+      vim.tbl_extend("error", bufopts, { desc = "LSP function signature (insert mode)" })
     )
 
     vim.keymap.set(
       "n",
       "K",
       vim.lsp.buf.hover,
-      vim.tbl_extend("error", bufopts, { desc = "Display help window for the LSP symbol as a hover window" })
+      vim.tbl_extend("error", bufopts, { desc = "LSP hover window for symbol" })
     )
 
     if client and client:supports_method(vim.lsp.protocol.Methods.textDocument_typeDefinition) then
@@ -173,7 +167,7 @@ vim.api.nvim_create_autocmd("LspAttach", {
         { "n", "v" },
         "gra",
         vim.lsp.buf.code_action,
-        vim.tbl_extend("error", bufopts, { desc = "Display code actions using LSP" })
+        vim.tbl_extend("error", bufopts, { desc = "LSP code actions" })
       )
     end
 
