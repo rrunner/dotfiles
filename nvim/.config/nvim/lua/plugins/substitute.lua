@@ -1,10 +1,14 @@
--- substitute (go-replace)
+-- substitute (yank-and-replace and exchange textobjects)
 return {
   "gbprod/substitute.nvim",
   event = "BufEnter",
-  config = true, -- start plugin with empty config
+  opts = {
+    highlight_substituted_text = {
+      enabled = true,
+      timer = 700,
+    },
+  },
   init = function()
-
     vim.api.nvim_set_keymap("n", "cr", [[<cmd>lua require('substitute').operator()<cr>]], {
       noremap = true,
       silent = true,
