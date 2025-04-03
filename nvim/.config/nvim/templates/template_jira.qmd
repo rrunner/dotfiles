@@ -1,0 +1,43 @@
+---
+title: "Review of Jira ticket `r params$ticket_id`"
+author: "Author"
+date: "2025-05-01"
+toc: false
+number-sections: true
+highlight-style: pygments
+format:
+  html:
+    embed-resources: true
+    code-fold: false
+params:
+  ticket_id: XXXX-1234
+  # <c-r>% in insert mode (with .html extension)
+  file_name: filename.html
+
+---
+<!-- create html document in the terminal by executing `quarto render file_name.qmd` -->
+
+```{r, "invoke R"}
+#| echo: false
+#| eval: false
+```
+
+```{r, "markdown_link"}
+#| echo: false
+#| eval: true
+
+create_markdown_link <- function(link_text, url) {
+  sprintf("[%s](%s)", link_text, url)
+}
+
+md_link <- create_markdown_link(params$ticket_id, "https://www.google.com/")
+```
+
+<p>
+Document name: `r params$file_name`<br />
+Jira ticket: `r md_link`
+</p>
+
+## General comments
+
+## Specific comments 
