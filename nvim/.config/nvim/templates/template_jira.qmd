@@ -1,7 +1,7 @@
 ---
 title: "Review of Jira ticket `r params$ticket_id`"
 author: "Author"
-date: "2025-05-01"
+date: "YYYY-MM-DD"
 toc: false
 number-sections: true
 highlight-style: pygments
@@ -10,9 +10,12 @@ format:
     embed-resources: true
     code-fold: false
 params:
-  ticket_id: XXXX-1234
-  # <c-r>% in insert mode (with .html extension)
-  file_name: filename.html
+  jira_hostname: https://jira.host.com/browse/
+  # <c-r>% in insert mode (manually add .html extension)
+  document_name: file_name.html
+  system: system
+  environment: environment
+  ticket_id: ABCD-1234
 
 ---
 <!-- create html document in the terminal by executing `quarto render file_name.qmd` -->
@@ -30,14 +33,19 @@ create_markdown_link <- function(link_text, url) {
   sprintf("[%s](%s)", link_text, url)
 }
 
-md_link <- create_markdown_link(params$ticket_id, "https://www.google.com/")
+md_link <- create_markdown_link(params$ticket_id, paste0(params$jira_hostname, params$ticket))
 ```
 
 <p>
-Document name: `r params$file_name`<br />
+Document name: `r params$document_name`<br/>
+</p>
+
+<p>
+System: `r params$system`<br/>
+Environment: `r params$environment`<br/>
 Jira ticket: `r md_link`
 </p>
 
 ## General comments
 
-## Specific comments 
+## Specific comments
