@@ -27,6 +27,7 @@ return {
       "gitignore",
       "graphql",
       "haskell",
+      "html",
       "http",
       "hurl",
       "json",

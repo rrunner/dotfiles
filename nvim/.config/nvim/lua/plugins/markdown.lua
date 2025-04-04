@@ -10,7 +10,8 @@ return {
   },
   config = function()
     local icons = require("config.icons")
-    require("render-markdown").setup({
+    local rendermd = require("render-markdown")
+    rendermd.setup({
       file_types = supported_filetypes,
       heading = {
         sign = false,
@@ -27,8 +28,25 @@ return {
       checkbox = {
         enabled = false,
       },
+      anti_conceal = {
+        -- show text that is normally concealed for the cursorline
+        enabled = true,
+        above = 0,
+        below = 0,
+      },
+      html = {
+        enabled = true,
+        comment = {
+          conceal = true,
+          text = "html comment",
+        },
+      },
     })
     vim.treesitter.language.register("markdown", "quarto")
     vim.treesitter.language.register("markdown", "rmd")
+
+    vim.keymap.set("n", "<localleader>tm", function()
+      rendermd.buf_toggle()
+    end, { desc = "Toggle markdown plugin in current buffer", noremap = true, silent = true })
   end,
 }
