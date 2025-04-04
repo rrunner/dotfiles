@@ -183,7 +183,6 @@ return {
             cmdline = "[Cmd]",
             dap = "[Dap]",
             omni = "[Omni]",
-            otter = "[Otter]",
           })[entry.source.name]
           return vim_item
         end,
@@ -223,10 +222,6 @@ return {
           name = "path",
           max_item_count = 10,
           trigger_character = { "/" },
-        },
-        {
-          name = "otter",
-          max_item_count = 10,
         },
       },
       view = {
