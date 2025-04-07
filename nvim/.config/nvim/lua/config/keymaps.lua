@@ -378,11 +378,12 @@ vim.api.nvim_set_keymap("n", "<leader><leader>", "<c-^>", {
   desc = "Toggle between active and alternate buffer",
 })
 
-vim.api.nvim_set_keymap("n", "<leader>bd", [[<cmd>lclose|b#|bd! #<cr>]], {
-  noremap = true,
-  silent = true,
-  desc = "Delete buffer in normal mode (after switching to alternate buffer)",
-})
+-- use Snacks.bufdelete instead of the below
+-- vim.api.nvim_set_keymap("n", "<leader>bd", [[<cmd>lclose|b#|bd! #<cr>]], {
+--   noremap = true,
+--   silent = true,
+--   desc = "Delete buffer in normal mode (after switching to alternate buffer)",
+-- })
 
 vim.keymap.set("n", "<leader>bf", function()
   if vim.wo.winfixbuf then

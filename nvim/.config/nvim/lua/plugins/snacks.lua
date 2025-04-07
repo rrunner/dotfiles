@@ -762,5 +762,13 @@ return {
       silent = true,
       desc = "Search treesitter symbols",
     })
+
+    vim.keymap.set("n", "<leader>bd", function()
+      snacks.bufdelete()
+    end, {
+      noremap = true,
+      silent = true,
+      desc = "Delete buffer (prompt for unsaved changes)",
+    })
   end,
 }
