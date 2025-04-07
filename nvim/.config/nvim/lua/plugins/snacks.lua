@@ -448,7 +448,8 @@ return {
                   ["]g"] = "explorer_git_next",
                   ["[g"] = "explorer_git_prev",
                   ["<c-c>"] = "close",
-                  ["<c-t>"] = false,
+                  ["<leader>/"] = "picker_grep", -- grep in folder
+                  ["<c-t>"] = "terminal", -- start terminal in folder
                   ["."] = "explorer_focus",
                   ["P"] = false,
                   ["I"] = "toggle_ignored",
