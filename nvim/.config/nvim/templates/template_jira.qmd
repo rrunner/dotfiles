@@ -2,6 +2,7 @@
 title: "Review of Jira ticket `r params$ticket_id`"
 author: "Author"
 date: "YYYY-MM-DD"
+# date: "`r Sys.Date()`"
 toc: false
 number-sections: true
 highlight-style: pygments
