@@ -102,6 +102,7 @@ return {
       formatters_by_ft = {
         -- TODO: use ruff LSP for python formatting to enable config via pyproject.toml (however formating via ruff LSP currently don't cover all use cases)
         -- run both for now below... see https://github.com/astral-sh/ruff/issues/8232
+        -- air is a both a formatter and LSP: watch https://posit-dev.github.io/air/editor-neovim.html for capabilities
         python = { "ruff_fix", "ruff_format" },
         lua = { "stylua" },
         markdown = { "prettier", "markdownlint-cli2", "markdown-toc" },
