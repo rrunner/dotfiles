@@ -440,7 +440,7 @@ return {
                   ["d"] = "explorer_del",
                   ["r"] = "explorer_rename",
                   ["c"] = false,
-                  ["m"] = false,
+                  ["m"] = "explorer_move",
                   ["o"] = "confirm",
                   ["y"] = { "explorer_yank", mode = { "n", "x" } },
                   ["p"] = "explorer_paste",
