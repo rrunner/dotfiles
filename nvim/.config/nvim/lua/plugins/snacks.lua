@@ -616,13 +616,35 @@ return {
     })
 
     vim.keymap.set("n", "<leader>sn", function()
-      local notes_folder
-      notes_folder = vim.fn.stdpath("config") .. utils.path_sep .. "templates"
-      if vim.fn.isdirectory(notes_folder) == 0 then
-        vim.notify("Notes folder is not configured. See snacks.lua file", vim.log.levels.WARN)
-        return nil
-      end
-      snacks.picker.files({ cwd = notes_folder })
+      snacks.picker({
+        finder = "files",
+        format = "file",
+        show_empty = true,
+        hidden = false,
+        ignored = false,
+        follow = false,
+        supports_live = false,
+        cmd = "rg",
+        dirs = { vim.fn.stdpath("config") .. utils.path_sep .. "templates" },
+        title = "Select template notes",
+        layout = {
+          preset = "select",
+        },
+        actions = {
+          confirm = function(picker, item)
+            local ct = os.date("*t")
+            local year, month, day = ct.year, ct.month, ct.day
+            local ts = string.format("_%4d-%02d-%02d", year, month, day)
+            picker:close()
+            vim.schedule(function()
+              vim.cmd("silent 0read" .. item.file)
+              local file = vim.fn.fnamemodify(item.file, ":t:r")
+              local ext = vim.fn.fnamemodify(item.file, ":e")
+              vim.cmd.saveas(file .. ts .. "." .. ext)
+            end)
+          end,
+        },
+      })
     end, {
       noremap = true,
       silent = true,
