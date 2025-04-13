@@ -34,8 +34,11 @@ vim.api.nvim_set_keymap("t", "<esc>", [[<c-\><c-n>]], {
 })
 
 vim.keymap.set("n", "<c-t>", function()
-  pcall(vim.cmd, [[NoiceDismiss]])
-  vim.cmd([[nohlsearch]])
+  local noice_exists, _ = pcall(require, "noice")
+  if noice_exists then
+    vim.cmd.NoiceDismiss()
+  end
+  vim.cmd.nohlsearch()
 end, { desc = "Remove search highlight and noice/notification pop-ups", noremap = true, silent = true })
 
 -- vim.api.nvim_set_keymap("v", "J", ":m '>+1<cr>gv=gv", {
