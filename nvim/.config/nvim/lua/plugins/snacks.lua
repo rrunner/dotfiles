@@ -793,5 +793,18 @@ return {
       silent = true,
       desc = "Delete buffer (prompt for unsaved changes)",
     })
+
+    vim.keymap.set("n", "<leader>grn", function()
+      snacks.rename.rename_file({
+        on_rename = function(to, from)
+          -- vim.print("Old filename: " .. from .. ", New filename: " .. to)
+          snacks.rename.on_rename_file(from, to)
+        end,
+      })
+    end, {
+      noremap = true,
+      silent = true,
+      desc = "Rename current buffer (inform LSP clients about the rename)",
+    })
   end,
 }
