@@ -10,10 +10,11 @@ return {
         version = "LuaJIT",
       },
       workspace = {
-        checkThirdParty = "Disable",
+        checkThirdParty = false,
         library = {
-          vim.api.nvim_get_runtime_file("", true),
-          "${3rd}/luv/library",
+          vim.env.VIMRUNTIME,
+          "${3rd}/luv/library", -- uv modules probably not needed to specify in nvim >= 0.12
+          -- vim.api.nvim_get_runtime_file("", true), -- pull in entire rtp (much slower)
         },
       },
       diagnostics = {

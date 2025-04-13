@@ -19,7 +19,6 @@ return {
     "hrsh7th/cmp-nvim-lsp",
     "hrsh7th/cmp-buffer",
     "hrsh7th/cmp-path",
-    "hrsh7th/cmp-nvim-lua",
     "hrsh7th/cmp-cmdline",
     "hrsh7th/cmp-omni",
     {
@@ -179,7 +178,6 @@ return {
             luasnip = "[Snip]",
             buffer = "[Buff]",
             path = "[Path]",
-            nvim_lua = "[Lua]",
             cmdline = "[Cmd]",
             dap = "[Dap]",
             omni = "[Omni]",
@@ -211,12 +209,6 @@ return {
           name = "buffer",
           max_item_count = 5,
           keyword_length = 3,
-        },
-        {
-          name = "nvim_lua",
-          entry_filter = function(entry, _)
-            return require("cmp.types").lsp.CompletionItemKind[entry:get_kind()] ~= "Text"
-          end,
         },
         {
           name = "path",

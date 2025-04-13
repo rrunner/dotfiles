@@ -1,5 +1,6 @@
 -- `lazydev` configures Lua LSP for the nvim config, runtime and plugins
 return {
+  enabled = true,
   "folke/lazydev.nvim",
   ft = "lua",
   -- cmd = "LazyDev",
