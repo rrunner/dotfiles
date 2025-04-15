@@ -1,4 +1,5 @@
 local icons = require("config.icons")
+local exists_snacks, snacks = pcall(require, "snacks")
 
 -- LSP enable servers
 vim.lsp.enable({
@@ -87,13 +88,21 @@ vim.api.nvim_create_autocmd("LspAttach", {
     -- see `:help vim.lsp.*` for documentation on any of the below functions
     if client and client:supports_method(vim.lsp.protocol.Methods.textDocument_declaration) then
       vim.keymap.set("n", "gD", function()
-        Snacks.picker.lsp_declarations()
+        if exists_snacks then
+          snacks.picker.lsp_declarations()
+        else
+          vim.lsp.buf.declaration()
+        end
       end, vim.tbl_extend("error", bufopts, { desc = "LSP declaration" }))
     end
 
     if client and client:supports_method(vim.lsp.protocol.Methods.textDocument_definition) then
       vim.keymap.set("n", "gd", function()
-        Snacks.picker.lsp_definitions()
+        if exists_snacks then
+          snacks.picker.lsp_definitions()
+        else
+          vim.lsp.buf.definition()
+        end
       end, {
         noremap = true,
         silent = true,
@@ -103,7 +112,11 @@ vim.api.nvim_create_autocmd("LspAttach", {
 
     if client and client:supports_method(vim.lsp.protocol.Methods.textDocument_references) then
       vim.keymap.set("n", "grr", function()
-        Snacks.picker.lsp_references()
+        if exists_snacks then
+          snacks.picker.lsp_references()
+        else
+          vim.lsp.buf.references()
+        end
       end, {
         nowait = true,
         noremap = true,
@@ -114,7 +127,11 @@ vim.api.nvim_create_autocmd("LspAttach", {
 
     if client and client:supports_method(vim.lsp.protocol.Methods.textDocument_implementation) then
       vim.keymap.set("n", "gri", function()
-        Snacks.picker.lsp_implementations()
+        if exists_snacks then
+          snacks.picker.lsp_implementations()
+        else
+          vim.lsp.buf.implementation()
+        end
       end, {
         noremap = true,
         silent = true,
@@ -130,12 +147,13 @@ vim.api.nvim_create_autocmd("LspAttach", {
       })
     end
 
-    vim.keymap.set(
-      "i",
-      "<c-s>",
-      vim.lsp.buf.signature_help,
-      vim.tbl_extend("error", bufopts, { desc = "LSP function signature (insert mode)" })
-    )
+    -- use blink's signature help with below fallback
+    vim.keymap.set("i", "<c-s>", function()
+      local exists_blink, _ = pcall(require, "blink.cmp")
+      if not exists_blink then
+        vim.lsp.buf.signature_help()
+      end
+    end, vim.tbl_extend("error", bufopts, { desc = "LSP function signature (insert mode)" }))
 
     vim.keymap.set(
       "n",
@@ -146,7 +164,11 @@ vim.api.nvim_create_autocmd("LspAttach", {
 
     if client and client:supports_method(vim.lsp.protocol.Methods.textDocument_typeDefinition) then
       vim.keymap.set("n", "gt", function()
-        Snacks.picker.lsp_type_definitions()
+        if exists_snacks then
+          snacks.picker.lsp_type_definitions()
+        else
+          vim.lsp.buf.type_definition()
+        end
       end, {
         noremap = true,
         silent = true,

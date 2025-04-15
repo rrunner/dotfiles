@@ -5,8 +5,6 @@ return {
   dependencies = {
     "mfussenegger/nvim-dap",
     "nvim-neotest/nvim-nio",
-    "rcarriga/cmp-dap",
-    "LiadOz/nvim-dap-repl-highlights",
   },
   keys = {
     {
@@ -64,16 +62,6 @@ return {
       linehl = "",
       numhl = "",
     })
-
-    -- completion in DAP
-    require("cmp").setup({
-      enabled = function()
-        return vim.api.nvim_get_option_value("buftype", { buf = 0 }) ~= "prompt" or require("cmp_dap").is_dap_buffer()
-      end,
-    })
-
-    -- syntax highlighting to the REPL buffer using treesitter (requires treesitter highlight to be enabled)
-    require("nvim-dap-repl-highlights").setup()
 
     -- keybinds
     vim.api.nvim_set_keymap("n", "<leader>dr", [[<cmd>lua require('dapui').open({reset = true})<cr>]], {

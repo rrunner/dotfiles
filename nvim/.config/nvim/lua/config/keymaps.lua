@@ -1,5 +1,6 @@
 -- general key mappings
 -- note: plugin specific key mappings are generally set in each plugin configuration respectively
+local exists_snacks, _ = pcall(require, "snacks")
 
 vim.api.nvim_set_keymap(
   "x",
@@ -381,12 +382,14 @@ vim.api.nvim_set_keymap("n", "<leader><leader>", "<c-^>", {
   desc = "Toggle between active and alternate buffer",
 })
 
--- use Snacks.bufdelete instead of the below
--- vim.api.nvim_set_keymap("n", "<leader>bd", [[<cmd>lclose|b#|bd! #<cr>]], {
---   noremap = true,
---   silent = true,
---   desc = "Delete buffer in normal mode (after switching to alternate buffer)",
--- })
+-- use Snacks.bufdelete with below fallback
+if not exists_snacks then
+  vim.api.nvim_set_keymap("n", "<leader>bd", [[<cmd>lclose|b#|bd! #<cr>]], {
+    noremap = true,
+    silent = true,
+    desc = "Delete buffer in normal mode (after switching to alternate buffer)",
+  })
+end
 
 vim.keymap.set("n", "<leader>bf", function()
   if vim.wo.winfixbuf then
