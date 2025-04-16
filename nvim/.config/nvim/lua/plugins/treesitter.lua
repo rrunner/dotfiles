@@ -16,7 +16,6 @@ return {
       "bibtex",
       "c",
       "csv",
-      "dap_repl", -- `TSInstall dap_repl` in python debugger
       "diff",
       "dockerfile",
       "editorconfig",
