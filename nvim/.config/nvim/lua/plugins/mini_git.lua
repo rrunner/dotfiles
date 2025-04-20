@@ -21,6 +21,9 @@ return {
       end
     end
 
+    -- use diff parser for git filetype
+    vim.treesitter.language.register("diff", "git")
+
     vim.keymap.set(
       "n",
       "<leader>gc",
