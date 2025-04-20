@@ -4,8 +4,8 @@ end
 
 return {
   "saghen/blink.cmp",
-  -- optional: friendly-snippets provides snippets for the snippet source
-  dependencies = { "rafamadriz/friendly-snippets" },
+  event = "VimEnter",
+  dependencies = { "rafamadriz/friendly-snippets", "folke/lazydev.nvim" },
 
   -- use a release tag to download pre-built binaries
   version = "1.*",
@@ -77,6 +77,21 @@ return {
       },
       ghost_text = {
         enabled = false,
+      },
+      accept = {
+        -- experimental auto-brackets support
+        auto_brackets = {
+          -- whether to auto-insert brackets for functions
+          enabled = true,
+          -- synchronously use the kind of the item to determine if brackets should be added
+          kind_resolution = {
+            enabled = true,
+          },
+          -- synchronously use semantic token to determine if brackets should be added
+          semantic_token_resolution = {
+            enabled = true,
+          },
+        },
       },
     },
 
