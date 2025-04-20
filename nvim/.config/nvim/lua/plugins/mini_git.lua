@@ -6,8 +6,8 @@ return {
   event = "BufEnter",
   config = function()
     local minigit = require("mini.git")
-    minigit.setup()
     local utils = require("config.utils")
+    minigit.setup()
 
     local _git_diff = function()
       if not utils.inside_git_repo() then
@@ -21,7 +21,7 @@ return {
       end
     end
 
-    -- use diff parser for git filetype
+    -- use diff parser for git filetype (to get TS highlights for the commit(s) returned by MiniGit.show_at_cursor())
     vim.treesitter.language.register("diff", "git")
 
     vim.keymap.set(
@@ -31,22 +31,21 @@ return {
       { noremap = true, silent = true, desc = "git commit verbose (mini-git)" }
     )
 
-    vim.keymap.set(
-      "n",
-      "<leader>gi",
-      [[<cmd>lua MiniGit.show_at_cursor()<cr>]],
-      { noremap = true, silent = true, desc = "Show at cursor git information (mini-git)" }
-    )
+    vim.keymap.set({ "n", "x" }, "<leader>gi", [[<cmd>lua MiniGit.show_at_cursor()<cr>]], {
+      noremap = true,
+      silent = true,
+      desc = "Show commit at hash in log, show buffer state at -/+ line in diff, or evolution of current line/selection in normal buffer (mini-git)",
+    })
 
     vim.keymap.set(
       "n",
       "<leader>gh",
       [[<cmd>Git log<cr>]],
-      { noremap = true, silent = true, desc = "git log or history... (mini-git)" }
+      { noremap = true, silent = true, desc = "git log (mini-git)" }
     )
 
     vim.keymap.set("n", "<leader>gd", function()
       _git_diff()
-    end, { noremap = true, silent = true, desc = "git diff (or show file state in diff filetype) (mini-git)" })
+    end, { noremap = true, silent = true, desc = "git diff (mini-git)" })
   end,
 }
