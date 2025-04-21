@@ -2,7 +2,7 @@
   "table 3x3": {
     "prefix": "table 3x3",
     "body": [
-      "| H1  |  H2  | H3 |",
+      "| H1  |  H2 |  H3 |",
       "|-----|:---:|----:|",
       "|  0  |  0  |  0  |",
       "|  0  |  0  |  0  |",
@@ -13,5 +13,29 @@
       "$0"
     ],
     "description": "Insert 3x3 table"
+  },
+  "rfig": {
+    "prefix": "rfig",
+    "body": [
+      "```{${1|python,r,bash|}}",
+      "#| echo: true",
+      "#| eval: true",
+      "#| output: true",
+      "#| include: true",
+      "#| label: fig-${2:label_name}",
+      "#| fig-cap: \"${4:caption_name}\"",
+      "#| warning: true",
+      "#| error: true",
+      "",
+      "library(ggplot2)",
+      "",
+      "ggplot(airquality, aes(Temp, Ozone)) +",
+      "\tgeom_point(na.rm = TRUE) +",
+      "\tgeom_smooth(formula = y ~ x, method = \"loess\", na.rm = TRUE)",
+      "```",
+      "",
+      "@fig-${3:label_name}$0"
+    ],
+    "description": "Insert R figure code chunk"
   }
 }

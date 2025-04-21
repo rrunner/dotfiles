@@ -1,1 +1,20 @@
-{}
+{
+  "rpipe": {
+    "prefix": "rpipe",
+    "body": [
+      "$0${1:data} <- ${2:data} %>%",
+      "\tfilter($3) %>%",
+      "\tgroup_by($4) %>%",
+      "\tsummarise($5)"
+    ],
+    "description": "Insert dplyr pipe"
+  },
+  "count": {
+    "prefix": "count",
+    "body": [
+      "$0${1:data} %>%",
+      "\tcount(${2:variable}, sort = TRUE)"
+    ],
+    "description": "Insert dplyr count"
+  }
+}
