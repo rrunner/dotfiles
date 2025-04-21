@@ -1,0 +1,32 @@
+{
+  "name": "my-snippets",
+  "displayName": "My Snippets",
+  "description": "My Personal Snippets",
+  "categories": [
+    "Snippets"
+  ],
+  "contributes": {
+    "snippets": [
+      {
+        "language": "python",
+        "path": "./python.json"
+      },
+      {
+        "language": "r",
+        "path": "./r.json"
+      },
+      {
+        "language": "quarto",
+        "path": "./quarto.json"
+      },
+      {
+        "language": "lua",
+        "path": "./lua.json"
+      },
+      {
+        "language": "all",
+        "path": "./all_filetypes.json"
+      }
+    ]
+  }
+}

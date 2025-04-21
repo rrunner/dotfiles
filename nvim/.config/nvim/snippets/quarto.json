@@ -1,0 +1,17 @@
+{
+  "table 3x3": {
+    "prefix": "table 3x3",
+    "body": [
+      "| H1  |  H2  | H3 |",
+      "|-----|:---:|----:|",
+      "|  0  |  0  |  0  |",
+      "|  0  |  0  |  0  |",
+      "|  0  |  0  |  0  |",
+      "",
+      ": ${1:caption} {#tbl-${2:caption} .striped .hover tbl-colwidths=\"[33,33,33]\" tbl-cap-location=\"bottom\"}",
+      "",
+      "$0"
+    ],
+    "description": "Insert 3x3 table"
+  }
+}

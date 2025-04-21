@@ -16,15 +16,21 @@ return {
 
     sources = {
       default = { "lsp", "path", "snippets", "buffer", "omni" },
-      per_filetype = { "lsp", "path", "snippets", "buffer", "lazydev" },
+      per_filetype = { lua = { "lsp", "path", "snippets", "buffer", "lazydev" } },
       providers = {
-        path = {
+        lsp = {
           max_items = 10,
-          opts = { get_cwd = vim.uv.cwd },
+          score_offset = 10,
         },
+        path = {
+          max_items = 5,
+          opts = { get_cwd = vim.uv.cwd },
+          score_offset = 1,
+        },
+        -- add VSCode style custom snippets to ~/.config/nvim/snippets
         snippets = {
-          max_items = 3,
-          score_offset = -1,
+          max_items = 8,
+          score_offset = 1,
         },
         buffer = {
           max_items = 5,
