@@ -34,7 +34,7 @@
       "\tgeom_smooth(formula = y ~ x, method = \"loess\", na.rm = TRUE)",
       "```",
       "",
-      "@fig-${3:label_name}$0"
+      "@fig-${2:label_name}$0"
     ],
     "description": "Insert R figure code chunk"
   }

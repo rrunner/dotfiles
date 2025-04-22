@@ -30,7 +30,7 @@ return {
         -- add VSCode style custom snippets to ~/.config/nvim/snippets
         snippets = {
           max_items = 8,
-          score_offset = 1,
+          score_offset = 5,
         },
         buffer = {
           max_items = 5,
