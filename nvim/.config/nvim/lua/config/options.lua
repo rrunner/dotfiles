@@ -78,7 +78,7 @@ vim.opt.ttimeout = true
 vim.opt.ttimeoutlen = 50
 vim.opt.completeopt = { "menuone", "noselect" }
 vim.opt.breakindent = true
-vim.opt.mouse = "nvi"
+vim.opt.mouse = "a"
 vim.opt.inccommand = "split"
 vim.opt.cmdwinheight = 20 -- when inccommand = "split"
 vim.opt.shell = "bash"
