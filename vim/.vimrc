@@ -400,6 +400,9 @@ inoremap <c-f> <right>
 " delete line but do not write to yank register
 nnoremap <leader>DD ""dd
 
+" yank/paste the current line and then comment the same line
+nmap ycc yygccp
+
 " keybinds below is an attempt to align with readline
 cnoremap <c-b> <left>
 cnoremap <c-f> <right>

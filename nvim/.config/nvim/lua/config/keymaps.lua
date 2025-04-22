@@ -54,6 +54,13 @@ end, { desc = "Remove search highlight and noice/notification pop-ups", noremap 
 --   desc = "Move text above in visual mode",
 -- })
 
+vim.keymap.set(
+  "n",
+  "ycc",
+  "yygccp",
+  { desc = "Yank/paste the current line and then comment the same line", remap = true, silent = true }
+)
+
 vim.api.nvim_set_keymap("v", "<", "<gv", {
   noremap = true,
   silent = true,
