@@ -23,7 +23,7 @@
       "#| output: true",
       "#| include: true",
       "#| label: fig-${2:label_name}",
-      "#| fig-cap: \"${4:caption_name}\"",
+      "#| fig-cap: \"${3:caption_name}\"",
       "#| warning: true",
       "#| error: true",
       "",
