@@ -10,7 +10,7 @@
       "",
       ": ${1:caption} {#tbl-${2:caption} .striped .hover tbl-colwidths=\"[33,33,33]\" tbl-cap-location=\"bottom\"}",
       "",
-      "$0"
+      "@tbl-${2:caption}$0"
     ],
     "description": "Insert 3x3 table"
   },

@@ -24,13 +24,19 @@ return {
         },
         path = {
           max_items = 5,
-          opts = { get_cwd = vim.uv.cwd },
+          opts = {
+            get_cwd = vim.uv.cwd,
+            show_hidden_files_by_default = true,
+          },
           score_offset = 1,
         },
         -- add VSCode style custom snippets to ~/.config/nvim/snippets
         snippets = {
-          max_items = 8,
+          max_items = 6,
           score_offset = 5,
+          opts = {
+            ignored_filetypes = {},
+          },
         },
         buffer = {
           max_items = 5,
