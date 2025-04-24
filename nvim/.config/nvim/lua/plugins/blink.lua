@@ -15,8 +15,26 @@ return {
   opts = {
 
     sources = {
-      default = { "lsp", "path", "snippets", "buffer", "omni" },
-      per_filetype = { lua = { "lsp", "path", "snippets", "buffer", "lazydev" } },
+      -- dynamically picking providers by treesitter node/filetype
+      -- default = { "lsp", "path", "snippets", "buffer", "omni" },
+      -- per_filetype = { lua = { "lazydev", "lsp", "path", "snippets", "buffer" } },
+      default = function()
+        local success, node = pcall(vim.treesitter.get_node)
+        if
+          success
+          and node
+          and vim.tbl_contains(
+            { "comment", "line_comment", "block_comment", "string_start", "string_content", "string_end" },
+            node:type()
+          )
+        then
+          return { "buffer" }
+        elseif vim.bo.filetype == "lua" then
+          return { "lazydev", "lsp", "path", "snippets", "buffer" }
+        else
+          return { "lsp", "path", "snippets", "buffer", "omni" }
+        end
+      end,
       providers = {
         lsp = {
           max_items = 10,
