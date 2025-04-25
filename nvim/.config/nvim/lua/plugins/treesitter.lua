@@ -56,7 +56,9 @@ return {
 
     -- jsonc does not install on WSL (do not know why...)
     if utils.IS_WSL then
-      utils.remove_value(ts_parsers, { "jsonc" })
+      ts_parsers = vim.tbl_filter(function(item)
+        return item ~= "jsonc"
+      end, ts_parsers)
     end
 
     configs.setup({

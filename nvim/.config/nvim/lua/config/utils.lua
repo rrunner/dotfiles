@@ -110,23 +110,6 @@ M.venv_with_cwd = function()
   return "󱔎 (" .. str.match(venv, "/?([.%w_-]+)$") .. ") " .. uv.cwd()
 end
 
--- function to remove a table item by value, the input_table should be a
--- simple table in the form of a list/array
----@param input_table table  -- table input list/array to mutate
----@param items_remove table  -- table of items to be removed (by name)
----@return nil  -- nil
-M.remove_value = function(input_table, items_remove)
-  if next(items_remove) == nil then
-    return nil
-  end
-  for i = #input_table, 1, -1 do
-    if vim.tbl_contains(items_remove, input_table[i]) then
-      table.remove(input_table, i)
-    end
-  end
-  return nil
-end
-
 -- function to create a table with the unique keys from two tables
 ---@param list1 table  -- table 1
 ---@param list2 table  -- table 2
