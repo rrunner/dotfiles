@@ -19,6 +19,7 @@ return {
       -- default = { "lsp", "path", "snippets", "buffer", "omni" },
       -- per_filetype = { lua = { "lazydev", "lsp", "path", "snippets", "buffer" } },
       default = function()
+        local ft = vim.bo.filetype
         local success, node = pcall(vim.treesitter.get_node)
         if
           success
@@ -29,8 +30,10 @@ return {
           )
         then
           return { "buffer" }
-        elseif vim.bo.filetype == "lua" then
+        elseif ft == "lua" then
           return { "lazydev", "lsp", "path", "snippets", "buffer" }
+        elseif ft == "gitcommit" then
+          return {}
         else
           return { "lsp", "path", "snippets", "buffer", "omni" }
         end
