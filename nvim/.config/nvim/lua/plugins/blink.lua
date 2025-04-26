@@ -15,9 +15,7 @@ return {
   opts = {
 
     sources = {
-      -- dynamically picking providers by treesitter node/filetype
-      -- default = { "lsp", "path", "snippets", "buffer", "omni" },
-      -- per_filetype = { lua = { "lazydev", "lsp", "path", "snippets", "buffer" } },
+      -- dynamically set providers by treesitter node/filetype
       default = function()
         local ft = vim.bo.filetype
         local success, node = pcall(vim.treesitter.get_node)
@@ -34,6 +32,10 @@ return {
           return { "lazydev", "lsp", "path", "snippets", "buffer" }
         elseif ft == "gitcommit" then
           return {}
+        elseif vim.tbl_contains({ "text", "mail" }, ft) then
+          return { "buffer" }
+        elseif vim.tbl_contains({ "markdown", "quarto", "rmd" }, ft) then
+          return { "snippets", "buffer" }
         else
           return { "lsp", "path", "snippets", "buffer", "omni" }
         end
