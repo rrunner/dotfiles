@@ -100,6 +100,11 @@ return {
           treesitter = { "lsp" },
         },
       },
+      list = {
+        cycle = {
+          from_top = false,
+        },
+      },
       documentation = {
         auto_show = false,
         window = {
