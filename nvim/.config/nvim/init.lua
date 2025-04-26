@@ -41,6 +41,15 @@ vim.g.maplocalleader = "-"
 -- setting required by many plugins
 vim.opt.termguicolors = true
 
+-- pretty print objects and backtrace
+_G.dd = function(...)
+  Snacks.debug.inspect(...)
+end
+_G.bt = function()
+  Snacks.debug.backtrace()
+end
+vim.print = _G.dd
+
 require("config.icons")
 require("config.autocmds")
 require("config.usercmds")

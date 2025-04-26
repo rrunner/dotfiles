@@ -46,15 +46,6 @@ return {
     local icons = require("config.icons")
     local utils = require("config.utils")
 
-    -- dd() - pretty printed dump of objects and pretty backtrace
-    _G.dd = function(...)
-      snacks.debug.inspect(...)
-    end
-    _G.bt = function()
-      snacks.debug.backtrace()
-    end
-    vim.print = _G.dd
-
     local opts = {
       bigfile = {
         enabled = true,
