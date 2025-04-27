@@ -57,11 +57,9 @@ vim.opt.signcolumn = "yes:3"
 vim.opt.numberwidth = 4
 vim.opt.hidden = true
 vim.opt.magic = true
--- clipboard tool
+-- force selection of clipboard tool
 if utils.IS_LINUX then
   vim.g.clipboard = "xsel"
-elseif utils.IS_WSL then
-  -- vim.g.clipboard = ""
 end
 vim.opt.clipboard = vim.env.SSH_TTY and "" or "unnamedplus" -- only set clipboard if not in ssh, to make sure the OSC 52 integration works automatically
 vim.opt.nrformats:append({ "alpha" })
