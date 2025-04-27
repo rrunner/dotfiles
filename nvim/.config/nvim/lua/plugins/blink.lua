@@ -5,6 +5,7 @@ end
 return {
   "saghen/blink.cmp",
   event = "VimEnter",
+  version = "1.*", -- use a release tag to download pre-built binaries
   dependencies = {
     "rafamadriz/friendly-snippets",
     "folke/lazydev.nvim",
@@ -14,15 +15,9 @@ return {
       -- also requires wn (WordNet) to get definitions of words (https://aur.archlinux.org/pkgbase/wordnet in arch AUR)
       cond = vim.fn.executable("fzf") and (vim.fn.executable("cat") or vim.fn.executable("bat")),
     },
+    "mikavilpas/blink-ripgrep.nvim",
   },
-
-  -- use a release tag to download pre-built binaries
-  version = "1.*",
-
-  ---@module 'blink.cmp'
-  ---@type blink.cmp.Config
   opts = {
-
     sources = {
       -- dynamically set providers by treesitter node/filetype
       default = function()
@@ -36,7 +31,7 @@ return {
             node:type()
           )
         then
-          return { "buffer" }
+          return { "buffer", "ripgrep" }
         elseif ft == "lua" then
           return { "lazydev", "lsp", "path", "snippets", "buffer" }
         elseif ft == "gitcommit" then
@@ -46,7 +41,7 @@ return {
         elseif vim.tbl_contains({ "quarto", "rmd" }, ft) then
           return { "buffer", "snippets" }
         elseif vim.tbl_contains({ "text", "mail" }, ft) then
-          return { "buffer", "dictionary" }
+          return { "buffer", "dictionary", "ripgrep" }
         else
           return { "lsp", "path", "snippets", "buffer", "omni" }
         end
@@ -92,6 +87,28 @@ return {
             dictionary_files = nil, -- *.dict files
             -- english words: https://github.com/dwyl/english-words/blob/master/words_alpha.txt
             dictionary_directories = { vim.fn.expand("~/.config/nvim/dictionary") }, -- *.txt files (all files in folder will be loaded)
+          },
+        },
+        ripgrep = {
+          module = "blink-ripgrep",
+          name = "Ripgrep",
+          opts = {
+            -- see `rg --help` for an exact description of the values that ripgrep expects
+            -- the minimum length of the current word to start searching
+            prefix_min_len = 4,
+            -- the number of lines to show around each match in the preview (documentation) window
+            context_size = 5,
+            -- specifies how to find the root of the project where the ripgrep search will start from
+            project_root_marker = { ".git" },
+            -- enable fallback to cwd if project_root_marker is not found
+            project_root_fallback = true,
+            search_casing = "--smart-case",
+            additional_rg_options = {},
+            fallback_to_regex_highlighting = true,
+            -- absolute root paths where the rg command will not be executed
+            ignore_paths = {},
+            -- any additional paths to search in (in addition to the project root)
+            additional_paths = {},
           },
         },
       },
