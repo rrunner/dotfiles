@@ -5,7 +5,16 @@ end
 return {
   "saghen/blink.cmp",
   event = "VimEnter",
-  dependencies = { "rafamadriz/friendly-snippets", "folke/lazydev.nvim" },
+  dependencies = {
+    "rafamadriz/friendly-snippets",
+    "folke/lazydev.nvim",
+    {
+      "Kaiser-Yang/blink-cmp-dictionary",
+      dependencies = { "nvim-lua/plenary.nvim" },
+      -- also requires wn (WordNet) to get definitions of words (https://aur.archlinux.org/pkgbase/wordnet in arch AUR)
+      cond = vim.fn.executable("fzf") and (vim.fn.executable("cat") or vim.fn.executable("bat")),
+    },
+  },
 
   -- use a release tag to download pre-built binaries
   version = "1.*",
@@ -32,10 +41,12 @@ return {
           return { "lazydev", "lsp", "path", "snippets", "buffer" }
         elseif ft == "gitcommit" then
           return {}
+        elseif ft == "markdown" then
+          return { "buffer", "snippets", "dictionary" }
+        elseif vim.tbl_contains({ "quarto", "rmd" }, ft) then
+          return { "buffer", "snippets" }
         elseif vim.tbl_contains({ "text", "mail" }, ft) then
-          return { "buffer" }
-        elseif vim.tbl_contains({ "markdown", "quarto", "rmd" }, ft) then
-          return { "snippets", "buffer" }
+          return { "buffer", "dictionary" }
         else
           return { "lsp", "path", "snippets", "buffer", "omni" }
         end
@@ -71,10 +82,21 @@ return {
           module = "lazydev.integrations.blink",
           score_offset = -5,
         },
+        dictionary = {
+          module = "blink-cmp-dictionary",
+          name = "Dict",
+          max_items = 6,
+          min_keyword_length = 4,
+          opts = {
+            -- make sure words are different in the files to avoid duplicates
+            dictionary_files = nil, -- *.dict files
+            -- english words: https://github.com/dwyl/english-words/blob/master/words_alpha.txt
+            dictionary_directories = { vim.fn.expand("~/.config/nvim/dictionary") }, -- *.txt files (all files in folder will be loaded)
+          },
+        },
       },
     },
 
-    -- see :h blink-cmp-config-keymap for defining your own keymap
     keymap = {
       preset = "default",
       ["<c-e>"] = { "fallback" },
@@ -119,15 +141,11 @@ return {
         enabled = false,
       },
       accept = {
-        -- experimental auto-brackets support
         auto_brackets = {
-          -- whether to auto-insert brackets for functions
           enabled = true,
-          -- synchronously use the kind of the item to determine if brackets should be added
           kind_resolution = {
             enabled = true,
           },
-          -- synchronously use semantic token to determine if brackets should be added
           semantic_token_resolution = {
             enabled = true,
           },
@@ -147,6 +165,7 @@ return {
 
     cmdline = {
       enabled = true,
+      -- readline keymaps
       keymap = {
         preset = "cmdline",
         ["<c-a>"] = {
