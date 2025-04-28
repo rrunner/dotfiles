@@ -12,8 +12,9 @@ return {
     {
       "Kaiser-Yang/blink-cmp-dictionary",
       dependencies = { "nvim-lua/plenary.nvim" },
+      -- possible to replace fzf dependency with ripgrep (see plugin README file)
       -- also requires wn (WordNet) to get definitions of words (https://aur.archlinux.org/pkgbase/wordnet in arch AUR)
-      cond = vim.fn.executable("fzf") and (vim.fn.executable("cat") or vim.fn.executable("bat")),
+      cond = vim.fn.executable("fzf") and vim.fn.executable("cat"),
     },
     "mikavilpas/blink-ripgrep.nvim",
   },
