@@ -7,6 +7,7 @@ return {
     "pyproject.toml",
     "pyrightconfig.json",
     "Pipfile",
+    "uv.lock",
   },
   filetypes = { "python" },
   settings = {
