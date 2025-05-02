@@ -2,13 +2,7 @@ local utils = require("config.utils")
 
 return {
   cmd = { utils.app_prio("ruff"), "server" },
-  root_markers = {
-    "requirements.txt",
-    "pyproject.toml",
-    "pyrightconfig.json",
-    "Pipfile",
-    "uv.lock",
-  },
+  root_markers = vim.g.py_root_markers,
   filetypes = { "python" },
   init_options = {
     settings = { logLevel = "error" },

@@ -1,7 +1,22 @@
+-- options
 local utils = require("config.utils")
 local icons = require("config.icons")
 
--- options
+-- global variables
+vim.g.editorconfig = true
+vim.g.loaded_python3_provider = 0 --vim.fn.executable("python3")
+vim.g.loaded_node_provider = 0
+vim.g.loaded_perl_provider = 0
+vim.g.loaded_ruby_provider = 0
+vim.g.clipboard = "xclip" -- force selection of clipboard tool (xclip works both in linux and in WSL)
+vim.g.py_root_markers = {
+  "requirements.txt",
+  "pyproject.toml",
+  "pyrightconfig.json",
+  "Pipfile",
+  "uv.lock",
+}
+
 vim.opt.compatible = false
 vim.cmd([[
   syntax off
@@ -57,8 +72,6 @@ vim.opt.signcolumn = "yes:3"
 vim.opt.numberwidth = 4
 vim.opt.hidden = true
 vim.opt.magic = true
--- force selection of clipboard tool (xclip works both in linux and in WSL)
-vim.g.clipboard = "xclip"
 vim.opt.clipboard = vim.env.SSH_TTY and "" or "unnamedplus" -- only set clipboard if not in ssh, to make sure the OSC 52 integration works automatically
 vim.opt.nrformats:append({ "alpha" })
 vim.opt.list = true
@@ -156,13 +169,6 @@ if utils.IS_WIN then
   vim.opt.shellxquote = ""
   vim.opt.shellslash = true
 end
-
--- global variables
-vim.g.editorconfig = true
-vim.g.loaded_python3_provider = 0 --vim.fn.executable("python3")
-vim.g.loaded_node_provider = 0
-vim.g.loaded_perl_provider = 0
-vim.g.loaded_ruby_provider = 0
 
 -- wsl specific
 if utils.IS_WSL then
