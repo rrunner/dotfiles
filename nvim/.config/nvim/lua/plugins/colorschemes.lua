@@ -43,4 +43,24 @@ return {
       vim.cmd.colorscheme("nordfox")
     end,
   },
+  {
+    "webhooked/kanso.nvim",
+    lazy = true,
+    priority = 1000,
+    config = function()
+      require("kanso").setup({
+        commentStyle = { italic = true },
+        functionStyle = {},
+        keywordStyle = { italic = true },
+        disableItalics = false,
+        -- available themes: zen, ink, pearl
+        theme = "zen",
+        background = {
+          dark = "zen",
+          light = "pearl",
+        },
+      })
+      vim.cmd.colorscheme("kanso")
+    end,
+  },
 }
