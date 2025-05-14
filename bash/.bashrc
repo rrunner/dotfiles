@@ -133,9 +133,6 @@ export NVIM_APPNAME="nvim"
 # debug python from terminal
 export DEBUG_PYTHON="0"
 
-# zoxide
-eval "$(zoxide init bash)"
-
 # uv (uses HTTP_PROXY, HTTPS_PROXY, ALL_PROXY)
 export UV_DEFAULT_INDEX="https://pypi.org/simple"
 eval "$(uv generate-shell-completion bash)"
@@ -147,3 +144,6 @@ eval "$(starship init bash)"
 
 # direnv (project based environment variables set in .envrc)
 eval "$(direnv hook bash)"
+
+# zoxide
+eval "$(zoxide init bash)"
