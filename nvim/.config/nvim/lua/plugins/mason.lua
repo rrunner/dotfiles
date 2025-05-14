@@ -1,6 +1,6 @@
 -- mason
 return {
-  "williamboman/mason.nvim",
+  "mason-org/mason.nvim",
   build = ":MasonUpdate",
   dependencies = {
     "WhoIsSethDaniel/mason-tool-installer.nvim",
