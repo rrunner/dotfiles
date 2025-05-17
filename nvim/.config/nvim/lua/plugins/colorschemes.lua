@@ -14,18 +14,6 @@ return {
     end,
   },
   {
-    "neanias/everforest-nvim",
-    lazy = true,
-    priority = 1000,
-    config = function()
-      require("everforest").setup({
-        --  "soft", "medium" or "hard"
-        background = "hard",
-      })
-      vim.cmd.colorscheme("everforest")
-    end,
-  },
-  {
     "EdenEast/nightfox.nvim",
     lazy = false,
     priority = 1000,
@@ -41,26 +29,6 @@ return {
       })
       -- available themes: nightfox, dayfox, dawnfox, duskfox, nordfox, terafox, carbonfox
       vim.cmd.colorscheme("nordfox")
-    end,
-  },
-  {
-    "webhooked/kanso.nvim",
-    lazy = true,
-    priority = 1000,
-    config = function()
-      require("kanso").setup({
-        commentStyle = { italic = true },
-        functionStyle = {},
-        keywordStyle = { italic = true },
-        disableItalics = false,
-        -- available themes: zen, ink, pearl
-        theme = "zen",
-        background = {
-          dark = "zen",
-          light = "pearl",
-        },
-      })
-      vim.cmd.colorscheme("kanso")
     end,
   },
 }
