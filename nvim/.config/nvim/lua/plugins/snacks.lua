@@ -411,6 +411,13 @@ return {
               auto_hide = { "input" },
               layout = { position = "right" },
             },
+            icons = {
+              tree = {
+                vertical = "  ",
+                middle = "  ",
+                last = "  ",
+              },
+            },
             on_show = function()
               if utils.is_debugger_running() then
                 vim.schedule(function()
