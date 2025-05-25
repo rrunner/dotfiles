@@ -337,13 +337,11 @@ nnoremap <m-l> :vertical resize -1<cr>
 nnoremap <m-j> :resize +1<cr>
 nnoremap <m-k> :resize -1<cr>
 
-" cycle buffers, arguments, items in quickfix list, and tabs
+" cycle buffers, items in quickfix list, and tabs
 nnoremap [s [szz
 nnoremap ]s ]szz
 nnoremap [b :bprevious<cr>
 nnoremap ]b :bnext<cr>
-" nnoremap [a :previous<cr>
-" nnoremap ]a :next<cr>
 nnoremap [q :cprevious<cr>
 nnoremap ]q :cnext<cr>
 nnoremap ]t :tabnext<cr>

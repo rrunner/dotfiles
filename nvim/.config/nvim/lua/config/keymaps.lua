@@ -135,18 +135,6 @@ vim.api.nvim_set_keymap("n", "]b", "<cmd>bnext<cr>", {
   desc = "Next buffer (ls)",
 })
 
--- vim.api.nvim_set_keymap("n", "[a", "<cmd>previous<cr>", {
---   noremap = true,
---   silent = true,
---   desc = "Previous argument (args)",
--- })
---
--- vim.api.nvim_set_keymap("n", "]a", "<cmd>next<cr>", {
---   noremap = true,
---   silent = true,
---   desc = "Next argument (args)",
--- })
-
 vim.api.nvim_set_keymap("n", "[q", "<cmd>cprevious<cr>", {
   noremap = true,
   silent = true,
