@@ -14,7 +14,7 @@ return {
     lint.linters_by_ft = {
       markdown = { "markdownlint-cli2", "vale" },
       mysql = { "sqlfluff" },
-      python = { "mypy" }, -- use ruff LSP for python linting to enable config via pyproject.toml
+      -- python = { "mypy" },
       sql = { "sqlfluff" },
       haskell = { "hlint" },
     }

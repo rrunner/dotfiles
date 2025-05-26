@@ -8,13 +8,14 @@ vim.lsp.enable({
   "dockerls",
   "jsonls",
   "lua_ls",
-  -- "marksman",
-  -- "pyright",
   "r_language_server",
   "ruff",
   "sqlls",
   "taplo",
+  "ty",
   "yamlls",
+  -- "marksman",
+  -- "pyright",
 })
 
 -- LSP diagnosis

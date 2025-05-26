@@ -36,18 +36,19 @@ return {
 
     -- LSP servers
     local lsp_servers = {
-      "pyright",
       "basedpyright",
-      "ruff",
-      "r-languageserver", --r_language_server
-      "lua-language-server", --lua_ls
-      "yaml-language-server", --yamlls
-      "dockerfile-language-server", --dockerls
-      "taplo",
       "bash-language-server", --bashls
-      "sqlls",
-      "marksman",
+      "dockerfile-language-server", --dockerls
       "json-lsp",
+      "lua-language-server", --lua_ls
+      "marksman",
+      "pyright",
+      "r-languageserver", --r_language_server
+      "ruff",
+      "sqlls",
+      "taplo",
+      "ty",
+      "yaml-language-server", --yamlls
     }
 
     -- linters, formatters, debuggers etc.
