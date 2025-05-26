@@ -75,33 +75,29 @@ return {
       :totable()
     nvim_ts.install(parsers_to_install)
 
-    -- only needed to call setup function if non-default options are required
+    -- only needed to call setup function if non-default options are provided
     -- nvim_ts.setup({})
 
-    vim.api.nvim_create_autocmd("FileType", {
-      pattern = {
-        "diff",
-        "git",
-        "gitcommit",
-        "haskell",
-        "json",
-        "lua",
-        "markdown",
-        "python",
-        "quarto",
-        "r",
-        "rmd",
-        "toml",
-        "vim",
-        "yaml",
-      },
-      callback = function()
+    vim.api.nvim_create_autocmd({ "BufRead", "BufNewFile" }, {
+      pattern = { "*" },
+      callback = function(args)
+        local buf = args.buf
+        -- treesitter is not available if there is no filetype
+        if vim.bo[buf].filetype == "" then
+          return
+        end
+        -- no parser available
+        if not pcall(vim.treesitter.get_parser, buf) then
+          return
+        end
         -- highlighting
-        vim.treesitter.start()
+        if not pcall(vim.treesitter.start, buf) then
+          return
+        end
         -- indentation
-        vim.bo.indentexpr = "v:lua.require'nvim-treesitter'.indentexpr()"
-        -- folds (managed separately in options.lua)
-        -- vim.wo.foldexpr = "v:lua.vim.treesitter.foldexpr()"
+        vim.bo[buf].indentexpr = "v:lua.require'nvim-treesitter'.indentexpr()"
+        -- folds
+        vim.wo.foldexpr = "v:lua.vim.treesitter.foldexpr()"
       end,
     })
 

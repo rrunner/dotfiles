@@ -150,12 +150,10 @@ vim.opt.fillchars = {
   foldopen = icons.chars.foldopen,
   foldsep = " ",
 }
-vim.opt.foldenable = true
-vim.opt.foldlevel = 99 -- open buffers unfolded
-vim.opt.foldmethod = "expr"
-vim.opt.foldexpr = [[v:lua.require("config.folds").foldexpr()]]
-vim.opt.foldtext = ""
--- vim.opt.foldcolumn = "0"
+vim.wo.foldenable = true
+vim.wo.foldlevel = 99 -- open buffers unfolded
+vim.wo.foldmethod = "expr"
+vim.wo.foldtext = ""
 
 -- windows specific
 if utils.IS_WIN then
