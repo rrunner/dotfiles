@@ -1,4 +1,5 @@
 basedpyright
-ruff
-mypy
 debugpy
+mypy
+ruff
+ty
