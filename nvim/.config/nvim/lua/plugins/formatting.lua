@@ -29,8 +29,9 @@ return {
     -- exasol, hive, mysql, oracle, postgres, redshift,
     -- snowflake, soql, sparksql, sqlite, teradata, tsql
     conform.formatters.sqlfluff = {
+      command = utils.app_prio("sqlfluff"),
       inherit = false,
-      args = { "fix", "--force", "--dialect=postgres", "-" },
+      args = { "fix", "--dialect=postgres", "-" },
     }
 
     -- ruff fix (apply ruff linter fixes)
