@@ -66,7 +66,7 @@ return {
     end
 
     -- install treesitter parsers
-    local already_installed = require("nvim-treesitter.config").installed_parsers()
+    local already_installed = require("nvim-treesitter.config").installed_languages("parsers")
     local parsers_to_install = vim
       .iter(ts_parsers)
       :filter(function(parser)
