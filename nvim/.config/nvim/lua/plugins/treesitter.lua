@@ -73,9 +73,9 @@ return {
         return not vim.tbl_contains(already_installed, parser)
       end)
       :totable()
-    nvim_ts.install(parsers_to_install)
+    nvim_ts.install(parsers_to_install, { summary = true })
 
-    -- only needed to call setup function if non-default options are provided
+    -- only required to call setup() if non-default options are requested
     -- nvim_ts.setup({})
 
     vim.api.nvim_create_autocmd({ "BufRead", "BufNewFile" }, {
