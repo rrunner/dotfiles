@@ -1,7 +1,7 @@
 local utils = require("config.utils")
 
 local settings = function()
-  if utils.IS_LINUX and not utils.IS_WSL then
+  if not utils.IS_GITHUB_BLOCKED then
     -- schemastore supports local schemas, see "extra" argument to json.schemas()
     local schemas = require("schemastore").json.schemas()
     return schemas
