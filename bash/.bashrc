@@ -37,10 +37,10 @@ if [[ -f "$HOME/.env" ]]; then
 fi
 
 alias ls="ls --color=auto"
+alias ll="ls -la --color=auto"
 alias q="exit"
 alias cls="clear"
 alias cd..="cd .."
-alias ll="ls -la"
 alias gs="git status"
 alias ga="git add"
 alias gd="git diff"
