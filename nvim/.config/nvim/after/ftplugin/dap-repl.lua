@@ -12,5 +12,9 @@ vim.keymap.set("n", "p", function()
   add_line(vim.fn.getreg('"'))
 end, { buffer = 0 })
 
--- return to normal mode after executing in dap-repl buffer
-vim.keymap.set("i", "<cr>", "<cr><esc>", { buffer = 0, noremap = true, silent = true })
+vim.keymap.set(
+  "i",
+  "<cr>",
+  "<cr><esc>",
+  { buffer = 0, noremap = true, silent = true, desc = "Return to normal mode after executing in dap-repl buffer" }
+)
