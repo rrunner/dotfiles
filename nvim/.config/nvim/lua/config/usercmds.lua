@@ -13,6 +13,18 @@ vim.api.nvim_create_user_command("Cwd", function()
   end
 end, { desc = "Change cwd to the current file's parent folder" })
 
+vim.api.nvim_create_user_command("ToggleLSP", function()
+  local clients = vim.lsp.get_clients()
+  if next(clients) then
+    vim.notify("Stop all LSP clients in buffer", vim.log.levels.INFO)
+    vim.lsp.stop_client(clients)
+  else
+    -- client is an empty table
+    vim.notify("Start all LSP clients in buffer", vim.log.levels.INFO)
+    vim.cmd("edit!")
+  end
+end, { desc = "Toggle LSP on/off for the current buffer" })
+
 -- vim.api.nvim_create_user_command("CommitLazyLockFile", function()
 --   local repo_dir = vim.env.HOME .. "/dotfiles"
 --   local lockfile = repo_dir .. "/nvim/.config/nvim/lazy-lock.json"
