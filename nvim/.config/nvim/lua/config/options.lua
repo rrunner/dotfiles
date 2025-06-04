@@ -10,11 +10,11 @@ vim.g.loaded_perl_provider = 0
 vim.g.loaded_ruby_provider = 0
 vim.g.clipboard = "xclip" -- force selection of clipboard tool (xclip works both in linux and in WSL)
 vim.g.py_root_markers = {
+  -- pyproject.toml and uv.lock has equal priority in deciding the root directory (e.g. parent folder)
+  { "pyproject.toml", "uv.lock" },
   "requirements.txt",
-  "pyproject.toml",
-  "pyrightconfig.json",
   "Pipfile",
-  "uv.lock",
+  "pyrightconfig.json",
 }
 
 vim.opt.compatible = false
