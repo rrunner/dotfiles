@@ -12,6 +12,10 @@ return {
         "-e",
         "SC2155",
       },
+      shfmt = {
+        -- control formatting using shfmt via conform.nvim
+        path = "",
+      },
     },
   },
 }
