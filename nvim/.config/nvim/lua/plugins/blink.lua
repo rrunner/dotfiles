@@ -39,7 +39,7 @@ return {
           return {}
         elseif ft == "markdown" then
           return { "buffer", "snippets", "dictionary" }
-        elseif vim.tbl_contains({ "quarto", "rmd" }, ft) then
+        elseif vim.tbl_contains({ "quarto", "rmd", "dap-repl" }, ft) then
           return { "buffer", "snippets" }
         elseif vim.tbl_contains({ "text", "mail" }, ft) then
           return { "buffer", "dictionary", "ripgrep" }
@@ -70,7 +70,13 @@ return {
         },
         buffer = {
           max_items = 5,
-          min_keyword_length = 3,
+          min_keyword_length = function()
+            if vim.bo.filetype == "dap-repl" then
+              return 1
+            else
+              return 3
+            end
+          end,
           score_offset = -3,
         },
         lazydev = {
