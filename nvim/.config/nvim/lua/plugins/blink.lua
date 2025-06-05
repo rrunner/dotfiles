@@ -156,12 +156,15 @@ return {
         },
       },
       documentation = {
-        auto_show = false,
+        auto_show = true,
+        auto_show_delay_ms = 500,
         window = {
           border = "rounded",
           max_height = 25,
           max_width = 60,
         },
+        -- set to false if high CPU usage
+        treesitter_highlighting = true,
       },
       ghost_text = {
         enabled = false,
