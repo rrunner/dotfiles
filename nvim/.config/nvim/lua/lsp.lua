@@ -1,5 +1,4 @@
 local icons = require("config.icons")
-local exists_snacks, snacks = pcall(require, "snacks")
 
 -- LSP enable servers
 vim.lsp.enable({
@@ -89,8 +88,7 @@ vim.api.nvim_create_autocmd("LspAttach", {
     -- see `:help vim.lsp.*` for documentation on any of the below functions
     if client and client:supports_method(vim.lsp.protocol.Methods.textDocument_declaration) then
       vim.keymap.set("n", "gD", function()
-        if exists_snacks then
-          snacks.picker.lsp_declarations()
+        if pcall(Snacks.picker.lsp_declarations, {}) then
         else
           vim.lsp.buf.declaration()
         end
@@ -99,8 +97,7 @@ vim.api.nvim_create_autocmd("LspAttach", {
 
     if client and client:supports_method(vim.lsp.protocol.Methods.textDocument_definition) then
       vim.keymap.set("n", "gd", function()
-        if exists_snacks then
-          snacks.picker.lsp_definitions()
+        if pcall(Snacks.picker.lsp_definitions, {}) then
         else
           vim.lsp.buf.definition()
         end
@@ -113,8 +110,7 @@ vim.api.nvim_create_autocmd("LspAttach", {
 
     if client and client:supports_method(vim.lsp.protocol.Methods.textDocument_references) then
       vim.keymap.set("n", "grr", function()
-        if exists_snacks then
-          snacks.picker.lsp_references()
+        if pcall(Snacks.picker.lsp_references, {}) then
         else
           vim.lsp.buf.references()
         end
@@ -128,8 +124,7 @@ vim.api.nvim_create_autocmd("LspAttach", {
 
     if client and client:supports_method(vim.lsp.protocol.Methods.textDocument_implementation) then
       vim.keymap.set("n", "gri", function()
-        if exists_snacks then
-          snacks.picker.lsp_implementations()
+        if pcall(Snacks.picker.lsp_implementations, {}) then
         else
           vim.lsp.buf.implementation()
         end
@@ -165,8 +160,7 @@ vim.api.nvim_create_autocmd("LspAttach", {
 
     if client and client:supports_method(vim.lsp.protocol.Methods.textDocument_typeDefinition) then
       vim.keymap.set("n", "gt", function()
-        if exists_snacks then
-          snacks.picker.lsp_type_definitions()
+        if pcall(Snacks.picker.lsp_type_definitions, {}) then
         else
           vim.lsp.buf.type_definition()
         end
