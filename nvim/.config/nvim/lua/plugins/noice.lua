@@ -89,25 +89,5 @@ return {
         },
       },
     })
-
-    vim.keymap.set({ "n", "s", "i" }, "<c-d>", function()
-      if not require("noice.lsp").scroll(2) then
-        return "<c-d>"
-      end
-    end, {
-      silent = true,
-      expr = true,
-      desc = "Scroll forward (set in Noice config)",
-    })
-
-    vim.keymap.set({ "n", "s" }, "<c-f>", function()
-      if not require("noice.lsp").scroll(-2) then
-        return "<c-f>"
-      end
-    end, {
-      silent = true,
-      expr = true,
-      desc = "Scroll backward (set in Noice config)",
-    })
   end,
 }

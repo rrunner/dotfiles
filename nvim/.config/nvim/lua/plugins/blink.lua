@@ -125,12 +125,14 @@ return {
 
     keymap = {
       preset = "default",
+      ["<c-space>"] = { "show", "show_documentation", "hide_documentation" },
+      ["<c-y>"] = { "select_and_accept", "fallback" },
       ["<c-e>"] = { "fallback" },
       ["<c-k>"] = { "fallback" },
       ["<c-c>"] = { "hide", "fallback" },
       ["<c-s>"] = { "show_signature", "hide_signature", "fallback" },
-      ["<c-d>"] = { "scroll_documentation_up", "fallback" },
-      ["<c-f>"] = { "scroll_documentation_down", "fallback" },
+      ["<c-u>"] = { "scroll_documentation_up", "fallback" },
+      ["<c-d>"] = { "scroll_documentation_down", "fallback" },
       ["<c-b>"] = { "fallback" },
     },
 
