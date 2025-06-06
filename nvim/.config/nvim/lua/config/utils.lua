@@ -15,7 +15,7 @@ M.IS_WSL = (function()
     return not not str.find(output[1] or "", "WSL")
   end
   vim.notify("Issue to identify WSL system", vim.log.levels.ERROR)
-  return nil
+  return false
 end)()
 
 -- set IS_GITHUB_BLOCKED to true if site prevents github usage
