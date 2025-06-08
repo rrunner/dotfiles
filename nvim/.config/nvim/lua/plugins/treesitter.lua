@@ -28,7 +28,6 @@ return {
       "gitattributes",
       "gitcommit",
       "gitignore",
-      "graphql",
       "haskell",
       "html",
       "http",
@@ -78,8 +77,47 @@ return {
     -- only required to call setup() if non-default options are requested
     -- nvim_ts.setup({})
 
-    vim.api.nvim_create_autocmd({ "BufRead", "BufNewFile" }, {
-      pattern = { "*" },
+    vim.api.nvim_create_autocmd("FileType", {
+      pattern = {
+        "csv",
+        "diff",
+        "dockerfile",
+        "editorconfig",
+        "git",
+        "gitattributes",
+        "gitcommit",
+        "gitconfig",
+        "gitignore",
+        "haskell",
+        "html",
+        "http",
+        "hurl",
+        "json",
+        "jsonc",
+        "latex",
+        "lua",
+        "markdown",
+        "markdown_inline",
+        "mermaid",
+        "ninja",
+        "psv",
+        "python",
+        "query",
+        "r",
+        "regex",
+        "requirements",
+        "rst",
+        "sh",
+        "sql",
+        "terraform",
+        "tex",
+        "toml",
+        "tsv",
+        "vim",
+        "vimdoc",
+        "xml",
+        "yaml",
+      },
       callback = function(args)
         local buf = args.buf
         -- treesitter is not available if there is no filetype
