@@ -21,9 +21,6 @@ return {
       end
     end
 
-    -- use diff parser for git filetype (to get TS highlights for the commit(s) returned by MiniGit.show_at_cursor())
-    vim.treesitter.language.register("diff", "git")
-
     vim.keymap.set(
       "n",
       "<leader>gc",

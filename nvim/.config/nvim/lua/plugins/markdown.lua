@@ -42,8 +42,6 @@ return {
         },
       },
     })
-    vim.treesitter.language.register("markdown", "quarto")
-    vim.treesitter.language.register("markdown", "rmd")
 
     vim.keymap.set("n", "<localleader>tm", function()
       rendermd.buf_toggle()

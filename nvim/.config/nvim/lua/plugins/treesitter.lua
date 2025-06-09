@@ -109,6 +109,15 @@ return {
       end,
     })
 
+    -- use specific treesitter parsers for some filetypes
+    for ft, lang in pairs({
+      git = "diff",
+      quarto = "markdown",
+      rmd = "markdown",
+    }) do
+      vim.treesitter.language.register(lang, ft)
+    end
+
     -- treesitter textobjects
     require("nvim-treesitter-textobjects").setup({
       select = {
@@ -123,6 +132,11 @@ return {
       move = {
         set_jumps = false,
       },
+    })
+
+    -- treesitter context
+    require("treesitter-context").setup({
+      multiline_threshold = 1,
     })
 
     -- select keymaps (capture groups defined in `textobjects.scm`)
@@ -166,10 +180,5 @@ return {
     vim.keymap.set({ "n", "x", "o" }, "[a", function()
       require("nvim-treesitter-textobjects.move").goto_previous_start({ "@parameter.inner" }, "textobjects")
     end)
-
-    -- treesitter context
-    require("treesitter-context").setup({
-      multiline_threshold = 1,
-    })
   end,
 }
