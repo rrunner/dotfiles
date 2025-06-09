@@ -78,64 +78,29 @@ return {
     -- nvim_ts.setup({})
 
     vim.api.nvim_create_autocmd("FileType", {
-      pattern = {
-        "csv",
-        "diff",
-        "dockerfile",
-        "editorconfig",
-        "git",
-        "gitattributes",
-        "gitcommit",
-        "gitconfig",
-        "gitignore",
-        "haskell",
-        "html",
-        "http",
-        "hurl",
-        "json",
-        "jsonc",
-        "latex",
-        "lua",
-        "markdown",
-        "markdown_inline",
-        "mermaid",
-        "ninja",
-        "psv",
-        "python",
-        "query",
-        "r",
-        "regex",
-        "requirements",
-        "rst",
-        "sh",
-        "sql",
-        "terraform",
-        "tex",
-        "toml",
-        "tsv",
-        "vim",
-        "vimdoc",
-        "xml",
-        "yaml",
-      },
+      pattern = { "*" },
       callback = function(args)
-        local buf = args.buf
+        local bufnr = args.buf
         -- treesitter is not available if there is no filetype
-        if vim.bo[buf].filetype == "" then
+        if vim.bo[bufnr].filetype == "" then
           return
         end
         -- no parser available
-        if not pcall(vim.treesitter.get_parser, buf) then
+        if not pcall(vim.treesitter.get_parser, bufnr) then
           return
         end
         -- highlighting
-        if not pcall(vim.treesitter.start, buf) then
+        if not pcall(vim.treesitter.start, bufnr) then
           return
         end
         -- indentation
-        vim.bo[buf].indentexpr = "v:lua.require'nvim-treesitter'.indentexpr()"
+        if pcall(require, "nvim-treesitter") then
+          vim.bo[bufnr].indentexpr = "v:lua.require'nvim-treesitter'.indentexpr()"
+        end
         -- folds
-        vim.wo.foldexpr = "v:lua.vim.treesitter.foldexpr()"
+        local winid = vim.fn.bufwinid(bufnr)
+        vim.wo[winid][0].foldmethod = "expr"
+        vim.wo[winid][0].foldexpr = "v:lua.vim.treesitter.foldexpr()"
       end,
     })
 
