@@ -14,7 +14,6 @@ vim.g.py_root_markers = {
   { "pyproject.toml", "uv.lock" },
   "requirements.txt",
   "Pipfile",
-  "pyrightconfig.json",
 }
 
 vim.opt.compatible = false
