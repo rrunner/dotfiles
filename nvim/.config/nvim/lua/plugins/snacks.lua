@@ -372,8 +372,8 @@ return {
             patterns = {
               ".git",
               "pyproject.toml",
+              "uv.lock",
               "requirements.txt",
-              "pyrightconfig.json",
               "Pipfile",
               ".venv",
               "venv",
