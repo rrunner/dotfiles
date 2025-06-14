@@ -405,3 +405,11 @@ vim.api.nvim_set_keymap("n", "<localleader><c-enter>", [[<cmd>make<cr>]], {
   silent = true,
   desc = "Run script in buffer (compile script)",
 })
+
+vim.keymap.set("n", "<leader>tb", function()
+  require("config.utils").toggle_boolean()
+end, {
+  noremap = true,
+  silent = true,
+  desc = "Toggle boolean under the cursor",
+})

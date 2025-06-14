@@ -1,4 +1,5 @@
 -- utility functions
+---@diagnostic disable: undefined-global
 local M = {}
 
 local str = require("string")
@@ -213,6 +214,30 @@ M.quarto_preview = function(opts)
   -- run command in embedded terminal (in a new tab and go back to the buffer)
   vim.cmd("tabedit term://" .. cmd)
   vim.cmd("tabprevious")
+end
+
+M.toggle_boolean = function()
+  local toggles = {
+    ["true"] = "false",
+    ["True"] = "False",
+    ["TRUE"] = "FALSE",
+  }
+
+  local cword = vim.fn.expand("<cword>")
+  local new_word
+  for word, opposite in pairs(toggles) do
+    if cword == word then
+      new_word = opposite
+    end
+    if cword == opposite then
+      new_word = word
+    end
+  end
+  if new_word then
+    local prev_cursor = vim.api.nvim_win_get_cursor(0)
+    vim.cmd.normal({ '"_ciw' .. new_word, bang = true })
+    vim.api.nvim_win_set_cursor(0, prev_cursor)
+  end
 end
 
 return M
