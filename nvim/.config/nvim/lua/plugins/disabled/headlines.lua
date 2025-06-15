@@ -1,7 +1,7 @@
 return {
   "lukas-reineke/headlines.nvim",
   ft = { "rmd", "markdown", "quarto" },
-  dependencies = "nvim-treesitter/nvim-treesitter",
+  dependencies = { "nvim-treesitter/nvim-treesitter", branch = "main" },
   config = function()
     local opts = {
       quarto = {
