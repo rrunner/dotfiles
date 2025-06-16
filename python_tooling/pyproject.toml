@@ -66,7 +66,7 @@ docstring-code-line-length = "dynamic"
 
 [tool.pytest.ini_options]
 minversion = "8.0"
-addopts = "--strict-markers -ra -q"
+addopts = "--strict-markers -ra -q -v"
 testpaths = ["tests"]
 
 [tool.ty.environment]
