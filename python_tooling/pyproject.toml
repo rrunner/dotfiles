@@ -3,7 +3,7 @@ name = "example"
 version = "0.1.0"
 description = "..."
 readme = "README.md"
-requires-python = ">=3.12"
+requires-python = ">=3.13"
 
 [[tool.uv.index]]
 name = "pypi"
@@ -14,7 +14,7 @@ typeCheckingMode = "off" # off, basic, standard, strict, all
 ignore = ["*"]
 
 [tool.ruff]
-target-version = "py312"
+target-version = "py313"
 line-length = 88
 indent-width = 4
 fix = false
@@ -71,7 +71,7 @@ testpaths = ["tests"]
 
 [tool.ty.environment]
 python = "./.venv"
-python-version = "3.12"
+python-version = "3.13"
 
 [tool.ty.src]
 #root = "./app"
