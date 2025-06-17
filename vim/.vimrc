@@ -389,8 +389,9 @@ inoremap << =
 " move left in insert mode (left arrow)
 inoremap <c-b> <left>
 
-" move right in insert mode (right arrow)
+" move right in insert/command-line mode (right arrow)
 inoremap <c-l> <right>
+cnoremap <c-l> <right>
 
 " move right in insert mode (right arrow)
 inoremap <c-f> <right>

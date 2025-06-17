@@ -246,9 +246,9 @@ vim.api.nvim_set_keymap("i", "<c-b>", "<left>", {
   desc = "Move left in insert mode (left arrow)",
 })
 
-vim.api.nvim_set_keymap("i", "<c-l>", "<right>", {
+vim.keymap.set({ "i", "c" }, "<c-l>", "<right>", {
   silent = true,
-  desc = "Move right in insert mode (right arrow)",
+  desc = "Move right in insert/command mode (right arrow)",
 })
 
 vim.api.nvim_set_keymap("i", "<c-f>", "<right>", {
