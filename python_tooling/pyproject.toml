@@ -61,8 +61,8 @@ dummy-variable-rgx = "^(_+|(_+[a-zA-Z0-9_]*[a-zA-Z0-9]+?))$"
 # TODO: use ruff LSP for python formatting (ruff format via ruff LSP currently don't cover all use cases)
 quote-style = "double"
 indent-style = "space"
-docstring-code-format = true
-docstring-code-line-length = "dynamic"
+skip-magic-trailing-comma = false
+line-ending = "auto"
 
 [tool.pytest.ini_options]
 minversion = "8.0"
