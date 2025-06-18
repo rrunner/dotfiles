@@ -70,7 +70,7 @@ endif
 
 " vim settings (not tmux) {{{
 if !has("gui_running") && !exists('$TMUX')
-  " cursor in vim sessions
+  " cursor in vim sessions (no dedicated command-line cursor, inherits normal mode)
   let &t_SI="\<Esc>[6 q"
   let &t_SR="\<Esc>[4 q"
   let &t_EI="\<Esc>[2 q"
@@ -544,6 +544,7 @@ if has("gui_running")
   set guioptions+=!
   set guifont=JetBrains\ Mono\ 11
   " highlight ColorColumn ctermbg=0 guibg=lightgrey
+  set guicursor+=c-ci-cr:ver25-iCursor " beam cursor in command-line mode
   set guicursor+=a:blinkon0
   highlight iCursor guifg=#2E3440 guibg=#D8DEE9
   highlight Cursor guifg=#2E3440 guibg=#D8DEE9
