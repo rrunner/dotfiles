@@ -139,7 +139,7 @@ vim.opt.jumpoptions = "view"
 vim.opt.conceallevel = 2 -- hide * markup for bold and italic, but not markers with substitutions
 vim.opt.diffopt = "internal,filler,closeoff,algorithm:patience,linematch:60"
 -- vim.opt.winborder = "rounded"
-vim.cmd("set guicursor+=c-ci-cr:ver25-iCursor") -- beam cursor in command-line mode
+vim.o.guicursor = "n-v-sm:block-nCursor,i-c-ci-ve:ver25-iCursor,r-cr-o:hor20,t:block-blinkon0-blinkoff0-TermCursor"
 
 -- folding
 vim.opt.fillchars = {
