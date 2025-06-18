@@ -6,20 +6,7 @@ return {
   event = "BufEnter",
   config = function()
     local minigit = require("mini.git")
-    local utils = require("config.utils")
     minigit.setup()
-
-    local _git_diff = function()
-      if not utils.inside_git_repo() then
-        vim.notify("not a git repository", vim.log.levels.ERROR)
-        return
-      end
-      if vim.bo[0].filetype ~= "diff" then
-        vim.cmd([[Git diff]])
-      else
-        minigit.show_diff_source()
-      end
-    end
 
     vim.keymap.set(
       "n",
@@ -40,9 +27,5 @@ return {
       [[<cmd>Git log<cr>]],
       { noremap = true, silent = true, desc = "git log (mini-git)" }
     )
-
-    vim.keymap.set("n", "<leader>gd", function()
-      _git_diff()
-    end, { noremap = true, silent = true, desc = "git diff (mini-git)" })
   end,
 }

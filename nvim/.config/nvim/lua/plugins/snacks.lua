@@ -835,5 +835,13 @@ return {
       silent = true,
       desc = "Switch git branches",
     })
+
+    vim.keymap.set("n", "<leader>gd", function()
+      snacks.picker.git_diff()
+    end, {
+      noremap = true,
+      silent = true,
+      desc = "Show git diff",
+    })
   end,
 }
