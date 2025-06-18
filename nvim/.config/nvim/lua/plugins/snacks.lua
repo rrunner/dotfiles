@@ -318,6 +318,19 @@ return {
             ignored = false,
             layout = layout1,
           },
+          git_branches = {
+            --show all branches (incl. remote)
+            all = true,
+            win = {
+              input = {
+                keys = {
+                  ["<c-a>"] = { "git_branch_add", mode = { "n", "i" } },
+                  ["<c-d>"] = { "git_branch_del", mode = { "n", "i" } },
+                  ["<c-x>"] = false,
+                },
+              },
+            },
+          },
           recent = {
             layout = layout2,
           },
@@ -813,6 +826,14 @@ return {
       noremap = true,
       silent = true,
       desc = "Rename current buffer (inform LSP clients about the rename)",
+    })
+
+    vim.keymap.set("n", "<leader>gb", function()
+      snacks.picker.git_branches()
+    end, {
+      noremap = true,
+      silent = true,
+      desc = "Switch git branches",
     })
   end,
 }
