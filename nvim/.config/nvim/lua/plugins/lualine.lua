@@ -42,7 +42,7 @@ return {
             },
             always_visible = false,
           },
-          -- "aerial",
+          "aerial",
         },
         lualine_c = {},
         lualine_x = {
