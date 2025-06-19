@@ -15,13 +15,12 @@ end, { desc = "Change cwd to the current file's parent folder" })
 
 vim.api.nvim_create_user_command("ToggleLSP", function()
   local clients = vim.lsp.get_clients()
-  if next(clients) then
-    vim.notify("Stop all LSP clients in buffer", vim.log.levels.INFO)
-    vim.lsp.stop_client(clients)
-  else
-    -- client is an empty table
+  if vim.tbl_isempty(clients) then
     vim.notify("Start all LSP clients in buffer", vim.log.levels.INFO)
     vim.cmd("edit!")
+  else
+    vim.notify("Stop all LSP clients in buffer", vim.log.levels.INFO)
+    vim.lsp.stop_client(clients)
   end
 end, { desc = "Toggle LSP on/off for the current buffer" })
 
