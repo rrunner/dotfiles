@@ -406,7 +406,7 @@ vim.api.nvim_set_keymap("n", "<localleader><c-enter>", [[<cmd>make<cr>]], {
   desc = "Run script in buffer (compile script)",
 })
 
-vim.keymap.set("n", "<leader>tb", function()
+vim.keymap.set("n", "<localleader>t", function()
   require("config.utils").toggle_boolean()
 end, {
   noremap = true,
