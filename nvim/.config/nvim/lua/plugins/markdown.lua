@@ -21,6 +21,8 @@ return {
         sign = false,
         width = "block",
         right_pad = 5,
+        language_name = false,
+        border = 'thick',
       },
       bullet = {
         icons = icons.bullets,
