@@ -23,6 +23,7 @@ return {
       "diff",
       "dockerfile",
       "editorconfig",
+      "printf",
       "git_config",
       "git_rebase",
       "gitattributes",
