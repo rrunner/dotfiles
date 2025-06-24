@@ -9,13 +9,7 @@ return {
   dependencies = {
     "rafamadriz/friendly-snippets",
     "folke/lazydev.nvim",
-    {
-      "Kaiser-Yang/blink-cmp-dictionary",
-      dependencies = { "nvim-lua/plenary.nvim" },
-      -- possible to replace fzf dependency with ripgrep (see plugin README file)
-      -- also requires wn (WordNet) to get definitions of words (https://aur.archlinux.org/pkgbase/wordnet in arch AUR)
-      cond = vim.fn.executable("fzf") and vim.fn.executable("cat"),
-    },
+    "archie-judd/blink-cmp-words",
     "mikavilpas/blink-ripgrep.nvim",
   },
   opts = {
@@ -38,13 +32,13 @@ return {
         elseif ft == "gitcommit" then
           return {}
         elseif ft == "markdown" then
-          return { "buffer", "snippets", "dictionary" }
+          return { "buffer", "snippets", "dictionary", "thesaurus" }
         elseif ft == "dap-repl" then
           return { "buffer" }
         elseif vim.tbl_contains({ "quarto", "rmd" }, ft) then
           return { "buffer", "snippets" }
         elseif vim.tbl_contains({ "text", "mail" }, ft) then
-          return { "buffer", "dictionary", "ripgrep" }
+          return { "buffer", "ripgrep", "dictionary", "thesaurus" }
         else
           return { "lsp", "path", "snippets", "buffer", "omni" }
         end
@@ -86,16 +80,24 @@ return {
           module = "lazydev.integrations.blink",
           score_offset = -5,
         },
-        dictionary = {
-          module = "blink-cmp-dictionary",
-          name = "Dict",
-          max_items = 6,
+        thesaurus = {
+          name = "Thes",
+          module = "blink-cmp-words.thesaurus",
+          max_items = 3,
           min_keyword_length = 4,
           opts = {
-            -- make sure words are different in the files to avoid duplicates
-            dictionary_files = nil, -- *.dict files
-            -- english words: https://github.com/dwyl/english-words/blob/master/words_alpha.txt
-            dictionary_directories = { vim.fn.expand("~/.config/nvim/dictionary") }, -- *.txt files (all files in folder will be loaded)
+            pointer_symbols = { "!", "&", "^" },
+          },
+        },
+        dictionary = {
+          name = "Dict",
+          module = "blink-cmp-words.dictionary",
+          max_items = 3,
+          min_keyword_length = 4,
+          opts = {
+            -- number of characters required to trigger completion
+            dictionary_search_threshold = 4,
+            pointer_symbols = { "!", "&", "^" },
           },
         },
         ripgrep = {
