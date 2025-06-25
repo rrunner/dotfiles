@@ -163,6 +163,25 @@ return {
           },
         },
       },
+      scratch = {
+        name = "Scratch",
+        win = { style = "scratch" },
+        win_by_ft = {
+          lua = {
+            keys = {
+              ["source"] = {
+                "<c-cr>",
+                function(self)
+                  local name = "scratch." .. vim.fn.fnamemodify(vim.api.nvim_buf_get_name(self.buf), ":e")
+                  Snacks.debug.run({ buf = self.buf, name = name })
+                end,
+                desc = "Source buffer",
+                mode = { "n", "x" },
+              },
+            },
+          },
+        },
+      },
       explorer = {
         enabled = true,
         replace_netrw = true,
@@ -527,6 +546,19 @@ return {
             },
           },
         },
+        scratch = {
+          width = 0.6,
+          height = 0.6,
+          border = "rounded",
+          wo = {
+            number = true,
+            relativenumber = false,
+            wrap = false,
+          },
+          keys = {
+            q = false,
+          },
+        },
       },
     }
 
@@ -842,6 +874,22 @@ return {
       noremap = true,
       silent = true,
       desc = "Show git diff",
+    })
+
+    vim.keymap.set("n", "<leader>.", function()
+      snacks.scratch()
+    end, {
+      noremap = true,
+      silent = true,
+      desc = "Toggle Scratch Buffer",
+    })
+
+    vim.keymap.set("n", "<leader>S", function()
+      snacks.scratch.select()
+    end, {
+      noremap = true,
+      silent = true,
+      desc = "Select Scratch Buffer",
     })
   end,
 }
