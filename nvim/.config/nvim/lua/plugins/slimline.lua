@@ -11,17 +11,14 @@ return {
       style = "fg",
       components = {
         left = {
-          function()
-            return ""
-          end,
-          -- "mode",
+          "mode",
           "path",
           "git",
           "diagnostics",
         },
         center = {},
         right = {
-          utils.venv_with_cwd,
+          utils.venv_with_cwd(true),
           "filetype_lsp",
           "progress",
         },
@@ -35,10 +32,10 @@ return {
         },
         git = {
           icons = {
-            branch = "",
-            added = "+",
-            modified = "~",
-            removed = "-",
+            branch = icons.git_icons.conflict,
+            added = icons.git_icons.added,
+            modified = icons.git_icons.modified,
+            removed = icons.git_icons.deleted,
           },
         },
         diagnostics = {

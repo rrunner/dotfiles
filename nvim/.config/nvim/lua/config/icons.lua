@@ -75,7 +75,7 @@ M.selected = " "
 
 M.git_icons = {
   added = "+",
-  deleted = "_",
+  deleted = "-",
   changed = "~",
   modified = "~",
   renamed = "r",
