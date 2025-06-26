@@ -167,7 +167,7 @@ vim.api.nvim_create_autocmd("LspAttach", {
     )
 
     if client and client:supports_method(vim.lsp.protocol.Methods.textDocument_typeDefinition) then
-      vim.keymap.set("n", "gt", function()
+      vim.keymap.set("n", "grt", function()
         local exists_snacks, snacks = pcall(require, "snacks")
         if exists_snacks then
           snacks.picker.lsp_type_definitions()
