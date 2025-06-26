@@ -1,5 +1,8 @@
 return {
   "sschleemilch/slimline.nvim",
+  dependencies = {
+    { "echasnovski/mini.icons", version = false },
+  },
   config = function()
     local utils = require("config.utils")
     local icons = require("config.icons")

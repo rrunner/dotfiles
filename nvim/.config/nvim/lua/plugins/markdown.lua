@@ -6,7 +6,7 @@ return {
   ft = supported_filetypes,
   dependencies = {
     { "nvim-treesitter/nvim-treesitter", branch = "main" },
-    "nvim-tree/nvim-web-devicons",
+    { "echasnovski/mini.icons", version = false },
   },
   config = function()
     local icons = require("config.icons")
@@ -22,7 +22,7 @@ return {
         width = "block",
         right_pad = 5,
         language_name = false,
-        border = 'thick',
+        border = "thick",
       },
       bullet = {
         icons = icons.bullets,
