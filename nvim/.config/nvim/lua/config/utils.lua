@@ -244,4 +244,13 @@ M.toggle_boolean = function()
   end
 end
 
+M.get_filetype_icon = function(filetype)
+  local exists, mini_icons = pcall(require, "mini.icons")
+  if not exists then
+    return ""
+  end
+  local icon, _, _ = mini_icons.get("filetype", filetype)
+  return icon and icon .. " " or ""
+end
+
 return M

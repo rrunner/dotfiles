@@ -131,12 +131,13 @@ vim.api.nvim_create_autocmd({ "BufWinEnter", "BufFilePost", "WinEnter" }, {
     }
 
     -- exclusions
-    if utils.is_non_normal_buffer() or not vim.tbl_contains(ft_with_winbar, vim.bo[0].filetype) then
+    local ft = vim.bo[0].filetype
+    if utils.is_non_normal_buffer() or not vim.tbl_contains(ft_with_winbar, ft) then
       vim.opt_local.winbar = ""
       return
     end
 
-    vim.opt_local.winbar = "%=%m%r%{expand('%:p:h:t')}/%t"
+    vim.opt_local.winbar = "%=" .. utils.get_filetype_icon(ft) .. "%m%r%{expand('%:p:h:t')}/%t"
   end,
   group = config,
   pattern = "*",
