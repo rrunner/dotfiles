@@ -18,7 +18,7 @@ return {
         },
         center = {},
         right = {
-          utils.venv_with_cwd(true),
+          utils.venv_with_cwd(false),
           "filetype_lsp",
           "progress",
         },
