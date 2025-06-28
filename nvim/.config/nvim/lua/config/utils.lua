@@ -249,8 +249,8 @@ M.get_filetype_icon = function(filetype)
   if not exists then
     return ""
   end
-  local icon, _, _ = mini_icons.get("filetype", filetype)
-  return icon and icon .. " " or ""
+  local icon, hl_group, _ = mini_icons.get("filetype", filetype)
+  return icon and "%#" .. hl_group .. "#" .. icon .. "%* " or ""
 end
 
 return M
