@@ -55,3 +55,65 @@ end, { desc = "Toggle LSP on/off for the current buffer" })
 --     end
 --   end
 -- end, { desc = "git commit lockfile lazy-lock.json (lazy package manager)" })
+
+vim.api.nvim_create_user_command("JsonPath", function()
+  if not vim.tbl_contains({ "json" }, vim.bo.filetype) then
+    print("filetype is not json")
+    return
+  end
+
+  -- move cursor to the first : sign (assume pretty formatted json document)
+  vim.cmd([[normal 0f:]])
+
+  local start_node = vim.treesitter.get_node()
+  if not start_node then
+    print("No TS node found under cursor")
+    return
+  end
+
+  -- get the cursor position, line and column (0-based)
+  local cursor = vim.api.nvim_win_get_cursor(0)
+  local line_num = cursor[1]
+  local col_num = cursor[2] + 1
+
+  -- recursive function to build the path
+  local function build_path(node, path)
+    if not node then
+      return path
+    end
+
+    local parent = node:parent()
+    local node_type = node:type()
+    local parent_type = parent and parent:type() or nil
+
+    if node_type == "pair" then
+      -- get the key of the pair
+      for child in node:iter_children() do
+        if child:type() == "string" then
+          local key_text = vim.treesitter.get_node_text(child, 0)
+          -- remove quotes from string keys
+          key_text = key_text:gsub('^"(.*)"$', "%1")
+          table.insert(path, 1, key_text)
+          break
+        end
+      end
+    elseif node_type == "array" then
+      -- skip array indexing
+    end
+
+    if parent_type == "document" then
+      table.insert(path, 1, "root")
+    end
+
+    -- recurse to the parent
+    return build_path(parent, path)
+  end
+
+  -- build the path recursively
+  local path = build_path(start_node, {})
+
+  -- join the path with periods and prepend line:col
+  local path_str = table.concat(path, ".")
+  local output = string.format("%d:%d:%s", line_num, col_num, " " .. path_str)
+  print("JSON path: " .. output)
+end, { desc = "Display the json path for the current line" })
