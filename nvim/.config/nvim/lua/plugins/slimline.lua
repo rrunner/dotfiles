@@ -47,6 +47,12 @@ return {
           },
         },
       },
+      disabled_filetypes = {
+        "help",
+        "snacks_picker_list",
+        "snacks_picker_input",
+        "snacks_terminal",
+      },
     }
     require("slimline").setup(opts)
   end,
