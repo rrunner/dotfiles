@@ -62,12 +62,14 @@ vim.api.nvim_create_user_command("JsonPath", function()
     return
   end
 
+  local initial_cursor = vim.api.nvim_win_get_cursor(0)
+
   -- move cursor to the first : sign (assume pretty formatted json document)
-  vim.cmd([[normal 0f:]])
+  vim.cmd([[normal! 0f:]])
 
   local start_node = vim.treesitter.get_node()
   if not start_node then
-    print("No TS node found under cursor")
+    print("No Treesitter node found under cursor")
     return
   end
 
@@ -75,6 +77,9 @@ vim.api.nvim_create_user_command("JsonPath", function()
   local cursor = vim.api.nvim_win_get_cursor(0)
   local line_num = cursor[1]
   local col_num = cursor[2] + 1
+
+  -- reset cursor position
+  vim.api.nvim_win_set_cursor(0, initial_cursor)
 
   -- recursive function to build the path
   local function build_path(node, path)
