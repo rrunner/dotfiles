@@ -72,10 +72,8 @@ testpaths = ["tests"]
 [tool.ty.environment]
 python = "./.venv"
 python-version = "3.13"
-
-[tool.ty.src]
-#root = "./app"
-#root = "./src/project"
+#root = ["./app"]
+#root = ["./src/project"]
 
 [tool.ty.rules]
 #division-by-zero = "ignore"
