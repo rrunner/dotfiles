@@ -2,6 +2,7 @@
 return {
   "lewis6991/gitsigns.nvim",
   cond = vim.fn.executable("git") == 1,
+  event = "BufEnter",
   config = function()
     require("gitsigns").setup({
       signcolumn = true,
