@@ -847,7 +847,7 @@ return {
       desc = "Delete buffer (prompt for unsaved changes)",
     })
 
-    vim.keymap.set("n", "<leader>grn", function()
+    vim.keymap.set("n", "grN", function()
       snacks.rename.rename_file({
         on_rename = function(to, from)
           -- vim.print("Old filename: " .. from .. ", New filename: " .. to)

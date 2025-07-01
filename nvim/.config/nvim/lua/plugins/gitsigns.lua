@@ -2,8 +2,6 @@
 return {
   "lewis6991/gitsigns.nvim",
   cond = vim.fn.executable("git") == 1,
-  event = "BufEnter",
-  dependencies = { "nvim-lua/plenary.nvim" },
   config = function()
     require("gitsigns").setup({
       signcolumn = true,
@@ -14,7 +12,7 @@ return {
       -- signs = {
       --   add = { text = "+" },
       --   change = { text = "~" },
-      --   delete = { text = "_" },
+      --   delete = { text = "-" },
       --   topdelete = { text = "‾" },
       --   changedelete = { text = "~" },
       -- },
