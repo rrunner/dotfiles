@@ -49,8 +49,10 @@ return {
       },
       disabled_filetypes = {
         "help",
-        "snacks_picker_list",
+        "lazy",
+        "mason",
         "snacks_picker_input",
+        "snacks_picker_list",
         "snacks_terminal",
       },
     }
