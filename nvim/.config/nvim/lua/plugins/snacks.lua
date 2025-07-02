@@ -361,7 +361,7 @@ return {
           },
           lsp_symbols = {
             focus = "input",
-            layout = { cycle = false, preset = "vscode", preview = "main" },
+            layout = { cycle = true, preset = "vscode", preview = "main" },
           },
           treesitter = {
             focus = "input",
