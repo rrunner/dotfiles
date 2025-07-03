@@ -46,6 +46,11 @@ return {
             HINT = icons.diagnosis.hint .. " ",
           },
         },
+        filetype_lsp = {
+          map_lsps = {
+            ["basedpyright"] = "bpyright",
+          },
+        },
       },
       disabled_filetypes = {
         "help",
