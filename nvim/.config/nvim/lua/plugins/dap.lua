@@ -109,12 +109,16 @@ return {
       desc = "Set logpoint message (debugger)",
     })
 
-    -- vim.keymap.set("x", "<leader>ds", function()
-    --   local lines = vim.fn.getregion(vim.fn.getpos("."), vim.fn.getpos("v"))
-    --   if utils.is_debugger_running() then
-    --     require("dap").repl.execute(table.concat(lines, "\n"))
-    --   end
-    -- end)
+    vim.keymap.set("x", "<leader>ds", function()
+      local lines = vim.fn.getregion(vim.fn.getpos("."), vim.fn.getpos("v"))
+      if utils.is_debugger_running() then
+        require("dap").repl.execute(table.concat(lines, "\n"))
+      end
+    end, {
+      noremap = true,
+      silent = true,
+      desc = "Send lines to DAP REPL (debugger)",
+    })
 
     -- load debugger
     local dap, dapui = require("dap"), require("dapui")
