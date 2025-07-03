@@ -1,6 +1,5 @@
 return {
   "stevearc/aerial.nvim",
-  lazy = false, -- no lazy load (aerial lualine integration)
   keys = {
     {
       "<leader>ea",
