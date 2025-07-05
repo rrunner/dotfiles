@@ -494,7 +494,7 @@ return {
                   ["P"] = false,
                   ["I"] = "toggle_ignored",
                   ["H"] = "toggle_hidden",
-                  ["Z"] = false,
+                  ["Z"] = "explorer_close_all",
                   ["x"] = { { "pick_win", "edit_split" }, mode = "n" },
                   ["v"] = { { "pick_win", "edit_vsplit" }, mode = "n" },
                   ["]d"] = "explorer_diagnostic_next",
