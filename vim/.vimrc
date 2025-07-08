@@ -536,6 +536,7 @@ endif
 
 " gvim options  {{{
 if has("gui_running")
+  "set linespace=0
   set guioptions+=k
   set guioptions-=L
   set guioptions-=l
