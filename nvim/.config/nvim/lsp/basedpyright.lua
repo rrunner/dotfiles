@@ -8,7 +8,8 @@ return {
     basedpyright = {
       analysis = {
         diagnosticMode = "workspace",
-        typeCheckingMode = "all",
+        typeCheckingMode = "recommended",
+        typeshedPaths = { "" },
         -- ignore all files for analysis to exclusively use Ruff for linting, and mypy for type checking if in use
         ignore = { "*" },
       },
