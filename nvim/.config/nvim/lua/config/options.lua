@@ -47,6 +47,7 @@ vim.opt.relativenumber = true
 vim.opt.title = true
 vim.opt.background = "dark"
 vim.opt.cursorline = true
+vim.opt.cursorlineopt = "both" --line and number
 vim.opt.splitbelow = true
 vim.opt.splitright = true
 vim.opt.shortmess:append({ I = true, c = true, W = true })
