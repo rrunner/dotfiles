@@ -2,5 +2,8 @@
     "workbench.colorTheme": "Default Dark Modern",
     "security.workspace.trust.untrustedFiles": "open",
     "editor.cursorBlinking": "solid",
-    "editor.fontSize": 12
+    "editor.fontSize": 12,
+    "files.associations": {
+        "renv.lock": "json"
+    }
 }
