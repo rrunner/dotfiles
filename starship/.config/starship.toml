@@ -1,3 +1,5 @@
+"$schema" = "https://starship.rs/config-schema.json"
+
 format = """
 $username\
 $hostname\
@@ -48,6 +50,7 @@ format = "[$duration]($style) "
 style = "yellow"
 
 [python]
+symbol = " "
 format = '[${symbol}${pyenv_prefix}(${version} )(\($virtualenv\) )]($style)'
 # style = "bright-black"
 detect_extensions = [] # don't trigger for .py files only

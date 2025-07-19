@@ -109,9 +109,9 @@ M.venv_with_cwd = function(icon_venv_only)
   if venv == nil then
     return uv.cwd() or ""
   elseif icon_venv_only then
-    return "󱔎 (" .. str.match(venv, "/?([.%w_-]+)$") .. ")"
+    return " (" .. str.match(venv, "/?([.%w_-]+)$") .. ")"
   else
-    return "󱔎 (" .. str.match(venv, "/?([.%w_-]+)$") .. ") " .. uv.cwd()
+    return " (" .. str.match(venv, "/?([.%w_-]+)$") .. ") " .. uv.cwd()
   end
 end
 
