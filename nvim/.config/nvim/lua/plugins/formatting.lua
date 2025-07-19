@@ -79,6 +79,10 @@ return {
       }),
     }
 
+    require("conform").formatters.prettier = {
+      prepend_args = { "--end-of-line", "auto" },
+    }
+
     -- sql-formatter (different sql dialects available)
     conform.formatters.sql_formatter = {
       prepend_args = {
