@@ -313,4 +313,5 @@ vim.api.nvim_create_autocmd("BufWinEnter", {
       vim.opt_local.statuscolumn = ""
     end
   end,
+  group = config,
 })

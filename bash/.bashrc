@@ -5,6 +5,9 @@
 # if not running interactively, don't do anything
 [[ $- != *i* ]] && return
 
+# configure bash to mark the start of each prompt
+PROMPT_COMMAND='printf "\033]133;A\007"'
+
 # check WSL
 IS_WSL=0
 if [[ $(grep -iq microsoft /proc/version) ]]; then
