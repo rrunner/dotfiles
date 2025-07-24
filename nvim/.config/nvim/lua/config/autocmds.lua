@@ -315,3 +315,32 @@ vim.api.nvim_create_autocmd("BufWinEnter", {
   end,
   group = config,
 })
+
+-- r, rmd, markdown, quarto specific keymaps in insert mode
+vim.api.nvim_create_autocmd("FileType", {
+  callback = function(event)
+    vim.bo[event.buf].buflisted = false
+    vim.schedule(function()
+      vim.keymap.set("i", "<>", "<- ", {
+        noremap = true,
+        buffer = event.buf,
+        silent = true,
+        desc = "Replace <> with <- in R, Rmarkdown, markdown, quarto files (insert mode)",
+      })
+
+      vim.keymap.set("i", ">>", "%>%<space>", {
+        noremap = true,
+        buffer = event.buf,
+        silent = true,
+        desc = "Replace >> with %>% in R, Rmarkdown, markdown, quarto files (insert mode)",
+      })
+    end)
+  end,
+  group = config,
+  pattern = {
+    "r",
+    "rmd",
+    "markdown",
+    "quarto",
+  },
+})
