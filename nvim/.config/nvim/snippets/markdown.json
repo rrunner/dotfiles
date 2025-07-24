@@ -1,7 +1,7 @@
 {
   "Insert fenced code block": {
     "prefix": "fenced codeblock",
-    "body": ["```${1|python,r,bash|}", "${2:code}$0", "```"],
+    "body": ["```${1|python,r,bash|}", "$0", "```"],
     "description": "Insert fenced code block"
   }
 }
