@@ -24,6 +24,10 @@
         "path": "./lua.json"
       },
       {
+        "language": "markdown",
+        "path": "./markdown.json"
+      },
+      {
         "language": "all",
         "path": "./all_filetypes.json"
       }
