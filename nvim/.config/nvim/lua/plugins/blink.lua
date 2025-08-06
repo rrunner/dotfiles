@@ -104,22 +104,26 @@ return {
           module = "blink-ripgrep",
           name = "Ripgrep",
           opts = {
-            -- see `rg --help` for an exact description of the values that ripgrep expects
             -- the minimum length of the current word to start searching
             prefix_min_len = 4,
-            -- the number of lines to show around each match in the preview (documentation) window
-            context_size = 5,
             -- specifies how to find the root of the project where the ripgrep search will start from
             project_root_marker = { ".git" },
-            -- enable fallback to cwd if project_root_marker is not found
-            project_root_fallback = true,
-            search_casing = "--smart-case",
-            additional_rg_options = {},
             fallback_to_regex_highlighting = true,
-            -- absolute root paths where the rg command will not be executed
-            ignore_paths = {},
-            -- any additional paths to search in (in addition to the project root)
-            additional_paths = {},
+            backend = {
+              ripgrep = {
+                -- see `rg --help` for an exact description of the values that ripgrep expects
+                additional_rg_options = {},
+                -- the number of lines to show around each match in the preview (documentation) window
+                context_size = 5,
+                -- enable fallback to cwd if project_root_marker is not found
+                project_root_fallback = true,
+                search_casing = "--smart-case",
+                -- absolute root paths where the rg command will not be executed
+                ignore_paths = {},
+                -- any additional paths to search in (in addition to the project root)
+                additional_paths = {},
+              },
+            },
           },
         },
       },
