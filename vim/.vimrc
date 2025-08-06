@@ -127,6 +127,7 @@ call plug#begin('~/.vim/pack')
   Plug 'preservim/nerdtree'
   " requires nerdfonts to be installed on system
   Plug 'ryanoasis/vim-devicons'
+  Plug 'chrisbra/improvedft'
 call plug#end()
 " }}}
 
@@ -218,6 +219,13 @@ command! -bang -nargs=* MyRg
   \ call fzf#vim#grep(
   \   'rg --column --line-number --no-heading --color=always --smart-case -- '.shellescape(<q-args>), 1,
   \   fzf#vim#with_preview('up:60%:hidden:wrap', '?'), <bang>0)
+" }}}
+
+
+" plugin settings: improvedft  {{{
+let g:ft_improved_ignorecase = 1
+let g:ft_improved_multichars = 0
+let g:ft_improved_nohighlight = 1
 " }}}
 
 
