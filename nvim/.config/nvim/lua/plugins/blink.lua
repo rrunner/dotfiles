@@ -86,7 +86,7 @@ return {
           max_items = 3,
           min_keyword_length = 4,
           opts = {
-            pointer_symbols = { "!", "&", "^" },
+            definition_pointers = { "!", "&", "^" },
           },
         },
         dictionary = {
@@ -97,7 +97,7 @@ return {
           opts = {
             -- number of characters required to trigger completion
             dictionary_search_threshold = 4,
-            pointer_symbols = { "!", "&", "^" },
+            definition_pointers = { "!", "&", "^" },
           },
         },
         ripgrep = {
