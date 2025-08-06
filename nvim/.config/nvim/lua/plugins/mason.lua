@@ -46,7 +46,7 @@ return {
       "r-languageserver", --r_language_server
       "ruff",
       "sqlls",
-      "taplo",
+      "tombi",
       "ty",
       "yaml-language-server", --yamlls
     }

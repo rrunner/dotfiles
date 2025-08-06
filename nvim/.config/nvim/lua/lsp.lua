@@ -10,11 +10,12 @@ vim.lsp.enable({
   "r_language_server",
   "ruff",
   "sqlls",
-  "taplo",
+  "tombi",
   "ty",
   "yamlls",
   -- "marksman",
   -- "pyright",
+  -- "taplo",
 })
 
 -- LSP diagnosis
