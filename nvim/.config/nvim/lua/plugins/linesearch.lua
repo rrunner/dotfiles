@@ -17,7 +17,7 @@ return {
         enable = false,
       },
       multi_line = {
-        enable = false,
+        enable = true,
         max_lines = 50,
       },
       backdrop = {
