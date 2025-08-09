@@ -13,9 +13,6 @@ vim.lsp.enable({
   "tombi",
   "ty",
   "yamlls",
-  -- "marksman",
-  -- "pyright",
-  -- "taplo",
 })
 
 -- LSP diagnosis

@@ -41,8 +41,6 @@ return {
       "dockerfile-language-server", --dockerls
       "json-lsp",
       "lua-language-server", --lua_ls
-      "marksman",
-      "pyright",
       "r-languageserver", --r_language_server
       "ruff",
       "sqlls",
