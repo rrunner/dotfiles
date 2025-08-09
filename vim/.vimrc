@@ -528,6 +528,7 @@ set pumheight=15
 set winminwidth=5
 set virtualedit=block
 set diffopt=internal,filler,closeoff,algorithm:patience,linematch:60
+set iskeyword+=-
 
 " windows os specific settings
 if has("win32")
