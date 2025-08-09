@@ -67,6 +67,10 @@ return {
       "stylua",
       "vale",
     }
+    -- TODO: in nvim 0.12
+    -- 1. concatenate these two tables using vim.tbl_extend("keep", lsp_servers, tools)
+    -- 2. use vim.list.unique() to select unique items
+    -- 3. remove utils.unique_values
     local ensure_installed = utils.unique_values(lsp_servers, tools)
     require("mason-tool-installer").setup({ ensure_installed = ensure_installed })
   end,
