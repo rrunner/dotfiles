@@ -296,6 +296,9 @@ nnoremap <localleader>ds :Pydocstring<cr>
 nnoremap <localleader>ll <plug>(vimtex-compile)<cr>
 " compile
 nnoremap <localleader><c-enter> :make<cr>
+" delete line without yanking
+nnoremap <localleader>dd "_dd
+vnoremap <localleader>dd "_d
 " }}}
 
 
