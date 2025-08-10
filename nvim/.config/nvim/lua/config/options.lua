@@ -3,23 +3,23 @@ local utils = require("config.utils")
 local icons = require("config.icons")
 
 -- global variables
+-- manually set is_github_blocked to true if site prevents github usage
+vim.g.is_github_blocked = false
+vim.g.is_github_not_blocked = not vim.g.is_github_blocked
 vim.g.editorconfig = true
-vim.g.loaded_python3_provider = 0 --vim.fn.executable("python3")
+vim.g.loaded_python3_provider = 0
 vim.g.loaded_node_provider = 0
 vim.g.loaded_perl_provider = 0
 vim.g.loaded_ruby_provider = 0
-vim.g.clipboard = "xclip" -- force selection of clipboard tool (xclip works both in linux and in WSL)
+-- force selection of clipboard tool (xclip works both in linux and in WSL)
+vim.g.clipboard = "xclip"
+-- pyproject.toml and uv.lock has equal priority in deciding the root directory (e.g. parent folder)
 vim.g.py_root_markers = {
-  -- pyproject.toml and uv.lock has equal priority in deciding the root directory (e.g. parent folder)
   { "pyproject.toml", "uv.lock" },
   "requirements.txt",
   "Pipfile",
 }
--- manually set is_github_blocked to true if site prevents github usage
-vim.g.is_github_blocked = false
-vim.g.is_github_not_blocked = not vim.g.is_github_blocked
 
-vim.opt.compatible = false
 vim.cmd([[
   syntax off
   filetype plugin indent on
@@ -27,10 +27,10 @@ vim.cmd([[
 if vim.fn.executable("rg") == 1 then
   vim.opt.grepprg = "rg -H --no-heading --vimgrep --smart-case --follow"
 end
+vim.opt.compatible = false
 vim.opt.grepformat:append({ "$f:$l:%c:%m" })
 vim.opt.autoindent = true
--- set to false if using treesitter
-vim.opt.smartindent = false
+vim.opt.smartindent = false -- set to false if using treesitter
 vim.opt.smarttab = true
 vim.opt.expandtab = true
 vim.opt.tabstop = 2
@@ -142,12 +142,10 @@ vim.opt.smoothscroll = true
 vim.opt.jumpoptions = "view"
 vim.opt.conceallevel = 2 -- hide * markup for bold and italic, but not markers with substitutions
 vim.opt.diffopt = "internal,filler,closeoff,algorithm:patience,linematch:60"
--- vim.opt.winborder = "rounded"
 vim.o.guicursor = "n-v-sm:block-nCursor,i-c-ci-ve:ver25-iCursor,r-cr-o:hor20,t:block-blinkon0-blinkoff0-TermCursor"
 vim.opt.iskeyword:append("-")
 vim.opt.synmaxcol = 300
-
--- folding
+-- vim.opt.winborder = "rounded"
 vim.opt.fillchars = {
   diff = icons.chars.diff,
   eob = " ",
