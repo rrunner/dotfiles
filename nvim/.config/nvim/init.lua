@@ -70,11 +70,11 @@ require("lazy").setup("plugins", {
     missing = true,
   },
   checker = {
-    enabled = utils.IS_GITHUB_BLOCKED_INVERSE_BOOL,
+    enabled = vim.g.is_github_not_blocked,
     notify = false,
   },
   change_detection = {
-    enabled = utils.IS_GITHUB_BLOCKED_INVERSE_BOOL,
+    enabled = vim.g.is_github_not_blocked,
     notify = false,
   },
   performance = {

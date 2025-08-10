@@ -1,7 +1,7 @@
 local utils = require("config.utils")
 
 local settings = function()
-  if not utils.IS_GITHUB_BLOCKED then
+  if vim.g.is_github_not_blocked then
     local schemas = require("schemastore").yaml.schemas()
     return schemas
   else

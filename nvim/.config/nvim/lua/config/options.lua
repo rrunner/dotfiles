@@ -15,6 +15,9 @@ vim.g.py_root_markers = {
   "requirements.txt",
   "Pipfile",
 }
+-- manually set is_github_blocked to true if site prevents github usage
+vim.g.is_github_blocked = false
+vim.g.is_github_not_blocked = not vim.g.is_github_blocked
 
 vim.opt.compatible = false
 vim.cmd([[
