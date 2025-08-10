@@ -1,4 +1,4 @@
--- plugin to enable smart-case search on current line
+-- plugin to enable smart-case search on surrounding lines
 return {
   "samiulsami/fFtT-highlights.nvim",
   event = "BufEnter",
