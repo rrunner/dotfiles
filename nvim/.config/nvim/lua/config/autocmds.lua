@@ -197,7 +197,7 @@ vim.api.nvim_create_autocmd("BufHidden", {
   pattern = "*",
 })
 
--- resize splits if window got resized
+-- resize splits for each tab if window is resized
 vim.api.nvim_create_autocmd({ "VimResized" }, {
   callback = function()
     local current_tab = vim.fn.tabpagenr()
