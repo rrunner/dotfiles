@@ -15,10 +15,17 @@ vim.api.nvim_set_keymap("n", "U", "<c-r>", {
   desc = "Redo",
 })
 
-vim.api.nvim_set_keymap("n", "<leader>DD", [[""dd]], {
+vim.keymap.set({ "n", "x" }, "<localleader>dd", function()
+  local mode = vim.api.nvim_get_mode().mode
+  if mode == "n" then
+    vim.cmd([[normal "_dd]])
+  elseif vim.tbl_contains({ "v", "V" }, mode) then
+    vim.cmd([[normal "_d]])
+  end
+end, {
   noremap = true,
-  silent = false,
-  desc = "Delete line but do not write to yank register",
+  silent = true,
+  desc = "Delete line without yanking",
 })
 
 -- note: use ":" to fetch visual selection to command-line mode in visual mode
