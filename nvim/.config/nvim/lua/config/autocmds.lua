@@ -22,9 +22,14 @@ vim.api.nvim_create_autocmd("TermOpen", {
   pattern = "*",
 })
 
--- close terminal
+-- auto-close terminal when process exits
 vim.api.nvim_create_autocmd("TermClose", {
-  command = [[silent! if !v:event.status | exe 'bdelete! '..expand('<abuf>') | endif]],
+  -- command = [[silent! if !v:event.status | exe 'bdelete! '..expand('<abuf>') | endif]],
+  callback = function()
+    if vim.v.event.status == 0 then
+      vim.api.nvim_buf_delete(0, {})
+    end
+  end,
   group = config,
   pattern = "*",
 })
