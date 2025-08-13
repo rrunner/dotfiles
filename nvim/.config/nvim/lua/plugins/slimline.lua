@@ -20,6 +20,7 @@ return {
         right = {
           utils.venv_with_cwd(false),
           "filetype_lsp",
+          "recording",
           "progress",
         },
       },

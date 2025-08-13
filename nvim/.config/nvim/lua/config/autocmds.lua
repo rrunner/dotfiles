@@ -100,20 +100,6 @@ vim.api.nvim_create_autocmd("LspAttach", {
   pattern = "*",
 })
 
--- notification during macro recording
-vim.api.nvim_create_autocmd("RecordingEnter", {
-  callback = function()
-    vim.notify("Macro recording to register " .. vim.fn.reg_recording(), vim.log.levels.INFO, {
-      title = "Macro recording",
-      keep = function()
-        return vim.fn.reg_recording() ~= ""
-      end,
-    })
-  end,
-  group = config,
-  pattern = "*",
-})
-
 -- set/unset winbar (global winbar setting must be unset)
 vim.api.nvim_create_autocmd({ "BufWinEnter", "BufFilePost", "WinEnter" }, {
   callback = function()
