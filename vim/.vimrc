@@ -407,8 +407,9 @@ cnoremap <c-l> <right>
 " move right in insert mode (right arrow)
 inoremap <c-f> <right>
 
-" delete line but do not write to yank register
-nnoremap <leader>DD ""dd
+" delete line(s) without yanking
+nnoremap <localleader>dd "_dd
+vnoremap <localleader>dd "_d
 
 " yank/paste the current line and then comment the same line
 nmap ycc yygccp

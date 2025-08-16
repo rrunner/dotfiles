@@ -32,7 +32,7 @@ vim.keymap.set({ "n", "x" }, "<localleader>dd", function()
 end, {
   noremap = true,
   silent = true,
-  desc = "Delete line without yanking",
+  desc = "Delete line(s) without yanking",
 })
 
 -- note: use ":" to fetch visual selection to command-line mode in visual mode
