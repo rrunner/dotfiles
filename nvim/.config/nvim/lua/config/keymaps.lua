@@ -2,6 +2,13 @@
 -- note: plugin specific key mappings are generally set in each plugin configuration respectively
 local exists_snacks, _ = pcall(require, "snacks")
 
+vim.keymap.set(
+  "n",
+  "gl",
+  "G",
+  { noremap = true, silent = true, desc = "Go to last line in buffer (more convenient than G)" }
+)
+
 vim.api.nvim_set_keymap(
   "x",
   "/",

@@ -419,6 +419,9 @@ cnoremap <c-f> <right>
 cnoremap <c-d> <nop>
 cnoremap <c-a> <home>
 cnoremap <c-e> <end>
+
+" go to last line in buffer (more convenient than G)
+nnoremap gl G
 " }}}
 
 
