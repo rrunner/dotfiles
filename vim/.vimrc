@@ -296,7 +296,7 @@ nnoremap <localleader>ds :Pydocstring<cr>
 nnoremap <localleader>ll <plug>(vimtex-compile)<cr>
 " compile
 nnoremap <localleader><c-enter> :make<cr>
-" delete line without yanking
+" delete line(s) without yanking
 nnoremap <localleader>dd "_dd
 vnoremap <localleader>dd "_d
 " }}}
@@ -407,9 +407,6 @@ cnoremap <c-l> <right>
 " move right in insert mode (right arrow)
 inoremap <c-f> <right>
 
-" delete line(s) without yanking
-nnoremap <localleader>dd "_dd
-vnoremap <localleader>dd "_d
 
 " yank/paste the current line and then comment the same line
 nmap ycc yygccp
