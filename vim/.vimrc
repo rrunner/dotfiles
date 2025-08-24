@@ -420,6 +420,9 @@ cnoremap <c-e> <end>
 
 " go to last line in buffer (more convenient than G)
 nnoremap gl G
+
+" search for first occurrence of the current word
+nnoremap [/ [<c-i>"
 " }}}
 
 

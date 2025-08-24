@@ -756,17 +756,6 @@ return {
       desc = "Search keymaps",
     })
 
-    vim.keymap.set({ "n", "x" }, "<leader>sc", function()
-      snacks.picker.grep_word({
-        dirs = { vim.uv.cwd() },
-        exclude = exclude_fext,
-      })
-    end, {
-      noremap = true,
-      silent = true,
-      desc = "Search visual selection or word in current working directory",
-    })
-
     vim.keymap.set("n", "<leader>sr", function()
       snacks.picker.resume()
     end, {
@@ -775,25 +764,42 @@ return {
       desc = "Search resume",
     })
 
-    vim.keymap.set({ "n", "x" }, "<leader>st", function()
-      snacks.picker.grep_word({
-        buf = true,
-        dirs = { vim.fn.expand("%:p") },
-      })
-    end, {
-      noremap = true,
-      silent = true,
-      desc = "Search visual selection or word in current buffer only",
-    })
+    -- vim.keymap.set({ "n", "x" }, "g/", function()
+    --   snacks.picker.grep_word({
+    --     buf = true,
+    --     dirs = { vim.fn.expand("%:p") },
+    --   })
+    -- end, {
+    --   noremap = true,
+    --   silent = true,
+    --   desc = "Search visual selection or word in current buffer only (grep word in buffer)",
+    -- })
 
-    vim.keymap.set({ "n", "x" }, "<leader>s/", function()
+    vim.keymap.set({ "n", "x" }, "g/", function()
       snacks.picker.grep_word({
         buffers = true,
       })
     end, {
       noremap = true,
       silent = true,
-      desc = "Search visual selection or word in all open buffers",
+      desc = "Search visual selection or word in all open buffers (grep word in open buffers)",
+    })
+
+    vim.keymap.set({ "n", "x" }, "<leader>g/", function()
+      snacks.picker.grep_word({
+        dirs = { vim.uv.cwd() },
+        exclude = exclude_fext,
+      })
+    end, {
+      noremap = true,
+      silent = true,
+      desc = "Search visual selection or word in current working directory (grep word in workspace)",
+    })
+
+    vim.keymap.set("n", "[/", "[<c-i>", {
+      noremap = true,
+      silent = true,
+      desc = "Search for first occurrence of the current word",
     })
 
     vim.keymap.set("n", "z=", function()
