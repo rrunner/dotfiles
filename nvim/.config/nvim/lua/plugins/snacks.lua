@@ -2,7 +2,7 @@
 -- files picker: fd global ignore file (see .config/fd/ignore)
 
 -- exclude by file extension (can be used by files and grep pickers)
-local exclude_fext = { "*.js", "*.js.map", "*.mjs", "*.jpg", "*.JPG", "*.avi", "*.AVI", "*.pdf", "*.PDF" }
+local exclude_fext = { "*.js", "*.js.map", "*.mjs", "*.jpg", "*.JPG", "*.avi", "*.AVI", "*.pdf", "*.PDF", "*.h", "*.c" }
 
 -- picker layouts
 local layout1 = {
