@@ -751,6 +751,27 @@ return {
     --   desc = "Search visual selection or word in current buffer only (grep word in buffer)",
     -- })
 
+    vim.keymap.set({ "n", "x" }, "g/", function()
+      snacks.picker.grep_word({
+        buffers = true,
+      })
+    end, {
+      noremap = true,
+      silent = true,
+      desc = "Search visual selection or word in all open buffers (grep word in open buffers)",
+    })
+
+    vim.keymap.set({ "n", "x" }, "<leader>g/", function()
+      snacks.picker.grep_word({
+        dirs = { vim.uv.cwd() },
+        exclude = exclude_fext,
+      })
+    end, {
+      noremap = true,
+      silent = true,
+      desc = "Search visual selection or word in current working directory (grep word in current working directory)",
+    })
+
     vim.keymap.set("n", "<leader>/", function()
       vim.ui.input({
         prompt = "Enter directory (cwd):",
@@ -772,28 +793,7 @@ return {
     end, {
       noremap = true,
       silent = true,
-      desc = "Search text starting from user input directory (grep search)",
-    })
-
-    vim.keymap.set({ "n", "x" }, "g/", function()
-      snacks.picker.grep_word({
-        buffers = true,
-      })
-    end, {
-      noremap = true,
-      silent = true,
-      desc = "Search visual selection or word in all open buffers (grep word in open buffers)",
-    })
-
-    vim.keymap.set({ "n", "x" }, "<leader>g/", function()
-      snacks.picker.grep_word({
-        dirs = { vim.uv.cwd() },
-        exclude = exclude_fext,
-      })
-    end, {
-      noremap = true,
-      silent = true,
-      desc = "Search visual selection or word in current working directory (grep word in workspace)",
+      desc = "Search text starting from user input directory (grep search in folder)",
     })
 
     vim.keymap.set("n", "[/", "[<c-i>", {
