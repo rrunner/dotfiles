@@ -793,7 +793,7 @@ return {
     end, {
       noremap = true,
       silent = true,
-      desc = "Search text starting from user input directory (grep search in folder)",
+      desc = "Search free-text (grep search in folder)",
     })
 
     vim.keymap.set("n", "[/", "[<c-i>", {
@@ -839,14 +839,6 @@ return {
       noremap = true,
       silent = true,
       desc = "Search projects",
-    })
-
-    vim.keymap.set("n", "<leader>sT", function()
-      snacks.picker.treesitter()
-    end, {
-      noremap = true,
-      silent = true,
-      desc = "Search treesitter symbols",
     })
 
     vim.keymap.set("n", "<leader>bd", function()
