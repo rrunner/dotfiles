@@ -1,6 +1,6 @@
 -- autopairs
 return {
-  "echasnovski/mini.pairs",
+  "nvim-mini/mini.pairs",
   event = "VeryLazy",
   version = false,
   config = function()

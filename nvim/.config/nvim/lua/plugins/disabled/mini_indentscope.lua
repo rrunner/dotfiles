@@ -1,6 +1,6 @@
 -- indentation marker and indentation textobjects
 return {
-  "echasnovski/mini.indentscope",
+  "nvim-mini/mini.indentscope",
   event = { "BufReadPost", "BufNewFile" },
   version = false,
   config = function()
