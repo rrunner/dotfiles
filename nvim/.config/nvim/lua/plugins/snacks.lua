@@ -120,7 +120,7 @@ return {
         shell = vim.o.shell,
       },
       indent = {
-        enabled = true,
+        enabled = false,
         indent = {
           enabled = false,
           char = "│",
@@ -143,7 +143,7 @@ return {
         },
         -- filter for buffers to enable indent guides
         filter = function(buf)
-          local exclude_ft = { "text", "markdown" }
+          local exclude_ft = { "text", "markdown", "mail" }
           return vim.g.snacks_indent ~= false
             and vim.b[buf].snacks_indent ~= false
             and vim.bo[buf].buftype == ""
