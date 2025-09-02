@@ -584,16 +584,6 @@ return {
       desc = "Git status",
     })
 
-    vim.keymap.set("n", "<leader>sb", function()
-      snacks.picker.buffers({
-        current = true,
-      })
-    end, {
-      noremap = true,
-      silent = true,
-      desc = "Search/list all buffers (most recent priority)",
-    })
-
     vim.keymap.set("n", "<c-tab>", function()
       snacks.picker.buffers({
         current = false,
@@ -664,14 +654,6 @@ return {
       desc = "Search help (help tags)",
     })
 
-    vim.keymap.set("n", "<leader>sq", function()
-      snacks.picker.qflist()
-    end, {
-      noremap = true,
-      silent = true,
-      desc = "Search quickfix",
-    })
-
     vim.keymap.set("n", "<leader>sn", function()
       snacks.picker({
         finder = "files",
@@ -739,17 +721,6 @@ return {
       silent = true,
       desc = "Search resume",
     })
-
-    -- vim.keymap.set({ "n", "x" }, "g/", function()
-    --   snacks.picker.grep_word({
-    --     buf = true,
-    --     dirs = { vim.fn.expand("%:p") },
-    --   })
-    -- end, {
-    --   noremap = true,
-    --   silent = true,
-    --   desc = "Search visual selection or word in current buffer only (grep word in buffer)",
-    -- })
 
     vim.keymap.set({ "n", "x" }, "g/", function()
       snacks.picker.grep_word({
