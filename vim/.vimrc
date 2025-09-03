@@ -208,7 +208,7 @@ let g:NERDTreeMapOpenVSplit = 'v'
 
 
 " plugin settings: fzf.vim {{{
-" - stop fzf searches in terminal mode with <c-q>
+" - stop fzf searches in terminal mode with <c-q> or <c-c>
 let g:fzf_buffers_jump = 1
 let g:fzf_layout = {'down': '40%'}
 let g:fzf_action = {
@@ -248,9 +248,8 @@ nnoremap <leader>ev :vsplit <c-r>=expand("%:p:h")."/"<cr>
 nnoremap <leader>en :vnew<cr>
 nnoremap <leader>co :copen<cr>
 nnoremap <leader>cc :cclose<cr>
-nnoremap <silent> <leader>sb :Buffers<cr>
 nnoremap <silent> <leader>sf :Files<cr>
-nnoremap <silent> <leader>sg :MyRg<cr>
+nnoremap <silent> <leader>/ :MyRg<cr>
 nnoremap <silent> <leader>sl :Lines<cr>
 " nnoremap <silent> <leader>j }
 " nnoremap <silent> <leader>j :m .+1<cr>==
