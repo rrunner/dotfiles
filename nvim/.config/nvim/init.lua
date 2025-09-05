@@ -47,6 +47,7 @@ _G.dd = function(...)
 end
 
 require("config.icons")
+require("config.utils")
 require("config.autocmds")
 require("config.usercmds")
 require("config.filetype")
@@ -54,8 +55,6 @@ require("config.abbreviations")
 require("config.keymaps")
 require("config.options")
 require("lsp")
-
-local utils = require("config.utils")
 
 -- initialize lazy.nvim
 require("lazy").setup("plugins", {
