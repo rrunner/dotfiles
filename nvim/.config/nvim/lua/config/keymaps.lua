@@ -348,14 +348,14 @@ vim.api.nvim_set_keymap("n", "<leader>ef", ':e <c-r>=expand("%:p:h")."/"<cr>', {
   desc = "Edit file in current window (at present path)",
 })
 
-vim.api.nvim_set_keymap("n", "<leader>eh", ':split <c-r>=expand("%:p:h")."/"<cr>', {
+vim.api.nvim_set_keymap("n", "<leader>eh", "<cmd>split<cr>", {
   noremap = true,
-  desc = "Edit file in horizontal split (at present path)",
+  desc = "Edit same buffer in horizontal split",
 })
 
-vim.api.nvim_set_keymap("n", "<leader>ev", ':vsplit <c-r>=expand("%:p:h")."/"<cr>', {
+vim.api.nvim_set_keymap("n", "<leader>ev", "<cmd>vsplit<cr>", {
   noremap = true,
-  desc = "Edit file in vertical split (at present path)",
+  desc = "Edit same buffer in vertical split",
 })
 
 vim.api.nvim_set_keymap("n", "<leader>en", "<cmd>vnew<cr>", {
