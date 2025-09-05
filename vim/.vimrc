@@ -107,7 +107,6 @@ call plug#begin('~/.vim/pack')
   Plug 'itchyny/lightline.vim'
   Plug 'nordtheme/vim'
   Plug 'christoomey/vim-tmux-navigator'
-  Plug 'christoomey/vim-tmux-runner'
   Plug 'tommcdo/vim-exchange'
   Plug 'kshenoy/vim-signature'
   Plug 'jiangmiao/auto-pairs'
@@ -133,14 +132,6 @@ let g:netrw_browse_split = 4
 nmap cr <Plug>ReplaceWithRegisterOperator
 nmap crr <Plug>ReplaceWithRegisterLine
 xmap cr <Plug>ReplaceWithRegisterVisual
-" }}}
-
-
-" plugin settings: vim-tmux-runner {{{
-" see also .vim/after/ftplugin/*.vim
-let g:VtrPercentage = 25
-let g:VtrOrientation = "h"
-let g:VtrInitialCommand = "pwd"
 " }}}
 
 
