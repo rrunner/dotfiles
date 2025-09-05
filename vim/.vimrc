@@ -96,8 +96,6 @@ packadd! editorconfig
 
 " plugins via plugin manager
 call plug#begin('~/.vim/pack')
-  Plug 'vim-pandoc/vim-pandoc-syntax'
-  Plug 'quarto-dev/quarto-vim'
   Plug 'tpope/vim-surround'
   Plug 'tpope/vim-commentary'
   Plug 'tpope/vim-repeat'
@@ -106,27 +104,16 @@ call plug#begin('~/.vim/pack')
   Plug 'kana/vim-textobj-user'
   Plug 'kana/vim-textobj-indent'
   Plug 'kana/vim-textobj-line'
-  Plug 'bps/vim-textobj-python'
   Plug 'itchyny/lightline.vim'
-  " Plug 'doums/darcula'
   Plug 'nordtheme/vim'
-  " requires fzf to be installed on system
-  "  - requires 'ripgrep' for grep and text searches inside files
-  "  - 'bat' tool for preview fzf results is optional
-  Plug 'junegunn/fzf.vim'
   Plug 'christoomey/vim-tmux-navigator'
   Plug 'christoomey/vim-tmux-runner'
   Plug 'tommcdo/vim-exchange'
   Plug 'kshenoy/vim-signature'
-  Plug 'vim-test/vim-test'
-  " requires python-doq to be installed on system
-  " Plug 'heavenshell/vim-pydocstring', { 'for': 'python' }
-  Plug 'Vimjas/vim-python-pep8-indent', { 'for': 'python' }
   Plug 'jiangmiao/auto-pairs'
   Plug 'machakann/vim-highlightedyank'
   Plug 'preservim/nerdtree'
-  " requires nerdfonts to be installed on system
-  Plug 'ryanoasis/vim-devicons'
+  Plug 'ryanoasis/vim-devicons' " requires nerdfonts to be installed on system
   Plug 'chrisbra/improvedft'
 call plug#end()
 " }}}
@@ -157,26 +144,6 @@ let g:VtrInitialCommand = "pwd"
 " }}}
 
 
-" plugin settings: vim-test {{{
-let test#strategy = "make"
-let test#python#runner = 'pyunit'
-" }}}
-
-
-" plugin settings: vim-pydocstring {{{
-" let g:pydocstring_doq_path = "/usr/bin/doq"
-" let g:pydocstring_formatter = 'google'
-" let g:pydocstring_ignore_init = 1
-" let g:pydocstring_enable_mapping = 0
-" }}}
-
-
-" plugin settings: vim-python-pep8-indent {{{
-let g:python_pep8_indent_multiline_string = 0
-let g:python_pep8_indent_hang_closing = 0
-" }}}
-
-
 " plugin settings: vimtex {{{
 let g:vimtex_view_general_viewer = 'xpdf'
 let g:vimtex_mappings_enabled=0
@@ -204,21 +171,6 @@ let g:NERDTreeShowHidden = 1
 let g:NERDTreeSortHiddenFirst = 1
 let g:NERDTreeMapOpenSplit = 'x'
 let g:NERDTreeMapOpenVSplit = 'v'
-" }}}
-
-
-" plugin settings: fzf.vim {{{
-" - stop fzf searches in terminal mode with <c-q> or <c-c>
-let g:fzf_buffers_jump = 1
-let g:fzf_layout = {'down': '40%'}
-let g:fzf_action = {
-  \ 'ctrl-x': 'split',
-  \ 'ctrl-v': 'vsplit' }
-
-command! -bang -nargs=* MyRg
-  \ call fzf#vim#grep(
-  \   'rg --column --line-number --no-heading --color=always --smart-case -- '.shellescape(<q-args>), 1,
-  \   fzf#vim#with_preview('up:60%:hidden:wrap', '?'), <bang>0)
 " }}}
 
 
@@ -283,12 +235,6 @@ vnoremap <localleader>r :VtrSendLinesToRunner<cr><esc>gvj<esc>
 nnoremap <localleader>kr :VtrKillRunner<cr>
 nnoremap <localleader>or :VtrOpenRunner {'cmd': 'ipython\ --no-autoindent\ --pprint'}<cr>
 nnoremap <localleader>cl :VtrSendKeysRaw 'c-l'<cr>
-" vim-test mappings
-nnoremap <localleader>tn :TestNearest<cr>
-nnoremap <localleader>tf :TestFile<cr>
-nnoremap <localleader>ts :TestSuite<cr>
-nnoremap <localleader>tl :TestLast<cr>
-nnoremap <localleader>tv :TestVisit<cr>
 " vim-pydocstring mappings
 nnoremap <localleader>ds :Pydocstring<cr>
 " vimtex mappings
