@@ -157,12 +157,9 @@ vim.api.nvim_create_autocmd("LspAttach", {
       end
     end, vim.tbl_extend("error", bufopts, { desc = "LSP function signature (insert mode)" }))
 
-    vim.keymap.set(
-      "n",
-      "K",
-      vim.lsp.buf.hover,
-      vim.tbl_extend("error", bufopts, { desc = "LSP hover window for symbol" })
-    )
+    vim.keymap.set("n", "K", function()
+      vim.lsp.buf.hover({ border = "rounded", width = 80, height = 20 })
+    end, vim.tbl_extend("error", bufopts, { desc = "LSP hover window" }))
 
     if client and client:supports_method(vim.lsp.protocol.Methods.textDocument_typeDefinition) then
       vim.keymap.set("n", "grt", function()

@@ -43,6 +43,21 @@ return {
           text = "html comment",
         },
       },
+      overrides = {
+        buflisted = {},
+        buftype = {
+          -- overrides for LSP hover window
+          nofile = {
+            code = {
+              width = "full",
+              language_name = true,
+              disable_background = true,
+            },
+            anti_conceal = { enabled = false },
+          },
+        },
+        filetype = {},
+      },
     })
 
     vim.keymap.set("n", "<localleader>tm", function()
