@@ -10,15 +10,14 @@ return {
       -- logLevel = "debug",
     },
     ty = {
-      disableLanguageServices = true,
+      disableLanguageServices = false,
       diagnosticMode = "workspace",
       inlayHints = {
-        variableTypes = false,
-        callArgumentNames = false,
+        variableTypes = true,
+        callArgumentNames = true,
       },
       experimental = {
         rename = false,
-        autoImport = false,
       },
     },
   },

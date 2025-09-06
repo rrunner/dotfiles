@@ -2,7 +2,7 @@ local icons = require("config.icons")
 
 -- LSP enable servers
 vim.lsp.enable({
-  "basedpyright",
+  -- "basedpyright",
   "bashls",
   "dockerls",
   "jsonls",
