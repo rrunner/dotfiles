@@ -17,7 +17,7 @@ return {
         callArgumentNames = true,
       },
       experimental = {
-        rename = false,
+        rename = true,
       },
     },
   },
