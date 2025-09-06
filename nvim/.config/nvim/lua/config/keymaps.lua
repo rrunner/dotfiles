@@ -1,7 +1,5 @@
 -- general key mappings
 -- note: plugin specific key mappings are generally set in each plugin configuration respectively
-local exists_snacks, _ = pcall(require, "snacks")
-
 vim.keymap.set(
   "n",
   "gl",
@@ -49,12 +47,19 @@ vim.api.nvim_set_keymap("t", "<esc>", [[<c-\><c-n>]], {
 })
 
 vim.keymap.set("n", "<c-t>", function()
+  local snacks_exists, snacks = pcall(require, "snacks")
+  if snacks_exists then
+    snacks.notifier.hide()
+    vim.cmd.nohlsearch()
+    return
+  end
   local noice_exists, _ = pcall(require, "noice")
   if noice_exists then
     vim.cmd.NoiceDismiss()
+    vim.cmd.nohlsearch()
+    return
   end
-  vim.cmd.nohlsearch()
-end, { desc = "Remove search highlight and noice/notification pop-ups", noremap = true, silent = true })
+end, { desc = "Remove search highlight and notification pop-ups", noremap = true, silent = true })
 
 -- vim.api.nvim_set_keymap("v", "J", ":m '>+1<cr>gv=gv", {
 --   noremap = true,
@@ -392,13 +397,18 @@ vim.api.nvim_set_keymap("n", "<leader><leader>", "<c-^>", {
 })
 
 -- use Snacks.bufdelete with below fallback
-if not exists_snacks then
-  vim.api.nvim_set_keymap("n", "<leader>bd", [[<cmd>lclose|b#|bd! #<cr>]], {
-    noremap = true,
-    silent = true,
-    desc = "Delete buffer in normal mode (after switching to alternate buffer)",
-  })
-end
+vim.keymap.set("n", "<leader>bd", function()
+  local snacks_exists, snacks = pcall(require, "snacks")
+  if snacks_exists then
+    snacks.bufdelete()
+  else
+    vim.cmd([[:lclose|b#|bd! #]])
+  end
+end, {
+  noremap = true,
+  silent = true,
+  desc = "Delete buffer in normal mode (after switching to alternate buffer)",
+})
 
 vim.keymap.set("n", "<leader>bf", function()
   if vim.wo.winfixbuf then
