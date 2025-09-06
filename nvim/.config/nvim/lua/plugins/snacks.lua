@@ -598,23 +598,27 @@ return {
       if utils.inside_git_repo() then
         snacks.picker.git_files()
       else
-        vim.ui.input({
-          prompt = "Enter directory (cwd):",
-          completion = "dir",
-          default = vim.uv.cwd() .. utils.path_sep,
-        }, function(input)
-          if input == nil then
-            -- window is closed with a keybind
-            return
-          elseif input and vim.fn.isdirectory(input) ~= 0 then
-            snacks.picker.files({
-              dirs = { input },
-              exclude = exclude_fext,
-            })
-          else
-            vim.notify("No valid directory")
-          end
-        end)
+        snacks.picker.files({
+          dirs = { vim.uv.cwd() },
+          exclude = exclude_fext,
+        })
+        -- vim.ui.input({
+        --   prompt = "Enter directory (cwd):",
+        --   completion = "dir",
+        --   default = vim.uv.cwd() .. utils.path_sep,
+        -- }, function(input)
+        --   if input == nil then
+        --     -- window is closed with a keybind
+        --     return
+        --   elseif input and vim.fn.isdirectory(input) ~= 0 then
+        --     snacks.picker.files({
+        --       dirs = { input },
+        --       exclude = exclude_fext,
+        --     })
+        --   else
+        --     vim.notify("No valid directory")
+        --   end
+        -- end)
       end
     end, {
       noremap = true,
