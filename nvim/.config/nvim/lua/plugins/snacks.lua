@@ -691,7 +691,7 @@ return {
     end, {
       noremap = true,
       silent = true,
-      desc = "Search notes",
+      desc = "Search templates (e.g. different type of notes)",
     })
 
     vim.keymap.set("n", "<leader>ss", function()
