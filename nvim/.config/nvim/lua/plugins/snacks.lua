@@ -658,7 +658,7 @@ return {
       desc = "Search help (help tags)",
     })
 
-    vim.keymap.set("n", "<leader>sn", function()
+    vim.keymap.set("n", "<leader>st", function()
       snacks.picker({
         finder = "files",
         format = "file",
