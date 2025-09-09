@@ -6,7 +6,7 @@ return {
   ft = supported_filetypes,
   dependencies = {
     { "nvim-treesitter/nvim-treesitter", branch = "main" },
-    { "echasnovski/mini.icons", version = false },
+    { "nvim-mini/mini.icons", version = false },
   },
   config = function()
     local icons = require("config.icons")

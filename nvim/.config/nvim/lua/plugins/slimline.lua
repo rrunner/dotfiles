@@ -1,7 +1,8 @@
 return {
   "sschleemilch/slimline.nvim",
+  -- dir = "~/projects/slimline.nvim/",
   dependencies = {
-    { "echasnovski/mini.icons", version = false },
+    { "nvim-mini/mini.icons", version = false },
   },
   config = function()
     local utils = require("config.utils")
@@ -63,5 +64,21 @@ return {
       },
     }
     require("slimline").setup(opts)
+
+    local my_slimline = vim.api.nvim_create_augroup("MySlimline", { clear = true })
+    vim.api.nvim_create_autocmd({ "FocusGained", "WinEnter", "WinLeave" }, {
+      callback = function()
+        if vim.bo.buftype ~= "" then
+          return
+        end
+        if not utils.inside_git_repo() then
+          return
+        end
+        -- require("gitsigns").refresh()
+        vim.cmd([[redrawstatus!]])
+      end,
+      group = my_slimline,
+      pattern = "*",
+    })
   end,
 }
