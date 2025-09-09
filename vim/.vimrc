@@ -432,7 +432,7 @@ set formatoptions-=o
 set formatoptions+=j
 set formatoptions+=q
 set ttyfast
-set lazyredraw
+set nolazyredraw
 set autoread
 set scrolloff=8
 set sidescrolloff=3

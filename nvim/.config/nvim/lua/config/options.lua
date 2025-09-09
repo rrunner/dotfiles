@@ -67,7 +67,7 @@ vim.opt.backspace = { "indent", "eol", "start" }
 vim.opt.formatoptions:append({ "q", "j" })
 vim.opt.formatoptions:remove({ "c", "r", "o" })
 vim.opt.ttyfast = true
-vim.opt.lazyredraw = true
+vim.opt.lazyredraw = false
 vim.opt.autoread = true
 vim.opt.scrolloff = 8
 vim.opt.sidescrolloff = 3
