@@ -52,6 +52,7 @@ return {
     },
   },
   -- disable ruff as hover provider to avoid conflicts with pyright
+  -- maybe not required for ruff + ty
   on_attach = function(client)
     if client.name == "ruff" then
       client.server_capabilities.hoverProvider = false
