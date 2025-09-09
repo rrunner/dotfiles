@@ -52,7 +52,7 @@ return {
         notify = true,
       },
       notifier = {
-        enabled = true,
+        enabled = false,
         timeout = 3000,
         sort = { "added" }, --sort by time
         width = { min = 30, max = 0.5 },
