@@ -103,11 +103,9 @@ return {
 
     conform.setup({
       -- use lsp fallback to format: toml
-      -- stop_after_first = true -- to use the first found formatter if the table includes several formatters
       formatters_by_ft = {
-        -- TODO: use ruff LSP for python formatting to enable config via pyproject.toml (however formating via ruff LSP currently don't cover all use cases)
+        -- TODO: use ruff LSP for python formatting to enable using common rules/settings via pyproject.toml
         -- run both for now below... see https://github.com/astral-sh/ruff/issues/8232
-        -- air is a both a formatter and LSP: watch https://posit-dev.github.io/air/editor-neovim.html for capabilities
         python = { "ruff_fix", "ruff_format" },
         lua = { "stylua" },
         markdown = { "prettier", "markdownlint-cli2", "markdown-toc" },
@@ -122,6 +120,8 @@ return {
         sql = { "sqlfluff" },
         mysql = { "sqlfluff" },
         haskell = { "ormolu" },
+        -- TODO: air is a both a formatter and LSP
+        -- watch https://posit-dev.github.io/air/editor-neovim.html for capabilities
         r = { "air" },
         rmd = { "injected" },
       },
