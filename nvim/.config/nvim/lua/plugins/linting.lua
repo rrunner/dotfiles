@@ -3,10 +3,10 @@ return {
   event = { "BufReadPre", "BufNewFile" },
   config = function()
     local lint = require("lint")
-    local utils = require("config.utils")
+    -- local utils = require("config.utils")
 
     -- mypy only works with stdin = false (only updates for event BufWritePost in the autocmd below)
-    lint.linters.mypy.cmd = utils.app_prio("mypy")
+    -- lint.linters.mypy.cmd = utils.app_prio("mypy")
 
     -- sqlfluff (see 'sqlfluff dialects' for different dialects)
     lint.linters.sqlfluff.args = { "lint", "--dialect", "postgres" }

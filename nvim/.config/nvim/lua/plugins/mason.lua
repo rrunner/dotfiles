@@ -56,7 +56,7 @@ return {
       "jq",
       "markdown-toc",
       "markdownlint-cli2",
-      "mypy",
+      -- "mypy",
       "ormolu",
       "prettier",
       "ruff",
