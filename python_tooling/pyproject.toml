@@ -28,30 +28,31 @@ exclude = [
   ".pytype",
   ".ruff_cache",
   ".venv",
-  ".vscode/",
   ".vscode-oss/",
+  ".vscode/",
+  "Dropbox/",
   "build",
   "dist",
-  "venv",
-  "Dropbox/",
-  "projects/",
   "node_modules",
+  "projects/",
   "site-packages",
+  "venv",
 ]
 
 [tool.ruff.lint]
 select = ["ALL"]
 ignore = [
+  "D406",
   "D407",
-  "T201",
+  "E501",
   "ERA",
   "ERA001",
-  "E501",
-  "D406",
-  "RET504",
-  "PLR2004",
   "PD901",
   "PLR0913",
+  "PLR2004",
+  "RET504",
+  "T100",
+  "T201",
 ]
 dummy-variable-rgx = "^(_+|(_+[a-zA-Z0-9_]*[a-zA-Z0-9]+?))$"
 
