@@ -792,14 +792,6 @@ return {
       desc = "Spell suggestions (if spellcheck is active)",
     })
 
-    vim.keymap.set("n", "<leader>sm", function()
-      snacks.picker.notifications()
-    end, {
-      noremap = true,
-      silent = true,
-      desc = "Search notification history",
-    })
-
     vim.keymap.set("n", "<leader>ex", function()
       snacks.picker.explorer()
     end, {
