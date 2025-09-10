@@ -16,6 +16,7 @@ return {
       configuration = {
         lint = {
           preview = false,
+          ["future-annotations"] = true,
           select = { "ALL" },
           ignore = {
             "D406",

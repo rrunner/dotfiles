@@ -55,6 +55,7 @@ ignore = [
   "T201",
 ]
 dummy-variable-rgx = "^(_+|(_+[a-zA-Z0-9_]*[a-zA-Z0-9]+?))$"
+future-annotations = true
 
 [tool.ruff.lint.extend-per-file-ignores]
 "tests/**/*.py" = ["S101", "ARG", "FBT", "PLR2004", "S311"]
