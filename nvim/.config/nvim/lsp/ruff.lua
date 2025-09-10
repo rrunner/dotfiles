@@ -6,6 +6,9 @@ return {
   filetypes = { "python" },
   init_options = {
     settings = {
+      lint = {
+        enable = true,
+      },
       lineLength = 88,
       fixAll = false,
       organizeImports = false,
@@ -32,7 +35,7 @@ return {
             "T201",
           },
         },
-        -- format using ruff CLI with conform.nvim
+        -- formatting using ruff CLI with conform.nvim (see on_attach below)
         format = {
           preview = false,
         },
@@ -66,11 +69,13 @@ return {
       },
     },
   },
-  -- disable ruff as hover provider to avoid conflicts with pyright
-  -- maybe not required for ruff + ty
   on_attach = function(client)
     if client.name == "ruff" then
-      client.server_capabilities.hoverProvider = false
+      -- disable ruff as hover provider to avoid conflicts with ty
+      -- client.server_capabilities.hoverProvider = false
+      -- formatting using ruff CLI with conform.nvim
+      client.server_capabilities.documentFormattingProvider = false
+      client.server_capabilities.documentRangeFormattingProvider = false
     end
   end,
 }
