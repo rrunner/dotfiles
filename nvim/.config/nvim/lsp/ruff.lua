@@ -6,23 +6,42 @@ return {
   filetypes = { "python" },
   init_options = {
     settings = {
+      lineLength = 88,
+      fixAll = false,
+      organizeImports = false,
+      showSyntaxErrors = true,
+      logLevel = "error",
       configurationPreference = "filesystemFirst",
-      lint = {
-        enable = true,
-        preview = false,
-        select = { "ALL" },
-        ignore = {
-          "D406",
-          "D407",
-          "E501",
-          "ERA",
-          "ERA001",
-          "PD901",
-          "PLR0913",
-          "PLR2004",
-          "RET504",
-          "T100",
-          "T201",
+      -- configuration = "~/dotfiles/python_tooling/pyproject.toml",
+      configuration = {
+        lint = {
+          preview = false,
+          select = { "ALL" },
+          ignore = {
+            "D406",
+            "D407",
+            "E501",
+            "ERA",
+            "ERA001",
+            "PD901",
+            "PLR0913",
+            "PLR2004",
+            "RET504",
+            "T100",
+            "T201",
+          },
+        },
+        -- format using ruff CLI with conform.nvim
+        format = {
+          preview = false,
+        },
+      },
+      codeAction = {
+        disableRuleComment = {
+          enable = true,
+        },
+        fixViolation = {
+          enable = true,
         },
       },
       exclude = {
@@ -44,11 +63,6 @@ return {
         "site-packages",
         "venv",
       },
-      lineLength = 88,
-      fixAll = false,
-      organizeImports = false,
-      showSyntaxErrors = true,
-      logLevel = "error",
     },
   },
   -- disable ruff as hover provider to avoid conflicts with pyright

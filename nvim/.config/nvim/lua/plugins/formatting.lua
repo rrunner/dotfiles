@@ -44,6 +44,7 @@ return {
         "--force-exclude",
         "--exit-zero",
         "--no-cache",
+        "--no-preview",
         "--select=ALL",
         -- ERA001: ignores messages about code that is commented out
         -- E501: ensures ruff splits lines (line-length) the same as black
@@ -67,6 +68,12 @@ return {
       args = {
         "format",
         "--force-exclude",
+        -- example of inline TOML (key-value) configuration options
+        -- get configuration name/key from the CLI tool and not from pyproject.toml
+        -- "--config",
+        -- [[format.quote-style='double']],
+        -- "--line-length",
+        -- "88",
         "--stdin-filename",
         "$FILENAME",
         "-",
@@ -79,7 +86,7 @@ return {
       }),
     }
 
-    require("conform").formatters.prettier = {
+    conform.formatters.prettier = {
       prepend_args = { "--end-of-line", "auto" },
     }
 
