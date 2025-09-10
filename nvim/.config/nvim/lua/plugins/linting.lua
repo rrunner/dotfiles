@@ -1,3 +1,4 @@
+-- linting
 return {
   "mfussenegger/nvim-lint",
   event = { "BufReadPre", "BufNewFile" },
@@ -22,7 +23,6 @@ return {
     local linter_augroup = vim.api.nvim_create_augroup("Linting", { clear = true })
     vim.api.nvim_create_autocmd({ "BufReadPost", "InsertLeave", "BufWritePost", "TextChanged" }, {
       callback = function()
-        -- run the linter in buffers that you can modify
         if vim.opt_local.modifiable:get() then
           lint.try_lint()
         end

@@ -69,7 +69,7 @@ return {
         "format",
         "--force-exclude",
         -- example of inline TOML (key-value) configuration options
-        -- get configuration name/key from the CLI tool and not from pyproject.toml
+        -- note: get the configuration name/key from the CLI tool and not from pyproject.toml
         -- "--config",
         -- [[format.quote-style='double']],
         -- "--line-length",
@@ -111,8 +111,6 @@ return {
     conform.setup({
       -- use lsp fallback to format: toml
       formatters_by_ft = {
-        -- TODO: use ruff LSP for python formatting to enable using common rules/settings via pyproject.toml
-        -- run both for now below... see https://github.com/astral-sh/ruff/issues/8232
         python = { "ruff_fix", "ruff_format" },
         lua = { "stylua" },
         markdown = { "prettier", "markdownlint-cli2", "markdown-toc" },
