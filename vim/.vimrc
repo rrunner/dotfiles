@@ -333,26 +333,24 @@ nnoremap <silent><leader>bf :setlocal winfixbuf!<cr>
 " replace << with = in insert mode
 inoremap << =
 
+" readline keymaps (a subset)
 " move left in insert mode (left arrow)
 inoremap <c-b> <left>
-
 " move right in insert/command-line mode (right arrow)
 inoremap <c-l> <right>
 cnoremap <c-l> <right>
-
 " move right in insert mode (right arrow)
 inoremap <c-f> <right>
-
-
+" delete line forward
+inoremap <c-k> <c-g>u<c-o>d$
 " yank/paste the current line and then comment the same line
 nmap ycc yygccp
-
-" keybinds below is an attempt to align with readline
 cnoremap <c-b> <left>
 cnoremap <c-f> <right>
 cnoremap <c-d> <nop>
 cnoremap <c-a> <home>
 cnoremap <c-e> <end>
+cnoremap <c-k> <c-\>estrpart(getcmdline(), 0, getcmdpos()-1)<cr>
 
 " go to last line in buffer (more convenient than G)
 nnoremap gl G

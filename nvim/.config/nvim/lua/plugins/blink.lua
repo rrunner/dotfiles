@@ -202,7 +202,7 @@ return {
 
     cmdline = {
       enabled = true,
-      -- readline keymaps
+      -- readline keymaps (a subset)
       keymap = {
         preset = "cmdline",
         ["<c-a>"] = {
@@ -223,6 +223,11 @@ return {
         ["<c-f>"] = {
           function()
             feedkey("<right>", "c")
+          end,
+        },
+        ["<c-k>"] = {
+          function()
+            feedkey("<c-\\>estrpart(getcmdline(), 0, getcmdpos()-1)<cr>", "c")
           end,
         },
       },

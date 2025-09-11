@@ -260,6 +260,7 @@ vim.api.nvim_set_keymap("i", "<<", "=", {
   desc = "Replace << with = in insert mode",
 })
 
+-- readline keymaps (a subset)
 vim.api.nvim_set_keymap("i", "<c-b>", "<left>", {
   silent = true,
   desc = "Move left in insert mode (left arrow)",
@@ -273,6 +274,11 @@ vim.keymap.set({ "i", "c" }, "<c-l>", "<right>", {
 vim.api.nvim_set_keymap("i", "<c-f>", "<right>", {
   silent = true,
   desc = "Move right in insert mode (right arrow)",
+})
+
+vim.api.nvim_set_keymap("i", "<c-k>", "<c-g>u<c-o>d$", {
+  silent = true,
+  desc = "Delete line forward",
 })
 
 vim.api.nvim_set_keymap("n", "H", "^", {
