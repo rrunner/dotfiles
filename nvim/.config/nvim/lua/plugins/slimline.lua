@@ -29,7 +29,16 @@ return {
           verbose = false,
         },
         path = {
-          directory = false,
+          directory = true,
+          truncate = {
+            chars = 1,
+            full_dirs = 2,
+          },
+          icons = {
+            folder = icons._kinds_cmp.Folder,
+            modified = "+",
+            read_only = "ro",
+          },
         },
         git = {
           icons = {
