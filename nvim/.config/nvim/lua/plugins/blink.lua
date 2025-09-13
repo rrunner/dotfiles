@@ -60,6 +60,10 @@ return {
         snippets = {
           max_items = 6,
           score_offset = 5,
+          -- do not show snippets after trigger character
+          should_show_items = function(ctx)
+            return ctx.trigger.initial_kind ~= "trigger_character"
+          end,
           opts = {
             ignored_filetypes = {},
           },
