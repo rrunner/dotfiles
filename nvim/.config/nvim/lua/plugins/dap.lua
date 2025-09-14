@@ -216,15 +216,17 @@ return {
         request = "launch",
         name = "Debug/launch current file",
         program = "${file}",
-        console = "internalConsole",
+        -- console = "integratedTerminal", -- print to console
+        console = "internalConsole", -- print to REPL
         -- makes third party libraries and packages debuggable
         justMyCode = false,
         -- dap-adapter-python does not support multiprocess yet (disable multiprocess patch in debugpy)
         subProcess = false,
         -- use the current cwd of editor/buffer, not the file's absolute path
-        cwd = function()
-          return vim.fn.getcwd()
-        end,
+        cwd = "${workspaceFolder}",
+        -- cwd = function()
+        --   return vim.fn.getcwd()
+        -- end,
         pythonPath = function()
           return utils.get_python_path()
         end,
