@@ -216,8 +216,8 @@ return {
         request = "launch",
         name = "Debug/launch current file",
         program = "${file}",
-        -- console = "integratedTerminal", -- print to console (does not show in virtual environment)
-        console = "internalConsole", -- print to REPL
+        console = "integratedTerminal", -- print to console (does not print to console when testing in debugging mode with neotest-python)
+        -- console = "internalConsole", -- print to REPL
         -- makes third party libraries and packages debuggable
         justMyCode = false,
         -- dap-adapter-python does not support multiprocess yet (disable multiprocess patch in debugpy)

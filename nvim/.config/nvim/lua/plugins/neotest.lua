@@ -20,9 +20,16 @@ return {
           -- arguments for nvim-dap configuration
           dap = {
             justMyCode = false,
+            redirectOutput = true,
+            subProcess = false,
+            stopOnEntry = false,
           },
-          -- default runner
+          -- default test runner
           runner = "pytest",
+          -- custom python path for the runner
+          python = function()
+            return utils.get_python_path()
+          end,
         }),
         require("neotest-testthat"),
       },
