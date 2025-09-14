@@ -29,7 +29,7 @@ return {
           verbose = false,
         },
         path = {
-          directory = true,
+          directory = false,
           truncate = {
             chars = 1,
             full_dirs = 2,
