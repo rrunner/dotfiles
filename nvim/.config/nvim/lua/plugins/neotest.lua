@@ -20,9 +20,6 @@ return {
           -- arguments for nvim-dap configuration
           dap = {
             justMyCode = false,
-            redirectOutput = true,
-            subProcess = false,
-            stopOnEntry = false,
           },
           -- default test runner
           runner = "pytest",
