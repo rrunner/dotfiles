@@ -49,12 +49,14 @@ vim.api.nvim_set_keymap("t", "<esc>", [[<c-\><c-n>]], {
 vim.keymap.set("n", "<c-t>", function()
   local snacks_exists, snacks = pcall(require, "snacks")
   if snacks_exists then
+    vim.cmd([[echo ""]])
     snacks.notifier.hide()
     vim.cmd.nohlsearch()
     return
   end
   local noice_exists, _ = pcall(require, "noice")
   if noice_exists then
+    vim.cmd([[echo ""]])
     vim.cmd.NoiceDismiss()
     vim.cmd.nohlsearch()
     return
