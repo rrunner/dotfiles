@@ -339,8 +339,9 @@ vim.api.nvim_set_keymap("n", "P", "zP", {
   desc = "Paste a block of text before cursor without trailing blanks",
 })
 
-vim.api.nvim_set_keymap("n", "<leader>w", "<cmd>up<cr>", {
+vim.api.nvim_set_keymap("n", "<leader>w", "<cmd>silent up<cr>", {
   noremap = true,
+  silent = true,
   desc = "Write file if updated",
 })
 

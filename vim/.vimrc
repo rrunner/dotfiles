@@ -182,7 +182,7 @@ let mapleader=' '
 " nnoremap <leader>t :below terminal<cr>
 nnoremap <leader>ex :NERDTree<cr>
 " nnoremap <leader>ex :Lexplore<cr>
-nnoremap <leader>w :up<cr>
+nnoremap <silent> <leader>w :silent up<cr>
 nnoremap <leader>sub :%s///gc<left><left><left><left>
 nnoremap <leader>gl :g//<left>
 nnoremap <leader>ef :e <c-r>=expand("%:p:h")."/"<cr>
