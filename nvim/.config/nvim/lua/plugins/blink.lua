@@ -40,7 +40,7 @@ return {
         elseif vim.tbl_contains({ "text", "mail" }, ft) then
           return { "buffer", "ripgrep", "dictionary", "thesaurus" }
         else
-          return { "lsp", "path", "snippets", "buffer", "omni" }
+          return { "lsp", "path", "snippets", "buffer", "ripgrep" }
         end
       end,
       providers = {
