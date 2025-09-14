@@ -33,23 +33,32 @@ M.inside_git_repo = function()
   return vim.v.shell_error == 0
 end
 
--- retrieve the path to the python interpreter that executes the python program
--- to be debugged
+-- retrieve the path to the python interpreter
 ---@return string  -- the path to the active python interpreter
-M.get_python_path = function(verbose)
-  verbose = verbose or false
-
-  -- issue warning if debugpy is not installed in the virtual environment
-  if vim.env.VIRTUAL_ENV and verbose then
+M.get_python_path = function()
+  -- issue warning if debugpy is not found in the virtual environment
+  if vim.env.VIRTUAL_ENV then
     local _dpath = vim.env.VIRTUAL_ENV .. "/bin/debugpy"
     if vim.fn.executable(_dpath) == 0 then
-      vim.notify("debugpy is not installed in virtual environment", vim.log.levels.WARN)
+      vim.notify("debugpy is not found in virtual environment", vim.log.levels.WARN)
     end
   end
 
+  -- use python installed in virtual environment
+  if vim.env.VIRTUAL_ENV then
+    local py_path = vim.env.VIRTUAL_ENV .. "/bin/python"
+    if vim.fn.executable(py_path) == 0 then
+      vim.notify("python is not found in virtual environment", vim.log.levels.WARN)
+    else
+      -- vim.notify("python (for debugging): " .. py_path, vim.log.levels.INFO)
+      return py_path
+    end
+  end
+
+  -- use system installations of python/debugpy
   local py_path = vim.fn.exepath("python3") or vim.fn.exepath("python")
-  if py_path and verbose then
-    vim.notify("python (for debugging): " .. py_path, vim.log.levels.INFO)
+  if py_path then
+    -- vim.notify("python (for debugging): " .. py_path, vim.log.levels.INFO)
   elseif not py_path then
     vim.notify("python not found (for debugging)", vim.log.levels.WARN)
   end

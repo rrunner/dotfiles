@@ -191,7 +191,7 @@ return {
       if config.request == "launch" then
         callback({
           type = "executable",
-          command = utils.get_python_path(true),
+          command = utils.get_python_path(),
           args = { "-m", "debugpy.adapter" },
         })
       elseif config.request == "attach" then
@@ -216,7 +216,7 @@ return {
         request = "launch",
         name = "Debug/launch current file",
         program = "${file}",
-        -- console = "integratedTerminal", -- print to console
+        -- console = "integratedTerminal", -- print to console (does not show in virtual environment)
         console = "internalConsole", -- print to REPL
         -- makes third party libraries and packages debuggable
         justMyCode = false,
