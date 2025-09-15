@@ -25,6 +25,7 @@ return {
           runner = "pytest",
           -- custom python path for the runner
           python = function()
+            local utils = require("config.utils")
             return utils.get_python_path()
           end,
         }),
