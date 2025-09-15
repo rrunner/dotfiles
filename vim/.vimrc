@@ -182,7 +182,7 @@ let mapleader=' '
 " nnoremap <leader>t :below terminal<cr>
 nnoremap <leader>ex :NERDTree<cr>
 " nnoremap <leader>ex :Lexplore<cr>
-nnoremap <silent> <leader>w :silent up<cr>
+nnoremap <silent> <leader>w :silent! up<cr>
 nnoremap <leader>sub :%s///gc<left><left><left><left>
 nnoremap <leader>gl :g//<left>
 nnoremap <leader>ef :e <c-r>=expand("%:p:h")."/"<cr>
@@ -191,9 +191,6 @@ nnoremap <leader>ev :vsplit<cr>
 nnoremap <leader>en :vnew<cr>
 nnoremap <leader>co :copen<cr>
 nnoremap <leader>cc :cclose<cr>
-nnoremap <silent> <leader>sf :Files<cr>
-nnoremap <silent> <leader>/ :MyRg<cr>
-nnoremap <silent> <leader>sl :Lines<cr>
 " nnoremap <silent> <leader>j }
 " nnoremap <silent> <leader>j :m .+1<cr>==
 " nnoremap <silent> <leader>k {
