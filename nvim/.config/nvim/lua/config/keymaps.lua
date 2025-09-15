@@ -14,10 +14,16 @@ vim.api.nvim_set_keymap(
   { noremap = true, silent = false, desc = "Search only in visual selected text" }
 )
 
-vim.api.nvim_set_keymap("n", "U", "<c-r>", {
+vim.api.nvim_set_keymap("n", "u", "<cmd>silent undo<cr>", {
   noremap = true,
-  silent = false,
-  desc = "Redo",
+  silent = true,
+  desc = "Undo (silent)",
+})
+
+vim.api.nvim_set_keymap("n", "U", "<cmd>silent redo<cr>", {
+  noremap = true,
+  silent = true,
+  desc = "Redo (silent)",
 })
 
 vim.keymap.set({ "n", "x" }, "<localleader>dd", function()

@@ -248,8 +248,9 @@ nnoremap <silent> M %
 " search only in visual selected text
 xnoremap / <esc>/\%V
 
-" U to redo
-nnoremap U <c-r>
+" undo/redo (silent)
+nnoremap <silent> u :silent! undo<cr>
+nnoremap <silent> U :silent! redo<cr>
 
 " note: use ":" to fetch visual selection to command-line mode in visual mode
 
