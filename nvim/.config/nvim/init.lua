@@ -46,6 +46,11 @@ _G.dd = function(...)
   Snacks.debug.inspect(...)
 end
 
+-- override vim.print (which is also used by :=)
+vim._print = function(_, ...)
+  dd(...)
+end
+
 require("config.icons")
 require("config.utils")
 require("config.autocmds")
