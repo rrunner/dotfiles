@@ -10,7 +10,6 @@ return {
     "rafamadriz/friendly-snippets",
     "folke/lazydev.nvim",
     "archie-judd/blink-cmp-words",
-    "mikavilpas/blink-ripgrep.nvim",
   },
   opts = {
     sources = {
@@ -26,7 +25,7 @@ return {
             node:type()
           )
         then
-          return { "buffer", "ripgrep" }
+          return { "buffer" }
         elseif ft == "lua" then
           return { "lazydev", "lsp", "path", "snippets", "buffer" }
         elseif ft == "gitcommit" then
@@ -38,9 +37,9 @@ return {
         elseif vim.tbl_contains({ "quarto", "rmd" }, ft) then
           return { "buffer", "snippets" }
         elseif vim.tbl_contains({ "text", "mail" }, ft) then
-          return { "buffer", "ripgrep", "dictionary", "thesaurus" }
+          return { "buffer", "dictionary", "thesaurus" }
         else
-          return { "lsp", "path", "snippets", "buffer", "ripgrep" }
+          return { "lsp", "path", "snippets", "buffer" }
         end
       end,
       providers = {
@@ -102,32 +101,6 @@ return {
             -- number of characters required to trigger completion
             dictionary_search_threshold = 4,
             definition_pointers = { "!", "&", "^" },
-          },
-        },
-        ripgrep = {
-          module = "blink-ripgrep",
-          name = "Ripgrep",
-          opts = {
-            -- the minimum length of the current word to start searching
-            prefix_min_len = 4,
-            -- specifies how to find the root of the project where the ripgrep search will start from
-            project_root_marker = { ".git" },
-            fallback_to_regex_highlighting = true,
-            backend = {
-              ripgrep = {
-                -- see `rg --help` for an exact description of the values that ripgrep expects
-                additional_rg_options = {},
-                -- the number of lines to show around each match in the preview (documentation) window
-                context_size = 5,
-                -- enable fallback to cwd if project_root_marker is not found
-                project_root_fallback = true,
-                search_casing = "--smart-case",
-                -- absolute root paths where the rg command will not be executed
-                ignore_paths = {},
-                -- any additional paths to search in (in addition to the project root)
-                additional_paths = {},
-              },
-            },
           },
         },
       },
