@@ -1,18 +1,6 @@
 -- colorschemes
--- set lazy to true for all colourschemes below to use the default nvim colourscheme
+-- set lazy=false/true to enable/disable colourscheme (set lazy=true for all to use default colorscheme)
 return {
-  {
-    "folke/tokyonight.nvim",
-    lazy = true,
-    priority = 1000,
-    config = function()
-      require("tokyonight").setup()
-      vim.cmd.colorscheme("tokyonight-moon")
-      -- vim.cmd.colorscheme("tokyonight-storm")
-      -- vim.cmd.colorscheme("tokyonight-night")
-      -- vim.cmd.colorscheme("tokyonight-day")
-    end,
-  },
   {
     "EdenEast/nightfox.nvim",
     lazy = false,
