@@ -52,7 +52,6 @@ vim._print = function(_, ...)
 end
 
 require("config.icons")
-require("config.utils")
 require("config.autocmds")
 require("config.usercmds")
 require("config.filetype")
