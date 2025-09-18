@@ -169,6 +169,14 @@ if utils.IS_WIN then
   vim.opt.shellquote = ""
   vim.opt.shellxquote = ""
   vim.opt.shellslash = true
+
+  -- start terminal: must hardcode terminal shell on windows to get pwsh
+  -- consider update keymap to <c-;>, and make it toggle
+  local term_str = "<cmd>belowright split term://pwsh | resize -10<cr>i"
+  vim.keymap.set("n", "<leader>t", term_str, {
+    noremap = true,
+    desc = "Start a terminal buffer in terminal mode",
+  })
 end
 
 -- wsl specific
