@@ -361,6 +361,7 @@ return {
               cycle = true,
               preset = "vscode",
               preview = "main",
+              layout = { row = 5 },
             },
           },
           lsp_workspace_symbols = {
