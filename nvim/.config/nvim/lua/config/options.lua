@@ -145,7 +145,7 @@ vim.opt.diffopt = "internal,filler,closeoff,algorithm:patience,linematch:60"
 vim.o.guicursor = "n-v-sm:block-nCursor,i-c-ci-ve:ver25-iCursor,r-cr-o:hor20,t:block-blinkon0-blinkoff0-TermCursor"
 vim.opt.iskeyword:append("-")
 vim.opt.synmaxcol = 300
--- vim.opt.winborder = "rounded"
+vim.opt.winborder = "rounded"
 vim.opt.fillchars = {
   diff = icons.chars.diff,
   eob = " ",

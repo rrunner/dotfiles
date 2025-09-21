@@ -34,7 +34,6 @@ vim.diagnostic.config({
   float = {
     focusable = false,
     style = "minimal",
-    border = "rounded",
     source = true,
     header = "",
     prefix = "",
@@ -158,7 +157,7 @@ vim.api.nvim_create_autocmd("LspAttach", {
     end, vim.tbl_extend("error", bufopts, { desc = "LSP function signature (insert mode)" }))
 
     vim.keymap.set("n", "K", function()
-      vim.lsp.buf.hover({ border = "rounded", width = 80, height = 20 })
+      vim.lsp.buf.hover({ width = 80, height = 20 })
     end, vim.tbl_extend("error", bufopts, { desc = "LSP hover window" }))
 
     if client and client:supports_method(vim.lsp.protocol.Methods.textDocument_typeDefinition) then

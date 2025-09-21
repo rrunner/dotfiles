@@ -129,7 +129,6 @@ return {
 
     completion = {
       menu = {
-        border = "rounded",
         draw = {
           columns = { { "kind_icon" }, { "label", "label_description", "kind", "source_name", gap = 1 } },
           treesitter = { "lsp" },
@@ -144,7 +143,6 @@ return {
         auto_show = true,
         auto_show_delay_ms = 500,
         window = {
-          border = "rounded",
           max_height = 25,
           max_width = 60,
         },
@@ -170,7 +168,6 @@ return {
     signature = {
       enabled = true,
       window = {
-        border = "rounded",
         show_documentation = false,
         scrollbar = false,
         treesitter_highlighting = true,

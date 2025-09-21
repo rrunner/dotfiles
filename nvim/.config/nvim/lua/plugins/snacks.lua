@@ -11,14 +11,6 @@ local layout1 = {
     width = 0.9,
     min_width = 120,
     height = 0.9,
-    {
-      box = "vertical",
-      border = "rounded",
-      title = "{title} {live} {flags}",
-      { win = "input", height = 1, border = "bottom" },
-      { win = "list", border = "none", width = 0.35 },
-    },
-    { win = "preview", title = "{preview}", border = "rounded", width = 0.65 },
   },
 }
 
@@ -347,8 +339,8 @@ return {
             win = {
               input = {
                 keys = {
-                  ["<c-a>"] = { "git_branch_add", mode = { "n", "i" } },
-                  ["<c-d>"] = { "git_branch_del", mode = { "n", "i" } },
+                  ["<c-a>"] = false,
+                  ["<c-d>"] = false,
                   ["<c-x>"] = false,
                 },
               },
@@ -365,14 +357,10 @@ return {
           },
           lsp_symbols = {
             focus = "input",
-            layout = { cycle = true, preset = "vscode", preview = "main" },
-          },
-          treesitter = {
-            focus = "input",
-            layout = { cycle = false, preset = "vscode", preview = "main" },
-            filter = {
-              -- json = true,
-              -- jsonc = true,
+            layout = {
+              cycle = true,
+              preset = "vscode",
+              preview = "main",
             },
           },
           lsp_workspace_symbols = {
@@ -515,14 +503,12 @@ return {
       },
       styles = {
         notification = {
-          border = "rounded",
           wo = {
             winblend = 0,
             wrap = true,
           },
         },
         notification_history = {
-          border = "rounded",
           width = 0.90,
           height = 0.90,
           keys = { q = "close" },
@@ -553,7 +539,6 @@ return {
         scratch = {
           width = 0.6,
           height = 0.6,
-          border = "rounded",
           wo = {
             number = true,
             relativenumber = false,
