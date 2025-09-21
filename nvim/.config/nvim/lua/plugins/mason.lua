@@ -13,6 +13,9 @@ return {
 
     require("mason").setup({
       ui = {
+        width = 0.8,
+        height = 0.9,
+        border = "none",
         keymaps = {
           toggle_package_expand = "o",
           toggle_package_install_log = "o",

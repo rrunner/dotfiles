@@ -63,9 +63,12 @@ require("lsp")
 -- initialize lazy.nvim
 require("lazy").setup("plugins", {
   ui = {
+    size = { width = 0.8, height = 0.9 },
+    border = "none",
     custom_keys = {
       -- reset default mappings (preset with the plugin)
       ["<localleader>l"] = false,
+      ["<localleader>i"] = false,
       ["<localleader>t"] = false,
     },
   },
