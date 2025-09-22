@@ -4,31 +4,6 @@
 -- exclude by file extension (can be used by files and grep pickers)
 local exclude_fext = { "*.js", "*.js.map", "*.mjs", "*.jpg", "*.JPG", "*.avi", "*.AVI", "*.pdf", "*.PDF", "*.h", "*.c" }
 
--- picker layouts
-local layout1 = {
-  layout = {
-    box = "horizontal",
-    width = 0.9,
-    min_width = 120,
-    height = 0.9,
-  },
-}
-
-local layout2 = {
-  layout = {
-    width = 0.9,
-    height = 0.9,
-  },
-}
-
-local layout3 = {
-  preset = "select",
-  layout = {
-    width = 0.3,
-    height = 0.2,
-  },
-}
-
 return {
   "folke/snacks.nvim",
   priority = 1000,
@@ -184,6 +159,10 @@ return {
         ui_select = true,
         layout = {
           cycle = true,
+          layout = {
+            width = 0.9,
+            height = 0.9,
+          },
         },
         formatters = {
           file = {
@@ -306,32 +285,41 @@ return {
           files = {
             hidden = true,
             follow = true,
-            layout = layout2,
           },
           git_files = {
             untracked = false,
             submodules = false,
-            layout = layout2,
           },
           grep = {
             hidden = true,
             follow = true,
             ignored = true,
-            layout = layout2,
           },
           grep_word = {
             hidden = true,
             follow = true,
             ignored = true,
-            layout = layout2,
+          },
+          lines = {
+            layout = {
+              layout = {
+                width = 0,
+                height = 0.4,
+              },
+            },
           },
           buffers = {
             sort_lastused = true,
-            layout = layout3,
+            layout = {
+              preset = "select",
+              layout = {
+                width = 0.3,
+                height = 0.2,
+              },
+            },
           },
           git_status = {
             ignored = false,
-            layout = layout1,
           },
           git_branches = {
             --show all branches (incl. remote)
@@ -346,37 +334,39 @@ return {
               },
             },
           },
-          recent = {
-            layout = layout2,
-          },
-          help = {
-            layout = layout2,
-          },
-          qflist = {
-            layout = layout2,
-          },
           lsp_symbols = {
             focus = "input",
             layout = {
               cycle = true,
               preset = "vscode",
               preview = "main",
-              layout = { row = 5 },
+              layout = {
+                row = 5,
+                width = 0.4,
+                height = 0.4,
+                min_width = 80,
+                border = "none",
+                box = "vertical",
+                {
+                  win = "input",
+                  height = 1,
+                  border = "hpad",
+                  title = "{title} {live} {flags}",
+                  title_pos = "center",
+                },
+                { win = "list", border = "hpad" },
+                { win = "preview", title = "{preview}", border = "none" },
+              },
             },
-          },
-          lsp_workspace_symbols = {
-            layout = layout2,
-          },
-          keymaps = {
-            layout = layout2,
-          },
-          resume = {
-            layout = layout2,
           },
           spelling = {
             layout = {
               preset = "select",
-              layout = { height = 0.53 },
+              layout = {
+                height = 0.5,
+                width = 0.5,
+                min_width = 80,
+              },
             },
             win = {
               list = {
@@ -385,7 +375,6 @@ return {
             },
           },
           notifications = {
-            layout = layout2,
             win = {
               preview = {
                 wo = { statuscolumn = "", signcolumn = "no" },
@@ -434,7 +423,12 @@ return {
               preset = "sidebar",
               hidden = { "input" },
               auto_hide = { "input" },
-              layout = { position = "right" },
+              layout = {
+                position = "right",
+                width = 40,
+                height = 0,
+                min_width = 40,
+              },
             },
             icons = {
               tree = {
