@@ -18,6 +18,7 @@ return {
       },
       experimental = {
         rename = true,
+        autoImport = true,
       },
     },
   },
