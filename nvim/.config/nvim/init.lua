@@ -65,6 +65,7 @@ require("lazy").setup("plugins", {
   ui = {
     size = { width = 0.8, height = 0.9 },
     border = "none",
+    backdrop = 100,
     custom_keys = {
       -- reset default mappings (preset with the plugin)
       ["<localleader>l"] = false,
