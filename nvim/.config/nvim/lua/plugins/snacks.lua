@@ -337,7 +337,6 @@ return {
           lsp_symbols = {
             focus = "input",
             layout = {
-              cycle = true,
               preset = "vscode",
               preview = "main",
               layout = {
@@ -364,8 +363,8 @@ return {
               preset = "select",
               layout = {
                 height = 0.5,
-                width = 0.5,
-                min_width = 80,
+                width = 0.3,
+                min_width = 60,
               },
             },
             win = {
