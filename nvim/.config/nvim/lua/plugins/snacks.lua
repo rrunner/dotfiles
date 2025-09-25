@@ -365,6 +365,7 @@ return {
                 height = 0.5,
                 width = 0.3,
                 min_width = 60,
+                title = "Spell suggestions",
               },
             },
             win = {
