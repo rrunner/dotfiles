@@ -132,6 +132,9 @@ return {
       },
       scratch = {
         name = "Scratch",
+        root = vim.fn.stdpath("data") .. "/scratch",
+        -- automatically write when the buffer is hidden
+        autowrite = true,
         win = { style = "scratch" },
         win_by_ft = {
           lua = {
