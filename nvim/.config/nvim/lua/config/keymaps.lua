@@ -404,12 +404,6 @@ end, {
   desc = "Delete line(s) without yanking",
 })
 
-map("n", "<localleader><c-enter>", [[<cmd>make<cr>]], {
-  noremap = true,
-  silent = true,
-  desc = "Run script in buffer (compile script)",
-})
-
 map("n", "<localleader>tb", function()
   require("config.utils").toggle_boolean()
 end, {

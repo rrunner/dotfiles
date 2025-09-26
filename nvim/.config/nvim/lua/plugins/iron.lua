@@ -25,20 +25,24 @@ return {
       ignore_blank_lines = false,
     })
 
-    vim.keymap.set("n", "<c-enter>", function()
-      require("iron.core").send_line()
+    vim.keymap.set({ "n", "v", "x" }, "<c-enter>", function()
+      local name = vim.fn.fnamemodify(vim.api.nvim_buf_get_name(0), ":t")
+
+      if string.lower(name):find("scratch") then
+        -- inside snacks scratch buffer
+        return
+      else
+        local mode = vim.api.nvim_get_mode().mode
+        if mode == "n" then
+          require("iron.core").send_line()
+        elseif vim.tbl_contains({ "v", "V", "x" }, mode) then
+          require("iron.core").visual_send()
+        end
+      end
     end, {
       noremap = true,
       silent = true,
       desc = "Send line (iron REPL)",
-    })
-
-    vim.keymap.set("v", "<c-enter>", function()
-      require("iron.core").visual_send()
-    end, {
-      noremap = true,
-      silent = true,
-      desc = "Visual send (iron REPL)",
     })
   end,
 }
