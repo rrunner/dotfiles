@@ -162,6 +162,18 @@ return {
               },
             },
           },
+          r = {
+            keys = {
+              ["source"] = {
+                "<c-enter>",
+                function()
+                  vim.cmd([[!Rscript %]])
+                end,
+                desc = "Source buffer",
+                mode = { "n", "x" },
+              },
+            },
+          },
         },
       },
       explorer = {
