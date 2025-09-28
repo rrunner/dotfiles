@@ -434,6 +434,15 @@ return {
               },
             },
           },
+          select = {
+            layout = {
+              preset = "select",
+              layout = {
+                width = 0.4,
+                height = 0.4,
+              },
+            },
+          },
           explorer = {
             hidden = false,
             follow_file = true,
