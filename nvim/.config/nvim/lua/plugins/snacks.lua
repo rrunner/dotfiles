@@ -420,11 +420,12 @@ return {
               "venv",
             },
             recent = false,
+            matcher = { cwd_bonus = true },
             win = {
               input = {
                 keys = {
                   ["<c-e>"] = false,
-                  ["<cr>"] = { { "tcd", "picker_explorer" }, mode = { "n", "i" } },
+                  ["<cr>"] = { { "tcd", "picker_files" }, mode = { "n", "i" } },
                   ["<c-f>"] = false,
                   ["<c-g>"] = false,
                   ["<c-r>"] = false,
