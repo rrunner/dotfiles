@@ -107,14 +107,11 @@ end
 -- retrieve current working directory (cwd) prefixed with 'a snake' followed by
 -- the name of the Python virtual environment if this is active (consumed by
 -- the statusline plugin)
----@param icon_venv_only boolean  -- only return python snake icon and name of venv
 ---@return string  -- the cwd possibly prefixed with name of Python virtual environment
-M.venv_with_cwd = function(icon_venv_only)
+M.venv_with_cwd = function()
   local venv = vim.env.VIRTUAL_ENV or nil
   if venv == nil then
     return uv.cwd() or ""
-  elseif icon_venv_only then
-    return " (" .. str.match(venv, "/?([.%w_-]+)$") .. ")"
   else
     return " (" .. str.match(venv, "/?([.%w_-]+)$") .. ") " .. uv.cwd()
   end

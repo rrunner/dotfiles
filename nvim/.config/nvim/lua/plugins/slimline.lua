@@ -18,7 +18,7 @@ return {
         },
         center = {},
         right = {
-          utils.venv_with_cwd(false),
+          utils.venv_with_cwd,
           "filetype_lsp",
           "recording",
           "progress",
