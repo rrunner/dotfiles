@@ -26,10 +26,8 @@ return {
     })
 
     vim.keymap.set({ "n", "v", "x" }, "<c-enter>", function()
-      local name = vim.fn.fnamemodify(vim.api.nvim_buf_get_name(0), ":t")
-
-      if string.lower(name):find("scratch") then
-        -- inside snacks scratch buffer
+      local utils = require("config.utils")
+      if utils.inside_scratch_buffer(0) then
         return
       else
         local mode = vim.api.nvim_get_mode().mode

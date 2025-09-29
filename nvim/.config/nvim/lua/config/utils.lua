@@ -188,7 +188,7 @@ M.close_explorer_picker = function()
   end
 end
 
--- function to identify if the the current buffer is 'non-normal',
+-- function to identify if the current buffer is 'non-normal',
 -- a buffer is 'non-normal' if it is floating, unnamed or does have
 -- a buftype defined
 ---@return boolean -- true if buffer is 'non-normal', false otherwise
@@ -253,6 +253,17 @@ M.get_filetype_icon = function(filetype)
   end
   local icon, hl_group, _ = mini_icons.get("filetype", filetype)
   return icon and "%#" .. hl_group .. "#" .. icon .. "%* " or ""
+end
+
+-- function to identify if the current buffer is a Snacks scratch buffer
+---@param buf integer  -- buffer number
+---@return boolean -- true if the current buffer is a Snacks scratch buffer
+M.inside_scratch_buffer = function(buf)
+  local snacks = require("snacks")
+  local file = vim.api.nvim_buf_get_name(buf)
+  return vim.iter(snacks.scratch.list()):find(function(s)
+    return s.file == file
+  end)
 end
 
 return M
