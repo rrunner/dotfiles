@@ -312,6 +312,11 @@ return {
           files = {
             hidden = true,
             follow = true,
+            dirs = { vim.uv.cwd() },
+            exclude = exclude_fext,
+          },
+          recent = {
+            filter = { cwd = true },
           },
           git_files = {
             untracked = false,
@@ -420,12 +425,11 @@ return {
               "venv",
             },
             recent = false,
-            matcher = { cwd_bonus = true },
             win = {
               input = {
                 keys = {
                   ["<c-e>"] = false,
-                  ["<cr>"] = { { "tcd", "picker_files" }, mode = { "n", "i" } },
+                  ["<cr>"] = { { "tcd", "picker_recent" }, mode = { "n", "i" } },
                   ["<c-f>"] = false,
                   ["<c-g>"] = false,
                   ["<c-r>"] = false,
@@ -615,10 +619,7 @@ return {
       if utils.inside_git_repo() then
         snacks.picker.git_files()
       else
-        snacks.picker.files({
-          dirs = { vim.uv.cwd() },
-          exclude = exclude_fext,
-        })
+        snacks.picker.files()
         -- vim.ui.input({
         --   prompt = "Enter directory (cwd):",
         --   completion = "dir",
