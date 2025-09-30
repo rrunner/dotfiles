@@ -312,8 +312,6 @@ return {
           files = {
             hidden = true,
             follow = true,
-            dirs = { vim.uv.cwd() },
-            exclude = exclude_fext,
           },
           recent = {
             filter = { cwd = true },
@@ -619,7 +617,10 @@ return {
       if utils.inside_git_repo() then
         snacks.picker.git_files()
       else
-        snacks.picker.files()
+        snacks.picker.files({
+          dirs = { vim.uv.cwd() },
+          exclude = exclude_fext,
+        })
         -- vim.ui.input({
         --   prompt = "Enter directory (cwd):",
         --   completion = "dir",
