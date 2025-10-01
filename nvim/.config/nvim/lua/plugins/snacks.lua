@@ -621,28 +621,35 @@ return {
           dirs = { vim.uv.cwd() },
           exclude = exclude_fext,
         })
-        -- vim.ui.input({
-        --   prompt = "Enter directory (cwd):",
-        --   completion = "dir",
-        --   default = vim.uv.cwd() .. utils.path_sep,
-        -- }, function(input)
-        --   if input == nil then
-        --     -- window is closed with a keybind
-        --     return
-        --   elseif input and vim.fn.isdirectory(input) ~= 0 then
-        --     snacks.picker.files({
-        --       dirs = { input },
-        --       exclude = exclude_fext,
-        --     })
-        --   else
-        --     vim.notify("No valid directory")
-        --   end
-        -- end)
       end
     end, {
       noremap = true,
       silent = true,
-      desc = "Search files (tracked git files inside git repo)",
+      desc = "Search files in cwd (tracked git files inside git repo)",
+    })
+
+    vim.keymap.set("n", "<leader>sF", function()
+      vim.ui.input({
+        prompt = "Enter directory (cwd):",
+        completion = "dir",
+        default = vim.uv.cwd() .. utils.path_sep,
+      }, function(input)
+        if input == nil then
+          -- window is closed with a keybind
+          return
+        elseif input and vim.fn.isdirectory(input) ~= 0 then
+          snacks.picker.files({
+            dirs = { input },
+            exclude = exclude_fext,
+          })
+        else
+          vim.notify("No valid directory")
+        end
+      end)
+    end, {
+      noremap = true,
+      silent = true,
+      desc = "Search files from user specified folder",
     })
 
     vim.keymap.set("n", "<leader>sl", function()
