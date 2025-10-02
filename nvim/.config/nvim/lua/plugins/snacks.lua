@@ -86,6 +86,7 @@ return {
         },
         shell = vim.o.shell,
       },
+      -- indent (animation)
       indent = {
         enabled = false,
         indent = {
@@ -179,6 +180,10 @@ return {
       explorer = {
         enabled = true,
         replace_netrw = true,
+      },
+      -- scroll (animation)
+      scroll = {
+        enabled = true,
       },
       picker = {
         enabled = true,
