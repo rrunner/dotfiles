@@ -177,8 +177,8 @@ return {
       dapui.open()
     end
 
-    -- register the debugpy adapter
-    dap.adapters.debugpy = function(callback, config)
+    -- register the debugpy adapter (neotest-python requires the adapter name to be "python")
+    dap.adapters.python = function(callback, config)
       if config.request == "launch" then
         callback({
           type = "executable",
@@ -205,7 +205,7 @@ return {
     -- configure the python debugee (application)
     dap.configurations.python = {
       {
-        type = "debugpy",
+        type = "python",
         request = "launch",
         name = "Debug/launch current file",
         program = "${file}",
@@ -227,7 +227,7 @@ return {
         stopOnEntry = false,
       },
       -- {
-      --   type = "debugpy",
+      --   type = "python",
       --   request = "launch",
       --   name = "Debug/launch current file with arguments",
       --   program = "${file}",
@@ -251,7 +251,7 @@ return {
       --   -- 2. ensure the cwd path is correct (pyproject.toml and src/app folders should all reside in the cwd),
       --   --    the cwd may be set in pyproject.toml (see package_name = "..." and project_name = "..." under [tool.kedro])
       --   -- 3. update args to fit the pipeline/node to be debugged
-      --   type = "debugpy",
+      --   type = "python",
       --   request = "launch",
       --   name = "Debug/launch Kedro Run (stop on entry)",
       --   console = "integratedTerminal",
@@ -268,7 +268,7 @@ return {
       -- },
       -- {
       --   -- send curl request to endpoints to debug
-      --   type = "debugpy",
+      --   type = "python",
       --   request = "launch",
       --   name = "Debug FastAPI module",
       --   module = "uvicorn",
@@ -289,7 +289,7 @@ return {
       --   stopOnEntry = true,
       -- },
       -- {
-      --   type = "debugpy",
+      --   type = "python",
       --   request = "launch",
       --   name = "Debug FastAPI main",
       --   program = function()
@@ -300,7 +300,7 @@ return {
       --   end,
       -- },
       -- {
-      --   type = "debugpy",
+      --   type = "python",
       --   request = "attach",
       --   name = "Attach a debugging session",
       --   connect = function()
