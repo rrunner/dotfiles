@@ -12,6 +12,7 @@ ignore = ["*"]
 [tool.pytest.ini_options]
 addopts = "--strict-markers -ra -q -v"
 minversion = "8.0"
+pythonpath = "."
 testpaths = ["tests"]
 
 [tool.ruff]
