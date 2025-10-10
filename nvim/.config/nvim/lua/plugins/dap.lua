@@ -1,5 +1,4 @@
 -- dap configuration
--- python debugging requires debugpy
 return {
   "rcarriga/nvim-dap-ui",
   dependencies = {
@@ -177,31 +176,25 @@ return {
       end
       dapui.open()
     end
-    -- dap.listeners.before.event_terminated["dapui_config"] = function()
-    --   dapui.close()
-    -- end
-    -- dap.listeners.before.event_exited["dapui_config"] = function()
-    --   dapui.close()
-    -- end
 
-    ---@param callback fun(arg: table): any
-    ---@param config table<string, any>
-    ---@return any
-    dap.adapters.python = function(callback, config)
+    -- register the debugpy adapter
+    dap.adapters.debugpy = function(callback, config)
       if config.request == "launch" then
         callback({
           type = "executable",
           command = utils.get_python_path(),
           args = { "-m", "debugpy.adapter" },
+          options = {
+            source_filetype = "python",
+          },
         })
       elseif config.request == "attach" then
-        local host = config.connect.host
+        local host = config.connect.host or "127.0.0.1"
         local port = config.connect.port
-
         callback({
           type = "server",
           host = host,
-          port = port,
+          port = assert(port, "`connect.port` is required for a python `attach` configuration"),
           options = {
             source_filetype = "python",
           },
@@ -209,10 +202,10 @@ return {
       end
     end
 
-    -- setup python configurations
+    -- configure the python debugee (application)
     dap.configurations.python = {
       {
-        type = "python",
+        type = "debugpy",
         request = "launch",
         name = "Debug/launch current file",
         program = "${file}",
@@ -220,7 +213,7 @@ return {
         console = "internalConsole", -- print to REPL
         -- makes third party libraries and packages debuggable
         justMyCode = false,
-        -- dap-adapter-python does not support multiprocess yet (disable multiprocess patch in debugpy)
+        -- dap-adapter-debugpy does not support multiprocess yet (disable multiprocess patch in debugpy)
         subProcess = false,
         -- use the current cwd of editor/buffer, not the file's absolute path
         cwd = "${workspaceFolder}",
@@ -234,7 +227,7 @@ return {
         stopOnEntry = false,
       },
       -- {
-      --   type = "python",
+      --   type = "debugpy",
       --   request = "launch",
       --   name = "Debug/launch current file with arguments",
       --   program = "${file}",
@@ -258,7 +251,7 @@ return {
       --   -- 2. ensure the cwd path is correct (pyproject.toml and src/app folders should all reside in the cwd),
       --   --    the cwd may be set in pyproject.toml (see package_name = "..." and project_name = "..." under [tool.kedro])
       --   -- 3. update args to fit the pipeline/node to be debugged
-      --   type = "python",
+      --   type = "debugpy",
       --   request = "launch",
       --   name = "Debug/launch Kedro Run (stop on entry)",
       --   console = "integratedTerminal",
@@ -275,7 +268,7 @@ return {
       -- },
       -- {
       --   -- send curl request to endpoints to debug
-      --   type = "python",
+      --   type = "debugpy",
       --   request = "launch",
       --   name = "Debug FastAPI module",
       --   module = "uvicorn",
@@ -296,7 +289,7 @@ return {
       --   stopOnEntry = true,
       -- },
       -- {
-      --   type = "python",
+      --   type = "debugpy",
       --   request = "launch",
       --   name = "Debug FastAPI main",
       --   program = function()
@@ -307,7 +300,7 @@ return {
       --   end,
       -- },
       -- {
-      --   type = "python",
+      --   type = "debugpy",
       --   request = "attach",
       --   name = "Attach a debugging session",
       --   connect = function()
