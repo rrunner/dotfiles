@@ -44,7 +44,7 @@ return {
       end,
       providers = {
         lsp = {
-          max_items = 10,
+          max_items = 8,
           score_offset = 10,
         },
         path = {
@@ -57,7 +57,7 @@ return {
         },
         -- add VSCode style custom snippets to ~/.config/nvim/snippets
         snippets = {
-          max_items = 6,
+          max_items = 3,
           score_offset = 5,
           -- do not show snippets after trigger character
           should_show_items = function(ctx)
