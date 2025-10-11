@@ -45,7 +45,9 @@ return {
       providers = {
         lsp = {
           max_items = 8,
-          score_offset = 10,
+          -- always show buffer completion items when the LSP provider is enabled
+          fallbacks = {},
+          score_offset = 4,
         },
         path = {
           max_items = 5,
@@ -53,12 +55,11 @@ return {
             get_cwd = vim.uv.cwd,
             show_hidden_files_by_default = true,
           },
-          score_offset = 1,
+          score_offset = -1,
         },
         -- add VSCode style custom snippets to ~/.config/nvim/snippets
         snippets = {
           max_items = 3,
-          score_offset = 5,
           -- do not show snippets after trigger character
           should_show_items = function(ctx)
             return ctx.trigger.initial_kind ~= "trigger_character"
@@ -66,6 +67,7 @@ return {
           opts = {
             ignored_filetypes = {},
           },
+          score_offset = 2,
         },
         buffer = {
           max_items = 5,
@@ -76,7 +78,7 @@ return {
               return 3
             end
           end,
-          score_offset = -3,
+          score_offset = 1,
         },
         lazydev = {
           name = "LazyDev",
