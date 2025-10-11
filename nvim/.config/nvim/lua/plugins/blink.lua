@@ -33,7 +33,7 @@ return {
         elseif ft == "markdown" then
           return { "buffer", "snippets", "dictionary", "thesaurus" }
         elseif ft == "dap-repl" then
-          return { "buffer" }
+          return { "omni", "buffer" }
         elseif vim.tbl_contains({ "quarto", "rmd" }, ft) then
           return { "buffer", "snippets" }
         elseif vim.tbl_contains({ "text", "mail" }, ft) then
