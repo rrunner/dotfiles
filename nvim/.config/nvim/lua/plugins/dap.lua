@@ -62,7 +62,6 @@ return {
       numhl = "",
     })
 
-    -- keybinds
     vim.api.nvim_set_keymap("n", "<leader>dr", [[<cmd>lua require('dapui').open({reset = true})<cr>]], {
       noremap = true,
       silent = true,
@@ -177,8 +176,8 @@ return {
       dapui.open()
     end
 
-    -- register the debugpy adapter (neotest-python requires the adapter name to be "python")
-    dap.adapters.python = function(callback, config)
+    -- register the debugpy adapter on how to launch/attach
+    dap.adapters.debugpy = function(callback, config)
       if config.request == "launch" then
         callback({
           type = "executable",
@@ -201,11 +200,13 @@ return {
         })
       end
     end
+    -- workaround to debug tests using neotest-python (hardwired to adapter name "python")
+    dap.adapters.python = dap.adapters.debugpy
 
     -- configure the python debugee (application)
     dap.configurations.python = {
       {
-        type = "python",
+        type = "debugpy",
         request = "launch",
         name = "Debug/launch current file",
         program = "${file}",
@@ -227,7 +228,7 @@ return {
         stopOnEntry = false,
       },
       -- {
-      --   type = "python",
+      --   type = "debugpy",
       --   request = "launch",
       --   name = "Debug/launch current file with arguments",
       --   program = "${file}",
@@ -251,7 +252,7 @@ return {
       --   -- 2. ensure the cwd path is correct (pyproject.toml and src/app folders should all reside in the cwd),
       --   --    the cwd may be set in pyproject.toml (see package_name = "..." and project_name = "..." under [tool.kedro])
       --   -- 3. update args to fit the pipeline/node to be debugged
-      --   type = "python",
+      --   type = "debugpy",
       --   request = "launch",
       --   name = "Debug/launch Kedro Run (stop on entry)",
       --   console = "integratedTerminal",
@@ -268,7 +269,7 @@ return {
       -- },
       -- {
       --   -- send curl request to endpoints to debug
-      --   type = "python",
+      --   type = "debugpy",
       --   request = "launch",
       --   name = "Debug FastAPI module",
       --   module = "uvicorn",
@@ -289,7 +290,7 @@ return {
       --   stopOnEntry = true,
       -- },
       -- {
-      --   type = "python",
+      --   type = "debugpy",
       --   request = "launch",
       --   name = "Debug FastAPI main",
       --   program = function()
@@ -300,7 +301,7 @@ return {
       --   end,
       -- },
       -- {
-      --   type = "python",
+      --   type = "debugpy",
       --   request = "attach",
       --   name = "Attach a debugging session",
       --   connect = function()
