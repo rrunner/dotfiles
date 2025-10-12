@@ -23,7 +23,7 @@ return {
       highlight_closest = false,
       highlight_on_jump = 700,
       highlight_on_hover = true,
-      post_jump_cmd = "normal! zt",
+      post_jump_cmd = "normal! zz",
       lazy_load = false,
       close_on_select = false,
       manage_folds = true, -- align folds between buffer and aerial
