@@ -217,7 +217,7 @@ return {
         },
         list = {
           selection = {
-            preselect = false,
+            preselect = true,
           },
         },
         ghost_text = {
