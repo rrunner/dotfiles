@@ -123,9 +123,6 @@ return {
 
     appearance = {
       nerd_font_variant = "mono",
-      -- sets the fallback highlight groups to nvim-cmp's highlight groups
-      -- when your theme doesn't support blink.cmp (will be removed in a future release)
-      use_nvim_cmp_as_default = true,
       kind_icons = require("config.icons")._kinds_cmp,
     },
 
@@ -143,7 +140,7 @@ return {
       },
       documentation = {
         auto_show = true,
-        auto_show_delay_ms = 500,
+        auto_show_delay_ms = 200,
         window = {
           max_height = 25,
           max_width = 60,
@@ -169,6 +166,10 @@ return {
 
     signature = {
       enabled = true,
+      trigger = {
+        -- show the signature help automatically
+        enabled = true,
+      },
       window = {
         show_documentation = false,
         scrollbar = false,
@@ -214,7 +215,14 @@ return {
             return vim.fn.getcmdtype() == ":"
           end,
         },
-        ghost_text = { enabled = false },
+        list = {
+          selection = {
+            preselect = false,
+          },
+        },
+        ghost_text = {
+          enabled = false,
+        },
       },
     },
 
