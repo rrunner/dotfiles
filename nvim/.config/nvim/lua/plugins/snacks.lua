@@ -344,7 +344,16 @@ return {
             },
           },
           buffers = {
+            hidden = false,
             sort_lastused = true,
+            win = {
+              input = {
+                keys = {
+                  ["<c-x>"] = { { "pick_win", "edit_split" }, mode = "i" },
+                  ["<c-v>"] = { { "pick_win", "edit_vsplit" }, mode = "i" },
+                },
+              },
+            },
             layout = {
               preset = "select",
               layout = {
