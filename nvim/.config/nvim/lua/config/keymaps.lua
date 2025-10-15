@@ -411,3 +411,13 @@ end, {
   silent = true,
   desc = "Toggle boolean under the cursor",
 })
+
+-- omnifunc completion related keymaps
+map("i", "<c-c>", function()
+  return vim.fn.pumvisible() == 1 and "<c-e>" or "<c-c>"
+end, {
+  noremap = true,
+  silent = false,
+  expr = true,
+  desc = "Close completion menu (otherwise return key itself)",
+})

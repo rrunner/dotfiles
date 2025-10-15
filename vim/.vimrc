@@ -451,7 +451,7 @@ set undofile
 set undodir=$HOME/.vim/undodir
 set undolevels=10000
 set timeout timeoutlen=1000 ttimeout ttimeoutlen=50
-set completeopt=menu,menuone,noselect
+set completeopt=menuone,noselect,fuzzy
 set breakindent
 set mouse=a
 set ttymouse=sgr
