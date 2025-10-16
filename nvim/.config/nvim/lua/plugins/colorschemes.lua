@@ -27,6 +27,15 @@ return {
       require("conifer").setup({
         variant = "lunar", -- "solar" for light
         transparent = false, -- whether to set the bg color for the lunar variant
+        styles = {
+          comments = {},
+          functions = {},
+          keywords = {},
+          lsp = {},
+          match_paren = { underline = false, link = "Visual" },
+          type = { bold = false },
+          variables = {},
+        },
       })
       vim.cmd.colorscheme("conifer")
     end,
