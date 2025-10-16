@@ -186,8 +186,8 @@ nnoremap <silent> <leader>w :silent! up<cr>
 nnoremap <leader>sub :%s///gc<left><left><left><left>
 nnoremap <leader>gl :g//<left>
 nnoremap <leader>ef :e <c-r>=expand("%:p:h")."/"<cr>
-nnoremap <leader>eh :split<cr>
-nnoremap <leader>ev :vsplit<cr>
+nnoremap <leader>eh :split <c-r>=expand("%:p:h")."/"<cr>
+nnoremap <leader>ev :vsplit <c-r>=expand("%:p:h")."/"<cr>
 nnoremap <leader>en :vnew<cr>
 nnoremap <leader>co :copen<cr>
 nnoremap <leader>cc :cclose<cr>
