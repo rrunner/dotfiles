@@ -1,9 +1,9 @@
 -- colorschemes
--- set lazy=false/true to enable/disable colourscheme (set lazy=true for all to use default colorscheme)
+-- set lazy=true for all to use default colorscheme
 return {
   {
     "EdenEast/nightfox.nvim",
-    lazy = false,
+    lazy = true,
     priority = 1000,
     config = function()
       require("nightfox").setup({
@@ -17,6 +17,18 @@ return {
       })
       -- available themes: nightfox, dayfox, dawnfox, duskfox, nordfox, terafox, carbonfox
       vim.cmd.colorscheme("nordfox")
+    end,
+  },
+  {
+    "lucasadelino/conifer.nvim",
+    lazy = false,
+    priority = 1000,
+    config = function()
+      require("conifer").setup({
+        variant = "lunar", -- "solar" for light
+        transparent = false, -- whether to set the bg color for the lunar variant
+      })
+      vim.cmd.colorscheme("conifer")
     end,
   },
 }
