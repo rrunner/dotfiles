@@ -4,5 +4,10 @@
 setlocal formatoptions-=c
 setlocal formatoptions-=r
 setlocal formatoptions-=o
-setlocal formatoptions+=j
+setlocal formatoptions+=r
 setlocal formatoptions+=q
+setlocal formatoptions+=n
+setlocal formatoptions+=l
+setlocal formatoptions+=1
+setlocal formatoptions+=j
+setlocal formatoptions+=t

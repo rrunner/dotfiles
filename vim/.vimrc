@@ -33,8 +33,8 @@ augroup vimrc
   " resize splits when terminal is resized
   autocmd VimResized * wincmd =
 
-    " set filetype for *.mail
-    autocmd BufRead,BufNewFile *.mail set filetype=mail
+  " set filetype for *.mail
+  autocmd BufRead,BufNewFile *.mail set filetype=mail
 
   " open file at the last edited position (for configuration files)
   autocmd BufReadPost *.toml,*.yaml,*.yml,*.json,*.jsonc silent! normal! g`"zv
@@ -422,11 +422,8 @@ set cmdheight=2
 set nohlsearch incsearch ignorecase smartcase
 set backspace=indent,eol,start
 set spell spelllang=en,sv
-set formatoptions-=c
-set formatoptions-=r
-set formatoptions-=o
-set formatoptions+=j
-set formatoptions+=q
+set formatoptions=rqnl1jt
+set formatlistpat=[[^\s*[0-9\-\+\*]\+[\.\)]*\s\+]]
 set ttyfast
 set nolazyredraw
 set autoread

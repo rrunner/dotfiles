@@ -20,10 +20,10 @@ vim.g.py_root_markers = {
   "Pipfile",
 }
 
-vim.cmd([[
-  syntax off
-  filetype plugin indent on
-]])
+vim.cmd("filetype plugin indent on")
+if vim.fn.exists("syntax_on") ~= 1 then
+  vim.cmd("syntax enable")
+end
 if vim.fn.executable("rg") == 1 then
   vim.opt.grepprg = "rg -H --no-heading --vimgrep --smart-case --follow"
 end
@@ -64,8 +64,8 @@ vim.opt.incsearch = true
 vim.opt.ignorecase = true
 vim.opt.smartcase = true
 vim.opt.backspace = { "indent", "eol", "start" }
-vim.opt.formatoptions:append({ "q", "j" })
-vim.opt.formatoptions:remove({ "c", "r", "o" })
+vim.opt.formatoptions = "rqnl1jt"
+vim.opt.formatlistpat = [[^\s*[0-9\-\+\*]\+[\.\)]*\s\+]]
 vim.opt.ttyfast = true
 vim.opt.lazyredraw = false
 vim.opt.autoread = true

@@ -74,7 +74,7 @@ vim.api.nvim_create_autocmd("CmdwinEnter", {
 if utils.IS_WIN then
   -- auto-reload files when modified externally
   vim.api.nvim_create_autocmd({ "BufEnter", "CursorHold", "CursorHoldI", "FocusGained" }, {
-    command = "if mode() != 'c' | checktime | endif",
+    command = [[if mode() != 'c' | checktime | endif]],
     group = config,
     pattern = "*",
   })
@@ -196,7 +196,7 @@ vim.api.nvim_create_autocmd({ "VimResized" }, {
 
 -- set filetype for *.mail
 vim.api.nvim_create_autocmd({ "BufRead", "BufNewFile" }, {
-  command = "set filetype=mail",
+  command = [[set filetype=mail]],
   group = config,
   pattern = "*.mail",
 })
@@ -334,4 +334,11 @@ vim.api.nvim_create_autocmd("FileType", {
     "markdown",
     "quarto",
   },
+})
+
+-- better formatoptions: always override changes made by filetype plugins
+vim.api.nvim_create_autocmd("FileType", {
+  command = [[setlocal formatoptions-=c formatoptions-=r formatoptions-=o]],
+  group = config,
+  pattern = "*",
 })
