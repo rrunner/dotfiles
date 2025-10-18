@@ -8,6 +8,9 @@ return {
     local minigit = require("mini.git")
     minigit.setup()
 
+    local git_log_cmd = [[Git log --pretty=format:\%h\ \%ad\ \%an\ |\ \%s --topo-order --date=iso]]
+    local git_log_file_cmd = git_log_cmd .. " --follow -- %"
+
     vim.keymap.set(
       "n",
       "<leader>gc",
@@ -24,8 +27,15 @@ return {
     vim.keymap.set(
       "n",
       "<leader>gh",
-      [[<cmd>Git log<cr>]],
+      "<cmd>" .. git_log_cmd .. "<cr>",
       { noremap = true, silent = true, desc = "git log (mini-git)" }
+    )
+
+    vim.keymap.set(
+      "n",
+      "<leader>gH",
+      "<cmd>" .. git_log_file_cmd .. "<cr>",
+      { noremap = true, silent = true, desc = "git log file (mini-git)" }
     )
   end,
 }
