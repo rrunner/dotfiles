@@ -10,7 +10,7 @@ if not vim.uv.fs_stat(lazypath) then
     error("Error cloning lazy.nvim:\n" .. out)
   end
 end
-vim.opt.rtp:prepend(lazypath)
+vim.o.rtp = lazypath .. "," .. vim.o.rtp
 
 -- set leader key
 vim.api.nvim_set_keymap("n", "<space>", "<nop>", {
@@ -39,7 +39,7 @@ vim.api.nvim_set_keymap("v", "-", "<nop>", {
 vim.g.maplocalleader = "-"
 
 -- setting required by many plugins
-vim.opt.termguicolors = true
+vim.o.termguicolors = true
 
 -- pretty print objects and backtrace
 _G.dd = function(...)

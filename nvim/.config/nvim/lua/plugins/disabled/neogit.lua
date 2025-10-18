@@ -68,11 +68,10 @@ return {
     local opts_diffview = {
       hooks = {
         diff_buf_read = function()
-          vim.opt_local.number = false
-          vim.opt_local.relativenumber = false
-          vim.opt_local.signcolumn = "no"
-          vim.opt_local.statuscolumn = ""
-          vim.opt_local.fillchars:append({ diff = "/" })
+          vim.wo.number = false
+          vim.wo.relativenumber = false
+          vim.wo.signcolumn = "no"
+          vim.wo.statuscolumn = ""
         end,
       },
       keymaps = {

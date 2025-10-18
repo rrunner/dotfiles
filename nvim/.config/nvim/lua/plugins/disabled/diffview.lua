@@ -12,25 +12,19 @@ return {
       },
       hooks = {
         diff_buf_read = function()
-          vim.opt_local.number = true
-          vim.opt_local.relativenumber = false
-          vim.opt_local.signcolumn = "no"
-          vim.opt_local.fillchars:append({ diff = "/" })
-          vim.opt_local.wrap = false
-          vim.opt_local.winbar = "%=%m%r%{expand('%:p:h:t')}/%t"
+          vim.wo.number = true
+          vim.wo.relativenumber = false
+          vim.wo.signcolumn = "no"
+          vim.wo.wrap = false
+          vim.wo.winbar = "%=%m%r%{expand('%:p:h:t')}/%t"
         end,
         ---@diagnostic disable-next-line: unused-local
         diff_buf_win_enter = function(bufnr, winid, ctx)
           if ctx.layout_name:match("^diff2") then
             if ctx.symbol == "a" then
-              vim.opt_local.winhl = table.concat({
-                "DiffAdd:DiffviewDiffAddAsDelete",
-                "DiffDelete:DiffviewDiffDelete",
-              }, ",")
+              vim.wo.winhl = "DiffAdd:DiffviewDiffAddAsDelete,DiffDelete:DiffviewDiffDelete,"
             elseif ctx.symbol == "b" then
-              vim.opt_local.winhl = table.concat({
-                "DiffDelete:DiffviewDiffDelete",
-              }, ",")
+              vim.wo.winhl = "DiffDelete:DiffviewDiffDelete,"
             end
           end
         end,

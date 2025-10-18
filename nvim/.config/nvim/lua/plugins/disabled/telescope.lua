@@ -380,7 +380,7 @@ return {
     })
 
     vim.keymap.set("n", "z=", function()
-      if vim.opt_local.spell:get() then
+      if vim.wo.spell then
         require("telescope.builtin").spell_suggest(require("telescope.themes").get_cursor({}))
       end
     end, {

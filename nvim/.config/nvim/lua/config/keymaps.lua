@@ -378,10 +378,10 @@ end, {
 
 map("n", "<leader>bf", function()
   if vim.wo.winfixbuf then
-    vim.opt_local.winfixbuf = false
+    vim.wo.winfixbuf = false
     vim.notify("Disabled winfixbuf for buffer")
   else
-    vim.opt_local.winfixbuf = true
+    vim.wo.winfixbuf = true
     vim.notify("Enabled winfixbuf for buffer")
   end
 end, {

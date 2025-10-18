@@ -8,12 +8,9 @@ return {
   },
   config = function()
     -- change required by noice
-    vim.opt.lazyredraw = false
+    vim.o.lazyredraw = false
     -- managed via autocmds (still set cmdheight here)
-    vim.opt.cmdheight = 0
-    -- managed via general_settings.lua
-    -- (disable W below to suppress write notifications since this is managed via routes below)
-    vim.opt.shortmess:append({ W = false })
+    vim.o.cmdheight = 0
 
     require("noice").setup({
       cmdline = {

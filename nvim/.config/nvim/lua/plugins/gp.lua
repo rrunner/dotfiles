@@ -12,9 +12,9 @@ return {
         local path = vim.api.nvim_buf_get_name(event.buf)
         local filename = path:match("^.+/(.+)$") or path
         if filename:match("^%d%d%d%d%-%d%d%-%d%d%.%d%d%-%d%d%-%d%d%.%d+%.md$") then
-          vim.opt_local.signcolumn = "no"
-          vim.opt_local.statuscolumn = ""
-          vim.opt_local.spell = false
+          vim.wo.signcolumn = "no"
+          vim.wo.statuscolumn = ""
+          vim.wo.spell = false
         end
       end,
       group = gp_aucmd,

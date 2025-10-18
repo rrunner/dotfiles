@@ -27,7 +27,7 @@ return {
       },
       -- ISSUE: title does not appear the first when toggleterm opens (hence disable this function)
       -- on_create = function(term)
-      --   term.display_name = "Terminal: " .. vim.opt.shell:get()
+      --   term.display_name = "Terminal: " .. vim.o.shell
       --   return term
       -- end,
     }

@@ -566,8 +566,8 @@ return {
           keys = { q = "close" },
         },
         input = {
-          row = math.floor(vim.opt.lines:get() / 2) - 1,
-          columns = math.floor(vim.opt.columns:get() / 2),
+          row = math.floor(vim.o.lines / 2) - 1,
+          columns = math.floor(vim.o.columns / 2),
           keys = {
             ["<c-a>"] = { "<home>", mode = "i", expr = true, desc = "start of line (input)" },
             ["<c-e>"] = { "<end>", mode = "i", expr = true, desc = "end of line (input)" },
@@ -822,7 +822,7 @@ return {
     })
 
     vim.keymap.set("n", "z=", function()
-      if vim.opt_local.spell:get() then
+      if vim.wo.spell then
         if vim.v.count == 0 then
           snacks.picker.spelling()
         else

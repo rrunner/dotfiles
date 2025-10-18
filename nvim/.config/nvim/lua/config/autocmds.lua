@@ -12,11 +12,12 @@ vim.api.nvim_create_autocmd("TextYankPost", {
 
 -- settings applied to a new terminal
 vim.api.nvim_create_autocmd("TermOpen", {
-  callback = function()
-    vim.opt_local.number = false
-    vim.opt_local.relativenumber = false
-    vim.opt_local.signcolumn = "no"
-    vim.opt_local.statuscolumn = ""
+  callback = function(event)
+    local winid = vim.fn.bufwinid(event.buf)
+    vim.wo[winid][0].number = false
+    vim.wo[winid][0].relativenumber = false
+    vim.wo[winid][0].signcolumn = "no"
+    vim.wo[winid][0].statuscolumn = ""
   end,
   group = config,
   pattern = "*",
@@ -102,7 +103,7 @@ vim.api.nvim_create_autocmd("LspAttach", {
 
 -- set/unset winbar (global winbar setting must be unset)
 vim.api.nvim_create_autocmd({ "BufWinEnter", "BufFilePost", "WinEnter" }, {
-  callback = function()
+  callback = function(event)
     -- winbar whitelist
     local ft_with_winbar = {
       "haskell",
@@ -123,12 +124,13 @@ vim.api.nvim_create_autocmd({ "BufWinEnter", "BufFilePost", "WinEnter" }, {
 
     -- exclusions
     local ft = vim.bo[0].filetype
+    local winid = vim.fn.bufwinid(event.buf)
     if utils.is_non_normal_buffer() or not vim.tbl_contains(ft_with_winbar, ft) then
-      vim.opt_local.winbar = ""
+      vim.wo[winid][0].winbar = ""
       return
     end
 
-    vim.opt_local.winbar = "%=" .. utils.get_filetype_icon(ft) .. "%m%r%{expand('%:p:h:t')}/%t"
+    vim.wo[winid][0].winbar = "%=" .. utils.get_filetype_icon(ft) .. "%m%r%{expand('%:p:h:t')}/%t"
   end,
   group = config,
   pattern = "*",
@@ -136,15 +138,17 @@ vim.api.nvim_create_autocmd({ "BufWinEnter", "BufFilePost", "WinEnter" }, {
 
 -- show cursor line only in active window
 vim.api.nvim_create_autocmd({ "InsertLeave", "WinEnter" }, {
-  callback = function()
-    vim.opt_local.cursorline = true
+  callback = function(event)
+    local winid = vim.fn.bufwinid(event.buf)
+    vim.wo[winid][0].cursorline = true
   end,
   group = config,
   pattern = "*",
 })
 vim.api.nvim_create_autocmd({ "InsertEnter", "WinLeave" }, {
-  callback = function()
-    vim.opt_local.cursorline = false
+  callback = function(event)
+    local winid = vim.fn.bufwinid(event.buf)
+    vim.wo[winid][0].cursorline = false
   end,
   group = config,
   pattern = "*",
@@ -152,10 +156,12 @@ vim.api.nvim_create_autocmd({ "InsertEnter", "WinLeave" }, {
 
 -- enable spell checking for certain file types
 vim.api.nvim_create_autocmd("FileType", {
-  callback = function()
-    vim.opt_local.spell = true
-    vim.opt_local.spelllang = { "en", "sv" }
-    vim.opt_local.spelloptions:append({ "camel" })
+  callback = function(event)
+    local bufnr = event.buf
+    local winid = vim.fn.bufwinid(bufnr)
+    vim.wo[winid][0].spell = true
+    vim.bo[bufnr].spelllang = "en,sv"
+    vim.bo[bufnr].spelloptions = "camel"
   end,
   group = config,
   pattern = { "text", "tex", "markdown", "quarto", "rmd", "mail", "NeogitCommitMessage", "plaintex", "gitcommit" },
@@ -164,7 +170,7 @@ vim.api.nvim_create_autocmd("FileType", {
 -- enable wrap for certain file types not covered by "after"
 vim.api.nvim_create_autocmd("FileType", {
   callback = function()
-    vim.opt_local.wrap = true
+    vim.wo.wrap = true
   end,
   group = config,
   pattern = { "quarto", "rmd", "NeogitCommitMessage", "plaintex", "gitcommit" },
@@ -204,14 +210,14 @@ vim.api.nvim_create_autocmd({ "BufRead", "BufNewFile" }, {
 -- open file at the last edited position (for configuration files)
 vim.api.nvim_create_autocmd("BufReadPost", {
   callback = function(event)
-    local buf = event.buf
-    if vim.b[buf].last_loc then
+    local bufnr = event.buf
+    if vim.b[bufnr].last_loc then
       -- open file normally if the buffer is already open
       return
     end
-    vim.b[buf].last_loc = true
-    local mark = vim.api.nvim_buf_get_mark(buf, ".")
-    local lcount = vim.api.nvim_buf_line_count(buf)
+    vim.b[bufnr].last_loc = true
+    local mark = vim.api.nvim_buf_get_mark(bufnr, ".")
+    local lcount = vim.api.nvim_buf_line_count(bufnr)
     if mark[1] > 0 and mark[1] <= lcount then
       pcall(vim.api.nvim_win_set_cursor, 0, mark)
     end
@@ -223,10 +229,9 @@ vim.api.nvim_create_autocmd("BufReadPost", {
 -- only use number in insert mode (not relativenumber) if number option is set
 vim.api.nvim_create_autocmd("InsertEnter", {
   callback = function()
-    ---@diagnostic disable-next-line: undefined-field
-    if vim.opt_local.number:get() then
-      vim.opt_local.number = true
-      vim.opt_local.relativenumber = false
+    if vim.wo.number then
+      vim.wo.number = true
+      vim.wo.relativenumber = false
     end
   end,
   group = config,
@@ -234,10 +239,9 @@ vim.api.nvim_create_autocmd("InsertEnter", {
 })
 vim.api.nvim_create_autocmd("InsertLeave", {
   callback = function()
-    ---@diagnostic disable-next-line: undefined-field
-    if vim.opt_local.number:get() then
-      vim.opt_local.number = true
-      vim.opt_local.relativenumber = true
+    if vim.wo.number then
+      vim.wo.number = true
+      vim.wo.relativenumber = true
     end
   end,
   group = config,
@@ -282,7 +286,7 @@ vim.api.nvim_create_autocmd("UILeave", {
 -- fix conceallevel for json files
 vim.api.nvim_create_autocmd({ "FileType" }, {
   callback = function()
-    vim.opt_local.conceallevel = 0
+    vim.wo.conceallevel = 0
   end,
   group = config,
   pattern = { "json", "jsonc" },
@@ -299,9 +303,9 @@ vim.api.nvim_create_autocmd("FileType", {
 
 vim.api.nvim_create_autocmd("BufWinEnter", {
   callback = function()
-    local ft = vim.bo.ft
+    local ft = vim.bo.filetype
     if ft == "dap-repl" or ft:match("^dapui_") then
-      vim.opt_local.statuscolumn = ""
+      vim.wo.statuscolumn = ""
     end
   end,
   group = config,
@@ -338,7 +342,7 @@ vim.api.nvim_create_autocmd("FileType", {
 
 -- better formatoptions: always override changes made by filetype plugins
 vim.api.nvim_create_autocmd("FileType", {
-  command = [[setlocal formatoptions-=c formatoptions-=r formatoptions-=o]],
+  command = [[setlocal formatoptions-=cro]],
   group = config,
   pattern = "*",
 })

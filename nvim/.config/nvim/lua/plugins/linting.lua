@@ -23,7 +23,7 @@ return {
     local linter_augroup = vim.api.nvim_create_augroup("Linting", { clear = true })
     vim.api.nvim_create_autocmd({ "BufReadPost", "InsertLeave", "BufWritePost", "TextChanged" }, {
       callback = function()
-        if vim.opt_local.modifiable:get() then
+        if vim.bo.modifiable then
           lint.try_lint()
         end
       end,

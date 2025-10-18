@@ -132,7 +132,7 @@ return {
       },
       format_after_save = function(bufnr)
         -- remove carriage return characters in linux/wsl on save
-        local fileformat = vim.opt_local.fileformat:get()
+        local fileformat = vim.bo.fileformat
         if fileformat ~= "unix" or vim.g.disable_autoformat or vim.b[bufnr].disable_autoformat then
           return
         end

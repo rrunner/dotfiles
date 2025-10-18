@@ -1,7 +1,7 @@
 -- statuscolumn configuration (location .config/nvim/lua/config/statuscolumn.lua)
 -- see https://github.com/LazyVim/LazyVim/blob/main/lua/lazyvim/util/ui.lua
 
--- options.lua: vim.opt.statuscolumn = [[%!v:lua.require("config.statuscolumn").statuscolumn()]]
+-- options.lua: vim.o.statuscolumn = [[%!v:lua.require("config.statuscolumn").statuscolumn()]]
 
 local M = {}
 
@@ -101,13 +101,13 @@ function M.statuscolumn()
     end
     vim.api.nvim_win_call(win, function()
       if vim.fn.foldclosed(vim.v.lnum) >= 0 then
-        fold = { text = vim.opt.fillchars:get().foldclose or "", texthl = githl or "Folded" }
+        fold = { text = "", texthl = githl or "Folded" }
       elseif
         show_open_folds
         and not require("config.folds").skip_foldexpr[buf]
         and tostring(vim.treesitter.foldexpr(vim.v.lnum)):sub(1, 1) == ">"
       then -- fold start
-        fold = { text = vim.opt.fillchars:get().foldopen or "", texthl = githl }
+        fold = { text = "", texthl = githl }
       end
     end)
     -- Left: mark or non-git sign
