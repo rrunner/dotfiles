@@ -202,6 +202,11 @@ return {
             feedkey("<right>", "c")
           end,
         },
+        ["<c-l>"] = {
+          function()
+            feedkey("<right>", "c")
+          end,
+        },
         ["<c-k>"] = {
           function()
             feedkey("<c-\\>estrpart(getcmdline(), 0, getcmdpos()-1)<cr>", "c")
