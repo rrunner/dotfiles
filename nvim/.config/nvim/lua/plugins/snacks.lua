@@ -491,7 +491,6 @@ return {
               },
             },
             on_show = function()
-              vim.cmd.normal("^")
               if utils.is_debugger_running() then
                 vim.schedule(function()
                   -- TODO: console window is not reset properly
@@ -510,9 +509,6 @@ return {
               else
                 vim.cmd("horizontal wincmd =")
               end
-            end,
-            on_change = function()
-              vim.cmd.normal("^")
             end,
             win = {
               list = {
