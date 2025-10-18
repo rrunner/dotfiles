@@ -42,7 +42,7 @@ map("t", "<esc>", [[<c-\><c-n>]], {
   desc = "Switch to normal mode from terminal mode",
 })
 
-map("n", "<c-t>", function()
+map({ "n", "x" }, "<c-t>", function()
   local snacks_exists, snacks = pcall(require, "snacks")
   if snacks_exists then
     vim.cmd([[echo ""]])
