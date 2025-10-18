@@ -510,6 +510,9 @@ return {
                 vim.cmd("horizontal wincmd =")
               end
             end,
+            on_change = function()
+              vim.cmd.normal("^")
+            end,
             win = {
               list = {
                 keys = {
