@@ -13,29 +13,17 @@ end
 vim.o.rtp = lazypath .. "," .. vim.o.rtp
 
 -- set leader key
-vim.api.nvim_set_keymap("n", "<space>", "<nop>", {
+vim.keymap.set({ "n", "v" }, "<space>", "<nop>", {
   silent = true,
   desc = "The space key should only act as the leader key",
 })
-
-vim.api.nvim_set_keymap("v", "<space>", "<nop>", {
-  silent = true,
-  desc = "The space key should only act as the leader key",
-})
-
 vim.g.mapleader = " "
 
 -- set localleader key
-vim.api.nvim_set_keymap("n", "-", "<nop>", {
+vim.keymap.set({ "n", "v" }, "-", "<nop>", {
   silent = true,
   desc = "The minus (-) sign should only act as the localleader key",
 })
-
-vim.api.nvim_set_keymap("v", "-", "<nop>", {
-  silent = true,
-  desc = "The minus (-) sign should only act as the localleader key",
-})
-
 vim.g.maplocalleader = "-"
 
 -- setting required by many plugins

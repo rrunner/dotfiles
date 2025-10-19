@@ -251,7 +251,7 @@ vim.api.nvim_create_autocmd("InsertLeave", {
 -- quarto preview file
 vim.api.nvim_create_autocmd("FileType", {
   callback = function()
-    vim.api.nvim_set_keymap("n", "<localleader>qp", [[<cmd>lua require("config.utils").quarto_preview()<cr>]], {
+    vim.keymap.set("n", "<localleader>qp", [[<cmd>lua require("config.utils").quarto_preview()<cr>]], {
       noremap = true,
       silent = true,
       desc = "Quarto preview file",

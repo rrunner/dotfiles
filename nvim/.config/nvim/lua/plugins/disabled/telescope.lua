@@ -217,7 +217,7 @@ return {
     pcall(require("telescope").load_extension, "live_grep_args")
   end,
   init = function()
-    vim.api.nvim_set_keymap(
+    vim.keymap.set(
       "n",
       "<leader>gg",
       [[<cmd>lua require("telescope.builtin").git_status({use_git_root=true, git_icons = require("config.icons").git_icons})<cr>]],
@@ -228,7 +228,7 @@ return {
       }
     )
 
-    vim.api.nvim_set_keymap(
+    vim.keymap.set(
       "n",
       "<c-tab>",
       [[<cmd>lua require('telescope.builtin').buffers(require('telescope.themes').get_cursor({show_all_buffers=true, ignore_current_buffer=true, only_cwd=false, sort_mru=true}))<cr>]],
@@ -239,13 +239,13 @@ return {
       }
     )
 
-    vim.api.nvim_set_keymap("n", "<leader>sb", [[<cmd>lua require('telescope.builtin').buffers()<cr>]], {
+    vim.keymap.set("n", "<leader>sb", [[<cmd>lua require('telescope.builtin').buffers()<cr>]], {
       noremap = true,
       silent = true,
       desc = "Search/list all buffers",
     })
 
-    vim.api.nvim_set_keymap(
+    vim.keymap.set(
       "n",
       "<leader>sf",
       [[<cmd>lua require("config.utils").telescope_files_or_git_files()<cr>]],
@@ -256,13 +256,13 @@ return {
       }
     )
 
-    vim.api.nvim_set_keymap("n", "<leader>sg", [[<cmd>lua require("config.utils").telescope_live_grep_in_path()<cr>]], {
+    vim.keymap.set("n", "<leader>sg", [[<cmd>lua require("config.utils").telescope_live_grep_in_path()<cr>]], {
       noremap = true,
       silent = true,
       desc = "Search text from dir (user input optional)",
     })
 
-    vim.api.nvim_set_keymap("n", "<leader>sa", [[<cmd>lua require("config.utils").telescope_live_grep_args()<cr>]], {
+    vim.keymap.set("n", "<leader>sa", [[<cmd>lua require("config.utils").telescope_live_grep_args()<cr>]], {
       noremap = true,
       silent = true,
       desc = "Search text from dir using (rip)grep args (user input optional)",
@@ -276,7 +276,7 @@ return {
       desc = "Search for (visual) selected text in current file",
     })
 
-    vim.api.nvim_set_keymap(
+    vim.keymap.set(
       "n",
       "<leader>sl",
       [[<cmd>lua require('telescope.builtin').live_grep({grep_open_files=true})<cr>]],
@@ -287,31 +287,31 @@ return {
       }
     )
 
-    vim.api.nvim_set_keymap("n", "<leader>sh", [[<cmd>lua require('telescope.builtin').help_tags()<cr>]], {
+    vim.keymap.set("n", "<leader>sh", [[<cmd>lua require('telescope.builtin').help_tags()<cr>]], {
       noremap = true,
       silent = true,
       desc = "Search help (help tags)",
     })
 
-    vim.api.nvim_set_keymap("n", "<leader>so", [[<cmd>lua require('telescope.builtin').oldfiles()<cr>]], {
+    vim.keymap.set("n", "<leader>so", [[<cmd>lua require('telescope.builtin').oldfiles()<cr>]], {
       noremap = true,
       silent = true,
       desc = "Search old files (recently opened files)",
     })
 
-    vim.api.nvim_set_keymap("n", "<leader>sn", [[<cmd>lua require("config.utils").search_notes()<cr>]], {
+    vim.keymap.set("n", "<leader>sn", [[<cmd>lua require("config.utils").search_notes()<cr>]], {
       noremap = true,
       silent = true,
       desc = "Search for notes (or start from template)",
     })
 
-    vim.api.nvim_set_keymap("n", "<leader>ss", [[<cmd>lua require('telescope.builtin').lsp_document_symbols()<cr>]], {
+    vim.keymap.set("n", "<leader>ss", [[<cmd>lua require('telescope.builtin').lsp_document_symbols()<cr>]], {
       noremap = true,
       silent = true,
       desc = "Search for LSP document symbols",
     })
 
-    vim.api.nvim_set_keymap(
+    vim.keymap.set(
       "n",
       "<leader>sw",
       [[<cmd>lua require('telescope.builtin').lsp_dynamic_workspace_symbols()<cr>]],
@@ -322,13 +322,13 @@ return {
       }
     )
 
-    vim.api.nvim_set_keymap("n", "<leader>sk", [[<cmd>lua require('telescope.builtin').keymaps()<cr>]], {
+    vim.keymap.set("n", "<leader>sk", [[<cmd>lua require('telescope.builtin').keymaps()<cr>]], {
       noremap = true,
       silent = true,
       desc = "Search for normal mode keymaps",
     })
 
-    vim.api.nvim_set_keymap(
+    vim.keymap.set(
       "n",
       "<leader>sd",
       [[<cmd>lua require('telescope.builtin').find_files({cwd="~/.config/nvim/"})<cr>]],
@@ -339,7 +339,7 @@ return {
       }
     )
 
-    vim.api.nvim_set_keymap(
+    vim.keymap.set(
       "n",
       "<leader>st",
       [[<cmd>lua require("telescope.builtin").grep_string({search_dirs={vim.fn.expand("%:p")}})<cr>]],
@@ -350,7 +350,7 @@ return {
       }
     )
 
-    vim.api.nvim_set_keymap(
+    vim.keymap.set(
       "n",
       "<leader>s/",
       [[<cmd>lua require("telescope.builtin").grep_string({grep_open_files=true})<cr>]],
@@ -361,19 +361,19 @@ return {
       }
     )
 
-    vim.api.nvim_set_keymap("n", "<leader>sc", [[<cmd>lua require("telescope.builtin").grep_string()<cr>]], {
+    vim.keymap.set("n", "<leader>sc", [[<cmd>lua require("telescope.builtin").grep_string()<cr>]], {
       noremap = true,
       silent = true,
       desc = "Search for string under cursor in current working directory (cwd)",
     })
 
-    vim.api.nvim_set_keymap("n", "<leader>sr", [[<cmd>lua require('telescope.builtin').resume()<cr>]], {
+    vim.keymap.set("n", "<leader>sr", [[<cmd>lua require('telescope.builtin').resume()<cr>]], {
       noremap = true,
       silent = true,
       desc = "Search resume (resume last telescope search)",
     })
 
-    vim.api.nvim_set_keymap("n", "<leader>sq", [[<cmd>lua require('telescope.builtin').quickfix()<cr>]], {
+    vim.keymap.set("n", "<leader>sq", [[<cmd>lua require('telescope.builtin').quickfix()<cr>]], {
       noremap = true,
       silent = true,
       desc = "Search quickfix",

@@ -62,31 +62,31 @@ return {
       numhl = "",
     })
 
-    vim.api.nvim_set_keymap("n", "<leader>dr", [[<cmd>lua require('dapui').open({reset = true})<cr>]], {
+    vim.keymap.set("n", "<leader>dr", [[<cmd>lua require('dapui').open({reset = true})<cr>]], {
       noremap = true,
       silent = true,
       desc = "Reset windows (debugger)",
     })
 
-    vim.api.nvim_set_keymap("n", "<leader>dn", [[<cmd>lua require('dap').step_over()<cr>]], {
+    vim.keymap.set("n", "<leader>dn", [[<cmd>lua require('dap').step_over()<cr>]], {
       noremap = true,
       silent = true,
       desc = "Step over/next (debugger)",
     })
 
-    vim.api.nvim_set_keymap("n", "<leader>di", [[<cmd>lua require('dap').step_into()<cr>]], {
+    vim.keymap.set("n", "<leader>di", [[<cmd>lua require('dap').step_into()<cr>]], {
       noremap = true,
       silent = true,
       desc = "Step into (debugger)",
     })
 
-    vim.api.nvim_set_keymap("n", "<leader>do", [[<cmd>lua require('dap').step_out()<cr>]], {
+    vim.keymap.set("n", "<leader>do", [[<cmd>lua require('dap').step_out()<cr>]], {
       noremap = true,
       silent = true,
       desc = "Step out (debugger)",
     })
 
-    vim.api.nvim_set_keymap("n", "<leader>dq", [[<cmd>lua require('dap').terminate(); require('dapui').close()<cr>]], {
+    vim.keymap.set("n", "<leader>dq", [[<cmd>lua require('dap').terminate(); require('dapui').close()<cr>]], {
       noremap = true,
       silent = true,
       desc = "Terminate and close GUI (debugger)",

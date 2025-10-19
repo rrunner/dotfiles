@@ -42,13 +42,13 @@ return {
     require("quarto").setup(opts)
     require("otter").activate(langs)
 
-    vim.api.nvim_set_keymap("n", "<localleader>qp", [[<cmd>lua require('quarto').quartoPreview()<cr>]], {
+    vim.keymap.set("n", "<localleader>qp", [[<cmd>lua require('quarto').quartoPreview()<cr>]], {
       noremap = true,
       silent = true,
       desc = "Quarto preview",
     })
 
-    vim.api.nvim_set_keymap("n", "<localleader>qc", [[<cmd>lua require('quarto').quartoClosePreview()<cr>]], {
+    vim.keymap.set("n", "<localleader>qc", [[<cmd>lua require('quarto').quartoClosePreview()<cr>]], {
       noremap = true,
       silent = true,
       desc = "Quarto close preview",

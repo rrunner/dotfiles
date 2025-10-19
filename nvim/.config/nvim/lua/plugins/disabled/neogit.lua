@@ -87,19 +87,19 @@ return {
     require("diffview").setup(opts_diffview)
   end,
   init = function()
-    vim.api.nvim_set_keymap("n", "<localleader>gg", [[<cmd>lua require('neogit').open()<cr>]], {
+    vim.keymap.set("n", "<localleader>gg", [[<cmd>lua require('neogit').open()<cr>]], {
       noremap = true,
       silent = true,
       desc = "Open neogit (to perform common git operations)",
     })
 
-    vim.api.nvim_set_keymap("n", "<localleader>gl", [[<cmd>lua require('neogit').open({"log"})<cr>]], {
+    vim.keymap.set("n", "<localleader>gl", [[<cmd>lua require('neogit').open({"log"})<cr>]], {
       noremap = true,
       silent = true,
       desc = "Open neogit log",
     })
 
-    vim.api.nvim_set_keymap("n", "<localleader>gd", [[<cmd>DiffviewOpen<cr>]], {
+    vim.keymap.set("n", "<localleader>gd", [[<cmd>DiffviewOpen<cr>]], {
       noremap = true,
       silent = true,
       desc = "Open diffview (git diff compared to index)",
