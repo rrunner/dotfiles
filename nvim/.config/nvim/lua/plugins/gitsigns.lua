@@ -10,13 +10,6 @@ return {
       diff_opts = {
         algorithm = "patience",
       },
-      -- signs = {
-      --   add = { text = "+" },
-      --   change = { text = "~" },
-      --   delete = { text = "-" },
-      --   topdelete = { text = "‾" },
-      --   changedelete = { text = "~" },
-      -- },
       on_attach = function(bufnr)
         local gs = require("gitsigns")
 
