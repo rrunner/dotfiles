@@ -83,6 +83,9 @@ return {
           height = 0.90,
           width = 0.90,
           backdrop = false,
+          wo = {
+            winbar = "",
+          },
         },
         shell = vim.o.shell,
       },
