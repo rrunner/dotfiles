@@ -247,9 +247,9 @@ map("i", "<c-b>", "<left>", {
   desc = "Move left in insert mode (left arrow)",
 })
 
-map({ "i", "c" }, "<c-l>", "<right>", {
+map("i", "<c-l>", "<right>", {
   silent = true,
-  desc = "Move right in insert/command mode (right arrow)",
+  desc = "Move right in insert mode (right arrow)",
 })
 
 map("i", "<c-f>", "<right>", {
