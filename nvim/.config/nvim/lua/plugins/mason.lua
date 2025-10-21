@@ -38,7 +38,6 @@ return {
 
     -- LSP servers
     local lsp_servers = {
-      "basedpyright",
       "bash-language-server", --bashls
       "dockerfile-language-server", --dockerls
       "json-lsp",
