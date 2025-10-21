@@ -8,11 +8,6 @@ setlocal foldmethod=indent
 " avoid reindenting for certain keys in insert mode
 "setlocal indentkeys=
 
-" vim-tmux-runner python specific settings
-let g:VtrStripLeadingWhitespace = 0
-let g:VtrClearEmptyLines = 1
-let g:VtrAppendNewline = 1
-
 " python specific abbreviations
 iabbrev <buffer> true True
 iabbrev <buffer> false False
