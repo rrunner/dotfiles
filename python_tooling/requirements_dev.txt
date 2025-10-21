@@ -1,5 +1,3 @@
-basedpyright
 debugpy
-mypy
 ruff
 ty

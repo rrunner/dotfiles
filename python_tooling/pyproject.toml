@@ -5,10 +5,6 @@ description = "..."
 readme = "README.md"
 requires-python = ">=3.13"
 
-[tool.basedpyright]
-typeCheckingMode = "off"  # off, basic, standard, strict, all
-ignore = ["*"]
-
 [tool.pytest.ini_options]
 addopts = "--strict-markers -ra -q -v"
 minversion = "8.0"
