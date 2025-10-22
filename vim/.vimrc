@@ -241,13 +241,23 @@ vnoremap <localleader>dd "_d
 function! MoveLeft()
   let cursor_column = col(".")
   normal! ^
-  let cursor_column_after_caret = col(".")
-  if cursor_column == cursor_column_after_caret
+  let cursor_column_update = col(".")
+  if cursor_column == cursor_column_update
     normal! 0
   endif
 endfunction
 nnoremap <silent> H :call MoveLeft()<cr>
-nnoremap <silent> L g_
+
+function! MoveRight()
+  let cursor_column = col(".")
+  normal! g_
+  let cursor_column_update = col(".")
+  if cursor_column == cursor_column_update
+    normal! $
+  endif
+endfunction
+nnoremap <silent> H :call MoveLeft()<cr>
+nnoremap <silent> L :call MoveRight()<cr>
 nnoremap <silent> M %
 
 " search only in visual selected text

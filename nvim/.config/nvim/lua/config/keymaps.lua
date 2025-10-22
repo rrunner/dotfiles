@@ -260,8 +260,8 @@ vim.keymap.set("i", "<c-k>", "<c-g>u<c-o>d$", {
 vim.keymap.set("n", "H", function()
   local cursor_column = vim.api.nvim_win_get_cursor(0)[2]
   vim.cmd("normal! ^")
-  local cursor_column_after_caret = vim.api.nvim_win_get_cursor(0)[2]
-  if cursor_column == cursor_column_after_caret then
+  local cursor_column_update = vim.api.nvim_win_get_cursor(0)[2]
+  if cursor_column == cursor_column_update then
     vim.cmd("normal! 0")
   end
 end, {
@@ -270,10 +270,17 @@ end, {
   desc = "Move to the first character/column on the current line",
 })
 
-vim.keymap.set("n", "L", "g_", {
+vim.keymap.set("n", "L", function()
+  local cursor_column = vim.api.nvim_win_get_cursor(0)[2]
+  vim.cmd("normal! g_")
+  local cursor_column_update = vim.api.nvim_win_get_cursor(0)[2]
+  if cursor_column == cursor_column_update then
+    vim.cmd("normal! $")
+  end
+end, {
   noremap = true,
   silent = true,
-  desc = "Move to the last character on the current line",
+  desc = "Move to the last character/column on the current line",
 })
 
 vim.keymap.set("n", "M", "%", {
