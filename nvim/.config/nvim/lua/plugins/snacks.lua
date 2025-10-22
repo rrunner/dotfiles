@@ -383,6 +383,8 @@ return {
           },
           lsp_symbols = {
             focus = "input",
+            tree = true,
+            keep_parents = true,
             layout = {
               preset = "vscode",
               preview = "main",
