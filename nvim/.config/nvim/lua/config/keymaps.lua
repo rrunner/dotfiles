@@ -257,10 +257,17 @@ vim.keymap.set("i", "<c-k>", "<c-g>u<c-o>d$", {
   desc = "Delete line forward",
 })
 
-vim.keymap.set("n", "H", "^", {
+vim.keymap.set("n", "H", function()
+  local cursor_column = vim.api.nvim_win_get_cursor(0)[2]
+  vim.cmd("normal! ^")
+  local cursor_column_after_caret = vim.api.nvim_win_get_cursor(0)[2]
+  if cursor_column == cursor_column_after_caret then
+    vim.cmd("normal! 0")
+  end
+end, {
   noremap = true,
   silent = true,
-  desc = "Move to the first character on the current line",
+  desc = "Move to the first character/column on the current line",
 })
 
 vim.keymap.set("n", "L", "g_", {

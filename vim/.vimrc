@@ -238,7 +238,15 @@ vnoremap <localleader>dd "_d
 " mappings {{{
 
 " directional mappings
-nnoremap <silent> H ^
+function! MoveLeft()
+  let cursor_column = col(".")
+  normal! ^
+  let cursor_column_after_caret = col(".")
+  if cursor_column == cursor_column_after_caret
+    normal! 0
+  endif
+endfunction
+nnoremap <silent> H :call MoveLeft()<cr>
 nnoremap <silent> L g_
 nnoremap <silent> M %
 
