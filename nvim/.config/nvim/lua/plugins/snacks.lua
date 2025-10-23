@@ -472,7 +472,6 @@ return {
                   ["<c-n>"] = { "list_down", mode = { "n", "i" } },
                   ["<c-p>"] = { "list_up", mode = { "n", "i" } },
                   ["<c-d>"] = { "scratch_delete", mode = "i" },
-                  ["<c-y>"] = { "scratch_new", mode = { "n", "i" } },
                   ["<c-x>"] = false,
                 },
               },
