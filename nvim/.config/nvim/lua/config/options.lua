@@ -117,11 +117,20 @@ vim.o.iskeyword = "@,48-57,_,192-255,-"
 vim.o.synmaxcol = 300
 vim.o.winborder = "rounded"
 -- fold = " ",
-vim.o.fillchars = "diff:" .. icons.chars.diff .. ",eob: ,fold: " .. ",foldclose:" .. icons.chars.foldclose .. ",foldopen:" .. icons.chars.foldopen .. ",foldsep: "
+vim.o.fillchars = "diff:"
+  .. icons.chars.diff
+  .. ",eob: ,fold: "
+  .. ",foldclose:"
+  .. icons.chars.foldclose
+  .. ",foldopen:"
+  .. icons.chars.foldopen
+  .. ",foldsep: "
 vim.o.foldenable = true
 vim.o.foldlevel = 99 -- open buffers unfolded
 vim.o.foldmethod = "expr"
 vim.o.foldtext = ""
+vim.o.exrc = true -- add .nvim.lua to project root for project specific configuration
+vim.o.secure = true
 
 -- windows specific
 if utils.IS_WIN then
