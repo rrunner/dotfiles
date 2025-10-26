@@ -371,7 +371,7 @@ return {
               input = {
                 keys = {
                   ["<tab>"] = { "git_stage", mode = { "n", "i" } },
-                  ["<c-r>"] = { "git_restore", mode = { "n", "i" } },
+                  ["<c-r>"] = false,
                 },
               },
             },
