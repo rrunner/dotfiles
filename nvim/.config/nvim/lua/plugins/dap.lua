@@ -204,27 +204,26 @@ return {
     dap.adapters.python = dap.adapters.debugpy
 
     -- configure the python debugee (application)
+    -- comments about some of the options:
+    --  console = "integratedTerminal" - print to console (does not print to console when testing in debugging mode with neotest-python)
+    --  console = "internalConsole" - print to REPL
+    --  justMyCode = false - debug third party libraries
+    --  subProcess = false - dap-adapter-debugpy does not support multiprocess yet (disable multiprocess patch in debugpy)
+    --  cwd = "${workspaceFolder}" - use the current cwd of editor/buffer, not the file's absolute path
+    --  stopOnEntry = false - stop at first line of user code
     dap.configurations.python = {
       {
         type = "debugpy",
         request = "launch",
         name = "Debug/launch current file",
         program = "${file}",
-        -- console = "integratedTerminal", -- print to console (does not print to console when testing in debugging mode with neotest-python)
-        console = "internalConsole", -- print to REPL
-        -- makes third party libraries and packages debuggable
+        console = "internalConsole",
         justMyCode = false,
-        -- dap-adapter-debugpy does not support multiprocess yet (disable multiprocess patch in debugpy)
         subProcess = false,
-        -- use the current cwd of editor/buffer, not the file's absolute path
         cwd = "${workspaceFolder}",
-        -- cwd = function()
-        --   return vim.fn.getcwd()
-        -- end,
         pythonPath = function()
           return utils.get_python_path()
         end,
-        -- stop at first line of user code
         stopOnEntry = false,
       },
       -- {
@@ -265,7 +264,7 @@ return {
       --   pythonPath = function()
       --     return utils.get_python_path()
       --   end,
-      --   stopOnEntry = true, -- start debugging on first line (virtual breakpoint)
+      --   stopOnEntry = true,
       -- },
       -- {
       --   -- send curl request to endpoints to debug
