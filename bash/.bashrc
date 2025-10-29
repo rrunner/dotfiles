@@ -109,7 +109,7 @@ export RIPGREP_CONFIG_PATH="$HOME"/.config/ripgrep/ripgreprc
 if type rg &>/dev/null; then
   RG_OPTIONS="--files --smart-case --follow --hidden --no-messages"
   export FZF_DEFAULT_COMMAND="git ls-files --cached --others --exclude-standard || rg $RG_OPTIONS"
-  export FZF_DEFAULT_OPTS="--no-mouse --height 80% -1 --reverse --multi --inline-info --scroll-off=3 --preview='[[ \$(file --mime {}) =~ binary ]] && echo {} is a binary file || (bat --style=numbers --color=always {} || cat {}) 2> /dev/null | head -300' --preview-window='down,60%:wrap:hidden' --bind='?:toggle-preview,ctrl-p:up,ctrl-n:down,ctrl-d:preview-down,ctrl-f:preview-up'"
+  export FZF_DEFAULT_OPTS="--no-mouse --height 80% -1 --reverse --multi --inline-info --scroll-off=3 --preview='[[ \$(file --mime {}) =~ binary ]] && echo {} is a binary file || (bat --style=numbers --color=always {} || cat {}) 2> /dev/null | head -300' --preview-window='down,60%:wrap:hidden' --bind='?:toggle-preview,ctrl-p:up,ctrl-n:down,ctrl-d:preview-down,ctrl-f:preview-up,ctrl-y:accept,ctrl-q:ignore'"
   export FZF_CTRL_T_COMMAND="rg $RG_OPTIONS"
 fi
 
