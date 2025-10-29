@@ -1,6 +1,6 @@
 [general]
 live_config_reload = true
-import = ["~/.config/alacritty/themes/nordfox.toml"]
+# import = ["~/.config/alacritty/themes/nordfox.toml"]
 
 [cursor.style]
 blinking = "Off"
