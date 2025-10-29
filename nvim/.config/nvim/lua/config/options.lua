@@ -3,6 +3,8 @@ local utils = require("config.utils")
 local icons = require("config.icons")
 
 -- global variables
+vim.g.mapleader = " "
+vim.g.maplocalleader = "-"
 -- manually set is_github_blocked to true if site prevents github usage
 vim.g.is_github_blocked = false
 vim.g.is_github_not_blocked = not vim.g.is_github_blocked

@@ -12,20 +12,6 @@ if not vim.uv.fs_stat(lazypath) then
 end
 vim.o.rtp = lazypath .. "," .. vim.o.rtp
 
--- set leader key
-vim.keymap.set({ "n", "v" }, "<space>", "<nop>", {
-  silent = true,
-  desc = "The space key should only act as the leader key",
-})
-vim.g.mapleader = " "
-
--- set localleader key
-vim.keymap.set({ "n", "v" }, "-", "<nop>", {
-  silent = true,
-  desc = "The minus (-) sign should only act as the localleader key",
-})
-vim.g.maplocalleader = "-"
-
 -- setting required by many plugins
 vim.o.termguicolors = true
 
@@ -39,13 +25,12 @@ vim._print = function(_, ...)
   dd(...)
 end
 
-require("config.icons")
+require("config.options")
 require("config.autocmds")
 require("config.usercmds")
 require("config.filetype")
 require("config.abbreviations")
 require("config.keymaps")
-require("config.options")
 require("lsp")
 
 -- initialize lazy.nvim
