@@ -5,22 +5,15 @@ local icons = require("config.icons")
 -- global variables
 vim.g.mapleader = " "
 vim.g.maplocalleader = "-"
--- manually set is_github_blocked to true if site prevents github usage
-vim.g.is_github_blocked = false
+vim.g.is_github_blocked = false -- block github usage
 vim.g.is_github_not_blocked = not vim.g.is_github_blocked
 vim.g.editorconfig = true
 vim.g.loaded_python3_provider = 0
 vim.g.loaded_node_provider = 0
 vim.g.loaded_perl_provider = 0
 vim.g.loaded_ruby_provider = 0
--- force selection of clipboard tool (xclip works both in linux and in WSL)
-vim.g.clipboard = "xclip"
--- pyproject.toml and uv.lock has equal priority in deciding the root directory (e.g. parent folder)
-vim.g.py_root_markers = {
-  { "pyproject.toml", "uv.lock" },
-  "requirements.txt",
-  "Pipfile",
-}
+vim.g.clipboard = "xclip" -- select clipboard tool (xclip works both in linux and in WSL)
+vim.g.py_root_markers = { { "pyproject.toml", "uv.lock" }, "requirements.txt", "Pipfile" } -- set root directory (e.g. parent folder)
 
 vim.cmd("filetype plugin indent on")
 if vim.fn.exists("syntax_on") ~= 1 then
@@ -132,7 +125,7 @@ vim.o.foldlevel = 99 -- open buffers unfolded
 vim.o.foldmethod = "expr"
 vim.o.foldtext = ""
 vim.o.exrc = true -- add .nvim.lua to project root for project specific configuration
-vim.o.secure = true
+vim.o.secure = true -- must accept .nvim.lua files
 
 -- windows specific
 if utils.IS_WIN then
