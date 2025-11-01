@@ -1,12 +1,6 @@
 -- general key mappings
 -- plugin specific keymaps are generally set in each plugin configuration
 
-vim.keymap.set("n", "gl", "G", {
-  noremap = true,
-  silent = true,
-  desc = "Go to last line in buffer (more convenient than G)",
-})
-
 vim.keymap.set("x", "/", "<esc>/\\%V", {
   noremap = true,
   silent = false,

@@ -368,9 +368,6 @@ cnoremap <c-a> <home>
 cnoremap <c-e> <end>
 cnoremap <c-k> <c-\>estrpart(getcmdline(), 0, getcmdpos()-1)<cr>
 
-" go to last line in buffer (more convenient than G)
-nnoremap gl G
-
 " search for first occurrence of the current word
 nnoremap [/ [<c-i>"
 " }}}
