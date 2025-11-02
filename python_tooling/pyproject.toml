@@ -6,6 +6,7 @@ readme = "README.md"
 requires-python = ">=3.13"
 
 [tool.pytest.ini_options]
+# to see print() in tests, use -s (capture=no)
 addopts = "--strict-markers -ra -q -v"
 minversion = "8.0"
 pythonpath = "."
