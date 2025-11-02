@@ -376,6 +376,18 @@ return {
               },
             },
           },
+          git_diff = {
+            group = false, --show individual hunks
+            -- base = "", --SHA commit/branch/tag to diff against
+            win = {
+              input = {
+                keys = {
+                  ["<tab>"] = { "git_stage", mode = { "n", "i" } },
+                  ["<c-r>"] = false,
+                },
+              },
+            },
+          },
           git_branches = {
             --show all branches (incl. remote)
             all = true,
