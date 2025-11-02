@@ -37,5 +37,12 @@ return {
       "<cmd>" .. git_log_file_cmd .. "<cr>",
       { noremap = true, silent = true, desc = "git log file (mini-git)" }
     )
+
+    vim.keymap.set(
+      "n",
+      "<leader>gB",
+      [[<cmd>vertical Git blame -- %<cr>]],
+      { noremap = true, silent = true, desc = "Show latest commits per line in vertical split" }
+    )
   end,
 }
