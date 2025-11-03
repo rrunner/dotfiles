@@ -22,6 +22,7 @@ return {
           "filetype_lsp",
           "recording",
           "progress",
+          "searchcount",
         },
       },
       configs = {
@@ -47,6 +48,9 @@ return {
             modified = icons.git_icons.modified,
             removed = icons.git_icons.deleted,
           },
+        },
+        searchcount = {
+          icon = "",
         },
         diagnostics = {
           icons = {

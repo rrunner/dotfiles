@@ -48,13 +48,13 @@ vim.o.cursorline = true
 vim.o.cursorlineopt = "both" --line and number
 vim.o.splitbelow = true
 vim.o.splitright = true
-vim.o.shortmess = "CFOIWaco" --add S to not show searchcount
+vim.o.shortmess = "CFOISWaco"
 vim.o.showcmd = false
 vim.o.showmode = false
 vim.o.showmatch = false
 vim.o.matchtime = 2 -- only used when showmatch = true
 vim.o.cmdheight = 1
-vim.o.hlsearch = false
+vim.o.hlsearch = true
 vim.o.incsearch = true
 vim.o.ignorecase = true
 vim.o.smartcase = true
