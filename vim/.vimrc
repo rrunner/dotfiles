@@ -113,7 +113,6 @@ call plug#begin('~/.vim/pack')
   Plug 'machakann/vim-highlightedyank'
   Plug 'preservim/nerdtree'
   Plug 'ryanoasis/vim-devicons' " requires nerdfonts to be installed on system
-  Plug 'chrisbra/improvedft'
 call plug#end()
 " }}}
 
@@ -162,13 +161,6 @@ let g:NERDTreeShowHidden = 1
 let g:NERDTreeSortHiddenFirst = 1
 let g:NERDTreeMapOpenSplit = 'x'
 let g:NERDTreeMapOpenVSplit = 'v'
-" }}}
-
-
-" plugin settings: improvedft  {{{
-let g:ft_improved_ignorecase = 1
-let g:ft_improved_multichars = 0
-let g:ft_improved_nohighlight = 1
 " }}}
 
 
