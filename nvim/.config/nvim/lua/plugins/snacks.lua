@@ -135,11 +135,6 @@ return {
         },
       },
       scratch = {
-        name = "Scratch",
-        root = vim.fn.stdpath("data") .. "/scratch",
-        -- automatically write when the buffer is hidden
-        autowrite = true,
-        win = { style = "scratch" },
         win_by_ft = {
           lua = {
             keys = {
@@ -626,11 +621,10 @@ return {
           height = 0.6,
           wo = {
             number = true,
-            relativenumber = false,
             wrap = false,
           },
           keys = {
-            q = false,
+            q = "close", --false
           },
         },
       },
@@ -923,14 +917,6 @@ return {
     })
 
     vim.keymap.set("n", "<leader>.", function()
-      snacks.scratch()
-    end, {
-      noremap = true,
-      silent = true,
-      desc = "Toggle Scratch Buffer",
-    })
-
-    vim.keymap.set("n", "<leader>S", function()
       snacks.scratch.select()
     end, {
       noremap = true,
