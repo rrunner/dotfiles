@@ -54,11 +54,9 @@
   diffFilter = delta --color-only
 [delta]
   navigate = true    # use n and N to move between diff sections
-  light = false      # set to true if you're in a terminal w/o a light background color (e.g. the default macOS terminal)
+  dark = true
   side-by-side = true
   line-numbers = true
-  plus-color = "#A9FF68"
-  minus-color = "#F70067"
 [diff]
   colorMoved = default
   algorithm = patience
