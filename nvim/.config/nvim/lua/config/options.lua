@@ -54,7 +54,7 @@ vim.o.showmode = false
 vim.o.showmatch = false
 vim.o.matchtime = 2 -- only used when showmatch = true
 vim.o.cmdheight = 1
-vim.o.hlsearch = true -- required to get searchcount in slimline
+vim.o.hlsearch = false
 vim.o.incsearch = true
 vim.o.ignorecase = true
 vim.o.smartcase = true
