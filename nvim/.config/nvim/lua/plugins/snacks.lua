@@ -4,6 +4,23 @@
 -- exclude by file extension (can be used by files and grep pickers)
 local exclude_fext = { "*.js", "*.js.map", "*.mjs", "*.jpg", "*.JPG", "*.avi", "*.AVI", "*.pdf", "*.PDF", "*.h", "*.c" }
 
+local git_diff_layout = {
+  box = "vertical",
+  backdrop = true,
+  row = -1,
+  width = 0.95,
+  height = 0.95,
+  border = "top_bottom",
+  title = " {title} {live} {flags}",
+  title_pos = "left",
+  { win = "input", height = 1, border = "bottom" },
+  {
+    box = "horizontal",
+    { win = "list", border = "none" },
+    { win = "preview", title = "{preview}", width = 0.85, border = "left" },
+  },
+}
+
 return {
   "folke/snacks.nvim",
   priority = 1000,
@@ -200,9 +217,9 @@ return {
           },
         },
         previewers = {
-          git = {
-            -- use native (terminal) or Neovim for previewing git diffs and commits
-            native = false,
+          diff = {
+            style = "fancy",
+            cmd = { "delta" },
           },
         },
         jump = {
@@ -370,6 +387,9 @@ return {
                 },
               },
             },
+            layout = {
+              layout = git_diff_layout,
+            },
           },
           git_diff = {
             group = false, --show individual hunks
@@ -381,6 +401,9 @@ return {
                   ["<c-r>"] = false,
                 },
               },
+            },
+            layout = {
+              layout = git_diff_layout,
             },
           },
           git_branches = {
