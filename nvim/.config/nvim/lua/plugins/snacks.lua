@@ -413,7 +413,7 @@ return {
                 {
                   win = "input",
                   height = 1,
-                  border = "hpad",
+                  border = "top_bottom",
                   title = "{title} {live} {flags}",
                   title_pos = "center",
                 },
