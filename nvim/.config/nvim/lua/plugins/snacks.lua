@@ -4,23 +4,6 @@
 -- exclude by file extension (can be used by files and grep pickers)
 local exclude_fext = { "*.js", "*.js.map", "*.mjs", "*.jpg", "*.JPG", "*.avi", "*.AVI", "*.pdf", "*.PDF", "*.h", "*.c" }
 
-local git_diff_layout = {
-  box = "vertical",
-  backdrop = true,
-  row = -1,
-  width = 0.95,
-  height = 0.95,
-  border = "top_bottom",
-  title = " {title} {live} {flags}",
-  title_pos = "left",
-  { win = "input", height = 1, border = "bottom" },
-  {
-    box = "horizontal",
-    { win = "list", border = "none" },
-    { win = "preview", title = "{preview}", width = 0.85, border = "left" },
-  },
-}
-
 return {
   "folke/snacks.nvim",
   priority = 1000,
@@ -204,13 +187,6 @@ return {
         enabled = true,
         -- replace `vim.ui.select` with the snacks picker
         ui_select = true,
-        layout = {
-          cycle = true,
-          layout = {
-            width = 0.9,
-            height = 0.9,
-          },
-        },
         formatters = {
           file = {
             filename_first = true,
@@ -328,6 +304,30 @@ return {
           },
           kinds = icons._kinds_cmp,
         },
+        layout = {
+          cycle = true,
+          layout = {
+            width = 0.9,
+            height = 0.9,
+          },
+        },
+        layouts = {
+          git_diff_layout = {
+            layout = {
+              box = "vertical",
+              backdrop = true,
+              border = "top_bottom",
+              title = " {title} {live} {flags}",
+              title_pos = "left",
+              { win = "input", height = 1, border = "bottom" },
+              {
+                box = "horizontal",
+                { win = "list", border = "none" },
+                { win = "preview", title = "{preview}", width = 0.85, border = "left" },
+              },
+            },
+          },
+        },
         sources = {
           files = {
             hidden = true,
@@ -388,7 +388,7 @@ return {
               },
             },
             layout = {
-              layout = git_diff_layout,
+              preset = "git_diff_layout",
             },
           },
           git_diff = {
@@ -403,7 +403,7 @@ return {
               },
             },
             layout = {
-              layout = git_diff_layout,
+              preset = "git_diff_layout",
             },
           },
           git_branches = {
