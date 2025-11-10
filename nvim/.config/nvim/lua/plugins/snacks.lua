@@ -306,16 +306,23 @@ return {
         },
         layout = {
           cycle = true,
-          layout = {
-            width = 0.9,
-            height = 0.9,
-          },
+          preset = function()
+            return vim.o.columns >= 120 and "default" or "vertical"
+          end,
         },
         layouts = {
+          default = {
+            preset = "default",
+            layout = {
+              width = 0.9,
+              height = 0.9,
+            },
+          },
           git_diff_layout = {
             layout = {
               box = "vertical",
-              backdrop = true,
+              width = 0.9,
+              height = 0.9,
               border = "top_bottom",
               title = " {title} {live} {flags}",
               title_pos = "left",
@@ -325,6 +332,44 @@ return {
                 { win = "list", border = "none" },
                 { win = "preview", title = "{preview}", width = 0.85, border = "left" },
               },
+            },
+          },
+          vscode_slim = {
+            preview = "main",
+            layout = {
+              row = 5,
+              width = 0.4,
+              height = 0.3,
+              min_width = 80,
+              border = "none",
+              box = "vertical",
+              {
+                win = "input",
+                height = 1,
+                border = "top_bottom",
+                title = "{title} {live} {flags}",
+                title_pos = "center",
+              },
+              { win = "list", border = "hpad" },
+              { win = "preview", title = "{preview}", border = "none" },
+            },
+          },
+          select_slim = {
+            hidden = { "preview" },
+            layout = {
+              backdrop = false,
+              width = 0.4,
+              height = 0.4,
+              min_width = 80,
+              max_width = 100,
+              min_height = 2,
+              box = "vertical",
+              border = true,
+              title = "{title}",
+              title_pos = "center",
+              { win = "input", height = 1, border = "bottom" },
+              { win = "list", border = "none" },
+              { win = "preview", title = "{preview}", height = 0.4, border = "top" },
             },
           },
         },
@@ -424,34 +469,13 @@ return {
             tree = true,
             keep_parents = true,
             layout = {
-              preset = "vscode",
-              preview = "main",
-              layout = {
-                row = 5,
-                width = 0.4,
-                height = 0.4,
-                min_width = 80,
-                border = "none",
-                box = "vertical",
-                {
-                  win = "input",
-                  height = 1,
-                  border = "top_bottom",
-                  title = "{title} {live} {flags}",
-                  title_pos = "center",
-                },
-                { win = "list", border = "hpad" },
-                { win = "preview", title = "{preview}", border = "none" },
-              },
+              preset = "vscode_slim",
             },
           },
           spelling = {
             layout = {
-              preset = "select",
+              preset = "select_slim",
               layout = {
-                height = 0.5,
-                width = 0.3,
-                min_width = 60,
                 title = "Spell suggestions",
               },
             },
@@ -491,15 +515,6 @@ return {
                   ["<c-w>"] = false,
                   ["<c-t>"] = false,
                 },
-              },
-            },
-          },
-          select = {
-            layout = {
-              preset = "select",
-              layout = {
-                width = 0.4,
-                height = 0.4,
               },
             },
           },
@@ -765,7 +780,7 @@ return {
         dirs = { vim.fn.stdpath("config") .. utils.path_sep .. "templates" },
         title = "Select template notes",
         layout = {
-          preset = "select",
+          preset = "select_slim",
         },
         actions = {
           confirm = function(picker, item)
