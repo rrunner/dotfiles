@@ -306,9 +306,6 @@ return {
         },
         layout = {
           cycle = true,
-          preset = function()
-            return vim.o.columns >= 120 and "default" or "vertical"
-          end,
         },
         layouts = {
           default = {
@@ -352,24 +349,6 @@ return {
               },
               { win = "list", border = "hpad" },
               { win = "preview", title = "{preview}", border = "none" },
-            },
-          },
-          select_slim = {
-            hidden = { "preview" },
-            layout = {
-              backdrop = false,
-              width = 0.4,
-              height = 0.4,
-              min_width = 80,
-              max_width = 100,
-              min_height = 2,
-              box = "vertical",
-              border = true,
-              title = "{title}",
-              title_pos = "center",
-              { win = "input", height = 1, border = "bottom" },
-              { win = "list", border = "none" },
-              { win = "preview", title = "{preview}", height = 0.4, border = "top" },
             },
           },
         },
@@ -474,8 +453,10 @@ return {
           },
           spelling = {
             layout = {
-              preset = "select_slim",
+              preset = "select",
               layout = {
+                width = 0.4,
+                height = 0.4,
                 title = "Spell suggestions",
               },
             },
@@ -515,6 +496,13 @@ return {
                   ["<c-w>"] = false,
                   ["<c-t>"] = false,
                 },
+              },
+            },
+            layout = {
+              preset = "default",
+              layout = {
+                height = 0.5,
+                width = 0.5,
               },
             },
           },
@@ -583,36 +571,37 @@ return {
             win = {
               list = {
                 keys = {
-                  ["<bs>"] = "explorer_up",
-                  ["h"] = "explorer_close",
                   ["l"] = "confirm",
-                  ["a"] = "explorer_add",
-                  ["d"] = "explorer_del",
-                  ["r"] = "explorer_rename",
                   ["c"] = false,
-                  ["m"] = "explorer_move",
                   ["o"] = "confirm",
-                  ["y"] = { "explorer_yank", mode = { "n", "x" } },
-                  ["p"] = "explorer_paste",
                   ["u"] = false,
-                  ["]g"] = "explorer_git_next",
-                  ["[g"] = "explorer_git_prev",
                   ["<c-c>"] = "close",
-                  ["<leader>/"] = "picker_grep", -- grep in folder
-                  ["<c-t>"] = "terminal", -- start terminal in folder
-                  ["."] = "explorer_focus",
                   ["P"] = false,
-                  ["I"] = "toggle_ignored",
-                  ["H"] = "toggle_hidden",
-                  ["Z"] = "explorer_close_all",
                   ["x"] = { { "pick_win", "edit_split" }, mode = "n" },
                   ["v"] = { { "pick_win", "edit_vsplit" }, mode = "n" },
-                  ["]d"] = "explorer_diagnostic_next",
-                  ["[d"] = "explorer_diagnostic_prev",
                   ["]w"] = false,
                   ["[w"] = false,
                   ["]e"] = false,
                   ["[e"] = false,
+                  -- default keymaps below (keep for reference)
+                  -- ["<c-t>"] = "terminal", -- start terminal in folder
+                  -- ["<bs>"] = "explorer_up",
+                  -- ["h"] = "explorer_close",
+                  -- ["a"] = "explorer_add",
+                  -- ["d"] = "explorer_del",
+                  -- ["r"] = "explorer_rename",
+                  -- ["m"] = "explorer_move",
+                  -- ["y"] = { "explorer_yank", mode = { "n", "x" } },
+                  -- ["p"] = "explorer_paste",
+                  -- ["]g"] = "explorer_git_next",
+                  -- ["[g"] = "explorer_git_prev",
+                  -- ["<leader>/"] = "picker_grep", -- grep in folder
+                  -- ["."] = "explorer_focus",
+                  -- ["I"] = "toggle_ignored",
+                  -- ["H"] = "toggle_hidden",
+                  -- ["Z"] = "explorer_close_all",
+                  -- ["]d"] = "explorer_diagnostic_next",
+                  -- ["[d"] = "explorer_diagnostic_prev",
                 },
               },
             },
@@ -780,7 +769,11 @@ return {
         dirs = { vim.fn.stdpath("config") .. utils.path_sep .. "templates" },
         title = "Select template notes",
         layout = {
-          preset = "select_slim",
+          preset = "select",
+          layout = {
+            width = 0.4,
+            height = 0.4,
+          },
         },
         actions = {
           confirm = function(picker, item)
