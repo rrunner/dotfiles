@@ -20,7 +20,9 @@ vim.api.nvim_create_user_command("ToggleLSP", function()
     vim.cmd("edit!")
   else
     vim.notify("Stop all LSP clients in buffer", vim.log.levels.INFO)
-    vim.lsp.stop_client(clients)
+    vim.iter(clients):each(function(client)
+      client:stop()
+    end)
   end
 end, { desc = "Toggle LSP on/off for the current buffer" })
 
