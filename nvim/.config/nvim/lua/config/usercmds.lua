@@ -26,38 +26,6 @@ vim.api.nvim_create_user_command("ToggleLSP", function()
   end
 end, { desc = "Toggle LSP on/off for the current buffer" })
 
--- vim.api.nvim_create_user_command("CommitLazyLockFile", function()
---   local repo_dir = vim.env.HOME .. "/dotfiles"
---   local lockfile = repo_dir .. "/nvim/.config/nvim/lazy-lock.json"
---
---   local cmd = {
---     "git",
---     "-C",
---     repo_dir,
---     "commit",
---     lockfile,
---     "-m",
---     "Update lazy-lock.json",
---   }
---
---   local success, process = pcall(function()
---     return vim.system(cmd):wait()
---   end)
---
---   if process and process.code == 0 then
---     vim.notify("Committed lazy-lock.json")
---     vim.notify(process.stdout)
---   else
---     if not success then
---       vim.notify("Failed to run command '" .. table.concat(cmd, " ") .. "':", vim.log.levels.WARN, {})
---       vim.notify(tostring(process), vim.log.levels.WARN, {})
---     else
---       vim.notify("git ran but failed to commit:")
---       vim.notify(process.stdout, vim.log.levels.WARN, {})
---     end
---   end
--- end, { desc = "git commit lockfile lazy-lock.json (lazy package manager)" })
-
 vim.api.nvim_create_user_command("JsonPath", function()
   if not vim.tbl_contains({ "json" }, vim.bo.filetype) then
     print("filetype is not json")
