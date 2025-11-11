@@ -181,7 +181,8 @@ return {
       },
       -- scroll (animation)
       scroll = {
-        enabled = true,
+        -- issues with scroll enabled: overrides * keymap and vim.diagnostic.jump float window does not popup after move
+        enabled = false,
       },
       picker = {
         enabled = true,
