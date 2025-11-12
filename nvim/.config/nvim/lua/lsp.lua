@@ -50,19 +50,26 @@ vim.keymap.set(
   vim.diagnostic.open_float,
   vim.tbl_extend("error", opts, { desc = "Display LSP diagnostic message in open float window" })
 )
+
 vim.keymap.set(
   "n",
   "<leader>q",
   vim.diagnostic.setqflist,
   vim.tbl_extend("error", opts, { desc = "Move all LSP diagnostic messages into a quickfix window" })
 )
+
 vim.keymap.set("n", "[d", function()
-  vim.diagnostic.jump({ count = -1, float = true })
-  vim.cmd([[normal! zz]])
+  require("config.utils").run_wo_snacks_scroll(function()
+    vim.diagnostic.jump({ count = -1, float = true })
+    vim.cmd([[normal! zz]])
+  end)
 end, vim.tbl_extend("error", opts, { desc = "Go to previous LSP diagnostic message" }))
+
 vim.keymap.set("n", "]d", function()
-  vim.diagnostic.jump({ count = 1, float = true })
-  vim.cmd([[normal! zz]])
+  require("config.utils").run_wo_snacks_scroll(function()
+    vim.diagnostic.jump({ count = 1, float = true })
+    vim.cmd([[normal! zz]])
+  end)
 end, vim.tbl_extend("error", opts, { desc = "Go to next LSP diagnostic message" }))
 
 -- LSP attach autocommand

@@ -177,7 +177,11 @@ vim.keymap.set("n", "N", "Nzz", {
   desc = "Display search results at center of screen",
 })
 
-vim.keymap.set("n", "*", "*zzN", {
+vim.keymap.set("n", "*", function()
+  require("config.utils").run_wo_snacks_scroll(function()
+    vim.cmd([[echo "" | silent normal! *zzN]])
+  end)
+end, {
   noremap = true,
   silent = true,
   desc = "Display search results at center of screen (at the word invoked)",

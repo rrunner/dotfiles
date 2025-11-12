@@ -266,4 +266,16 @@ M.inside_scratch_buffer = function(buf)
   end)
 end
 
+-- evaluate callback without snacks scroll
+M.run_wo_snacks_scroll = function(callback)
+  local snacks_exist, snacks = pcall(require, "snacks")
+  if snacks_exist then
+    snacks.scroll.disable()
+  end
+  callback()
+  if snacks_exist then
+    snacks.scroll.enable()
+  end
+end
+
 return M
