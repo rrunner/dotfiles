@@ -7,7 +7,7 @@ return {
     -- local utils = require("config.utils")
 
     -- sqlfluff (see 'sqlfluff dialects' for different dialects)
-    lint.linters.sqlfluff.args = { "lint", "--dialect", "postgres" }
+    lint.linters.sqlfluff.args = { "lint", "--format=json", "--dialect", "ansi" }
 
     lint.linters_by_ft = {
       markdown = { "markdownlint-cli2", "vale" },
