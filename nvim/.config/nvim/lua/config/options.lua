@@ -22,6 +22,7 @@ end
 if vim.fn.executable("rg") == 1 then
   vim.o.grepprg = "rg -H --no-heading --vimgrep --smart-case --follow"
 end
+vim.o.scrollback = 10000
 vim.o.compatible = false
 vim.o.grepformat = "%f:%l:%c:%m,$f:$l:%c:%m"
 vim.o.autoindent = true
