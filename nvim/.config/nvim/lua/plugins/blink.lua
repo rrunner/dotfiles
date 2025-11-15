@@ -10,6 +10,7 @@ return {
     "rafamadriz/friendly-snippets",
     "folke/lazydev.nvim",
     "archie-judd/blink-cmp-words",
+    "nvim-mini/mini.icons",
   },
   opts = {
     sources = {
@@ -121,16 +122,32 @@ return {
       ["<c-b>"] = { "fallback" },
     },
 
-    appearance = {
-      nerd_font_variant = "mono",
-      kind_icons = require("config.icons")._kinds_cmp,
-    },
-
     completion = {
       menu = {
         draw = {
           columns = { { "kind_icon" }, { "label", "label_description", "kind", "source_name", gap = 1 } },
           treesitter = { "lsp" },
+          components = {
+            kind_icon = {
+              text = function(ctx)
+                -- use icons from mini.icons
+                local kind_icon, _, _ = require("mini.icons").get("lsp", ctx.kind)
+                return kind_icon
+              end,
+              -- use highlights from mini.icons
+              highlight = function(ctx)
+                local _, hl, _ = require("mini.icons").get("lsp", ctx.kind)
+                return hl
+              end,
+            },
+            kind = {
+              -- use highlights from mini.icons
+              highlight = function(ctx)
+                local _, hl, _ = require("mini.icons").get("lsp", ctx.kind)
+                return hl
+              end,
+            },
+          },
         },
       },
       list = {
