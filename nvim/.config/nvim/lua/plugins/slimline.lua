@@ -4,7 +4,6 @@ return {
     { "nvim-mini/mini.icons", version = false },
   },
   config = function()
-    local utils = require("config.utils")
     local icons = require("config.icons")
 
     local opts = {
@@ -18,7 +17,7 @@ return {
         },
         center = {},
         right = {
-          utils.venv_with_cwd,
+          require("config.utils").venv_with_cwd,
           "filetype_lsp",
           "recording",
           "progress",

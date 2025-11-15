@@ -1,10 +1,7 @@
 -- utility functions
-local icons = require("config.icons")
-
 local M = {}
 
 local str = require("string")
-
 local uv = vim.uv
 
 -- detect OS
@@ -114,7 +111,7 @@ M.venv_with_cwd = function()
   if venv == nil then
     return uv.cwd() or ""
   else
-    return icons.extra.python_no_color .. " (" .. str.match(venv, "/?([.%w_-]+)$") .. ") " .. uv.cwd()
+    return require("config.icons").extra.python_no_color .. " (" .. str.match(venv, "/?([.%w_-]+)$") .. ") " .. uv.cwd()
   end
 end
 
@@ -166,12 +163,6 @@ M.is_debugger_running = function()
       return true
     end
   end
-  -- -- alternative solution: however, it loads the dap plugin when explorer/zen mode is activated
-  -- local exist_dap, dap = pcall(require, "dap")
-  -- if exist_dap and dap.session() then
-  --   return true
-  -- end
-  -- return false
   return false
 end
 
@@ -260,7 +251,10 @@ end
 ---@param buf integer  -- buffer number
 ---@return boolean -- true if the current buffer is a Snacks scratch buffer
 M.inside_scratch_buffer = function(buf)
-  local snacks = require("snacks")
+  local exists_snacks, snacks = pcall(require, "snacks")
+  if not exists_snacks then
+    return
+  end
   local file = vim.api.nvim_buf_get_name(buf)
   return vim.iter(snacks.scratch.list()):find(function(s)
     return s.file == file
@@ -287,7 +281,7 @@ M.mini_icons_kinds = function()
   end
 
   local kinds_mini_icon = {}
-  for kind_type, _ in pairs(icons.kinds) do
+  for kind_type, _ in pairs(require("config.icons").kinds) do
     local mini_icon, _, _ = mini_icons.get("lsp", kind_type)
     kinds_mini_icon[kind_type] = mini_icon
   end

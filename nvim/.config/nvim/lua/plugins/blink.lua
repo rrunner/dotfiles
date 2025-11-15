@@ -10,7 +10,7 @@ return {
     "rafamadriz/friendly-snippets",
     "folke/lazydev.nvim",
     "archie-judd/blink-cmp-words",
-    "nvim-mini/mini.icons",
+    { "nvim-mini/mini.icons", version = false },
   },
   opts = {
     sources = {
