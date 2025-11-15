@@ -1,19 +1,14 @@
 return {
   "stevearc/aerial.nvim",
-  keys = {
-    {
-      "<leader>ea",
-      [[<cmd>AerialToggle<cr>]],
-      mode = "n",
-      desc = "Aerial toogle (display treesitter/markdown symbols)",
-      noremap = true,
-      silent = true,
-    },
-  },
   config = function()
+    local utils = require("config.utils")
     require("aerial").setup({
       show_guides = true,
-      backends = { "treesitter", "markdown" },
+      backends = {
+        ["_"] = { "lsp", "treesitter" },
+        json = { "treesitter" },
+        jsonc = { "treesitter" },
+      },
       layout = {
         max_width = { 40, 0.1 },
         min_width = 40,
@@ -42,7 +37,14 @@ return {
         ["h"] = "actions.tree_close",
         ["H"] = "actions.tree_close_recursive",
       },
-      icons = icons._kinds_cmp,
+      icons = {
+        ["_"] = { utils.mini_icons_kinds() or icons.kinds },
+      },
+    })
+    vim.keymap.set("n", "<leader>ea", "<cmd>AerialToggle<cr>", {
+      noremap = true,
+      silent = true,
+      desc = "Aerial toogle (display lsp/treesitter symbols)",
     })
   end,
 }

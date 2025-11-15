@@ -1,5 +1,6 @@
 -- utility functions
----@diagnostic disable: undefined-global
+local icons = require("config.icons")
+
 local M = {}
 
 local str = require("string")
@@ -113,7 +114,7 @@ M.venv_with_cwd = function()
   if venv == nil then
     return uv.cwd() or ""
   else
-    return " (" .. str.match(venv, "/?([.%w_-]+)$") .. ") " .. uv.cwd()
+    return icons.extra.python_no_color .. " (" .. str.match(venv, "/?([.%w_-]+)$") .. ") " .. uv.cwd()
   end
 end
 
@@ -276,6 +277,21 @@ M.run_wo_snacks_scroll = function(callback)
   if snacks_exist then
     snacks.scroll.enable()
   end
+end
+
+-- LSP kind icons provided by mini.icons
+M.mini_icons_kinds = function()
+  local exists, mini_icons = pcall(require, "mini.icons")
+  if not exists then
+    return
+  end
+
+  local kinds_mini_icon = {}
+  for kind_type, _ in pairs(icons.kinds) do
+    local mini_icon, _, _ = mini_icons.get("lsp", kind_type)
+    kinds_mini_icon[kind_type] = mini_icon
+  end
+  return kinds_mini_icon
 end
 
 return M
