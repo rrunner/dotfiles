@@ -275,14 +275,19 @@ end
 
 -- LSP kind icons provided by mini.icons
 M.mini_icons_kinds = function()
+  local icons = require("config.icons")
   local exists, mini_icons = pcall(require, "mini.icons")
   if not exists then
     return
   end
 
   local kinds_mini_icon = {}
-  for kind_type, _ in pairs(require("config.icons").kinds) do
-    local mini_icon, _, _ = mini_icons.get("lsp", kind_type)
+  for kind_type, _ in pairs(icons.kinds) do
+    local mini_icon, _, is_default = mini_icons.get("lsp", kind_type)
+    if is_default then
+      -- icon is not provided by mini.icons
+      mini_icon = icons.kinds.kind_type or "? "
+    end
     kinds_mini_icon[kind_type] = mini_icon
   end
   return kinds_mini_icon

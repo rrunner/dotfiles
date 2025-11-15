@@ -1,7 +1,7 @@
 local M = {}
 _G.icons = M
 
--- default kinds originally from Snacks
+-- default kinds (from Snacks markdown documentation originally)
 M.kinds = {
   Array = "",
   Boolean = "󰨙 ",
