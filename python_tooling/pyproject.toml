@@ -1,3 +1,5 @@
+#:tombi schema.strict = false
+
 [project]
 name = "example"
 version = "0.1.0"
@@ -5,12 +7,12 @@ description = "..."
 readme = "README.md"
 requires-python = ">=3.13"
 
-[tool.pytest.ini_options]
+[tool.pytest]
 # to see print() in tests, use -s (capture=no)
-addopts = "--strict-markers -ra -q -v"
-minversion = "8.0"
+minversion = "9.0"
+addopts = ["--strict-markers", "-ra", "-q", "-v"]
+testpaths = ["tests", "integration"]
 pythonpath = "."
-testpaths = ["tests"]
 
 [tool.ruff]
 target-version = "py313"
@@ -45,7 +47,6 @@ ignore = [
   "E501",
   "ERA",
   "ERA001",
-  "PD901",
   "PLR0913",
   "PLR2004",
   "RET504",
