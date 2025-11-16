@@ -38,7 +38,7 @@ return {
         ["H"] = "actions.tree_close_recursive",
       },
       icons = {
-        ["_"] = { utils.mini_icons_kinds() or icons.kinds },
+        ["_"] = { utils.lsp_mini_icons() or icons.kinds },
       },
     })
     vim.keymap.set("n", "<leader>ea", "<cmd>AerialToggle<cr>", {

@@ -274,23 +274,24 @@ M.run_wo_snacks_scroll = function(callback)
 end
 
 -- LSP kind icons provided by mini.icons
-M.mini_icons_kinds = function()
+M.lsp_mini_icons = function()
   local icons = require("config.icons")
   local exists, mini_icons = pcall(require, "mini.icons")
   if not exists then
     return
   end
 
-  local kinds_mini_icon = {}
-  for kind_type, _ in pairs(icons.kinds) do
-    local mini_icon, _, is_default = mini_icons.get("lsp", kind_type)
+  local kind_icon_map = {}
+  local all_kinds = M.unique_values(mini_icons.list("lsp"), vim.tbl_keys(icons.kinds))
+  for _, kind in ipairs(all_kinds) do
+    local mini_icon, _, is_default = mini_icons.get("lsp", kind)
     if is_default then
-      -- icon is not provided by mini.icons
-      mini_icon = icons.kinds.kind_type or "? "
+      -- fallback when icon is not provided by mini.icons
+      mini_icon = icons.kinds[kind] or "? "
     end
-    kinds_mini_icon[kind_type] = mini_icon
+    kind_icon_map[kind] = mini_icon
   end
-  return kinds_mini_icon
+  return kind_icon_map
 end
 
 return M

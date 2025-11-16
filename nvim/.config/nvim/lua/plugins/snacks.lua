@@ -303,7 +303,7 @@ return {
             unmerged = icons.git_icons.unmerged,
             untracked = icons.git_icons.untracked,
           },
-          kinds = utils.mini_icons_kinds() or icons.kinds,
+          kinds = utils.lsp_mini_icons() or icons.kinds,
         },
         layout = {
           cycle = true,
