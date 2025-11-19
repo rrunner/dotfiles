@@ -9,4 +9,7 @@ return {
     client.server_capabilities.documentFormattingProvider = false
     client.server_capabilities.documentRangeFormattingProvider = false
   end,
+  root_dir = function(bufnr, on_dir)
+    on_dir(vim.fs.root(bufnr, ".git") or vim.uv.os_homedir())
+  end,
 }
