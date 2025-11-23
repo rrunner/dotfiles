@@ -65,14 +65,6 @@ return {
       silent = true,
     },
     {
-      "<leader>tq",
-      [[<cmd>lua require("neotest").run.stop()<cr>]],
-      mode = "n",
-      desc = "Stop the nearest test",
-      noremap = true,
-      silent = true,
-    },
-    {
       "<leader>tt",
       [[<cmd>lua require("neotest").summary.toggle()<cr>]],
       mode = "n",
