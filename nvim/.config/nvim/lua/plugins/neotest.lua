@@ -10,6 +10,7 @@ return {
     "nvim-neotest/neotest-python",
     "shunsambongi/neotest-testthat",
   },
+  ft = { "python", "r" },
   config = function()
     require("neotest").setup({
       icons = {
@@ -38,39 +39,45 @@ return {
         },
       },
     })
+
+    vim.keymap.set("n", "<leader>tf",
+      function()
+        require("neotest").run.run(vim.fn.expand("%"))
+      end,
+      {
+        noremap = true,
+        silent = true,
+        desc = "Run tests for the current file",
+      })
+
+    vim.keymap.set("n", "<leader>tn",
+      function()
+        require("neotest").run.run()
+      end,
+      {
+        noremap = true,
+        silent = true,
+        desc = "Run the nearest test",
+      })
+
+    vim.keymap.set("n", "<leader>td",
+      function()
+        require("neotest").run.run({ strategy = "dap" })
+      end,
+      {
+        noremap = true,
+        silent = true,
+        desc = "Debug the nearest test",
+      })
+
+    vim.keymap.set("n", "<leader>tt",
+      function()
+        require("neotest").summary.toggle()
+      end,
+      {
+        noremap = true,
+        silent = true,
+        desc = "Toggle the neotest summary window",
+      })
   end,
-  keys = {
-    {
-      "<leader>tf",
-      [[<cmd>lua require("neotest").run.run(vim.fn.expand("%"))<cr>]],
-      mode = "n",
-      desc = "Run tests for the current file",
-      noremap = true,
-      silent = true,
-    },
-    {
-      "<leader>tn",
-      [[<cmd>lua require("neotest").run.run()<cr>]],
-      mode = "n",
-      desc = "Run the nearest test",
-      noremap = true,
-      silent = true,
-    },
-    {
-      "<leader>td",
-      [[<cmd>lua require("neotest").run.run({strategy = "dap"})<cr>]],
-      mode = "n",
-      desc = "Debug the nearest test",
-      noremap = true,
-      silent = true,
-    },
-    {
-      "<leader>tt",
-      [[<cmd>lua require("neotest").summary.toggle()<cr>]],
-      mode = "n",
-      desc = "Toggle the neotest summary window",
-      noremap = true,
-      silent = true,
-    },
-  },
 }

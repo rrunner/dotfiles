@@ -96,41 +96,7 @@ return {
     "mfussenegger/nvim-dap",
     "nvim-neotest/nvim-nio",
   },
-  keys = {
-    {
-      "<leader>db",
-      [[<cmd>lua require('dap').toggle_breakpoint()<cr>]],
-      mode = "n",
-      desc = "Toggle breakpoint (debugger)",
-      noremap = true,
-      silent = true,
-    },
-    {
-      "<leader>dk",
-      function()
-        local prompt = "Conditional breakpoint: "
-        vim.ui.input({ prompt = prompt }, function(condition)
-          if condition == nil or condition == "" then
-            return
-          end
-          vim.notify(prompt .. condition, vim.log.levels.INFO)
-          require("dap").set_breakpoint(condition, nil, nil)
-        end)
-      end,
-      mode = "n",
-      desc = "Set conditional breakpoint (debugger)",
-      noremap = true,
-      silent = true,
-    },
-    {
-      "<leader>dc",
-      [[<cmd>lua require('dap').continue()<cr>]],
-      mode = "n",
-      desc = "Start/continue (debugger)",
-      noremap = true,
-      silent = true,
-    },
-  },
+  ft = { "python", "r" },
   config = function()
     local utils = require("config.utils")
     local icons = require("config.icons")
@@ -153,35 +119,93 @@ return {
       numhl = "",
     })
 
-    vim.keymap.set("n", "<leader>dr", [[<cmd>lua require('dapui').open({reset = true})<cr>]], {
-      noremap = true,
-      silent = true,
-      desc = "Reset windows (debugger)",
-    })
+    vim.keymap.set("n", "<leader>db",
+      function()
+        require('dap').toggle_breakpoint()
+      end,
+      {
+        noremap = true,
+        silent = true,
+        desc = "Toggle breakpoint (debugger)",
+      })
 
-    vim.keymap.set("n", "<leader>dn", [[<cmd>lua require('dap').step_over()<cr>]], {
-      noremap = true,
-      silent = true,
-      desc = "Step over/next (debugger)",
-    })
+    vim.keymap.set("n", "<leader>dk",
+      function()
+        local prompt = "Conditional breakpoint: "
+        vim.ui.input({ prompt = prompt }, function(condition)
+          if condition == nil or condition == "" then
+            return
+          end
+          vim.notify(prompt .. condition, vim.log.levels.INFO)
+          require("dap").set_breakpoint(condition, nil, nil)
+        end)
+      end,
+      {
+        noremap = true,
+        silent = true,
+        desc = "Set conditional breakpoint (debugger)",
+      })
 
-    vim.keymap.set("n", "<leader>di", [[<cmd>lua require('dap').step_into()<cr>]], {
-      noremap = true,
-      silent = true,
-      desc = "Step into (debugger)",
-    })
+    vim.keymap.set("n", "<leader>dc",
+      function()
+        require('dap').continue()
+      end,
+      {
+        noremap = true,
+        silent = true,
+        desc = "Start/continue (debugger)",
+      })
 
-    vim.keymap.set("n", "<leader>do", [[<cmd>lua require('dap').step_out()<cr>]], {
-      noremap = true,
-      silent = true,
-      desc = "Step out (debugger)",
-    })
+    vim.keymap.set("n", "<leader>dr",
+      function()
+        require('dapui').open({ reset = true })
+      end,
+      {
+        noremap = true,
+        silent = true,
+        desc = "Reset windows (debugger)",
+      })
 
-    vim.keymap.set("n", "<leader>dq", [[<cmd>lua require('dap').terminate(); require('dapui').close()<cr>]], {
-      noremap = true,
-      silent = true,
-      desc = "Terminate and close GUI (debugger)",
-    })
+    vim.keymap.set("n", "<leader>dn",
+      function()
+        require('dap').step_over()
+      end,
+      {
+        noremap = true,
+        silent = true,
+        desc = "Step over/next (debugger)",
+      })
+
+    vim.keymap.set("n", "<leader>di",
+      function()
+        require('dap').step_into()
+      end,
+      {
+        noremap = true,
+        silent = true,
+        desc = "Step into (debugger)",
+      })
+
+    vim.keymap.set("n", "<leader>do",
+      function()
+        require('dap').step_out()
+      end,
+      {
+        noremap = true,
+        silent = true,
+        desc = "Step out (debugger)",
+      })
+
+    vim.keymap.set("n", "<leader>dq",
+      function()
+        require('dap').terminate()
+        require('dapui').close()
+      end,
+      {
+        noremap = true,
+        silent = true,
+        desc = "Terminate and close GUI (debugger)",
+      })
 
     vim.keymap.set("n", "<leader>dl", function()
       local prompt = "Log point message: "
@@ -228,10 +252,10 @@ return {
           position = "left",
           size = 40, -- 40 columns
           elements = {
-            { id = "scopes", size = 0.4 },
+            { id = "scopes",      size = 0.4 },
             { id = "breakpoints", size = 0.1 },
-            { id = "stacks", size = 0.3 },
-            { id = "watches", size = 0.2 },
+            { id = "stacks",      size = 0.3 },
+            { id = "watches",     size = 0.2 },
           },
         },
         {
