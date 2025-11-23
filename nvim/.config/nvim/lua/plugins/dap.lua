@@ -121,7 +121,7 @@ return {
 
     vim.keymap.set("n", "<leader>db",
       function()
-        require('dap').toggle_breakpoint()
+        require("dap").toggle_breakpoint()
       end,
       {
         noremap = true,
@@ -148,7 +148,7 @@ return {
 
     vim.keymap.set("n", "<leader>dc",
       function()
-        require('dap').continue()
+        require("dap").continue()
       end,
       {
         noremap = true,
@@ -158,7 +158,7 @@ return {
 
     vim.keymap.set("n", "<leader>dr",
       function()
-        require('dapui').open({ reset = true })
+        require("dapui").open({ reset = true })
       end,
       {
         noremap = true,
@@ -168,7 +168,7 @@ return {
 
     vim.keymap.set("n", "<leader>dn",
       function()
-        require('dap').step_over()
+        require("dap").step_over()
       end,
       {
         noremap = true,
@@ -178,7 +178,7 @@ return {
 
     vim.keymap.set("n", "<leader>di",
       function()
-        require('dap').step_into()
+        require("dap").step_into()
       end,
       {
         noremap = true,
@@ -188,7 +188,7 @@ return {
 
     vim.keymap.set("n", "<leader>do",
       function()
-        require('dap').step_out()
+        require("dap").step_out()
       end,
       {
         noremap = true,
@@ -198,8 +198,8 @@ return {
 
     vim.keymap.set("n", "<leader>dq",
       function()
-        require('dap').terminate()
-        require('dapui').close()
+        require("dap").terminate()
+        require("dapui").close()
       end,
       {
         noremap = true,
