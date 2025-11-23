@@ -60,6 +60,17 @@ return {
         desc = "Run the nearest test",
       })
 
+    vim.keymap.set("n", "<leader>tq",
+      function()
+        require("dap").toggle_breakpoint()
+        require("neotest").run.run({ strategy = "dap" })
+      end,
+      {
+        noremap = true,
+        silent = true,
+        desc = "Quicker debug the nearest test (set breakpoint and run)",
+      })
+
     vim.keymap.set("n", "<leader>td",
       function()
         require("neotest").run.run({ strategy = "dap" })
