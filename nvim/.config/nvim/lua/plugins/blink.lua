@@ -19,12 +19,12 @@ return {
         local ft = vim.bo.filetype
         local success, node = pcall(vim.treesitter.get_node)
         if
-          success
-          and node
-          and vim.tbl_contains(
-            { "comment", "line_comment", "block_comment", "string_start", "string_content", "string_end" },
-            node:type()
-          )
+            success
+            and node
+            and vim.tbl_contains(
+              { "comment", "line_comment", "block_comment", "string_start", "string_content", "string_end" },
+              node:type()
+            )
         then
           return { "buffer" }
         elseif ft == "lua" then
@@ -32,13 +32,13 @@ return {
         elseif ft == "gitcommit" then
           return {}
         elseif ft == "markdown" then
-          return { "buffer", "snippets", "dictionary", "thesaurus" }
+          return { "buffer", "snippets", "thesaurus" }
         elseif ft == "dap-repl" then
           return { "omni", "buffer" }
         elseif vim.tbl_contains({ "quarto", "rmd" }, ft) then
           return { "buffer", "snippets" }
         elseif vim.tbl_contains({ "text", "mail" }, ft) then
-          return { "buffer", "dictionary", "thesaurus" }
+          return { "buffer", "dictionary" }
         else
           return { "lsp", "path", "snippets", "buffer" }
         end
@@ -90,7 +90,6 @@ return {
           name = "Thes",
           module = "blink-cmp-words.thesaurus",
           max_items = 3,
-          min_keyword_length = 4,
           opts = {
             definition_pointers = { "!", "&", "^" },
           },
@@ -99,10 +98,9 @@ return {
           name = "Dict",
           module = "blink-cmp-words.dictionary",
           max_items = 3,
-          min_keyword_length = 4,
           opts = {
             -- number of characters required to trigger completion
-            dictionary_search_threshold = 4,
+            dictionary_search_threshold = 3,
             definition_pointers = { "!", "&", "^" },
           },
         },
