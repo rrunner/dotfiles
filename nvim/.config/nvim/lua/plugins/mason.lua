@@ -38,11 +38,12 @@ return {
 
     -- LSP servers
     local lsp_servers = {
-      "bash-language-server", --bashls
+      "bash-language-server",       --bashls
       "dockerfile-language-server", --dockerls
+      "harper-ls",                  --harper_ls
       "json-lsp",
-      "lua-language-server", --lua_ls
-      "r-languageserver", --r_language_server
+      "lua-language-server",        --lua_ls
+      "r-languageserver",           --r_language_server
       "ruff",
       "sqlls",
       "tombi",
