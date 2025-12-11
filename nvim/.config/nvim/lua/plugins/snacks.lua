@@ -196,7 +196,8 @@ return {
         previewers = {
           diff = {
             style = "fancy",
-            cmd = { "delta" },
+            -- style = "terminal",
+            -- cmd = { "delta", "--dark", "--side-by-side", "--line-numbers" },
           },
         },
         jump = {
