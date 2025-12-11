@@ -16,9 +16,11 @@ return {
         variableTypes = true,
         callArgumentNames = true,
       },
+      completions = {
+        autoImport = true,
+      },
       experimental = {
         rename = true,
-        autoImport = true,
       },
     },
   },
