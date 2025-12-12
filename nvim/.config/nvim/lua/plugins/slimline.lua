@@ -34,7 +34,6 @@ return {
             full_dirs = 2,
           },
           icons = {
-            folder = icons.kinds.Folder,
             modified = "+",
             read_only = "ro",
           },

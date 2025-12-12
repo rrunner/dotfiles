@@ -253,7 +253,7 @@ end
 M.inside_scratch_buffer = function(buf)
   local exists_snacks, snacks = pcall(require, "snacks")
   if not exists_snacks then
-    return
+    return false
   end
   local file = vim.api.nvim_buf_get_name(buf)
   return vim.iter(snacks.scratch.list()):find(function(s)
@@ -271,27 +271,6 @@ M.run_wo_snacks_scroll = function(callback)
   if snacks_exist then
     snacks.scroll.enable()
   end
-end
-
--- LSP kind icons provided by mini.icons
-M.lsp_mini_icons = function()
-  local icons = require("config.icons")
-  local exists, mini_icons = pcall(require, "mini.icons")
-  if not exists then
-    return
-  end
-
-  local kind_icon_map = {}
-  local all_kinds = M.unique_values(mini_icons.list("lsp"), vim.tbl_keys(icons.kinds))
-  for _, kind in ipairs(all_kinds) do
-    local mini_icon, _, is_default = mini_icons.get("lsp", kind)
-    if is_default then
-      -- fallback when icon is not provided by mini.icons
-      mini_icon = icons.kinds[kind] or "? "
-    end
-    kind_icon_map[kind] = mini_icon
-  end
-  return kind_icon_map
 end
 
 return M

@@ -1,7 +1,7 @@
 return {
   "stevearc/aerial.nvim",
   config = function()
-    local utils = require("config.utils")
+    local icons = require("config.icons")
     require("aerial").setup({
       show_guides = true,
       backends = {
@@ -38,7 +38,7 @@ return {
         ["H"] = "actions.tree_close_recursive",
       },
       icons = {
-        ["_"] = { utils.lsp_mini_icons() or icons.kinds },
+        ["_"] = { icons.lsp_mini_icons() },
       },
     })
     vim.keymap.set("n", "<leader>ea", "<cmd>AerialToggle<cr>", {

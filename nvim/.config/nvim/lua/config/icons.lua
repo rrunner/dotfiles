@@ -1,6 +1,8 @@
 local M = {}
 _G.icons = M
 
+local utils = require("config.utils")
+
 -- default kinds (from Snacks markdown documentation originally)
 M.kinds = {
   Array = "",
@@ -99,5 +101,27 @@ M.chars = {
 M.extra = {
   python_no_color = "",
 }
+
+-- LSP kind icons provided by mini.icons
+M.lsp_mini_icons = function()
+  local exists, mini_icons = pcall(require, "mini.icons")
+  if not exists then
+    return
+  end
+
+  local kind_icon_map = {}
+  -- snacks perform lookup based on camel case, hence union below
+  local all_kinds = utils.unique_values(mini_icons.list("lsp"), vim.tbl_keys(M.kinds))
+  for _, kind in ipairs(all_kinds) do
+    local mini_icon, _, is_default = mini_icons.get("lsp", kind)
+    if is_default then
+      -- fallback when icon is not provided by mini.icons
+      vim.notify("Icon for LSP kind " .. kind .. " is not provided by mini.icons", vim.log.levels.WARN)
+      mini_icon = M.kinds[kind] or " "
+    end
+    kind_icon_map[kind] = mini_icon
+  end
+  return kind_icon_map or M.kinds
+end
 
 return M
