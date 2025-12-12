@@ -19,9 +19,6 @@ return {
       completions = {
         autoImport = true,
       },
-      experimental = {
-        rename = true,
-      },
     },
   },
 }
