@@ -21,11 +21,11 @@ return {
   },
   {
     "lucasadelino/conifer.nvim",
-    lazy = false,
+    lazy = true,
     priority = 1000,
     config = function()
       require("conifer").setup({
-        variant = "lunar", -- "lunar" for dark, "solar" for light
+        variant = "lunar",   -- "lunar" for dark, "solar" for light
         transparent = false, -- whether to set the bg color for the lunar variant
         styles = {
           comments = {},
@@ -41,6 +41,18 @@ return {
       -- hide the win separator
       color = vim.o.background == "dark" and "#161716" or "#E8E8C2"
       vim.api.nvim_set_hl(0, "WinSeparator", { bg = color, fg = color })
+    end,
+  },
+  {
+    "gbprod/nord.nvim",
+    lazy = false,
+    priority = 1000,
+    config = function()
+      require("nord").setup({
+        borders = false,
+        diff = { mode = "fg" },
+      })
+      vim.cmd.colorscheme("nord")
     end,
   },
 }
