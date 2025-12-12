@@ -53,6 +53,8 @@ return {
         diff = { mode = "fg" },
       })
       vim.cmd.colorscheme("nord")
+      vim.api.nvim_set_hl(0, "WarningMsg", { bg = "#2E3440", fg = "#EBCB8B" })
+      vim.api.nvim_set_hl(0, "ErrorMsg", { bg = "#2E3440", fg = "#BF616A" })
     end,
   },
 }
