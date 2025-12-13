@@ -39,7 +39,7 @@ return {
       })
       vim.cmd.colorscheme("conifer")
       -- hide the win separator
-      color = vim.o.background == "dark" and "#161716" or "#E8E8C2"
+      local color = vim.o.background == "dark" and "#161716" or "#E8E8C2"
       vim.api.nvim_set_hl(0, "WinSeparator", { bg = color, fg = color })
     end,
   },
@@ -48,13 +48,14 @@ return {
     lazy = false,
     priority = 1000,
     config = function()
+      local colors = require("nord.colors")
       require("nord").setup({
         borders = false,
         diff = { mode = "fg" },
       })
       vim.cmd.colorscheme("nord")
-      vim.api.nvim_set_hl(0, "WarningMsg", { bg = "#2E3440", fg = "#EBCB8B" })
-      vim.api.nvim_set_hl(0, "ErrorMsg", { bg = "#2E3440", fg = "#BF616A" })
+      vim.api.nvim_set_hl(0, "WarningMsg", { bg = colors.default_bg, fg = colors.palette.aurora.yellow })
+      vim.api.nvim_set_hl(0, "ErrorMsg", { bg = colors.default_bg, fg = colors.palette.aurora.red })
     end,
   },
 }
