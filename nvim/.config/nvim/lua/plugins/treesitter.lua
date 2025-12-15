@@ -1,7 +1,6 @@
 -- treesitter
 return {
   "nvim-treesitter/nvim-treesitter",
-  branch = "main",
   lazy = false,
   build = ":TSUpdate",
   dependencies = {
@@ -73,11 +72,11 @@ return {
     -- install treesitter parsers
     local already_installed = require("nvim-treesitter.config").get_installed("parsers")
     local parsers_to_install = vim
-      .iter(ts_parsers)
-      :filter(function(parser)
-        return not vim.tbl_contains(already_installed, parser)
-      end)
-      :totable()
+        .iter(ts_parsers)
+        :filter(function(parser)
+          return not vim.tbl_contains(already_installed, parser)
+        end)
+        :totable()
     nvim_ts.install(parsers_to_install, { summary = true })
 
     -- only required to call setup() if non-default options are requested
@@ -125,7 +124,7 @@ return {
         lookahead = true,
         selection_modes = {
           ["@parameter.outer"] = "v", -- charwise
-          ["@function.outer"] = "V", -- linewise
+          ["@function.outer"] = "V",  -- linewise
           ["@class.outer"] = "<c-v>", -- blockwise
         },
         include_surrounding_whitespace = false,

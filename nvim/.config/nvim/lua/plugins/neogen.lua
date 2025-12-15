@@ -2,7 +2,7 @@
 return {
   "danymat/neogen",
   ft = "python",
-  dependencies = { "nvim-treesitter/nvim-treesitter", branch = "main" },
+  dependencies = { "nvim-treesitter/nvim-treesitter" },
   opts = {
     languages = {
       python = {

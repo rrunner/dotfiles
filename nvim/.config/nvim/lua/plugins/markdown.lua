@@ -5,7 +5,7 @@ return {
   "MeanderingProgrammer/render-markdown.nvim",
   ft = supported_filetypes,
   dependencies = {
-    { "nvim-treesitter/nvim-treesitter", branch = "main" },
+    "nvim-treesitter/nvim-treesitter",
     { "nvim-mini/mini.icons", version = false },
   },
   config = function()

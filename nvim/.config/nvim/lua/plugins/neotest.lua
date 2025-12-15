@@ -5,7 +5,7 @@ return {
     "nvim-neotest/nvim-nio",
     "nvim-lua/plenary.nvim",
     -- "antoinemadec/FixCursorHold.nvim", -- might not be needed in the future, see https://github.com/nvim-neotest/neotest
-    { "nvim-treesitter/nvim-treesitter", branch = "main" }, -- each test adapter also requires a filetype specific TS parser to be installed
+    "nvim-treesitter/nvim-treesitter", -- each test adapter also requires a filetype specific TS parser to be installed
     -- adapters
     "nvim-neotest/neotest-python",
     "shunsambongi/neotest-testthat",
