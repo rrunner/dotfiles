@@ -19,7 +19,7 @@ return {
       },
       diagnostics = {
         disable = { "missing-fields" },
-        globals = { "vim", "utils", "icons", "require", "pcall" },
+        globals = { "vim", "utils", "icons", "require", "pcall", "assert" },
       },
       telemetry = {
         enable = false,
