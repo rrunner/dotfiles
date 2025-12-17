@@ -20,6 +20,7 @@ vim.diagnostic.config({
   virtual_text = {
     current_line = true,
     severity = { min = "ERROR", max = "ERROR" },
+    prefix = icons.diagnosis.square,
   },
   virtual_lines = false,
   underline = true,

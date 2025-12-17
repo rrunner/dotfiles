@@ -52,6 +52,7 @@ M.diagnosis = {
   warn = "",
   info = "",
   hint = "",
+  square = "󰨓",
 }
 
 M.dap = {
