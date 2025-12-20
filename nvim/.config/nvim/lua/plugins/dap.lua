@@ -102,16 +102,40 @@ return {
     local icons = require("config.icons")
 
     -- symbols
-    vim.fn.sign_define("DapBreakpoint", { text = icons.dap.breakpoint, texthl = "DapUIStop", linehl = "", numhl = "" })
-    vim.fn.sign_define("DapLogPoint", { text = icons.dap.logpoint, texthl = "DapUIStop", linehl = "", numhl = "" })
+    vim.fn.sign_define("DapBreakpoint", {
+      text = icons.dap.breakpoint,
+      texthl = "DapUIStop",
+      linehl = "",
+      numhl = "",
+    })
+
+    vim.fn.sign_define("DapLogPoint", {
+      text = icons.dap.logpoint,
+      texthl = "DapUIStop",
+      linehl = "",
+      numhl = "",
+    })
+
     vim.fn.sign_define(
       "DapBreakpointCondition",
-      { text = icons.dap.condition, texthl = "DapUIStop", linehl = "", numhl = "" }
-    ) -- text default: C
+      {
+        text = icons.dap.condition,
+        texthl = "DapUIStop",
+        linehl = "",
+        numhl = "",
+      }
+    )
+
     vim.fn.sign_define(
       "DapBreakpointRejected",
-      { text = icons.dap.rejected, texthl = "DapUIStop", linehl = "", numhl = "" }
-    ) -- text default: R
+      {
+        text = icons.dap.rejected,
+        texthl = "DapUIStop",
+        linehl = "",
+        numhl = "",
+      }
+    )
+
     vim.fn.sign_define("DapStopped", {
       text = icons.dap.stopped,
       texthl = "DapUIPlayPause",

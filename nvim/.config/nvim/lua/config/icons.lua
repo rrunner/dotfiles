@@ -57,9 +57,9 @@ M.diagnosis = {
 
 M.dap = {
   breakpoint = " 󰯮",
-  logpoint = " ",
-  condition = " ",
-  rejected = " ",
+  logpoint = " 󰰌",
+  condition = " 󰯱",
+  rejected = " 󰰞",
   stopped = " ",
 }
 
