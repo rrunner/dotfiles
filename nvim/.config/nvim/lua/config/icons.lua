@@ -56,11 +56,11 @@ M.diagnosis = {
 }
 
 M.dap = {
-  breakpoint = "",
-  logpoint = "",
-  condition = "",
-  rejected = "",
-  stopped = "",
+  breakpoint = " 󰯮",
+  logpoint = " ",
+  condition = " ",
+  rejected = " ",
+  stopped = " ",
 }
 
 M.bullets = { "", "", "󰨓", "󰨔", "-", "+" }
