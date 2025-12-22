@@ -43,7 +43,6 @@ return {
       "harper-ls",                  --harper_ls
       "json-lsp",
       "lua-language-server",        --lua_ls
-      "r-languageserver",           --r_language_server
       "ruff",
       "sqlls",
       "tombi",

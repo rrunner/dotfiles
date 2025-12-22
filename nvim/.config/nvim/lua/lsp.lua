@@ -7,7 +7,6 @@ vim.lsp.enable({
   "harper_ls",
   "jsonls",
   "lua_ls",
-  "r_language_server",
   "ruff",
   "sqlls",
   "tombi",
