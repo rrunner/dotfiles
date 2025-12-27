@@ -19,6 +19,13 @@ return {
       completions = {
         autoImport = true,
       },
+      -- configurationFile = "./.config/ty.toml",
+      -- inline settings always take precedence over the settings from configuration files (incl. configurationFile)
+      -- configuration = {
+      --   rules = {
+      --     ["unresolved-reference"] = "warn",
+      --   },
+      -- },
     },
   },
 }
