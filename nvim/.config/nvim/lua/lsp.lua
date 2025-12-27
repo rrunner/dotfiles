@@ -14,7 +14,7 @@ vim.lsp.enable({
   "yamlls",
 })
 
--- LSP diagnosis
+-- LSP diagnostic
 vim.diagnostic.config({
   virtual_text = {
     current_line = true,
@@ -34,8 +34,6 @@ vim.diagnostic.config({
     },
   },
   float = {
-    focusable = false,
-    style = "minimal",
     source = true,
     header = "",
     prefix = "",
