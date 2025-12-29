@@ -12,6 +12,7 @@ return {
     ty = {
       disableLanguageServices = false,
       diagnosticMode = "workspace",
+      showSyntaxErrors = false, -- ruff displays syntax errors
       inlayHints = {
         variableTypes = true,
         callArgumentNames = true,
