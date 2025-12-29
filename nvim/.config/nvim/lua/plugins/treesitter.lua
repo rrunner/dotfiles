@@ -22,13 +22,15 @@ return {
       "diff",
       "dockerfile",
       "editorconfig",
-      "printf",
+      "eex",
+      "elixir",
       "git_config",
       "git_rebase",
       "gitattributes",
       "gitcommit",
       "gitignore",
       "haskell",
+      "heex",
       "html",
       "http",
       "hurl",
@@ -45,6 +47,7 @@ return {
       "markdown_inline",
       "matlab",
       "mermaid",
+      "printf",
       "psv",
       "python",
       "query",
@@ -72,11 +75,11 @@ return {
     -- install treesitter parsers
     local already_installed = require("nvim-treesitter.config").get_installed("parsers")
     local parsers_to_install = vim
-        .iter(ts_parsers)
-        :filter(function(parser)
-          return not vim.tbl_contains(already_installed, parser)
-        end)
-        :totable()
+      .iter(ts_parsers)
+      :filter(function(parser)
+        return not vim.tbl_contains(already_installed, parser)
+      end)
+      :totable()
     nvim_ts.install(parsers_to_install, { summary = true })
 
     -- only required to call setup() if non-default options are requested
@@ -114,6 +117,7 @@ return {
       git = "diff",
       quarto = "markdown",
       rmd = "markdown",
+      livebook = "markdown",
     }) do
       vim.treesitter.language.register(lang, ft)
     end
@@ -124,7 +128,7 @@ return {
         lookahead = true,
         selection_modes = {
           ["@parameter.outer"] = "v", -- charwise
-          ["@function.outer"] = "V",  -- linewise
+          ["@function.outer"] = "V", -- linewise
           ["@class.outer"] = "<c-v>", -- blockwise
         },
         include_surrounding_whitespace = false,
