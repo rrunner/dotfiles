@@ -13,7 +13,7 @@ return {
         checkThirdParty = false,
         library = {
           vim.env.VIMRUNTIME,
-          "${3rd}/luv/library", -- uv modules probably not needed to specify in nvim >= 0.12
+          "${3rd}/luv/library", -- uv modules probably not needed to specify in nvim 0.12
           -- vim.api.nvim_get_runtime_file("", true), -- pull in entire rtp (much slower)
         },
       },

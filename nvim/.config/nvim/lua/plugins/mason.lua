@@ -38,11 +38,11 @@ return {
 
     -- LSP servers
     local lsp_servers = {
-      "bash-language-server",       --bashls
+      "bash-language-server", --bashls
       "dockerfile-language-server", --dockerls
-      "harper-ls",                  --harper_ls
+      "harper-ls", --harper_ls
       "json-lsp",
-      "lua-language-server",        --lua_ls
+      "lua-language-server", --lua_ls
       "ruff",
       "sqlls",
       "tombi",
@@ -67,10 +67,7 @@ return {
       "stylua",
       "vale",
     }
-    -- TODO: in nvim 0.12
-    -- 1. concatenate these two tables using vim.tbl_extend("keep", lsp_servers, tools)
-    -- 2. use vim.list.unique() to select unique items
-    -- 3. remove utils.unique_values
+
     local ensure_installed = utils.unique_values(lsp_servers, tools)
     require("mason-tool-installer").setup({ ensure_installed = ensure_installed })
   end,
