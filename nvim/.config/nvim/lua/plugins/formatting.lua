@@ -111,24 +111,25 @@ return {
     conform.setup({
       -- use lsp fallback to format: toml
       formatters_by_ft = {
-        python = { "ruff_fix", "ruff_format" },
+        bash = { "shfmt" },
+        css = { "prettier" },
+        -- use system installation of mix (ships with Elixir)
+        elixir = { "mix" },
+        graphql = { "prettier" },
+        haskell = { "ormolu" },
+        html = { "prettier" },
+        json = { "prettier" },
         lua = { "stylua" },
         markdown = { "prettier", "markdownlint-cli2", "markdown-toc" },
-        quarto = { "injected" },
-        yaml = { "prettier", "injected" },
-        json = { "prettier" },
-        html = { "prettier" },
-        css = { "prettier" },
-        graphql = { "prettier" },
-        sh = { "shfmt" },
-        bash = { "shfmt" },
-        sql = { "sqlfluff" },
         mysql = { "sqlfluff" },
-        haskell = { "ormolu" },
-        -- TODO: air is a both a formatter and LSP
-        -- watch https://posit-dev.github.io/air/editor-neovim.html for capabilities
+        python = { "ruff_fix", "ruff_format" },
+        quarto = { "injected" },
+        -- air is a both a formatter and LSP (watch https://posit-dev.github.io/air/editor-neovim.html for capabilities)
         r = { "air" },
         rmd = { "injected" },
+        sh = { "shfmt" },
+        sql = { "sqlfluff" },
+        yaml = { "prettier", "injected" },
       },
       format_after_save = function(bufnr)
         -- remove carriage return characters in linux/wsl on save
