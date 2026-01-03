@@ -82,7 +82,7 @@ return {
           position = "float",
           height = 0.90,
           width = 0.90,
-          backdrop = false,
+          backdrop = true,
           wo = {
             winbar = "",
           },
