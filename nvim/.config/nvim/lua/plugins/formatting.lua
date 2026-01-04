@@ -113,7 +113,7 @@ return {
       formatters_by_ft = {
         bash = { "shfmt" },
         css = { "prettier" },
-        -- use system installation of mix (ships with Elixir)
+        -- use system installation of mix (ships with Elixir), e.g. `mix format`
         elixir = { "mix" },
         graphql = { "prettier" },
         haskell = { "ormolu" },
