@@ -4,6 +4,7 @@ local icons = require("config.icons")
 vim.lsp.enable({
   "bashls",
   "dockerls",
+  "expert",
   "harper_ls",
   "jsonls",
   "lua_ls",

@@ -40,6 +40,7 @@ return {
     local lsp_servers = {
       "bash-language-server", --bashls
       "dockerfile-language-server", --dockerls
+      "expert",
       "harper-ls", --harper_ls
       "json-lsp",
       "lua-language-server", --lua_ls
