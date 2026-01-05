@@ -737,7 +737,10 @@ return {
     })
 
     vim.keymap.set("n", "<leader>sd", function()
-      snacks.picker.files({ cwd = vim.env.HOME .. "/.config/nvim" })
+      snacks.picker.files({
+        cwd = vim.env.HOME .. "/.config/nvim",
+        title = "Neovim config files",
+      })
     end, {
       noremap = true,
       silent = true,
