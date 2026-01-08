@@ -691,11 +691,14 @@ return {
 
     vim.keymap.set("n", "<leader>sf", function()
       if utils.inside_git_repo() then
-        snacks.picker.git_files()
+        snacks.picker.git_files({
+          title = "Git Files (" .. vim.uv.cwd() .. ")",
+        })
       else
         snacks.picker.files({
           dirs = { vim.uv.cwd() },
           exclude = exclude_fext,
+          title = "Files (" .. vim.uv.cwd() .. ")",
         })
       end
     end, {
@@ -717,6 +720,7 @@ return {
           snacks.picker.files({
             dirs = { input },
             exclude = exclude_fext,
+            title = "Files (" .. input .. ")",
           })
         else
           vim.notify("No valid directory")
@@ -869,6 +873,7 @@ return {
           snacks.picker.grep({
             dirs = { input },
             exclude = exclude_fext,
+            title = "grep (" .. input .. ")",
           })
         else
           vim.notify("No valid directory")
