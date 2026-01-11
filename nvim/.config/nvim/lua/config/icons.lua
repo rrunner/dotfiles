@@ -63,6 +63,18 @@ M.dap = {
   stopped = " ",
 }
 
+M.test = {
+  failed = "",
+  notify = "󰚭",
+  passed = "",
+  running = "",
+  running_animated = { "⠋", "⠙", "⠹", "⠸", "⠼", "⠴", "⠦", "⠧", "⠇", "⠏" },
+  skipped = "",
+  test = "",
+  unknown = "",
+  watching = "",
+}
+
 M.bullets = { "", "", "󰨓", "󰨔", "-", "+" }
 
 M.three_dots = "󰇘"

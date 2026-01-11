@@ -11,10 +11,10 @@ return {
   },
   ft = { "python", "r", "elixir" },
   config = function()
+    local icons = require("config.icons")
+
     require("neotest").setup({
-      icons = {
-        running_animated = { "⠋", "⠙", "⠹", "⠸", "⠼", "⠴", "⠦", "⠧", "⠇", "⠏" },
-      },
+      icons = icons.test,
       adapters = {
         require("neotest-python")({
           -- arguments for nvim-dap configuration
