@@ -193,15 +193,29 @@ vim.keymap.set("n", "#", "#zzN", {
   desc = "Display search results at center of screen (at the word invoked)",
 })
 
-vim.keymap.set("n", "<c-u>", "<c-u>M", {
+vim.keymap.set("n", "<c-u>", function()
+  vim.wo.scrolloff = 999
+  vim.defer_fn(function()
+    vim.wo.scrolloff = 8
+  end, 500)
+  return "<c-u>"
+end, {
   noremap = true,
   silent = true,
+  expr = true,
   desc = "Move cursor to center of viewport after half-page up",
 })
 
-vim.keymap.set("n", "<c-d>", "<c-d>M", {
+vim.keymap.set("n", "<c-d>", function()
+  vim.wo.scrolloff = 999
+  vim.defer_fn(function()
+    vim.wo.scrolloff = 8
+  end, 500)
+  return "<c-d>"
+end, {
   noremap = true,
   silent = true,
+  expr = true,
   desc = "Move cursor to center of viewport after half-page down",
 })
 
