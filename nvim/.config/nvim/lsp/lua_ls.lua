@@ -1,8 +1,21 @@
 local utils = require("config.utils")
 
+local root_markers1 = {
+  ".emmyrc.json",
+  ".luarc.json",
+  ".luarc.jsonc",
+}
+local root_markers2 = {
+  ".luacheckrc",
+  ".stylua.toml",
+  "stylua.toml",
+  "selene.toml",
+  "selene.yml",
+}
+
 return {
   cmd = { utils.app_prio("lua-language-server") },
-  root_markers = { ".luarc.json" },
+  root_markers = { root_markers1, root_markers2, { ".git" } },
   filetypes = { "lua" },
   settings = {
     Lua = {
@@ -13,19 +26,20 @@ return {
         checkThirdParty = false,
         library = {
           vim.env.VIMRUNTIME,
-          "${3rd}/luv/library", -- uv modules probably not needed to specify in nvim 0.12
-          -- vim.api.nvim_get_runtime_file("", true), -- pull in entire rtp (much slower)
         },
       },
       diagnostics = {
         disable = { "missing-fields" },
-        globals = { "vim", "utils", "icons", "require", "pcall", "assert" },
       },
       telemetry = {
         enable = false,
       },
+      codeLens = {
+        enable = true,
+      },
       hint = {
         enable = true,
+        semicolon = "Disable",
         setType = true,
         arrayIndex = "Disable",
       },
