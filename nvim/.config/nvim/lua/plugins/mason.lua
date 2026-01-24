@@ -66,7 +66,6 @@ return {
       "sql-formatter",
       "sqlfluff",
       "stylua",
-      "vale",
     }
 
     local ensure_installed = utils.unique_values(lsp_servers, tools)

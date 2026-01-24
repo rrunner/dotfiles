@@ -12,7 +12,7 @@ return {
       -- `mix credo` is installed on project basis as a mix dependency
       elixir = { "credo" },
       haskell = { "hlint" },
-      markdown = { "markdownlint-cli2", "vale" },
+      markdown = { "markdownlint-cli2" },
       mysql = { "sqlfluff" },
       sql = { "sqlfluff" },
     }
