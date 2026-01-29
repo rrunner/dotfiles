@@ -92,3 +92,23 @@ vim.api.nvim_create_user_command("JsonPath", function()
   local output = string.format("%d:%d:%s", line_num, col_num, " " .. path_str)
   print("JSON path: " .. output)
 end, { desc = "Display the json path for the current line" })
+
+-- Create new Snacks scratch pad
+-- Usage: `ScratchNew`
+--        `ScratchNew name=coding`
+--        `ScratchNew name=notes ft=markdown`
+vim.api.nvim_create_user_command("ScratchNew", function(opts)
+  local status, snacks = pcall(require, "snacks")
+  if not status then
+    return
+  end
+
+  local parms = {}
+  for _, arg in ipairs(opts.fargs) do
+    local key, value = arg:match("^(%w+)=(%S+)$")
+    if key and value then
+      parms[key] = value
+    end
+  end
+  snacks.scratch.open(parms)
+end, { desc = "Create new scratch pad", nargs = "*" })
