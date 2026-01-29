@@ -1,4 +1,5 @@
 -- project specific configuration template
+local utils = require("config.utils")
 
 -- set environment variables
 -- vim.env.VIRTUAL_ENV = "/path/to/virtual_environment/.venv"
@@ -24,7 +25,8 @@ if exists_dap then
       type = "debugpy",
       request = "launch",
       name = "Debug/launch current file",
-      program = "${file}",
+      -- always initiate the debugger from main `program`
+      program = "name_of_main_runner.py",
       console = "internalConsole",
       justMyCode = false,
       subProcess = false,
