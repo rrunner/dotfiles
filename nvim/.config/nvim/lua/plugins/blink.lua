@@ -11,6 +11,7 @@ return {
     "folke/lazydev.nvim",
     "archie-judd/blink-cmp-words",
     { "nvim-mini/mini.icons", version = false },
+    { "mayromr/blink-cmp-dap", ft = "python" },
   },
   opts = {
     sources = {
@@ -19,12 +20,12 @@ return {
         local ft = vim.bo.filetype
         local success, node = pcall(vim.treesitter.get_node)
         if
-            success
-            and node
-            and vim.tbl_contains(
-              { "comment", "line_comment", "block_comment", "string_start", "string_content", "string_end" },
-              node:type()
-            )
+          success
+          and node
+          and vim.tbl_contains(
+            { "comment", "line_comment", "block_comment", "string_start", "string_content", "string_end" },
+            node:type()
+          )
         then
           return { "buffer" }
         elseif ft == "lua" then
@@ -34,7 +35,10 @@ return {
         elseif ft == "markdown" then
           return { "buffer", "snippets", "thesaurus" }
         elseif ft == "dap-repl" then
-          return { "omni", "buffer" }
+          return {
+            "dap", --"omni",
+            "buffer",
+          }
         elseif vim.tbl_contains({ "quarto", "rmd" }, ft) then
           return { "buffer", "snippets" }
         elseif vim.tbl_contains({ "text", "mail" }, ft) then
@@ -103,6 +107,11 @@ return {
             dictionary_search_threshold = 3,
             definition_pointers = { "!", "&", "^" },
           },
+        },
+        dap = {
+          name = "Dap",
+          module = "blink-cmp-dap",
+          max_items = 5,
         },
       },
     },
