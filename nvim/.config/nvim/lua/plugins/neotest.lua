@@ -55,24 +55,11 @@ return {
       desc = "Run the nearest test",
     })
 
-    vim.keymap.set("n", "<leader>tq", function()
-      if vim.bo.filetype == "python" then
-        require("dap").toggle_breakpoint()
-        require("neotest").run.run({ strategy = "dap" })
-      else
-        vim.notify("Debugging test not configured", "warn")
-      end
-    end, {
-      noremap = true,
-      silent = true,
-      desc = "Quicker debug the nearest test (set breakpoint and run)",
-    })
-
     vim.keymap.set("n", "<leader>td", function()
       if vim.bo.filetype == "python" then
         require("neotest").run.run({ strategy = "dap" })
       else
-        vim.notify("Debugging test not configured", "warn")
+        vim.notify("Debugging test not configured", vim.log.levels.WARN)
       end
     end, {
       noremap = true,
