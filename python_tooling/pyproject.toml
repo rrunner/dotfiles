@@ -8,11 +8,15 @@ readme = "README.md"
 requires-python = ">=3.13"
 
 [tool.pytest]
-# to see print() in tests, use -s (capture=no)
+# addopts
+# print: use -s (capture=no) to see print() output in tests
+# coverage (pytest-cov) options:
+#   "--cov-report=term-missing",
+#   "--cov=src",
+addopts = ["--strict-markers", "-q", "-ra", "-v"]
 minversion = "9.0"
-addopts = ["--strict-markers", "-ra", "-q", "-v"]
-testpaths = ["tests", "integration"]
 pythonpath = ["."]
+testpaths = ["integration", "tests"]
 
 [tool.ruff]
 target-version = "py313"
