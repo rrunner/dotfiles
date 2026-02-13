@@ -7,6 +7,14 @@ description = "..."
 readme = "README.md"
 requires-python = ">=3.13"
 
+[tool.coverage.report]
+exclude_also = [
+  "class .*Protocol\\):",
+  "@(abc\\.)?abstractmethod",
+  "if TYPE_CHECKING:",
+  "pragma: no cover",
+]
+
 [tool.pytest]
 # addopts
 # print: use -s (capture=no) to see print() output in tests
