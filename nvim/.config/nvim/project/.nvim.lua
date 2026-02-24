@@ -39,7 +39,7 @@ if exists_dap then
   }
 end
 
--- load last session
+-- load last session (incl. restore cursor position, see sessionoptions)
 local exists_persistence, persistence = pcall(require, "persistence")
 if exists_persistence then
   if vim.fn.argc() == 0 then
