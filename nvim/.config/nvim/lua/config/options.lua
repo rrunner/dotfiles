@@ -68,12 +68,15 @@ vim.o.formatlistpat = [[^\s*[0-9\-\+\*]\+[\.\)]*\s\+]]
 vim.o.ttyfast = true
 vim.o.lazyredraw = false
 vim.o.autoread = true
+vim.o.autowrite = false
+vim.o.autochdir = false
 vim.o.scrolloff = 8
 vim.o.sidescrolloff = 3
 vim.o.signcolumn = "yes:3"
 vim.o.numberwidth = 4
 vim.o.hidden = true
 vim.o.magic = true
+vim.o.selection = "inclusive"
 vim.o.clipboard = vim.env.SSH_TTY and "" or "unnamedplus" -- only set clipboard if not in ssh, to make sure the OSC 52 integration works automatically
 vim.o.nrformats = "bin,hex,alpha"
 vim.o.list = true
@@ -86,7 +89,11 @@ vim.o.backup = false
 vim.o.writebackup = false
 vim.o.swapfile = false
 vim.o.undofile = true
-vim.o.undodir = vim.fn.stdpath("data") .. "/undodir"
+local undodir = vim.fn.stdpath("data") .. "/undodir"
+if vim.fn.isdirectory(undodir) == 0 then
+  vim.fn.mkdir(undodir, "p")
+end
+vim.o.undodir = undodir
 vim.o.undolevels = 10000
 vim.o.timeout = true
 vim.o.timeoutlen = 1000
@@ -100,6 +107,7 @@ vim.o.cmdwinheight = 20 -- when inccommand = "split"
 vim.o.shell = "bash"
 vim.o.splitkeep = "topline"
 vim.o.pumheight = 10
+vim.o.pumblend = 10
 vim.o.spellsuggest = "best,10"
 vim.o.wildmenu = true
 vim.o.wildignore =
@@ -114,8 +122,9 @@ vim.o.diffopt = "internal,filler,closeoff,algorithm:patience,linematch:60"
 vim.o.guicursor = "n-v-sm:block-nCursor,i-c-ci-ve:ver25-iCursor,r-cr-o:hor20,t:block-blinkon0-blinkoff0-TermCursor"
 vim.o.iskeyword = "@,48-57,_,192-255,-"
 vim.o.synmaxcol = 300
+vim.o.redrawtime = 10000 -- increase neovim redraw tolerance
+vim.o.maxmempattern = 20000 -- increase max memory
 vim.o.winborder = "rounded"
--- fold = " ",
 vim.o.fillchars = "diff:"
   .. icons.chars.diff
   .. ",eob: ,fold: "
@@ -129,9 +138,9 @@ vim.o.foldlevel = 99 -- open buffers unfolded
 vim.o.foldmethod = "expr"
 vim.o.foldtext = ""
 vim.o.exrc = true -- add .nvim.lua to project root for project specific configuration
-vim.o.secure = true -- must accept .nvim.lua files
+vim.o.secure = true -- must accept .nvim.lua files before parsing
 
--- windows specific
+-- windows specific (these options may be obsolete)
 if utils.IS_WIN then
   vim.o.shell = "pwsh"
   vim.o.shellcmdflag =
@@ -151,7 +160,7 @@ if utils.IS_WIN then
   })
 end
 
--- wsl specific
+-- wsl specific (these options may be obsolete)
 if utils.IS_WSL then
   -- use WSL at work with editorconfig (see https://github.com/neovim/neovim/issues/21648)
   require("editorconfig").properties.insert_final_newline = nil
