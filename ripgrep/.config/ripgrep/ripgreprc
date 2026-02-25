@@ -28,4 +28,4 @@
 --glob=!{.git,.svn,node_modules,.cache,.npm,.mypy_cache,__pycache__,.pytest_cache}
 
 # exclude Python virtual environments
-#--glob=!{.venv,venv}
+--glob=!{.venv,venv}
