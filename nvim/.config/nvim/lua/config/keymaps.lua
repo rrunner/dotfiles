@@ -368,7 +368,13 @@ vim.keymap.set("n", "<leader>en", "<cmd>vnew<cr>", {
   desc = "Open new empty buffer in vertical split",
 })
 
-vim.keymap.set("n", "<leader>co", "<cmd>copen<cr>", {
+vim.keymap.set("n", "<leader>co", function()
+  -- avoid opening quickfix list inside Snacks explorer window
+  require("config.utils").close_explorer_picker()
+  vim.schedule(function()
+    vim.cmd.copen()
+  end)
+end, {
   noremap = true,
   desc = "Open quickfix list",
 })
