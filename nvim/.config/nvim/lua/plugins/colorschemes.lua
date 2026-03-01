@@ -8,7 +8,7 @@ return {
     config = function()
       local colors = require("nord.colors")
       require("nord").setup({
-        borders = false,
+        borders = true,
         diff = { mode = "fg" },
       })
       vim.cmd.colorscheme("nord")
