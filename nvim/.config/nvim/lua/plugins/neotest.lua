@@ -9,7 +9,7 @@ return {
     "nvim-neotest/neotest-python",
     "jfpedroza/neotest-elixir",
   },
-  ft = { "python", "r", "elixir" },
+  ft = { "python", "elixir" },
   config = function()
     local icons = require("config.icons")
 
