@@ -1,95 +1,4 @@
 -- dap configuration
-
--- python debugee (application) configurations
-local dap_configurations_python = {
-  ["launch"] = {
-    type = "debugpy",
-    request = "launch",
-    name = "Debug/launch current file",
-    program = "${file}",
-    console = "internalConsole",
-    justMyCode = false,
-    subProcess = false,
-    cwd = "${workspaceFolder}",
-    pythonPath = function()
-      return utils.get_python_path()
-    end,
-    stopOnEntry = false,
-  },
-  ["launch_with_args"] = {
-    type = "debugpy",
-    request = "launch",
-    name = "Debug/launch current file with arguments",
-    program = "${file}",
-    console = "internalConsole",
-    justMyCode = false,
-    subProcess = false,
-    args = function()
-      local args_string = vim.fn.input("Arguments: ")
-      return vim.split(args_string, " +")
-    end,
-    cwd = function()
-      return vim.fn.getcwd()
-    end,
-    pythonPath = function()
-      return utils.get_python_path()
-    end,
-    stopOnEntry = false,
-  },
-  ["kedro"] = {
-    -- 1. open the debuggee (application or script to debug) from the folder where "venv" folder is located
-    -- 2. ensure the cwd path is correct (pyproject.toml and src/app folders should all reside in the cwd),
-    --    the cwd may be set in pyproject.toml (see package_name = "..." and project_name = "..." under [tool.kedro])
-    -- 3. update args to fit the pipeline/node to be debugged
-    type = "debugpy",
-    request = "launch",
-    name = "Debug/launch Kedro Run (stop on entry)",
-    console = "integratedTerminal",
-    justMyCode = false,
-    subProcess = false,
-    cwd = vim.env.HOME .. "/projects/python/kedro-environment/iris",
-    module = "kedro",
-    args = "run",
-    -- args = { "run", "--pipeline", "pipeline_name", "--arg1", "value1", "--arg2", "value2" },
-    pythonPath = function()
-      return utils.get_python_path()
-    end,
-    stopOnEntry = true,
-  },
-  ["fastapi"] = {
-    -- send curl request to endpoints to debug
-    type = "debugpy",
-    request = "launch",
-    name = "Debug FastAPI module",
-    module = "uvicorn",
-    args = {
-      "main:app",
-      "--reload", -- may not work
-      -- "--port",
-      -- "8000",
-      -- "--use-colors",
-    },
-    jinja = false,
-    env = { FastAPI_ENV = "development" },
-    -- envFile = "${workspaceFolder}/src/.env",
-    console = "integratedTerminal",
-    pythonPath = function()
-      return utils.get_python_path()
-    end,
-    stopOnEntry = true,
-  },
-  ["attach"] = {
-    type = "debugpy",
-    request = "attach",
-    name = "Attach a debugging session",
-    connect = function()
-      local host = vim.fn.input("Host: ")
-      local port = tonumber(vim.fn.input("Port: "))
-      return { host = host, port = port }
-    end,
-  },
-}
-
 return {
   "rcarriga/nvim-dap-ui",
   dependencies = {
@@ -100,6 +9,96 @@ return {
   config = function()
     local utils = require("config.utils")
     local icons = require("config.icons")
+
+    -- python debugee (application) configurations
+    local dap_configurations_python = {
+      ["launch"] = {
+        type = "debugpy",
+        request = "launch",
+        name = "Debug/launch current file",
+        program = "${file}",
+        console = "internalConsole",
+        justMyCode = false,
+        subProcess = false,
+        cwd = "${workspaceFolder}",
+        pythonPath = function()
+          return utils.get_python_path()
+        end,
+        stopOnEntry = false,
+      },
+      ["launch_with_args"] = {
+        type = "debugpy",
+        request = "launch",
+        name = "Debug/launch current file with arguments",
+        program = "${file}",
+        console = "internalConsole",
+        justMyCode = false,
+        subProcess = false,
+        args = function()
+          local args_string = vim.fn.input("Arguments: ")
+          return vim.split(args_string, " +")
+        end,
+        cwd = function()
+          return vim.fn.getcwd()
+        end,
+        pythonPath = function()
+          return utils.get_python_path()
+        end,
+        stopOnEntry = false,
+      },
+      ["kedro"] = {
+        -- 1. open the debuggee (application or script to debug) from the folder where "venv" folder is located
+        -- 2. ensure the cwd path is correct (pyproject.toml and src/app folders should all reside in the cwd),
+        --    the cwd may be set in pyproject.toml (see package_name = "..." and project_name = "..." under [tool.kedro])
+        -- 3. update args to fit the pipeline/node to be debugged
+        type = "debugpy",
+        request = "launch",
+        name = "Debug/launch Kedro Run (stop on entry)",
+        console = "integratedTerminal",
+        justMyCode = false,
+        subProcess = false,
+        cwd = vim.env.HOME .. "/projects/python/kedro-environment/iris",
+        module = "kedro",
+        args = "run",
+        -- args = { "run", "--pipeline", "pipeline_name", "--arg1", "value1", "--arg2", "value2" },
+        pythonPath = function()
+          return utils.get_python_path()
+        end,
+        stopOnEntry = true,
+      },
+      ["fastapi"] = {
+        -- send curl request to endpoints to debug
+        type = "debugpy",
+        request = "launch",
+        name = "Debug FastAPI module",
+        module = "uvicorn",
+        args = {
+          "main:app",
+          "--reload", -- may not work
+          -- "--port",
+          -- "8000",
+          -- "--use-colors",
+        },
+        jinja = false,
+        env = { FastAPI_ENV = "development" },
+        -- envFile = "${workspaceFolder}/src/.env",
+        console = "integratedTerminal",
+        pythonPath = function()
+          return utils.get_python_path()
+        end,
+        stopOnEntry = true,
+      },
+      ["attach"] = {
+        type = "debugpy",
+        request = "attach",
+        name = "Attach a debugging session",
+        connect = function()
+          local host = vim.fn.input("Host: ")
+          local port = tonumber(vim.fn.input("Port: "))
+          return { host = host, port = port }
+        end,
+      },
+    }
 
     -- symbols
     vim.fn.sign_define("DapBreakpoint", {
