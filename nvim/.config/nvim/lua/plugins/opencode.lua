@@ -5,7 +5,12 @@ return {
     "folke/snacks.nvim",
   },
   config = function()
-    vim.g.opencode_opts = {}
+    vim.g.opencode_opts = {
+      lsp = {
+        -- use opencode for hover and code actions
+        enabled = false,
+      },
+    }
 
     vim.keymap.set({ "n", "x" }, "<leader>oa", function()
       require("opencode").ask("@this: ", { submit = true })
