@@ -432,14 +432,6 @@ end, {
   desc = "Delete line(s) without yanking",
 })
 
-vim.keymap.set("n", "<localleader>tb", function()
-  require("config.utils").toggle_boolean()
-end, {
-  noremap = true,
-  silent = true,
-  desc = "Toggle boolean under the cursor",
-})
-
 -- omnifunc completion related keymaps
 vim.keymap.set("i", "<c-c>", function()
   return vim.fn.pumvisible() == 1 and "<c-e>" or "<c-c>"
