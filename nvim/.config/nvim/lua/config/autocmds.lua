@@ -41,7 +41,11 @@ vim.api.nvim_create_autocmd("FileType", {
     vim.bo[event.buf].buflisted = false
     vim.schedule(function()
       vim.keymap.set("n", "q", function()
-        vim.cmd("close")
+        if #vim.api.nvim_list_wins() == 1 then
+          vim.cmd("bdelete")
+        else
+          vim.cmd("close")
+        end
       end, {
         noremap = true,
         silent = true,
@@ -313,23 +317,20 @@ vim.api.nvim_create_autocmd("BufWinEnter", {
 
 -- r, rmd, markdown, quarto specific keymaps in insert mode
 vim.api.nvim_create_autocmd("FileType", {
-  callback = function(event)
-    vim.bo[event.buf].buflisted = false
-    vim.schedule(function()
-      vim.keymap.set("i", "<>", "<- ", {
-        noremap = true,
-        buffer = event.buf,
-        silent = true,
-        desc = "Replace <> with <- in R, Rmarkdown, markdown, quarto files (insert mode)",
-      })
+  callback = function()
+    vim.keymap.set("i", "<>", "<- ", {
+      noremap = true,
+      buffer = true,
+      silent = true,
+      desc = "Replace <> with <- in R, Rmarkdown, markdown, quarto files (insert mode)",
+    })
 
-      vim.keymap.set("i", ">>", "%>%<space>", {
-        noremap = true,
-        buffer = event.buf,
-        silent = true,
-        desc = "Replace >> with %>% in R, Rmarkdown, markdown, quarto files (insert mode)",
-      })
-    end)
+    vim.keymap.set("i", ">>", "%>%<space>", {
+      noremap = true,
+      buffer = true,
+      silent = true,
+      desc = "Replace >> with %>% in R, Rmarkdown, markdown, quarto files (insert mode)",
+    })
   end,
   group = config,
   pattern = {
