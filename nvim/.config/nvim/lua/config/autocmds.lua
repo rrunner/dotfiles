@@ -25,7 +25,6 @@ vim.api.nvim_create_autocmd("TermOpen", {
 
 -- auto-close terminal when process exits
 vim.api.nvim_create_autocmd("TermClose", {
-  -- command = [[silent! if !v:event.status | exe 'bdelete! '..expand('<abuf>') | endif]],
   callback = function()
     if vim.v.event.status == 0 then
       vim.api.nvim_buf_delete(0, {})
@@ -110,6 +109,7 @@ vim.api.nvim_create_autocmd({ "BufWinEnter", "BufFilePost", "WinEnter" }, {
   callback = function(event)
     -- winbar whitelist
     local ft_with_winbar = {
+      "elixir",
       "haskell",
       "json",
       "jsonc",
