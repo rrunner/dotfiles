@@ -255,7 +255,7 @@ vim.api.nvim_create_autocmd("InsertLeave", {
 vim.api.nvim_create_autocmd("FileType", {
   callback = function()
     vim.keymap.set("n", "<localleader>qp", function()
-      require("config.utils").quarto_preview()
+      utils.quarto_preview()
     end, {
       noremap = true,
       silent = true,
