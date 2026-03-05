@@ -125,6 +125,7 @@ vim.o.synmaxcol = 300
 vim.o.redrawtime = 10000 -- increase neovim redraw tolerance
 vim.o.maxmempattern = 20000 -- increase max memory
 vim.o.winborder = "rounded"
+vim.o.winbar = ""
 vim.o.fillchars = "diff:"
   .. icons.chars.diff
   .. ",eob: ,fold: "

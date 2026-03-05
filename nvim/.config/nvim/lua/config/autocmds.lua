@@ -10,7 +10,7 @@ vim.api.nvim_create_autocmd("TextYankPost", {
   pattern = "*",
 })
 
--- settings applied to a new terminal
+-- terminal settings on open
 vim.api.nvim_create_autocmd("TermOpen", {
   callback = function(event)
     local winid = vim.fn.bufwinid(event.buf)
@@ -67,9 +67,17 @@ vim.api.nvim_create_autocmd("FileType", {
   },
 })
 
--- close command line window (q:, q/ and q? etc.) with "q"
+-- close command-line window (q:, q/ and q? etc.) with "q"
 vim.api.nvim_create_autocmd("CmdwinEnter", {
-  command = [[nnoremap <buffer><silent> q :close<cr>]],
+  callback = function()
+    vim.keymap.set("n", "q", function()
+      vim.cmd.close()
+    end, {
+      buffer = true,
+      remap = false,
+      silent = true,
+    })
+  end,
   group = config,
   pattern = "*",
 })
@@ -95,19 +103,10 @@ else
   })
 end
 
--- use internal formatting for bindings like gq
-vim.api.nvim_create_autocmd("LspAttach", {
-  callback = function(event)
-    vim.bo[event.buf].formatexpr = nil
-  end,
-  group = config,
-  pattern = "*",
-})
-
--- set/unset winbar (global winbar setting must be unset)
+-- set/unset winbar (global winbar option must be set to the empty string)
 vim.api.nvim_create_autocmd({ "BufWinEnter", "BufFilePost", "WinEnter" }, {
   callback = function(event)
-    -- winbar whitelist
+    -- set winbar for these file types
     local ft_with_winbar = {
       "elixir",
       "haskell",
@@ -168,16 +167,16 @@ vim.api.nvim_create_autocmd("FileType", {
     vim.bo[bufnr].spelloptions = "camel"
   end,
   group = config,
-  pattern = { "text", "tex", "markdown", "quarto", "rmd", "mail", "NeogitCommitMessage", "plaintex", "gitcommit" },
+  pattern = { "text", "tex", "markdown", "quarto", "rmd", "mail", "plaintex", "gitcommit" },
 })
 
--- enable wrap for certain file types not covered by "after"
+-- set wrap for certain file types not covered by config in after
 vim.api.nvim_create_autocmd("FileType", {
   callback = function()
     vim.wo.wrap = true
   end,
   group = config,
-  pattern = { "quarto", "rmd", "NeogitCommitMessage", "plaintex", "gitcommit" },
+  pattern = { "quarto", "rmd", "plaintex", "gitcommit" },
 })
 
 -- delete [No Name] buffers
@@ -255,7 +254,9 @@ vim.api.nvim_create_autocmd("InsertLeave", {
 -- quarto preview file
 vim.api.nvim_create_autocmd("FileType", {
   callback = function()
-    vim.keymap.set("n", "<localleader>qp", [[<cmd>lua require("config.utils").quarto_preview()<cr>]], {
+    vim.keymap.set("n", "<localleader>qp", function()
+      require("config.utils").quarto_preview()
+    end, {
       noremap = true,
       silent = true,
       desc = "Quarto preview file",
@@ -273,15 +274,6 @@ vim.api.nvim_create_autocmd({ "UIEnter", "ColorScheme" }, {
     if normal.bg then
       io.write(string.format("\027]11;#%06x\027\\", normal.bg))
       modified = true
-    end
-  end,
-  group = config,
-})
-
-vim.api.nvim_create_autocmd("UILeave", {
-  callback = function()
-    if modified then
-      io.write("\027]111\027\\")
     end
   end,
   group = config,
@@ -305,6 +297,7 @@ vim.api.nvim_create_autocmd("FileType", {
   pattern = { "man" },
 })
 
+-- unset statuscolumn in DAP buffers
 vim.api.nvim_create_autocmd("BufWinEnter", {
   callback = function()
     local ft = vim.bo.filetype
@@ -341,7 +334,7 @@ vim.api.nvim_create_autocmd("FileType", {
   },
 })
 
--- better formatoptions: always override changes made by filetype plugins
+-- always override formatoptions imposed by filetype plugins
 vim.api.nvim_create_autocmd("FileType", {
   command = [[setlocal formatoptions-=cro]],
   group = config,

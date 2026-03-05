@@ -89,6 +89,9 @@ vim.api.nvim_create_autocmd("LspAttach", {
       vim.bo[bufnr].tagfunc = "v:lua.vim.lsp.tagfunc"
     end
 
+    -- use internal formatting for bindings like gq
+    vim.bo[bufnr].formatexpr = nil
+
     -- buffer local mappings
     -- see `:help vim.lsp.*` for documentation on any of the below functions
     if client and client:supports_method(vim.lsp.protocol.Methods.textDocument_declaration) then
