@@ -1,5 +1,7 @@
 return {
   "NickvanDyke/opencode.nvim",
+  cond = vim.fn.executable("opencode") == 1,
+  event = "VeryLazy",
   version = "*",
   dependencies = {
     "folke/snacks.nvim",
