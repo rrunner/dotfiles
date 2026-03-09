@@ -21,6 +21,7 @@ _G.dd = function(...)
 end
 
 -- override vim.print (which is also used by :=)
+---@diagnostic disable-next-line: duplicate-set-field
 vim._print = function(_, ...)
   dd(...)
 end
