@@ -663,6 +663,17 @@ return {
 
     snacks.setup(opts)
 
+    -- pretty print objects and backtrace
+    _G.dd = function(...)
+      snacks.debug.inspect(...)
+    end
+
+    -- override vim.print (which is also used by :=)
+    ---@diagnostic disable-next-line: duplicate-set-field
+    vim._print = function(_, ...)
+      dd(...)
+    end
+
     vim.keymap.set("n", "<leader>z", function()
       snacks.zen()
     end, { desc = "Toggle zen mode", noremap = true, silent = true })

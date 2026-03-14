@@ -12,20 +12,6 @@ if not vim.uv.fs_stat(lazypath) then
 end
 vim.o.rtp = lazypath .. "," .. vim.o.rtp
 
--- setting required by many plugins
-vim.o.termguicolors = true
-
--- pretty print objects and backtrace
-_G.dd = function(...)
-  Snacks.debug.inspect(...)
-end
-
--- override vim.print (which is also used by :=)
----@diagnostic disable-next-line: duplicate-set-field
-vim._print = function(_, ...)
-  dd(...)
-end
-
 require("config.options")
 require("config.autocmds")
 require("config.usercmds")

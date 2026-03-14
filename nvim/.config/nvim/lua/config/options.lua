@@ -1,4 +1,3 @@
--- options
 local utils = require("config.utils")
 local icons = require("config.icons")
 
@@ -18,6 +17,8 @@ vim.schedule(function()
 end)
 vim.g.py_root_markers = { { "pyproject.toml", "uv.lock" }, "requirements.txt", "Pipfile" } -- set root directory (e.g. parent folder)
 
+-- options
+vim.o.termguicolors = true
 vim.cmd("filetype plugin indent on")
 if vim.fn.exists("syntax_on") ~= 1 then
   vim.cmd("syntax enable")
