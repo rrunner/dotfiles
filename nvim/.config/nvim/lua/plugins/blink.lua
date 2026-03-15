@@ -42,7 +42,7 @@ return {
         elseif vim.tbl_contains({ "quarto", "rmd" }, ft) then
           return { "buffer", "snippets" }
         elseif vim.tbl_contains({ "text", "mail" }, ft) then
-          return { "buffer", "dictionary" }
+          return { "buffer", "dictionary", "path" }
         else
           return { "lsp", "path", "snippets", "buffer" }
         end
