@@ -574,7 +574,6 @@ return {
               list = {
                 keys = {
                   ["l"] = "confirm",
-                  ["c"] = false,
                   ["o"] = "confirm",
                   ["u"] = false,
                   ["<c-c>"] = "close",
@@ -592,6 +591,7 @@ return {
                   -- ["<bs>"] = "explorer_up",
                   -- ["h"] = "explorer_close",
                   -- ["a"] = "explorer_add",
+                  -- ["c"] = "explorer_copy",
                   -- ["d"] = "explorer_del",
                   -- ["r"] = "explorer_rename",
                   -- ["m"] = "explorer_move",
