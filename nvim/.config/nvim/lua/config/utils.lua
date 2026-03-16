@@ -249,4 +249,16 @@ M.run_wo_snacks_scroll = function(callback)
   end
 end
 
+M.schema_settings = function(schematype)
+  if vim.g.is_github_not_blocked then
+    local exists, schemastore = pcall(require, "schemastore")
+    if not exists then
+      return {}
+    end
+    return schemastore[schematype].schemas()
+  else
+    return {}
+  end
+end
+
 return M
