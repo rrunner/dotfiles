@@ -3,8 +3,11 @@ local utils = require("config.utils")
 local settings = function()
   if vim.g.is_github_not_blocked then
     -- schemastore supports local schemas, see "extra" argument to json.schemas()
-    local schemas = require("schemastore").json.schemas()
-    return schemas
+    local exists, schemastore = pcall(require, "schemastore")
+    if not exists then
+      return {}
+    end
+    return schemastore.json.schemas()
   else
     return {}
   end

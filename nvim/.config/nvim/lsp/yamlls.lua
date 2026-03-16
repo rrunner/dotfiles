@@ -2,8 +2,11 @@ local utils = require("config.utils")
 
 local settings = function()
   if vim.g.is_github_not_blocked then
-    local schemas = require("schemastore").yaml.schemas()
-    return schemas
+    local exists, schemastore = pcall(require, "schemastore")
+    if not exists then
+      return {}
+    end
+    return schemastore.yaml.schemas()
   else
     return {}
   end
