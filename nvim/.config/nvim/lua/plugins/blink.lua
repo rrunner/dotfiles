@@ -5,7 +5,8 @@ end
 return {
   "saghen/blink.cmp",
   event = "VimEnter",
-  version = "1.*", -- use a release tag to download pre-built binaries
+  -- use stable 1 release
+  version = "1.*",
   dependencies = {
     "rafamadriz/friendly-snippets",
     "folke/lazydev.nvim",
