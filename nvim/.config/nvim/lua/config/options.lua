@@ -16,6 +16,8 @@ vim.schedule(function()
   vim.g.clipboard = "xclip"
 end)
 vim.g.py_root_markers = { { "pyproject.toml", "uv.lock" }, "requirements.txt", "Pipfile" } -- set root directory (e.g. parent folder)
+-- disable entire built-in ftplugin mappings to avoid conflicts (plugin nvim-treesitter-textobjects)
+vim.g.no_plugin_maps = true
 
 -- options
 vim.o.termguicolors = true
