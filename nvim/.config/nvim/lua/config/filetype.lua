@@ -5,5 +5,6 @@ vim.filetype.add({
   filename = {
     ["requirements-dev.txt"] = "requirements",
     ["requirements_dev.txt"] = "requirements",
+    ["condarc"] = "yaml",
   },
 })
