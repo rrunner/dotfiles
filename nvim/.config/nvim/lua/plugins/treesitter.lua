@@ -123,6 +123,10 @@ return {
     end
 
     -- treesitter textobjects
+
+    -- disable entire built-in ftplugin mappings to avoid conflicts (plugin nvim-treesitter-textobjects)
+    vim.g.no_plugin_maps = true
+
     require("nvim-treesitter-textobjects").setup({
       select = {
         lookahead = true,
