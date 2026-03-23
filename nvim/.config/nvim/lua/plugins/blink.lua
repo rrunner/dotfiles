@@ -9,7 +9,6 @@ return {
   version = "1.*",
   dependencies = {
     "rafamadriz/friendly-snippets",
-    "folke/lazydev.nvim",
     "archie-judd/blink-cmp-words",
     { "nvim-mini/mini.icons", version = false },
     { "mayromr/blink-cmp-dap", ft = "python" },
@@ -30,7 +29,7 @@ return {
         then
           return { "buffer" }
         elseif ft == "lua" then
-          return { "lazydev", "lsp", "path", "snippets", "buffer" }
+          return { "lsp", "path", "snippets", "buffer" }
         elseif ft == "gitcommit" then
           return {}
         elseif ft == "markdown" then
@@ -85,11 +84,6 @@ return {
             end
           end,
           score_offset = 1,
-        },
-        lazydev = {
-          name = "LazyDev",
-          module = "lazydev.integrations.blink",
-          score_offset = -5,
         },
         thesaurus = {
           name = "Thes",
