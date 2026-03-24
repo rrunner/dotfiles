@@ -142,29 +142,9 @@ vim.o.foldtext = ""
 vim.o.exrc = true -- add .nvim.lua to project root for project specific configuration
 vim.o.secure = true -- must accept .nvim.lua files before parsing
 
--- windows specific (these options may be obsolete)
-if utils.IS_WIN then
-  vim.o.shell = "pwsh"
-  vim.o.shellcmdflag =
-    "-NoLogo -NonInteractive -ExecutionPolicy RemoteSigned -Command [Console]::InputEncoding=[Console]::OutputEncoding=[System.Text.UTF8Encoding]::new();$PSDefaultParameterValues['Out-File:Encoding']='utf8';$PSStyle.OutputRendering='plaintext';Remove-Alias -Force -ErrorAction SilentlyContinue tee;"
-  vim.o.shellredir = '2>&1 | %%{ "$_" } | Out-File %s; exit $LastExitCode'
-  vim.o.shellpipe = '2>&1 | %%{ "$_" } | tee %s; exit $LastExitCode'
-  vim.o.shellquote = ""
-  vim.o.shellxquote = ""
-  vim.o.shellslash = true
-
-  -- start terminal: must hardcode terminal shell on windows to get pwsh
-  -- consider update keymap to <c-;>, and make it toggle
-  local term_str = "<cmd>belowright split term://pwsh | resize -10<cr>i"
-  vim.keymap.set("n", "<leader>t", term_str, {
-    noremap = true,
-    desc = "Start a terminal buffer in terminal mode",
-  })
-end
-
--- wsl specific (these options may be obsolete)
+-- wsl specific
 if utils.IS_WSL then
-  -- use WSL at work with editorconfig (see https://github.com/neovim/neovim/issues/21648)
+  -- see https://github.com/neovim/neovim/issues/21648
   require("editorconfig").properties.insert_final_newline = nil
   vim.o.endofline = false
 end
