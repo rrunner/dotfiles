@@ -142,6 +142,11 @@ vim.o.foldtext = ""
 vim.o.exrc = true -- add .nvim.lua to project root for project specific configuration
 vim.o.secure = true -- must accept .nvim.lua files before parsing
 
+-- abbreviations
+vim.cmd([[iabbrev teh the]])
+vim.cmd([[iabbrev adn and]])
+vim.cmd([[iabbrev sytem system]])
+
 -- wsl specific
 if utils.IS_WSL then
   -- see https://github.com/neovim/neovim/issues/21648

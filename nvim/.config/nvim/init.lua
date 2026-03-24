@@ -16,7 +16,6 @@ require("config.options")
 require("config.autocmds")
 require("config.usercmds")
 require("config.filetype")
-require("config.abbreviations")
 require("config.keymaps")
 require("lsp")
 
