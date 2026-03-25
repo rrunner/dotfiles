@@ -327,3 +327,16 @@ vim.api.nvim_create_autocmd("FileType", {
   group = config,
   pattern = "*",
 })
+
+-- change cwd to the passed directory argument at start
+vim.api.nvim_create_autocmd("VimEnter", {
+  callback = function()
+    local args = vim.fn.argv()
+    if #args > 0 and vim.fn.isdirectory(args[1]) then
+      local target = vim.fn.fnamemodify(args[1], ":p")
+      vim.cmd("cd " .. target)
+    end
+  end,
+  group = config,
+  pattern = "*",
+})
