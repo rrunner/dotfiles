@@ -530,8 +530,8 @@ return {
             git_untracked = true, -- display untracked icon
             diagnostics = true,
             diagnostics_open = true,
-            include = {}, -- always include
-            exclude = { ".mypy_cache", "__pycache__" },
+            include = { ".config" }, -- always include (precedence over 'exclude', 'ignored' and 'hidden')
+            exclude = { ".mypy_cache", "__pycache__" }, -- always exclude
             layout = {
               preset = "sidebar",
               hidden = { "input" },
