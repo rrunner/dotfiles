@@ -1,7 +1,7 @@
 local utils = require("config.utils")
 
 return {
-  cmd = { utils.app_prio("ty"), "server" },
+  cmd = { utils.app_prio("ty", { python_tool = true }), "server" },
   root_markers = vim.g.py_root_markers,
   filetypes = { "python" },
   settings = {

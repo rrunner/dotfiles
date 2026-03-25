@@ -37,7 +37,7 @@ return {
     -- ruff fix (apply ruff linter fixes)
     -- ruff_organize_imports (select=I001) is already covered by ruff_fix since --select=ALL is used below
     conform.formatters.ruff_fix = {
-      command = utils.app_prio("ruff"),
+      command = utils.app_prio("ruff", { python_tool = true }),
       args = {
         "check",
         "--fix",
@@ -64,7 +64,7 @@ return {
 
     -- ruff format (runs ruff formatter, same as ruff format preset)
     conform.formatters.ruff_format = {
-      command = utils.app_prio("ruff"),
+      command = utils.app_prio("ruff", { python_tool = true }),
       args = {
         "format",
         "--force-exclude",

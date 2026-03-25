@@ -64,22 +64,28 @@ M.get_python_path = function()
 end
 
 -- set the priority order for a given application's binary package. Binaries
---  provided by the virtual environment is prioritized over Mason and system
---  provided binaries.
+-- provided by the virtual environment (if python_tool = true) is prioritized
+-- over Mason and system provided binaries.
+---@param app string  -- the name of the application binary
+---@param opts? { python_tool?: boolean }  -- optional options table
 ---@return string  -- the path to the app binary
-M.app_prio = function(app)
+M.app_prio = function(app, opts)
+  opts = opts or {}
   local debug = false
-  local venv = vim.env.VIRTUAL_ENV or nil
   local application
-  if venv then
-    application = venv .. "/bin/" .. app
 
-    -- application is available as a package binary inside the virtual environment
-    if vim.fn.executable(application) == 1 then
-      if debug then
-        vim.notify(application, vim.log.INFO)
+  if opts.python_tool then
+    local venv = vim.env.VIRTUAL_ENV or nil
+    if venv then
+      application = venv .. "/bin/" .. app
+
+      -- application is available as a package binary inside the virtual environment
+      if vim.fn.executable(application) == 1 then
+        if debug then
+          vim.notify(application, vim.log.INFO)
+        end
+        return application
       end
-      return application
     end
   end
 

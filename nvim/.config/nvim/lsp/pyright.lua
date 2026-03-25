@@ -1,7 +1,7 @@
 local utils = require("config.utils")
 
 return {
-  cmd = { utils.app_prio("pyright-langserver"), "--stdio" },
+  cmd = { utils.app_prio("pyright-langserver", { python_tool = true }), "--stdio" },
   root_markers = vim.g.py_root_markers,
   filetypes = { "python" },
   settings = {
