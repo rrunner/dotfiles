@@ -918,14 +918,11 @@ return {
     })
 
     vim.keymap.set("n", "<leader>ex", function()
-      local cwd = vim.uv.cwd()
-      local config_dir = vim.fn.expand("~/.config")
-      local display_hidden = cwd == config_dir or vim.startswith(cwd, config_dir .. require("config.utils").path_sep)
-      snacks.picker.explorer({ hidden = display_hidden })
+      snacks.picker.explorer()
     end, {
       noremap = true,
       silent = true,
-      desc = "Toggle file explorer (display hidden files under ~/.config)",
+      desc = "Toggle file explorer",
     })
 
     vim.keymap.set("n", "<leader>sp", function()
