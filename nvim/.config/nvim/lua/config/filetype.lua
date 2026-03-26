@@ -6,5 +6,7 @@ vim.filetype.add({
     ["requirements-dev.txt"] = "requirements",
     ["requirements_dev.txt"] = "requirements",
     ["condarc"] = "yaml",
+    [".Renviron"] = "sh",
+    [".Rprofile"] = "r",
   },
 })
