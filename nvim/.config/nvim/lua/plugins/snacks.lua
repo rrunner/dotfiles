@@ -570,10 +570,51 @@ return {
                 vim.cmd("horizontal wincmd =")
               end
             end,
+            actions = {
+              confirm_jump = function(picker, item, action)
+                if not item or item.dir then
+                  return
+                else
+                  snacks.picker.actions.confirm(picker, item, action)
+                end
+              end,
+              open_folder = function(picker, item)
+                local Tree = require("snacks.explorer.tree")
+                local Actions = require("snacks.explorer.actions")
+                if item.dir and not item.open then
+                  Tree:open(item.file)
+                  Actions.update(picker, { refresh = true })
+                end
+              end,
+              close_folder = function(picker, item)
+                local Tree = require("snacks.explorer.tree")
+                local Actions = require("snacks.explorer.actions")
+                local parent = vim.fs.dirname(item.file)
+                local parent_node = Tree:node(parent)
+                local target
+                if item.dir and item.open then
+                  Tree:close(item.file)
+                  Actions.update(picker, { refresh = true })
+                else
+                  if parent_node and parent_node.open then
+                    target = parent
+                    Tree:close(parent)
+                    Actions.update(picker, { target = target, refresh = true })
+                  end
+                end
+              end,
+            },
             win = {
+              input = {
+                keys = {
+                  ["<cr>"] = { "confirm_jump", mode = { "i", "n" } },
+                },
+              },
               list = {
                 keys = {
-                  ["l"] = "confirm",
+                  ["<cr>"] = { "confirm_jump" },
+                  ["l"] = { "open_folder" },
+                  ["h"] = { "close_folder" },
                   ["o"] = "confirm",
                   ["u"] = false,
                   ["<c-c>"] = "close",
@@ -589,7 +630,6 @@ return {
                   -- default keymaps below (keep for reference)
                   -- ["<c-t>"] = "terminal", -- start terminal in folder
                   -- ["<bs>"] = "explorer_up",
-                  -- ["h"] = "explorer_close",
                   -- ["a"] = "explorer_add",
                   -- ["c"] = "explorer_copy",
                   -- ["d"] = "explorer_del",
