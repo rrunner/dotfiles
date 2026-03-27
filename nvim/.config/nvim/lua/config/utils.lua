@@ -31,36 +31,32 @@ M.inside_git_repo = function()
   return vim.v.shell_error == 0
 end
 
--- retrieve the path to the python interpreter
----@return string  -- the path to the active python interpreter
+--- Retrieves the path to the Python interpreter for debugging. First checks
+--- VIRTUAL_ENV for a local installation, then falls back to system Python.
+--- Also validates if debugpy is found in the virtual environment.
+---@return string -- path to the active Python interpreter (empty string if not found)
 M.get_python_path = function()
-  -- issue warning if debugpy is not found in the virtual environment
+  local py_path
+
   if vim.env.VIRTUAL_ENV then
-    local _dpath = vim.env.VIRTUAL_ENV .. "/bin/debugpy"
-    if vim.fn.executable(_dpath) == 0 then
+    local dpath = vim.env.VIRTUAL_ENV .. "/bin/debugpy"
+    if vim.fn.executable(dpath) == 0 then
       vim.notify("debugpy is not found in virtual environment", vim.log.levels.WARN)
     end
-  end
 
-  -- use python installed in virtual environment
-  if vim.env.VIRTUAL_ENV then
-    local py_path = vim.env.VIRTUAL_ENV .. "/bin/python"
-    if vim.fn.executable(py_path) == 0 then
-      vim.notify("python is not found in virtual environment", vim.log.levels.WARN)
-    else
-      -- vim.notify("python (for debugging): " .. py_path, vim.log.levels.INFO)
+    py_path = vim.env.VIRTUAL_ENV .. "/bin/python"
+    if vim.fn.executable(py_path) ~= 0 then
       return py_path
     end
+    vim.notify("python is not found in virtual environment", vim.log.levels.WARN)
   end
 
-  -- use system installations of python/debugpy
-  local py_path = vim.fn.exepath("python3") or vim.fn.exepath("python")
-  if py_path then
-    -- vim.notify("python (for debugging): " .. py_path, vim.log.levels.INFO)
-  elseif not py_path then
-    vim.notify("python not found (for debugging)", vim.log.levels.WARN)
+  -- checks for system installation of python
+  py_path = vim.fn.exepath("python3") or vim.fn.exepath("python")
+  if py_path == "" then
+    vim.notify("python is not found in system", vim.log.levels.WARN)
   end
-  return py_path or ""
+  return py_path
 end
 
 -- set the priority order for a given application's binary package. Binaries
