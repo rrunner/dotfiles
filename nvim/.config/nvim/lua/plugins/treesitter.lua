@@ -34,6 +34,7 @@ return {
       "html",
       "http",
       "hurl",
+      "jinja",
       "json",
       "json5",
       "jsonc",
