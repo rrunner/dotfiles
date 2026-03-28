@@ -4,27 +4,22 @@ local M = {}
 local str = require("string")
 local uv = vim.uv
 
--- detect OS
+-- set OS flags
 local OS_SYSTEM = uv.os_uname().sysname
-M.IS_LINUX = str.lower(OS_SYSTEM):find("linux") and true or false
-M.IS_WIN = str.lower(OS_SYSTEM):find("windows") and true or false
+M.IS_LINUX = OS_SYSTEM == "Linux"
+M.IS_WIN = OS_SYSTEM == "Windows_NT"
 M.IS_WSL = (function()
   local output = vim.fn.systemlist("uname -r")
-  if output ~= nil then
-    return not not str.find(output[1] or "", "WSL")
+  if vim.v.shell_error ~= 0 then
+    vim.notify("Issue identifying WSL system", vim.log.levels.ERROR)
+    return false
   end
-  vim.notify("Issue to identify WSL system", vim.log.levels.ERROR)
-  return false
+  return output[1] and output[1]:find("WSL", 1, true) ~= nil
 end)()
 
--- path separator
-M.path_sep = (function()
-  if M.IS_WIN then
-    return "\\"
-  else
-    return "/"
-  end
-end)()
+-- The path separator used on the system
+---@type string -- path separator
+M.path_sep = package.config:sub(1, 1)
 
 M.inside_git_repo = function()
   local _ = vim.fn.system("git rev-parse --is-inside-work-tree")
