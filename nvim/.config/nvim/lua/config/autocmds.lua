@@ -55,15 +55,16 @@ vim.api.nvim_create_autocmd("FileType", {
   end,
   group = config,
   pattern = {
-    "help",
-    "qf",
     "checkhealth",
-    "neotest-summary",
-    "neotest-output",
-    "query",
-    "gitsigns-blame",
-    "git",
     "diff",
+    "git",
+    "gitsigns-blame",
+    "help",
+    "man",
+    "neotest-output",
+    "neotest-summary",
+    "qf",
+    "query",
   },
 })
 
