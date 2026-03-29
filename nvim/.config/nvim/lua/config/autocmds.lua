@@ -38,20 +38,18 @@ vim.api.nvim_create_autocmd("TermClose", {
 vim.api.nvim_create_autocmd("FileType", {
   callback = function(event)
     vim.bo[event.buf].buflisted = false
-    vim.schedule(function()
-      vim.keymap.set("n", "q", function()
-        if #vim.api.nvim_list_wins() == 1 then
-          vim.cmd("bdelete")
-        else
-          vim.cmd("close")
-        end
-      end, {
-        noremap = true,
-        silent = true,
-        buffer = event.buf,
-        desc = "Close specific filetypes with q (autocmd)",
-      })
-    end)
+    vim.keymap.set("n", "q", function()
+      if #vim.api.nvim_list_wins() == 1 then
+        vim.cmd("bdelete")
+      else
+        vim.cmd("close")
+      end
+    end, {
+      noremap = true,
+      silent = true,
+      buffer = event.buf,
+      desc = "Close buffer or window with q",
+    })
   end,
   group = config,
   pattern = {
