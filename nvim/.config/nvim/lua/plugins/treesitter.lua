@@ -12,7 +12,6 @@ return {
   },
   config = function()
     local nvim_ts = require("nvim-treesitter")
-    local utils = require("config.utils")
 
     local ts_parsers = {
       "bash",
@@ -34,10 +33,8 @@ return {
       "html",
       "http",
       "hurl",
-      "jinja",
       "json",
       "json5",
-      "jsonc",
       "julia",
       "latex",
       "lua",
@@ -65,13 +62,6 @@ return {
       "xml",
       "yaml",
     }
-
-    -- jsonc does not install on WSL (do not know why...)
-    if utils.IS_WSL then
-      ts_parsers = vim.tbl_filter(function(item)
-        return item ~= "jsonc"
-      end, ts_parsers)
-    end
 
     -- install treesitter parsers
     local already_installed = require("nvim-treesitter.config").get_installed("parsers")
@@ -101,7 +91,7 @@ return {
         end
         -- indentation
         if pcall(require, "nvim-treesitter") then
-          vim.bo[bufnr].indentexpr = "v:lua.require'nvim-treesitter'.indentexpr()"
+          vim.bo.indentexpr = "v:lua.require'nvim-treesitter'.indentexpr()"
         end
         -- folds
         local winid = vim.fn.bufwinid(bufnr)

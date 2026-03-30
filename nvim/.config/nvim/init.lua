@@ -45,6 +45,7 @@ require("lazy").setup("plugins", {
   },
   performance = {
     rtp = {
+      paths = { vim.fn.stdpath("data") .. "/site/" },
       disabled_plugins = {
         "gzip",
         "matchit",
