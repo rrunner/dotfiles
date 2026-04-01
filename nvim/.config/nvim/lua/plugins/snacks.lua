@@ -703,7 +703,6 @@ return {
 
     snacks.setup(opts)
 
-    -- pretty print objects and backtrace
     _G.dd = function(...)
       snacks.debug.inspect(...)
     end
