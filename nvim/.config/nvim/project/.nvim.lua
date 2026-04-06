@@ -1,5 +1,4 @@
 -- project specific configuration template
-local utils = require("config.utils")
 
 -- set environment variables
 -- vim.env.VIRTUAL_ENV = "/path/to/virtual_environment/.venv"
@@ -32,7 +31,7 @@ if exists_dap then
       subProcess = false,
       cwd = "${workspaceFolder}",
       pythonPath = function()
-        return utils.get_python_path()
+        return Config.utils.get_python_path()
       end,
       stopOnEntry = false,
     },

@@ -1,9 +1,7 @@
-local utils = require("config.utils")
-
-local schemas = utils.schema_settings("yaml")
+local schemas = Config.utils.schema_settings("yaml")
 
 return {
-  cmd = { utils.app_prio("yaml-language-server"), "--stdio" },
+  cmd = { Config.utils.app_prio("yaml-language-server"), "--stdio" },
   root_markers = { ".git" },
   filetypes = { "yaml", "yaml.docker-compose", "yaml.gitlab" },
   settings = {

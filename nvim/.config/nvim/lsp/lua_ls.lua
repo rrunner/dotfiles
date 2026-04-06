@@ -1,5 +1,3 @@
-local utils = require("config.utils")
-
 local root_markers1 = {
   ".emmyrc.json",
   ".luarc.json",
@@ -14,7 +12,7 @@ local root_markers2 = {
 }
 
 return {
-  cmd = { utils.app_prio("lua-language-server") },
+  cmd = { Config.utils.app_prio("lua-language-server") },
   root_markers = { root_markers1, root_markers2, { ".git" } },
   filetypes = { "lua" },
   settings = {
@@ -30,6 +28,7 @@ return {
       },
       diagnostics = {
         disable = { "missing-fields" },
+        globals = { "Config" },
       },
       telemetry = {
         enable = false,

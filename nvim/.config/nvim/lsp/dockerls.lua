@@ -1,6 +1,4 @@
-local utils = require("config.utils")
-
 return {
-  cmd = { utils.app_prio("docker-langserver"), "--stdio" },
+  cmd = { Config.utils.app_prio("docker-langserver"), "--stdio" },
   filetypes = { "dockerfile" },
 }

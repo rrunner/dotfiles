@@ -1,7 +1,5 @@
-local utils = require("config.utils")
-
 return {
-  cmd = { utils.app_prio("r-languageserver") },
+  cmd = { Config.utils.app_prio("r-languageserver") },
   filetypes = { "r", "rmd", "quarto" },
   on_attach = function(client, _)
     -- use air for formatting

@@ -1,7 +1,5 @@
-local utils = require("config.utils")
-
 return {
-  cmd = { utils.app_prio("taplo"), "lsp", "stdio" },
+  cmd = { Config.utils.app_prio("taplo"), "lsp", "stdio" },
   root_markers = { ".taplo.toml", "taplo.toml", ".git" },
   filetypes = { "toml" },
   settings = {

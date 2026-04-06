@@ -1,7 +1,5 @@
-local utils = require("config.utils")
-
 return {
-  cmd = { utils.app_prio("harper-ls"), "--stdio" },
+  cmd = { Config.utils.app_prio("harper-ls"), "--stdio" },
   root_markers = { ".git" },
   filetypes = { "gitcommit", "markdown", "mail", "text" },
   settings = {
@@ -11,6 +9,6 @@ return {
         SentenceCapitalization = true,
         SpellCheck = false,
       },
-    }
+    },
   },
 }
