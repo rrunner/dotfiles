@@ -60,7 +60,6 @@ require("slimline").setup({
   },
   disabled_filetypes = {
     "help",
-    "lazy",
     "mason",
     "snacks_picker_input",
     "snacks_picker_list",

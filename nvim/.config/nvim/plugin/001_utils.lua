@@ -107,7 +107,7 @@ M.venv_with_cwd = function()
   if venv == nil then
     return vim.uv.cwd() or ""
   else
-    return require("config.icons").extra.python_no_color
+    return Config.icons.extra.python_no_color
       .. " ("
       .. str.match(venv, "/?([.%w_-]+)$")
       .. ") "
