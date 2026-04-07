@@ -24,7 +24,34 @@ mini_ai.setup({
       i = { "@block.inner", "@conditional.inner", "@loop.inner" },
     }),
   },
+  mappings = {
+    -- main textobject prefixes
+    around = "a",
+    inside = "i",
+
+    -- next/last variants
+    -- note: these override built-in lsp selection mappings on neovim>=0.12
+    -- map lsp selection manually to use it (see `:h miniai.config`)
+    around_next = "an",
+    inside_next = "in",
+    around_last = "al",
+    inside_last = "il",
+
+    -- move cursor to corresponding edge of `a` textobject
+    goto_left = "",
+    goto_right = "",
+  },
 })
+
+local map_lsp_selection = function(lhs, desc)
+  local s = vim.startswith(desc, "Increase") and 1 or -1
+  local rhs = function()
+    vim.lsp.buf.selection_range(s * vim.v.count1)
+  end
+  vim.keymap.set("x", lhs, rhs, { desc = desc })
+end
+map_lsp_selection("<c-a>", "Increase selection")
+map_lsp_selection("<c-x>", "Decrease selection")
 
 local function jump(side, search_method, id)
   mini_ai.move_cursor(side, "a", id, { search_method = search_method })
