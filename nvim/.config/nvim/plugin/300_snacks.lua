@@ -821,7 +821,7 @@ vim.keymap.set("n", "<leader>st", function()
     follow = false,
     supports_live = false,
     cmd = "rg",
-    dirs = { vim.fn.stdpath("config") .. Config.utils.path_sep .. "templates" },
+    dirs = { vim.fs.joinpath(vim.fn.stdpath("config"), "templates") },
     title = "Select template notes",
     layout = {
       preset = "select",

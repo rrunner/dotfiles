@@ -33,12 +33,12 @@ M.get_python_path = function()
   local py_path
 
   if vim.env.VIRTUAL_ENV then
-    local dpath = vim.env.VIRTUAL_ENV .. "/bin/debugpy"
+    local dpath = vim.fs.joinpath(vim.env.VIRTUAL_ENV, "/bin/debugpy")
     if vim.fn.executable(dpath) == 0 then
       vim.notify("debugpy is not found in virtual environment", vim.log.levels.WARN)
     end
 
-    py_path = vim.env.VIRTUAL_ENV .. "/bin/python"
+    py_path = vim.fs.joinpath(vim.env.VIRTUAL_ENV, "/bin/python")
     if vim.fn.executable(py_path) ~= 0 then
       return py_path
     end
@@ -80,7 +80,7 @@ M.app_prio = function(app, opts)
   end
 
   -- application is available as a Mason package binary
-  application = vim.fn.stdpath("data") .. "/mason/bin/" .. app
+  application = vim.fs.joinpath(vim.fn.stdpath("data"), "/mason/bin/", app)
   if vim.fn.executable(application) == 1 then
     if debug then
       vim.notify(application, vim.log.INFO)
