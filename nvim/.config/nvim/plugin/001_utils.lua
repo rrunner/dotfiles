@@ -107,28 +107,17 @@ M.venv_with_cwd = function()
   if venv == nil then
     return vim.uv.cwd() or ""
   else
-    return Config.icons.extra.python_no_color
-      .. " ("
-      .. str.match(venv, "/?([.%w_-]+)$")
-      .. ") "
-      .. vim.uv.cwd()
+    return Config.icons.extra.python_no_color .. " (" .. str.match(venv, "/?([.%w_-]+)$") .. ") " .. vim.uv.cwd()
   end
 end
 
--- function to create a table with the unique keys from two tables
----@param list1 table  -- table 1
----@param list2 table  -- table 2
+-- function to create a table with the unique keys from two list-like tables
+---@param list1 table  -- list-like table 1
+---@param list2 table  -- list-like table 2
 ---@return table
 M.unique_values = function(list1, list2)
-  local result = {}
-  for _, lst in pairs({ list1, list2 }) do
-    for _, val in ipairs(lst) do
-      if not vim.tbl_contains(result, val) then
-        table.insert(result, val)
-      end
-    end
-  end
-  return result
+  vim.list_extend(list1, list2) -- mutates list1
+  return vim.list.unique(list1)
 end
 
 -- function to retrieve all buffer filetypes in the window
