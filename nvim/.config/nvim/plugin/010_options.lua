@@ -104,6 +104,7 @@ vim.o.inccommand = "split"
 vim.o.cmdwinheight = 20 -- when inccommand = "split"
 vim.o.shell = "bash"
 vim.o.splitkeep = "topline"
+vim.o.pumborder = "rounded"
 vim.o.pumheight = 10
 vim.o.pumblend = 10
 vim.o.spellsuggest = "best,10"
