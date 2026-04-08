@@ -1,19 +1,3 @@
--- global variables
-vim.g.mapleader = " "
-vim.g.maplocalleader = "-"
-vim.g.is_github_blocked = false -- block github usage
-vim.g.is_github_not_blocked = not vim.g.is_github_blocked
-vim.g.editorconfig = true
-vim.g.loaded_python3_provider = 0
-vim.g.loaded_node_provider = 0
-vim.g.loaded_perl_provider = 0
-vim.g.loaded_ruby_provider = 0
--- select clipboard tool (xclip works both in linux and in WSL)
-vim.schedule(function()
-  vim.g.clipboard = "xclip"
-end)
-vim.g.py_root_markers = { { "pyproject.toml", "uv.lock" }, "requirements.txt", "Pipfile" } -- set root directory (e.g. parent folder)
-
 -- options
 vim.o.termguicolors = true
 vim.cmd("filetype plugin indent on")
