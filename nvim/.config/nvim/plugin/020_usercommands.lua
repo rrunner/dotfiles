@@ -111,3 +111,7 @@ vim.api.nvim_create_user_command("ScratchNew", function(opts)
   end
   snacks.scratch.open(parms)
 end, { desc = "Create new scratch pad", nargs = "*" })
+
+vim.api.nvim_create_user_command("Packupdate", function()
+  vim.pack.update()
+end, { desc = "Update plugins" })
