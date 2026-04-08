@@ -233,5 +233,9 @@ vim.api.nvim_create_autocmd("LspAttach", {
         end,
       })
     end
+
+    if client and client:supports_method(vim.lsp.protocol.Methods.textDocument_codeLens) then
+      vim.lsp.codelens.enable()
+    end
   end,
 })
