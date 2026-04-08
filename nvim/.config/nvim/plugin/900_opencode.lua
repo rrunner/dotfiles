@@ -3,7 +3,10 @@ if not vim.g.is_github_not_blocked then
   return
 end
 
-vim.pack.add({ "https://github.com/nickjvandyke/opencode.nvim" })
+vim.pack.add({ {
+  src = "https://github.com/nickjvandyke/opencode.nvim",
+  version = vim.version.range("*"),
+} })
 
 vim.g.opencode_opts = {
   lsp = {
@@ -11,6 +14,7 @@ vim.g.opencode_opts = {
     enabled = false,
   },
 }
+vim.o.autoread = true
 
 vim.keymap.set({ "n", "x" }, "<leader>oa", function()
   require("opencode").ask("@this: ", { submit = true })
