@@ -206,7 +206,7 @@ vim.api.nvim_create_autocmd("LspAttach", {
 
     if client and client:supports_method(vim.lsp.protocol.Methods.textDocument_inlayHint) then
       vim.keymap.set("n", "<leader>ih", function()
-        vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled({ bufnr = bufnr }))
+        vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled({ bufnr = bufnr }), { bufnr = bufnr })
       end, vim.tbl_extend("error", bufopts, { desc = "Toggle inlay hints" }))
     end
 
@@ -235,7 +235,9 @@ vim.api.nvim_create_autocmd("LspAttach", {
     end
 
     if client and client:supports_method(vim.lsp.protocol.Methods.textDocument_codeLens) then
-      vim.lsp.codelens.enable()
+      vim.keymap.set("n", "<leader>cl", function()
+        vim.lsp.codelens.enable(not vim.lsp.codelens.is_enabled({ bufnr = bufnr }), { bufnr = bufnr })
+      end, vim.tbl_extend("error", bufopts, { desc = "Toggle code lens" }))
     end
   end,
 })
