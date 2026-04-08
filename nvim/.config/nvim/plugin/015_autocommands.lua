@@ -61,6 +61,7 @@ vim.api.nvim_create_autocmd("FileType", {
     "man",
     "neotest-output",
     "neotest-summary",
+    "nvim-pack",
     "nvim-undotree",
     "qf",
     "query",
