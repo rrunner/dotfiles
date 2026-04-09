@@ -122,7 +122,7 @@ vim.o.foldlevel = 99 -- open buffers unfolded
 vim.o.foldmethod = "expr"
 vim.o.foldtext = ""
 vim.o.exrc = true -- add .nvim.lua to project root for project specific configuration
-vim.o.secure = true -- must accept .nvim.lua files before parsing
+vim.o.secure = true -- must view and :trust .nvim.lua files before parsing
 
 -- abbreviations
 vim.cmd([[iabbrev teh the]])
