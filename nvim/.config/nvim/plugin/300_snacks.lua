@@ -755,7 +755,7 @@ vim.keymap.set("n", "<leader>sF", function()
   vim.ui.input({
     prompt = "Enter directory (cwd):",
     completion = "dir",
-    default = vim.uv.cwd() .. Config.utils.path_sep,
+    default = vim.fs.joinpath(vim.uv.cwd(), "/"),
   }, function(input)
     if input == nil then
       -- window is closed with a keybind
@@ -908,7 +908,7 @@ vim.keymap.set("n", "<leader>/", function()
   vim.ui.input({
     prompt = "Enter directory (cwd):",
     completion = "dir",
-    default = vim.uv.cwd() .. Config.utils.path_sep,
+    default = vim.fs.joinpath(vim.uv.cwd(), "/"),
   }, function(input)
     if input == nil then
       -- window is closed with a keybind

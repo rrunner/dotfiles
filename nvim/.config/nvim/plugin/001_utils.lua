@@ -16,10 +16,6 @@ M.IS_WSL = (function()
   return output[1] and output[1]:find("WSL", 1, true) ~= nil
 end)()
 
--- The path separator used on the system
----@type string -- path separator
-M.path_sep = package.config:sub(1, 1)
-
 M.inside_git_repo = function()
   local _ = vim.fn.system("git rev-parse --is-inside-work-tree")
   return vim.v.shell_error == 0
