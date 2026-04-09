@@ -47,7 +47,7 @@ vim.api.nvim_create_autocmd("FileType", {
     end, {
       noremap = true,
       silent = true,
-      buffer = event.buf,
+      buf = event.buf,
       desc = "Close buffer or window with q",
     })
   end,
@@ -74,7 +74,7 @@ vim.api.nvim_create_autocmd("CmdwinEnter", {
     vim.keymap.set("n", "q", function()
       vim.cmd.close()
     end, {
-      buffer = true,
+      buf = 0,
       remap = false,
       silent = true,
     })
@@ -301,14 +301,14 @@ vim.api.nvim_create_autocmd("FileType", {
   callback = function()
     vim.keymap.set("i", "<>", "<- ", {
       noremap = true,
-      buffer = true,
+      buf = 0,
       silent = true,
       desc = "Replace <> with <- in R, Rmarkdown, markdown, quarto files (insert mode)",
     })
 
     vim.keymap.set("i", ">>", "%>%<space>", {
       noremap = true,
-      buffer = true,
+      buf = 0,
       silent = true,
       desc = "Replace >> with %>% in R, Rmarkdown, markdown, quarto files (insert mode)",
     })

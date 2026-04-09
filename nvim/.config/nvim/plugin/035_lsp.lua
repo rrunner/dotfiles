@@ -78,7 +78,7 @@ vim.api.nvim_create_autocmd("LspAttach", {
   callback = function(event)
     local bufnr = event.buf
     local client = vim.lsp.get_client_by_id(event.data.client_id)
-    local bufopts = { noremap = true, silent = true, buffer = bufnr }
+    local bufopts = { noremap = true, silent = true, buf = bufnr }
 
     if client and client:supports_method(vim.lsp.protocol.Methods.textDocument_completion) then
       -- enable completion triggered by <c-x><c-o>
