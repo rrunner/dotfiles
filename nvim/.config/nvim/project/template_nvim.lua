@@ -1,4 +1,4 @@
--- project specific configuration template
+-- project specific configuration template for .nvim.lua
 
 -- set environment variables
 -- vim.env.VIRTUAL_ENV = "/path/to/virtual_environment/.venv"
