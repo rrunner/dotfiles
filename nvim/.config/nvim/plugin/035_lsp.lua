@@ -1,6 +1,6 @@
 -- lsp
 
--- LSP enable servers
+-- enable LSP servers
 vim.lsp.enable({
   "bashls",
   "dockerls",
@@ -15,7 +15,7 @@ vim.lsp.enable({
   "yamlls",
 })
 
--- LSP diagnostic
+-- diagnostic
 vim.diagnostic.config({
   virtual_text = {
     current_line = true,
@@ -42,35 +42,27 @@ vim.diagnostic.config({
 })
 
 -- LSP keymaps
-local opts = { noremap = true, silent = true }
+local map = function(mode, lhs, rhs, opts)
+  local default_opts = { noremap = true, silent = true }
+  opts = vim.tbl_extend("keep", opts, default_opts)
+  vim.keymap.set(mode, lhs, rhs, opts)
+end
 
-vim.keymap.set(
-  "n",
-  "<leader>dd",
-  vim.diagnostic.open_float,
-  vim.tbl_extend("error", opts, { desc = "Display LSP diagnostic message in open float window" })
-)
-
-vim.keymap.set(
-  "n",
-  "<leader>q",
-  vim.diagnostic.setqflist,
-  vim.tbl_extend("error", opts, { desc = "Move all LSP diagnostic messages into a quickfix window" })
-)
-
-vim.keymap.set("n", "[d", function()
+local jump_direction = function(direction)
   Config.utils.run_wo_snacks_scroll(function()
-    vim.diagnostic.jump({ count = -1, float = true })
+    vim.diagnostic.jump({ count = direction, float = true })
     vim.cmd([[normal! zz]])
   end)
-end, vim.tbl_extend("error", opts, { desc = "Go to previous LSP diagnostic message" }))
+end
 
-vim.keymap.set("n", "]d", function()
-  Config.utils.run_wo_snacks_scroll(function()
-    vim.diagnostic.jump({ count = 1, float = true })
-    vim.cmd([[normal! zz]])
-  end)
-end, vim.tbl_extend("error", opts, { desc = "Go to next LSP diagnostic message" }))
+map("n", "<leader>dd", vim.diagnostic.open_float, { desc = "Display diagnostics in open float window" })
+map("n", "<leader>q", vim.diagnostic.setqflist, { desc = "Display diagnostics in a quickfix window" })
+map("n", "[d", function()
+  jump_direction(-1)
+end, { desc = "Go to previous LSP diagnostic message" })
+map("n", "]d", function()
+  jump_direction(1)
+end, { desc = "Go to next LSP diagnostic message" })
 
 -- LSP attach autocommand
 vim.api.nvim_create_autocmd("LspAttach", {
@@ -78,7 +70,6 @@ vim.api.nvim_create_autocmd("LspAttach", {
   callback = function(event)
     local bufnr = event.buf
     local client = vim.lsp.get_client_by_id(event.data.client_id)
-    local bufopts = { noremap = true, silent = true, buf = bufnr }
 
     if client and client:supports_method(vim.lsp.protocol.Methods.textDocument_completion) then
       -- enable completion triggered by <c-x><c-o>
@@ -89,125 +80,94 @@ vim.api.nvim_create_autocmd("LspAttach", {
       vim.bo[bufnr].tagfunc = "v:lua.vim.lsp.tagfunc"
     end
 
-    -- use internal formatting for bindings like gq
-    vim.bo[bufnr].formatexpr = nil
+    -- use gq to format with LSP (use gw to use internal formatting)
+    vim.bo[bufnr].formatexpr = "v:lua.vim.lsp.formatexpr"
+    -- vim.bo[bufnr].formatexpr = nil  -- use internal formatting with gq
 
-    -- buffer local mappings
-    -- see `:help vim.lsp.*` for documentation on any of the below functions
+    -- buffer local keymaps/autocommands (override default keymaps to use snacks picker in most cases)
     if client and client:supports_method(vim.lsp.protocol.Methods.textDocument_declaration) then
-      vim.keymap.set("n", "gD", function()
+      map("n", "gD", function()
         local exists_snacks, snacks = pcall(require, "snacks")
         if exists_snacks then
           snacks.picker.lsp_declarations()
         else
           vim.lsp.buf.declaration()
         end
-      end, vim.tbl_extend("error", bufopts, { desc = "LSP declaration" }))
+      end, { buf = bufnr, desc = "LSP declaration" })
     end
 
     if client and client:supports_method(vim.lsp.protocol.Methods.textDocument_definition) then
-      vim.keymap.set("n", "gd", function()
+      map("n", "gd", function()
         local exists_snacks, snacks = pcall(require, "snacks")
         if exists_snacks then
           snacks.picker.lsp_definitions()
         else
           vim.lsp.buf.definition()
         end
-      end, {
-        noremap = true,
-        silent = true,
-        desc = "LSP definition",
-      })
+      end, { buf = bufnr, desc = "LSP definition" })
     end
 
     if client and client:supports_method(vim.lsp.protocol.Methods.textDocument_references) then
-      vim.keymap.set("n", "grr", function()
+      map("n", "grr", function()
         local exists_snacks, snacks = pcall(require, "snacks")
         if exists_snacks then
           snacks.picker.lsp_references()
         else
           vim.lsp.buf.references()
         end
-      end, {
-        nowait = true,
-        noremap = true,
-        silent = true,
-        desc = "LSP references",
-      })
+      end, { buf = bufnr, nowait = true, desc = "LSP references" })
     end
 
     if client and client:supports_method(vim.lsp.protocol.Methods.textDocument_implementation) then
-      vim.keymap.set("n", "gri", function()
+      map("n", "gri", function()
         local exists_snacks, snacks = pcall(require, "snacks")
         if exists_snacks then
           snacks.picker.lsp_implementations()
         else
           vim.lsp.buf.implementation()
         end
-      end, {
-        noremap = true,
-        silent = true,
-        desc = "LSP implementation",
-      })
+      end, { buf = bufnr, desc = "LSP implementation" })
     end
 
     if client and client:supports_method(vim.lsp.protocol.Methods.textDocument_documentSymbol) then
-      vim.keymap.set("n", "gO", vim.lsp.buf.document_symbol, {
-        noremap = true,
-        silent = true,
-        desc = "LSP document symbol",
-      })
+      map("n", "gO", vim.lsp.buf.document_symbol, { buf = bufnr, desc = "LSP document symbol" })
     end
 
     -- use blink's signature help with below fallback
-    vim.keymap.set("i", "<c-s>", function()
+    map("i", "<c-s>", function()
       local exists_blink, _ = pcall(require, "blink.cmp")
       if not exists_blink then
         vim.lsp.buf.signature_help()
       end
-    end, vim.tbl_extend("error", bufopts, { desc = "LSP function signature (insert mode)" }))
+    end, { buf = bufnr, desc = "LSP function signature (insert mode)" })
 
-    vim.keymap.set("n", "K", function()
+    map("n", "K", function()
       vim.lsp.buf.hover({ width = 80, height = 20 })
-    end, vim.tbl_extend("error", bufopts, { desc = "LSP hover window" }))
+    end, { buf = bufnr, desc = "LSP hover window" })
 
     if client and client:supports_method(vim.lsp.protocol.Methods.textDocument_typeDefinition) then
-      vim.keymap.set("n", "grt", function()
+      map("n", "grt", function()
         local exists_snacks, snacks = pcall(require, "snacks")
         if exists_snacks then
           snacks.picker.lsp_type_definitions()
         else
           vim.lsp.buf.type_definition()
         end
-      end, {
-        noremap = true,
-        silent = true,
-        desc = "LSP type definitions",
-      })
+      end, { buf = bufnr, desc = "LSP type definitions" })
     end
 
     if client and client:supports_method(vim.lsp.protocol.Methods.textDocument_rename) then
-      vim.keymap.set(
-        "n",
-        "grn",
-        vim.lsp.buf.rename,
-        vim.tbl_extend("error", bufopts, { desc = "Rename symbol using LSP" })
-      )
+      map("n", "grn", vim.lsp.buf.rename, { buf = bufnr, desc = "Rename LSP symbol" })
     end
 
     if client and client:supports_method(vim.lsp.protocol.Methods.textDocument_codeAction) then
-      vim.keymap.set(
-        { "n", "v" },
-        "gra",
-        vim.lsp.buf.code_action,
-        vim.tbl_extend("error", bufopts, { desc = "LSP code actions" })
-      )
+      map({ "n", "x" }, "gra", vim.lsp.buf.code_action, { buf = bufnr, desc = "LSP code actions" })
     end
 
     if client and client:supports_method(vim.lsp.protocol.Methods.textDocument_inlayHint) then
-      vim.keymap.set("n", "<leader>ih", function()
+      map("n", "<leader>ih", function()
         vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled({ bufnr = bufnr }), { bufnr = bufnr })
-      end, vim.tbl_extend("error", bufopts, { desc = "Toggle inlay hints" }))
+      end, { buf = bufnr, desc = "Toggle inlay hints" })
     end
 
     -- highlight/clear references of the word under your cursor
@@ -235,9 +195,9 @@ vim.api.nvim_create_autocmd("LspAttach", {
     end
 
     if client and client:supports_method(vim.lsp.protocol.Methods.textDocument_codeLens) then
-      vim.keymap.set("n", "<leader>cl", function()
+      map("n", "<leader>cl", function()
         vim.lsp.codelens.enable(not vim.lsp.codelens.is_enabled({ bufnr = bufnr }), { bufnr = bufnr })
-      end, vim.tbl_extend("error", bufopts, { desc = "Toggle code lens" }))
+      end, { buf = bufnr, desc = "Toggle code lens" })
     end
   end,
 })
