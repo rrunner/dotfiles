@@ -441,7 +441,7 @@ set numberwidth=4
 set hidden
 set magic
 set clipboard^=unnamed,unnamedplus
-set nrformats+=alpha
+set nrformats=bin,hex,alpha,unsigned
 set list listchars=tab:>·,trail:·,nbsp:+
 set updatetime=300
 set viewdir=$HOME/.vim/view
