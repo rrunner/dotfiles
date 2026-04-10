@@ -70,6 +70,7 @@ vim.api.nvim_create_autocmd("LspAttach", {
   callback = function(event)
     local bufnr = event.buf
     local client = vim.lsp.get_client_by_id(event.data.client_id)
+    local exists_snacks, snacks = pcall(require, "snacks")
 
     if client and client:supports_method(vim.lsp.protocol.Methods.textDocument_completion) then
       -- enable completion triggered by <c-x><c-o>
@@ -87,7 +88,6 @@ vim.api.nvim_create_autocmd("LspAttach", {
     -- buffer local keymaps/autocommands (override default keymaps to use snacks picker in most cases)
     if client and client:supports_method(vim.lsp.protocol.Methods.textDocument_declaration) then
       map("n", "gD", function()
-        local exists_snacks, snacks = pcall(require, "snacks")
         if exists_snacks then
           snacks.picker.lsp_declarations()
         else
@@ -98,7 +98,6 @@ vim.api.nvim_create_autocmd("LspAttach", {
 
     if client and client:supports_method(vim.lsp.protocol.Methods.textDocument_definition) then
       map("n", "gd", function()
-        local exists_snacks, snacks = pcall(require, "snacks")
         if exists_snacks then
           snacks.picker.lsp_definitions()
         else
@@ -109,7 +108,6 @@ vim.api.nvim_create_autocmd("LspAttach", {
 
     if client and client:supports_method(vim.lsp.protocol.Methods.textDocument_references) then
       map("n", "grr", function()
-        local exists_snacks, snacks = pcall(require, "snacks")
         if exists_snacks then
           snacks.picker.lsp_references()
         else
@@ -120,7 +118,6 @@ vim.api.nvim_create_autocmd("LspAttach", {
 
     if client and client:supports_method(vim.lsp.protocol.Methods.textDocument_implementation) then
       map("n", "gri", function()
-        local exists_snacks, snacks = pcall(require, "snacks")
         if exists_snacks then
           snacks.picker.lsp_implementations()
         else
@@ -147,7 +144,6 @@ vim.api.nvim_create_autocmd("LspAttach", {
 
     if client and client:supports_method(vim.lsp.protocol.Methods.textDocument_typeDefinition) then
       map("n", "grt", function()
-        local exists_snacks, snacks = pcall(require, "snacks")
         if exists_snacks then
           snacks.picker.lsp_type_definitions()
         else
