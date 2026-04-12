@@ -2,7 +2,7 @@
 vim.pack.add({
   { src = "https://github.com/lewis6991/gitsigns.nvim" },
   { src = "https://github.com/nvim-mini/mini-git", version = "main" },
-  { src = "https://github.com/akinsho/git-conflict.nvim" },
+  { src = "https://github.com/spacedentist/resolve.nvim" },
 })
 
 -- gitsigns
@@ -93,12 +93,24 @@ vim.keymap.set(
   { noremap = true, silent = true, desc = "Show latest commits per line in vertical split" }
 )
 
--- git-conflict
-require("git-conflict").setup({})
--- default key mappings:
--- co — choose ours (choose change from current branch)
--- ct — choose theirs (choose change from incoming branch)
--- cb — choose both (choose changes from both branches)
--- c0 — choose none (do not choose any change)
--- ]x — move to previous conflict
--- [x — move to next conflict
+-- resolve.nvim (git conflicts)
+require("resolve").setup({
+  default_keymaps = false,
+})
+
+-- use the commands to avoid adding keymaps:
+-- :ResolveNext - Navigate to next conflict
+-- :ResolvePrev - Navigate to previous conflict
+-- :ResolveOurs - Choose ours version
+-- :ResolveTheirs - Choose theirs version
+-- :ResolveBoth - Choose both versions (ours then theirs)
+-- :ResolveBothReverse - Choose both versions (theirs then ours)
+-- :ResolveBase - Choose base/ancestor version (diff3 only)
+-- :ResolveNone - Choose neither version
+-- :ResolveList - List all conflicts in quickfix
+-- :ResolveDetect - Manually detect conflicts
+-- :ResolveDiffOurs - Show diff of our changes from base (diff3 only)
+-- :ResolveDiffTheirs - Show diff of their changes from base (diff3 only)
+-- :ResolveDiffBoth - Show both diffs in floating window (diff3 only)
+-- :ResolveDiffOursTheirs - Show diff ours → theirs (works without diff3)
+-- :ResolveDiffTheirsOurs - Show diff theirs → ours (works without diff3)
