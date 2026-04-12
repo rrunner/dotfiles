@@ -48,9 +48,9 @@ local map = function(mode, lhs, rhs, opts)
   vim.keymap.set(mode, lhs, rhs, opts)
 end
 
-local jump_direction = function(direction)
+local jump = function(cnt)
   Config.utils.run_wo_snacks_scroll(function()
-    vim.diagnostic.jump({ count = direction, float = true })
+    vim.diagnostic.jump({ count = cnt, float = true })
     vim.cmd([[normal! zz]])
   end)
 end
@@ -58,11 +58,11 @@ end
 map("n", "<leader>dd", vim.diagnostic.open_float, { desc = "Display diagnostics in open float window" })
 map("n", "<leader>q", vim.diagnostic.setqflist, { desc = "Display diagnostics in a quickfix window" })
 map("n", "[d", function()
-  jump_direction(-1)
-end, { desc = "Go to previous LSP diagnostic message" })
+  jump(-1)
+end, { desc = "Go to previous diagnostic message (without scroll)" })
 map("n", "]d", function()
-  jump_direction(1)
-end, { desc = "Go to next LSP diagnostic message" })
+  jump(1)
+end, { desc = "Go to next diagnostic message (without scroll)" })
 
 -- LSP attach autocommand
 vim.api.nvim_create_autocmd("LspAttach", {
