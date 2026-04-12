@@ -23,7 +23,6 @@
   ; wsl with credential manager installed on windows
   ; helper = /mnt/c/Users/<USERNAME>/scoop/apps/git/current/mingw64/bin/git-credential-manager.exe
 [merge]
-  tool = vimdiff
   conflictstyle = diff3
 [mergetool]
   prompt = false
