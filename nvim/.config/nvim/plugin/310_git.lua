@@ -96,6 +96,12 @@ vim.keymap.set(
 -- resolve.nvim (git conflicts)
 require("resolve").setup({
   default_keymaps = false,
+  on_conflict_detected = function(args)
+    vim.diagnostic.enable(false, { bufnr = args.bufnr })
+  end,
+  on_conflicts_resolved = function(args)
+    vim.diagnostic.enable(true, { bufnr = args.bufnr })
+  end,
 })
 
 -- use the commands to avoid adding keymaps:
