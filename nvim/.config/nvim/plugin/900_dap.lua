@@ -4,8 +4,7 @@ vim.pack.add({
   { src = "https://github.com/rcarriga/nvim-dap-ui" },
 })
 
--- python debugee (application) configurations
-local dap_configurations_python = {
+local python_configurations = {
   ["launch"] = {
     type = "debugpy",
     request = "launch",
@@ -287,32 +286,39 @@ dap.listeners.after.event_initialized["dapui_config"] = function()
   dapui.open()
 end
 
--- register the debugpy adapter on how to launch/attach
-dap.adapters.debugpy = function(callback, config)
-  if config.request == "launch" then
-    callback({
-      type = "executable",
-      command = Config.utils.get_python_path(),
-      args = { "-m", "debugpy.adapter" },
-      options = {
-        source_filetype = "python",
-      },
-    })
-  elseif config.request == "attach" then
-    local host = config.connect.host or "127.0.0.1"
-    local port = config.connect.port
-    callback({
-      type = "server",
-      host = host,
-      port = assert(port, "`connect.port` is required for a python `attach` configuration"),
-      options = {
-        source_filetype = "python",
-      },
-    })
-  end
-end
--- workaround to debug tests using neotest-python (hardwired to adapter name "python")
+-- register adapters
+dap.adapters = {
+  debugpy = function(cb, config)
+    local adapter
+    if config.request == "launch" then
+      adapter = {
+        type = "executable",
+        command = Config.utils.get_python_path(),
+        args = { "-m", "debugpy.adapter" },
+        options = {
+          source_filetype = "python",
+        },
+      }
+    elseif config.request == "attach" then
+      local port = (config.connect or config).port
+      local host = (config.connect or config).host or "127.0.0.1"
+      adapter = {
+        type = "server",
+        port = port,
+        host = host,
+        options = {
+          source_filetype = "python",
+        },
+      }
+    end
+    cb(adapter)
+  end,
+}
+
+-- workaround to debug tests using neotest-python
 dap.adapters.python = dap.adapters.debugpy
 
--- configure the python debugee (application)
-dap.configurations.python = { dap_configurations_python["launch"] }
+-- register debugee configurations
+dap.configurations = {
+  python = { python_configurations["launch"] },
+}
