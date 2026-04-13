@@ -119,7 +119,3 @@ end, { desc = "Update plugins" })
 vim.api.nvim_create_user_command("PlugUpdateSync", function()
   vim.pack.update(nil, { target = "lockfile" })
 end, { desc = "Sync plugins to lockfile" })
-
-vim.api.nvim_create_user_command("PlugUpdateCheck", function()
-  vim.pack.update(nil, { offline = true })
-end, { desc = "Check if plugin updates are available" })
