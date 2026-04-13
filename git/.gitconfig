@@ -39,7 +39,7 @@
   br = branch
   lg = log --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit
   last = log -1 HEAD --stat
-  sta = stash --all # stash ignored and untracked files
+  sta = stash --all ; stash ignored and untracked files
   bb = !better_branch.sh
   pushfwl = push --force-with-lease
 [color]
@@ -52,15 +52,18 @@
 [interactive]
   diffFilter = delta --color-only
 [delta]
-  navigate = true    # use n and N to move between diff sections
+  navigate = true ; use n and N to move between diff sections
   dark = true
   side-by-side = true
   line-numbers = true
-[diff]
-  colorMoved = default
-  algorithm = patience
 [maintenance]
   auto = false
   strategy = incremental
 [column]
   ui = auto
+[diff]
+  tool = nvim_difftool ; git difftool -d
+  colorMoved = default
+  algorithm = patience
+[difftool "nvim_difftool"]
+  cmd = nvim -c \"packadd nvim.difftool\" -c \"DiffTool $LOCAL $REMOTE\"
