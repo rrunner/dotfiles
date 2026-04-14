@@ -166,27 +166,20 @@ vim.api.nvim_create_autocmd("LspAttach", {
       end, { buf = bufnr, desc = "Toggle inlay hints" })
     end
 
-    -- highlight/clear references of the word under your cursor
     if client and client:supports_method(vim.lsp.protocol.Methods.textDocument_documentHighlight) then
       local highlight_group = vim.api.nvim_create_augroup("LSPHighlight", { clear = false })
-      vim.api.nvim_create_autocmd({ "CursorHold", "CursorHoldI" }, {
+      vim.api.nvim_create_autocmd({ "CursorHold", "InsertLeave" }, {
         buffer = bufnr,
         group = highlight_group,
         callback = vim.lsp.buf.document_highlight,
+        desc = "Highlight references under the cursor",
       })
 
-      vim.api.nvim_create_autocmd({ "CursorMoved", "CursorMovedI" }, {
+      vim.api.nvim_create_autocmd({ "CursorMoved", "InsertEnter", "BufLeave" }, {
         buffer = bufnr,
         group = highlight_group,
         callback = vim.lsp.buf.clear_references,
-      })
-
-      vim.api.nvim_create_autocmd("LspDetach", {
-        group = vim.api.nvim_create_augroup("LSPDetach", { clear = true }),
-        callback = function(event2)
-          vim.lsp.buf.clear_references()
-          vim.api.nvim_clear_autocmds({ group = "LSPHighlight", buffer = event2.buf })
-        end,
+        desc = "Clear highlight references",
       })
     end
 
