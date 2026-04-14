@@ -117,6 +117,7 @@ vim.o.fillchars = "diff:"
   .. ",foldopen:"
   .. Config.icons.chars.foldopen
   .. ",foldsep: "
+  .. ",foldinner: "
 vim.o.foldenable = true
 vim.o.foldlevel = 99 -- open buffers unfolded
 vim.o.foldmethod = "expr"
