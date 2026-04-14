@@ -56,7 +56,7 @@
       "version": "'main'"
     },
     "mini.icons": {
-      "rev": "7fdae2443a0e2910015ca39ad74b50524ee682d3",
+      "rev": "bac6317300e205335df425296570d84322730067",
       "src": "https://github.com/nvim-mini/mini.icons",
       "version": "'main'"
     },
@@ -82,7 +82,7 @@
       "src": "https://github.com/nvim-neotest/neotest-python"
     },
     "nord.nvim": {
-      "rev": "07647ad23e5b7fc1599a841dcd8f173b9aeb0419",
+      "rev": "87394d4fc35c901bbe38326a78d31ab1ead826b6",
       "src": "https://github.com/gbprod/nord.nvim"
     },
     "nvim-dap": {
