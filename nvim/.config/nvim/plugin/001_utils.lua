@@ -246,32 +246,4 @@ M.schema_settings = function(schematype)
   end
 end
 
---- Reads the cached date stored in file and compares it to today's date.
---- @param file string Cache filename in stdpath("data")
---- @return boolean true if stored date differs from today's date, false otherwise
-M.should_run_daily = function(file)
-  local cache_file = vim.fs.joinpath(vim.fn.stdpath("data"), file)
-  local f = io.open(cache_file, "r")
-  if f then
-    local last_date = f:read("*a"):match("^%s*(.-)%s*$")
-    f:close()
-    if last_date == vim.fn.strftime("%Y-%m-%d") then
-      return false
-    end
-  end
-  return true
-end
-
---- Writes today's date to the cache file.
---- @param file string Cache filename in stdpath("data")
---- @return nil
-M.mark_daily_run = function(file)
-  local cache_file = vim.fs.joinpath(vim.fn.stdpath("data"), file)
-  local f = io.open(cache_file, "w")
-  if f then
-    f:write(vim.fn.strftime("%Y-%m-%d"))
-    f:close()
-  end
-end
-
 Config.utils = M
