@@ -184,6 +184,7 @@ vim.api.nvim_create_autocmd("LspAttach", {
     end
 
     if client and client:supports_method(vim.lsp.protocol.Methods.textDocument_codeLens) then
+      -- grx in normal mode maps to run the codelens with vim.lsp.codelens.run()
       map("n", "<leader>cl", function()
         vim.lsp.codelens.enable(not vim.lsp.codelens.is_enabled({ bufnr = bufnr }), { bufnr = bufnr })
       end, { buf = bufnr, desc = "Toggle code lens" })
