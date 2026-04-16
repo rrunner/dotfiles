@@ -1,16 +1,15 @@
 -- autocommands
 local config = vim.api.nvim_create_augroup("Config", { clear = true })
 
--- highlight on yank
 vim.api.nvim_create_autocmd("TextYankPost", {
   callback = function()
     (vim.hl or vim.highlight).on_yank({ timeout = 700 })
   end,
   group = config,
   pattern = "*",
+  desc = "Highlight on yank",
 })
 
--- terminal settings on open
 vim.api.nvim_create_autocmd("TermOpen", {
   callback = function(event)
     local winid = vim.fn.bufwinid(event.buf)
@@ -21,9 +20,9 @@ vim.api.nvim_create_autocmd("TermOpen", {
   end,
   group = config,
   pattern = "*",
+  desc = "Set terminal settings on open",
 })
 
--- auto-close terminal when process exits
 vim.api.nvim_create_autocmd("TermClose", {
   callback = function()
     if vim.v.event.status == 0 then
@@ -32,9 +31,9 @@ vim.api.nvim_create_autocmd("TermClose", {
   end,
   group = config,
   pattern = "*",
+  desc = "Auto-close terminal when process exits",
 })
 
--- close specific filetypes with "q"
 vim.api.nvim_create_autocmd("FileType", {
   callback = function(event)
     vim.bo[event.buf].buflisted = false
@@ -66,9 +65,9 @@ vim.api.nvim_create_autocmd("FileType", {
     "qf",
     "query",
   },
+  desc = "Close specific filetypes with q",
 })
 
--- close command-line window (q:, q/ and q? etc.) with "q"
 vim.api.nvim_create_autocmd("CmdwinEnter", {
   callback = function()
     vim.keymap.set("n", "q", function()
@@ -81,18 +80,19 @@ vim.api.nvim_create_autocmd("CmdwinEnter", {
   end,
   group = config,
   pattern = "*",
+  desc = "Close command-line window (q:, q/ and q? etc.) with q",
 })
 
 -- make autoread work as expected on Windows OS
 if Config.utils.IS_WIN then
-  -- auto-reload files when modified externally
   vim.api.nvim_create_autocmd({ "BufEnter", "CursorHold", "CursorHoldI", "FocusGained" }, {
     command = [[if mode() != 'c' | checktime | endif]],
     group = config,
     pattern = "*",
+    desc = "Auto-reload files when modified externally",
   })
 else
-  -- check if we need to reload the file when it changed (maybe this can replace the autocmd for win above)
+  -- maybe this can replace the autocmd for win above
   vim.api.nvim_create_autocmd({ "FocusGained", "TermClose", "TermLeave" }, {
     callback = function()
       if vim.o.buftype ~= "nofile" then
@@ -101,13 +101,13 @@ else
     end,
     group = config,
     pattern = "*",
+    desc = "Reload the file when it changed",
   })
 end
 
--- set/unset winbar (global winbar option must be set to the empty string)
 vim.api.nvim_create_autocmd({ "BufWinEnter", "BufFilePost", "WinEnter" }, {
   callback = function(event)
-    -- set winbar for these file types
+    -- set winbar for these file types (global winbar option must be set to the empty string)
     local ft_with_winbar = {
       "elixir",
       "haskell",
@@ -138,9 +138,9 @@ vim.api.nvim_create_autocmd({ "BufWinEnter", "BufFilePost", "WinEnter" }, {
   end,
   group = config,
   pattern = "*",
+  desc = "Set/unset winbar",
 })
 
--- show cursor line only in active window
 vim.api.nvim_create_autocmd({ "InsertLeave", "WinEnter" }, {
   callback = function(event)
     local winid = vim.fn.bufwinid(event.buf)
@@ -148,6 +148,7 @@ vim.api.nvim_create_autocmd({ "InsertLeave", "WinEnter" }, {
   end,
   group = config,
   pattern = "*",
+  desc = "Display cursor line in active window",
 })
 vim.api.nvim_create_autocmd({ "InsertEnter", "WinLeave" }, {
   callback = function(event)
@@ -156,9 +157,9 @@ vim.api.nvim_create_autocmd({ "InsertEnter", "WinLeave" }, {
   end,
   group = config,
   pattern = "*",
+  desc = "Hide cursor line in inactive window",
 })
 
--- enable spell checking for certain file types
 vim.api.nvim_create_autocmd("FileType", {
   callback = function(event)
     local bufnr = event.buf
@@ -169,18 +170,18 @@ vim.api.nvim_create_autocmd("FileType", {
   end,
   group = config,
   pattern = { "text", "tex", "markdown", "quarto", "rmd", "mail", "plaintex", "gitcommit" },
+  desc = "Enable spell checking for certain file types",
 })
 
--- set wrap for certain file types not covered by config in after
 vim.api.nvim_create_autocmd("FileType", {
   callback = function()
     vim.wo.wrap = true
   end,
   group = config,
   pattern = { "quarto", "rmd", "plaintex", "gitcommit" },
+  desc = "Set wrap for certain file types not covered by config in after",
 })
 
--- delete [No Name] buffers
 vim.api.nvim_create_autocmd("BufHidden", {
   callback = function(event)
     if event.file == "" and vim.bo[event.buf].buftype == "" and not vim.bo[event.buf].modified then
@@ -191,9 +192,9 @@ vim.api.nvim_create_autocmd("BufHidden", {
   end,
   group = config,
   pattern = "*",
+  desc = "Delete [No Name] buffers",
 })
 
--- resize splits for each tab if window is resized
 vim.api.nvim_create_autocmd({ "VimResized" }, {
   callback = function()
     local current_tab = vim.fn.tabpagenr()
@@ -202,16 +203,16 @@ vim.api.nvim_create_autocmd({ "VimResized" }, {
   end,
   group = config,
   pattern = "*",
+  desc = "Resize splits for each tab if window is resized",
 })
 
--- set filetype for *.mail
 vim.api.nvim_create_autocmd({ "BufRead", "BufNewFile" }, {
   command = [[set filetype=mail]],
   group = config,
   pattern = "*.mail",
+  desc = "Set filetype for *.mail",
 })
 
--- open file at the last edited position (for configuration files)
 vim.api.nvim_create_autocmd("BufReadPost", {
   callback = function(event)
     local bufnr = event.buf
@@ -228,9 +229,9 @@ vim.api.nvim_create_autocmd("BufReadPost", {
   end,
   group = config,
   pattern = { "*.toml", "*.yaml", "*.yml", "*.json", "*.jsonc" },
+  desc = "Open file at the last edited position (for configuration files)",
 })
 
--- only use number in insert mode (not relativenumber) if number option is set
 vim.api.nvim_create_autocmd("InsertEnter", {
   callback = function()
     if vim.wo.number then
@@ -240,6 +241,7 @@ vim.api.nvim_create_autocmd("InsertEnter", {
   end,
   group = config,
   pattern = "*",
+  desc = "Display number in insert mode",
 })
 vim.api.nvim_create_autocmd("InsertLeave", {
   callback = function()
@@ -250,9 +252,9 @@ vim.api.nvim_create_autocmd("InsertLeave", {
   end,
   group = config,
   pattern = "*",
+  desc = "Display relative number in normal/visual mode",
 })
 
--- quarto preview file
 vim.api.nvim_create_autocmd("FileType", {
   callback = function()
     vim.keymap.set("n", "<localleader>qp", function()
@@ -265,27 +267,27 @@ vim.api.nvim_create_autocmd("FileType", {
   end,
   group = config,
   pattern = { "markdown", "quarto", "rmd" },
+  desc = "Quarto preview file",
 })
 
--- fix conceallevel for json files
 vim.api.nvim_create_autocmd({ "FileType" }, {
   callback = function()
     vim.wo.conceallevel = 0
   end,
   group = config,
   pattern = { "json", "jsonc" },
+  desc = "Fix conceallevel for json files",
 })
 
--- make it easier to close man-files when opened inline
 vim.api.nvim_create_autocmd("FileType", {
   callback = function(event)
     vim.bo[event.buf].buflisted = false
   end,
   group = config,
   pattern = { "man" },
+  desc = "Make it easier to close man-files when opened inline",
 })
 
--- unset statuscolumn in DAP buffers
 vim.api.nvim_create_autocmd("BufWinEnter", {
   callback = function()
     local ft = vim.bo.filetype
@@ -294,9 +296,9 @@ vim.api.nvim_create_autocmd("BufWinEnter", {
     end
   end,
   group = config,
+  desc = "Unset statuscolumn in DAP buffers",
 })
 
--- r, rmd, markdown, quarto specific keymaps in insert mode
 vim.api.nvim_create_autocmd("FileType", {
   callback = function()
     vim.keymap.set("i", "<>", "<- ", {
@@ -320,16 +322,16 @@ vim.api.nvim_create_autocmd("FileType", {
     "markdown",
     "quarto",
   },
+  desc = "Set r, rmd, markdown and quarto specific keymaps in insert mode",
 })
 
--- always override formatoptions imposed by filetype plugins
 vim.api.nvim_create_autocmd("FileType", {
   command = [[setlocal formatoptions-=cro]],
   group = config,
   pattern = "*",
+  desc = "Always override formatoptions imposed by filetype plugins",
 })
 
--- change cwd to the passed directory argument at start
 vim.api.nvim_create_autocmd("VimEnter", {
   callback = function()
     local arg = vim.fn.argv()[1]
@@ -339,4 +341,5 @@ vim.api.nvim_create_autocmd("VimEnter", {
     end
   end,
   group = config,
+  desc = "Change cwd to the passed directory argument at start",
 })
