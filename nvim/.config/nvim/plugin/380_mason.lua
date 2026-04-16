@@ -5,7 +5,6 @@ end
 
 local mason_group = vim.api.nvim_create_augroup("MasonConfig", { clear = true })
 
--- post-update hook to update Mason registries
 vim.api.nvim_create_autocmd("PackChanged", {
   callback = function(event)
     local name, kind = event.data.spec.name, event.data.kind
@@ -18,18 +17,18 @@ vim.api.nvim_create_autocmd("PackChanged", {
   end,
   group = mason_group,
   pattern = "*",
+  desc = "Post-update hook to update Mason registries",
 })
 
--- disable cursorline for Mason
 vim.api.nvim_create_autocmd("FileType", {
   callback = function(event)
-    local buffers_no_cursorline = { "mason" }
-    if vim.tbl_contains(buffers_no_cursorline, vim.bo[event.buf].filetype) then
+    if vim.tbl_contains({ "mason" }, vim.bo[event.buf].filetype) then
       vim.wo.cursorline = false
     end
   end,
   group = mason_group,
   pattern = "*",
+  desc = "Disable cursorline for Mason",
 })
 
 vim.pack.add({
@@ -49,7 +48,7 @@ require("mason").setup({
   },
 })
 
--- mason-tool-installer
+-- mason-tool-installer (to automatically install tools if not already installed)
 local lsp_servers = {
   "bash-language-server", --bashls
   "dockerfile-language-server", --dockerls
@@ -81,4 +80,7 @@ local tools = {
 }
 
 local ensure_installed = Config.utils.unique_values(lsp_servers, tools)
-require("mason-tool-installer").setup({ ensure_installed = ensure_installed })
+require("mason-tool-installer").setup({
+  debounce_hours = 24,
+  ensure_installed = ensure_installed,
+})
