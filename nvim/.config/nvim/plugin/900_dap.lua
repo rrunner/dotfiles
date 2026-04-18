@@ -1,9 +1,4 @@
 -- dap
-vim.pack.add({
-  { src = "https://github.com/mfussenegger/nvim-dap" },
-  { src = "https://github.com/rcarriga/nvim-dap-ui" },
-})
-
 local python_configurations = {
   ["launch"] = {
     type = "debugpy",

@@ -1,12 +1,4 @@
 -- neotest
-vim.pack.add({
-  { src = "https://github.com/nvim-neotest/neotest" },
-  -- python test adapter
-  { src = "https://github.com/nvim-neotest/neotest-python" },
-  -- elixir test adapter
-  { src = "https://github.com/jfpedroza/neotest-elixir" },
-})
-
 require("neotest").setup({
   icons = Config.icons.test,
   adapters = {

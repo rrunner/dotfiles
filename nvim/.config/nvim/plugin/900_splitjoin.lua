@@ -1,6 +1,4 @@
 -- splitjoin
-vim.pack.add({ "https://github.com/Wansmer/treesj" })
-
 vim.keymap.set("n", "gJ", [[<cmd>TSJJoin<cr>]], { noremap = true, silent = true, desc = "Join blocks of code" })
 vim.keymap.set("n", "gS", [[<cmd>TSJSplit<cr>]], { noremap = true, silent = true, desc = "Split blocks of code" })
 

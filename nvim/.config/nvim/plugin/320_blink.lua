@@ -1,15 +1,4 @@
 -- completion
-vim.pack.add({
-  -- also requires mini.icons due to blink.cmp configuration
-  { src = "https://github.com/rafamadriz/friendly-snippets" },
-  { src = "https://github.com/archie-judd/blink-cmp-words" },
-  { src = "https://github.com/mayromr/blink-cmp-dap" },
-  {
-    src = "https://github.com/saghen/blink.cmp",
-    version = vim.version.range("1"), -- use stable 1 release
-  },
-})
-
 local feedkey = function(key, mode)
   vim.api.nvim_feedkeys(vim.api.nvim_replace_termcodes(key, true, true, true), mode, true)
 end

@@ -1,6 +1,4 @@
 -- linting
-vim.pack.add({ "https://github.com/mfussenegger/nvim-lint" })
-
 local lint = require("lint")
 
 -- sqlfluff (see 'sqlfluff dialects' for different dialects)

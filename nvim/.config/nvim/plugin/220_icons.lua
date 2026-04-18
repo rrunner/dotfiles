@@ -1,11 +1,4 @@
--- icons (required by user configuration)
-
--- required by blink.cmp, render-markdown.nvim, slimline.nvim
-vim.pack.add({ {
-  src = "https://github.com/nvim-mini/mini.icons",
-  version = "main",
-} })
-
+-- icons
 require("mini.icons").setup({
   lsp = {
     -- override mini.icons defaults

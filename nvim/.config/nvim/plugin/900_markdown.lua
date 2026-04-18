@@ -1,9 +1,4 @@
 -- markdown
-vim.pack.add(
-  -- optional mini.icons for good user experience
-  { "https://github.com/MeanderingProgrammer/render-markdown.nvim" }
-)
-
 local rendermd = require("render-markdown")
 rendermd.setup({
   file_types = { "rmd", "markdown", "quarto" },

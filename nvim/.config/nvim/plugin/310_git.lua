@@ -1,9 +1,4 @@
 -- git
-vim.pack.add({
-  { src = "https://github.com/lewis6991/gitsigns.nvim" },
-  { src = "https://github.com/nvim-mini/mini-git", version = "main" },
-  { src = "https://github.com/spacedentist/resolve.nvim" },
-})
 
 -- gitsigns
 require("gitsigns").setup({

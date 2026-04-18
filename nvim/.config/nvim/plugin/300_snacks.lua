@@ -1,5 +1,4 @@
 -- snacks
-vim.pack.add({ "https://github.com/folke/snacks.nvim" })
 
 -- grep picker: global rg options (see .config/ripgrep/ripgreprc)
 -- files picker: fd global ignore file (see .config/fd/ignore)

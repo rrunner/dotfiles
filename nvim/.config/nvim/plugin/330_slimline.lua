@@ -1,9 +1,4 @@
 -- slimline
-vim.pack.add(
-  -- optional mini.icons for good user experience
-  { "https://github.com/sschleemilch/slimline.nvim" }
-)
-
 require("slimline").setup({
   style = "fg",
   components = {

@@ -3,11 +3,6 @@ if not vim.g.is_github_not_blocked then
   return
 end
 
-vim.pack.add({ {
-  src = "https://github.com/nickjvandyke/opencode.nvim",
-  version = vim.version.range("*"),
-} })
-
 vim.g.opencode_opts = {
   lsp = {
     -- use opencode for hover and code actions

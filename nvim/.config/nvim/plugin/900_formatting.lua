@@ -1,6 +1,4 @@
 -- formatting
-vim.pack.add({ "https://github.com/stevearc/conform.nvim" })
-
 local conform = require("conform")
 local utl = require("conform.util")
 

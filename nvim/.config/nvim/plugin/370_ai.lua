@@ -1,9 +1,4 @@
 -- ai (around/inner and text-objects)
-vim.pack.add({ {
-  src = "https://github.com/nvim-mini/mini.ai",
-  version = "main",
-} })
-
 local mini_ai = require("mini.ai")
 local spec_treesitter = mini_ai.gen_spec.treesitter
 

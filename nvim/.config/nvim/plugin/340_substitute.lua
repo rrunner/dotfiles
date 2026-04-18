@@ -1,6 +1,4 @@
 -- substitute
-vim.pack.add({ "https://github.com/gbprod/substitute.nvim" })
-
 require("substitute").setup({
   highlight_substituted_text = {
     enabled = true,

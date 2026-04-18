@@ -1,6 +1,4 @@
 -- neogen
-vim.pack.add({ "https://github.com/danymat/neogen" })
-
 vim.keymap.set("n", "<localleader>ds", [[<cmd>lua require('neogen').generate({ type = 'file' })<cr>]], {
   noremap = true,
   silent = true,

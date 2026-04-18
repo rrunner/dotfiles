@@ -45,12 +45,6 @@ vim.api.nvim_create_autocmd("FileType", {
   pattern = "*",
 })
 
-vim.pack.add({
-  { src = "https://github.com/nvim-treesitter/nvim-treesitter" },
-  { src = "https://github.com/nvim-treesitter/nvim-treesitter-textobjects", version = "main" },
-  { src = "https://github.com/nvim-treesitter/nvim-treesitter-context" },
-})
-
 local ts_parsers = {
   "bash",
   "bibtex",

@@ -1,6 +1,4 @@
 -- colorscheme
-vim.pack.add({ "https://github.com/gbprod/nord.nvim" })
-
 local colors = require("nord.colors")
 require("nord").setup({
   borders = true,

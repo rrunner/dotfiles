@@ -1,6 +1,4 @@
 -- persistence
-vim.pack.add({ "https://github.com/folke/persistence.nvim" })
-
 vim.keymap.set(
   "n",
   "<localleader>ll",
