@@ -335,11 +335,39 @@ vim.api.nvim_create_autocmd("FileType", {
 vim.api.nvim_create_autocmd("VimEnter", {
   callback = function()
     local arg = vim.fn.argv()[1]
-    if vim.fn.isdirectory(arg) ~= 0 then
-      local target = vim.fn.fnameescape(arg)
-      vim.cmd("cd " .. target)
+    if arg and vim.fn.isdirectory(arg) ~= 0 then
+      vim.cmd.cd(arg)
     end
   end,
   group = config,
   desc = "Change cwd to the passed directory argument at start",
+})
+
+vim.api.nvim_create_autocmd("VimEnter", {
+  callback = function()
+    local cwd = vim.uv.cwd()
+    if not cwd then
+      return
+    end
+    local exrc = vim.fs.joinpath(cwd, ".nvim.lua")
+    local stat = vim.uv.fs_stat(exrc)
+    if not stat then
+      return
+    end
+    local contents = vim.secure.read(exrc)
+    if type(contents) ~= "string" then
+      return
+    end
+    local chunk, err = load(contents, "@" .. exrc)
+    if not chunk then
+      vim.notify("exrc: " .. (err or "unknown error"), vim.log.levels.ERROR)
+      return
+    end
+    local ok, runtime_err = pcall(chunk)
+    if not ok then
+      vim.notify("exrc: " .. (runtime_err or "runtime error"), vim.log.levels.ERROR)
+    end
+  end,
+  group = config,
+  desc = "Source trusted .nvim.lua for project specific configuration (after plugin configuration)",
 })
