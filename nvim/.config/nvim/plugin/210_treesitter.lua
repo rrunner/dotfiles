@@ -1,7 +1,6 @@
 -- treesitter (core functionality and main plugin dependency)
 local ts_group = vim.api.nvim_create_augroup("TSConfig", { clear = true })
 
--- post-update hook to update TS parsers after nvim-treesitter is updated
 vim.api.nvim_create_autocmd("PackChanged", {
   callback = function(event)
     local name, kind = event.data.spec.name, event.data.kind
@@ -14,9 +13,9 @@ vim.api.nvim_create_autocmd("PackChanged", {
   end,
   group = ts_group,
   pattern = "*",
+  desc = "Update TS parsers after nvim-treesitter is updated",
 })
 
--- enable TS core functionality
 vim.api.nvim_create_autocmd("FileType", {
   callback = function(args)
     local bufnr = args.buf
@@ -43,6 +42,7 @@ vim.api.nvim_create_autocmd("FileType", {
   end,
   group = ts_group,
   pattern = "*",
+  desc = "Enable TS highlighting, indentation and folding",
 })
 
 local ts_parsers = {

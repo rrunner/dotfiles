@@ -21,4 +21,5 @@ vim.api.nvim_create_autocmd({ "BufReadPost", "InsertLeave", "BufWritePost", "Tex
     end
   end,
   group = linter_group,
+  desc = "Lint file",
 })

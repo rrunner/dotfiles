@@ -17,7 +17,7 @@ vim.api.nvim_create_autocmd("PackChanged", {
   end,
   group = mason_group,
   pattern = "*",
-  desc = "Post-update hook to update Mason registries",
+  desc = "Update Mason registries after mason.nvim is updated",
 })
 
 vim.api.nvim_create_autocmd("FileType", {

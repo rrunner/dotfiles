@@ -64,7 +64,6 @@ map("n", "]d", function()
   jump(1)
 end, { desc = "Go to next diagnostic message (without scroll)" })
 
--- LSP attach autocommand
 vim.api.nvim_create_autocmd("LspAttach", {
   group = vim.api.nvim_create_augroup("LSPConfig", { clear = true }),
   callback = function(event)
@@ -190,4 +189,5 @@ vim.api.nvim_create_autocmd("LspAttach", {
       end, { buf = bufnr, desc = "Toggle code lens" })
     end
   end,
+  desc = "LSP attach",
 })
