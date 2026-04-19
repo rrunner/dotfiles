@@ -7,8 +7,9 @@ _G.Config = {}
 -- use exploratory UI
 require("vim._core.ui2").enable({})
 
-require("global_variables")
-require("plugins")
+-- core configuration
+require("globals")
+require("vimpack")
 require("utils")
 require("icons")
 require("options")
@@ -17,3 +18,8 @@ require("usercommands")
 require("filetypes")
 require("keymaps")
 require("lsp")
+
+-- core plugins (ordered/managed execution order)
+require("plugins.colorscheme")
+require("plugins.treesitter")
+require("plugins.icons")
