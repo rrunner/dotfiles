@@ -77,6 +77,7 @@ local ts_parsers = {
   "markdown_inline",
   "matlab",
   "mermaid",
+  "nu",
   "printf",
   "psv",
   "python",
