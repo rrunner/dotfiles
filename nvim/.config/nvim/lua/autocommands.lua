@@ -164,6 +164,10 @@ vim.api.nvim_create_autocmd("FileType", {
   callback = function(event)
     local bufnr = event.buf
     local winid = vim.fn.bufwinid(bufnr)
+    -- exclude hover windows in markdown from spellcheck
+    if vim.bo[bufnr].buftype ~= "" then
+      return
+    end
     vim.wo[winid][0].spell = true
     vim.bo[bufnr].spelllang = "en,sv"
     vim.bo[bufnr].spelloptions = "camel"
