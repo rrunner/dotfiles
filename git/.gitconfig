@@ -22,10 +22,6 @@
   helper = cache
   ; wsl with credential manager installed on windows
   ; helper = /mnt/c/Users/<USERNAME>/scoop/apps/git/current/mingw64/bin/git-credential-manager.exe
-[merge]
-  conflictstyle = diff3
-[mergetool]
-  prompt = false
 [init]
   defaultBranch = master
 [log]
@@ -61,6 +57,14 @@
   strategy = incremental
 [column]
   ui = auto
+[merge]
+  tool = nvimdiff ; git mergetool
+[mergetool]
+  keepBackup = false
+  prompt = false
+  conflictstyle = diff3
+[mergetool "nvimdiff"]
+  layout = "LOCAL,BASE,REMOTE / MERGED"
 [diff]
   tool = nvim_difftool ; git difftool -d
   colorMoved = default
