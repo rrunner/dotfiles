@@ -7,3 +7,4 @@ require("nord").setup({
 vim.cmd.colorscheme("nord")
 vim.api.nvim_set_hl(0, "WarningMsg", { bg = colors.default_bg, fg = colors.palette.aurora.yellow })
 vim.api.nvim_set_hl(0, "ErrorMsg", { bg = colors.default_bg, fg = colors.palette.aurora.red })
+vim.api.nvim_set_hl(0, "@string.escape.markdown_inline", { link = "Normal" })

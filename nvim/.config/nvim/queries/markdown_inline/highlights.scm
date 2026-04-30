@@ -1,6 +1,6 @@
 ; extends
 
-; do not escape underscore in markdown
-((backslash_escape) @string.escape
-  (#offset! @string.escape 0 0 0 -1)
+; conceal the backslash in backslash escapes
+((backslash_escape) @conceal
+  (#offset! @conceal 0 0 0 -1)
   (#set! conceal ""))
