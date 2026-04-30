@@ -1,7 +1,7 @@
 {
   "plugins": {
     "SchemaStore.nvim": {
-      "rev": "20d4e9970798123e6197acb1c85c4b1e897efd29",
+      "rev": "8092a4212b66b4ff2c392080ff4186ff0b7d4945",
       "src": "https://github.com/b0o/SchemaStore.nvim"
     },
     "aerial.nvim": {
@@ -115,7 +115,7 @@
       "version": "'main'"
     },
     "opencode.nvim": {
-      "rev": "eb1be3208251a61d4a61fdd5870301003012ce50",
+      "rev": "2d68c841f35de762c712b817cd35fbbf3082dc3f",
       "src": "https://github.com/nickjvandyke/opencode.nvim",
       "version": ">=0.0.0"
     },
