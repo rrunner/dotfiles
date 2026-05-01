@@ -1,4 +1,15 @@
--- project specific configuration template for .nvim.lua
+-- Description: project specific configuration
+
+-- 1. Create .nvim.lua in project root with the following content:
+--vim.cmd([[set runtimepath+=.nvim]])
+-- 2. Create .nvim folder in project root with subfolders lsp and plugin
+--root/.nvim
+--root/.nvim/lsp
+--root/.nvim/plugin
+-- 3. Create a project.lua file with project specific configuration
+--root/.nvim/plugin/project.lua
+
+-- project.lua template file below
 
 -- set environment variables
 -- vim.env.VIRTUAL_ENV = "/path/to/virtual_environment/.venv"
