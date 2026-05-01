@@ -13,13 +13,6 @@ local opts = {
   },
   notifier = {
     enabled = false,
-    timeout = 3000,
-    sort = { "added" }, --sort by time
-    width = { min = 30, max = 0.5 },
-    height = { min = 1, max = 0.5 },
-    margin = { right = 0 },
-    icons = Config.icons.snacks_notifier,
-    style = "fancy",
   },
   statuscolumn = {
     enabled = true,

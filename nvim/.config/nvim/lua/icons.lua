@@ -98,14 +98,6 @@ M.git_icons = {
   commit = "󰜘",
 }
 
-M.snacks_notifier = {
-  error = " ",
-  warn = " ",
-  info = " ",
-  debug = " ",
-  trace = " ",
-}
-
 M.chars = {
   foldopen = "",
   foldclose = "",
