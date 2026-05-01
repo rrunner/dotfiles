@@ -67,10 +67,13 @@ M.test = {
   passed = "",
   running = "",
   running_animated = { "⠋", "⠙", "⠹", "⠸", "⠼", "⠴", "⠦", "⠧", "⠇", "⠏" },
-  skipped = "",
-  test = "",
+  skipped = "󰤒",
+  test = "󰙨",
   unknown = "",
   watching = "",
+  dir = string.gsub(M.kinds.Folder, " ", ""),
+  file = string.gsub(M.kinds.File, " ", ""),
+  namespace = "",
 }
 
 M.bullets = { "", "", "󰨓", "󰨔", "-", "+" }
