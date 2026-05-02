@@ -2,6 +2,7 @@
 
 -- 1. Create .nvim.lua in project root with the following content:
 --vim.cmd([[set runtimepath+=.nvim]])
+--vim.secure.read("./.nvim/plugin/project.lua")
 -- 2. Create .nvim folder in project root with subfolders lsp and plugin
 --root/.nvim
 --root/.nvim/lsp
