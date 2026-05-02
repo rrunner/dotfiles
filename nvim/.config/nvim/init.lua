@@ -8,7 +8,6 @@ _G.Config = {}
 require("vim._core.ui2").enable({})
 
 -- core configuration
-vim.o.exrc = true
 require("globals")
 require("vimpack")
 require("utils")
