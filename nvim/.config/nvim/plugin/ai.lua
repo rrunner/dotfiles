@@ -2,6 +2,15 @@
 local mini_ai = require("mini.ai")
 local spec_treesitter = mini_ai.gen_spec.treesitter
 
+-- remap Nvim's an/in before calling MiniAi.setup()
+local copy_keymap = function(mode, from_lhs, to_lhs)
+  local keymap = vim.fn.maparg(from_lhs, mode, false, true)
+  local rhs = keymap.callback or keymap.rhs
+  vim.keymap.set(mode, to_lhs, rhs, { desc = keymap.desc })
+end
+copy_keymap("x", "an", "<c-a>")
+copy_keymap("x", "in", "<c-x>")
+
 mini_ai.setup({
   custom_textobjects = {
     -- function definition (af/if)
@@ -37,16 +46,6 @@ mini_ai.setup({
     goto_right = "",
   },
 })
-
-local map_lsp_selection = function(lhs, desc)
-  local s = vim.startswith(desc, "Increase") and 1 or -1
-  local rhs = function()
-    vim.lsp.buf.selection_range(s * vim.v.count1)
-  end
-  vim.keymap.set("x", lhs, rhs, { desc = desc })
-end
-map_lsp_selection("<c-a>", "Increase selection")
-map_lsp_selection("<c-x>", "Decrease selection")
 
 local function jump(side, search_method, id)
   mini_ai.move_cursor(side, "a", id, { search_method = search_method })

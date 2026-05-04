@@ -8,10 +8,11 @@ return {
         diagnosticMode = "workspace",
         typeCheckingMode = "recommended",
         typeshedPaths = { "" },
-        -- ignore all files for analysis to exclusively use Ruff for linting, and mypy for type checking if in use
+        -- ignore all files for analysis to exclusively use Ruff for linting and ty for type checking
         ignore = { "*" },
       },
-      disableOrganizeImports = true, --ruff formats imports
+      -- use ruff cli (conform) to format imports
+      disableOrganizeImports = true,
     },
     python = {
       venvPath = vim.env.VIRTUAL_ENV,
