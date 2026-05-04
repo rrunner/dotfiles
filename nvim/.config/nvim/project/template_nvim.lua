@@ -1,19 +1,23 @@
 -- Description: project specific configuration
 
--- 1. Create .nvim.lua in project root with the following content:
---vim.cmd([[set runtimepath+=.nvim]])
---vim.secure.read("./.nvim/plugin/project.lua")
--- 2. Create .nvim folder in project root with subfolders lsp and plugin
---root/.nvim
---root/.nvim/lsp
---root/.nvim/plugin
--- 3. Create a project.lua file with project specific configuration
---root/.nvim/plugin/project.lua
+-- 1. Create .nvim.lua file in project root with the following content:
+-- vim.cmd([[set runtimepath+=.nvim]])
+-- 2. Create folder structure .nvim/plugin in project root:
+-- root/.nvim/plugin
+-- 3. Create .nvim/plugin/project.lua file with project specific configuration
+-- root/.nvim/plugin/project.lua
 
 -- project.lua template file below
 
 -- set environment variables
 -- vim.env.VIRTUAL_ENV = "/path/to/virtual_environment/.venv"
+
+-- LSP configuration (use project specific names with inline configuration)
+-- vim.lsp.config("project-lspname", {
+--   ...
+-- })
+-- vim.lsp.enable("project-lspname", true)
+-- vim.lsp.enable("lspname-to-disable", false)
 
 -- formatting
 local exists_conform, conform = pcall(require, "conform")
