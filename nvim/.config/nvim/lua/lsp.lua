@@ -8,6 +8,7 @@ vim.lsp.enable({
   "harper_ls",
   "jsonls",
   "lua_ls",
+  "nushell",
   "ruff",
   "sqlls",
   "tombi",
