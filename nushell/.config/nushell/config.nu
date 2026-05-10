@@ -19,6 +19,23 @@
 
 alias q = exit
 
+$env.LS_COLORS = (
+    "di=38;2;94;129;172:"
+    + "fi=38;2;136;192;208:"
+    + "ln=38;2;143;188;187:"
+    + "ex=38;2;163;190;140:"
+    + "or=38;2;191;97;106:"
+    + "pi=38;2;235;203;139:"
+    + "so=38;2;180;142;173:"
+    + "bd=38;2;208;135;112:"
+    + "cd=38;2;235;203;139:"
+    + "su=38;2;191;97;106:"
+    + "sg=38;2;235;203;139:"
+    + "tw=38;2;136;192;208:"
+    + "ow=38;2;129;161;193:"
+    + "st=38;2;136;192;208"
+)
+
 $env.config = {
   show_banner: true
   buffer_editor: "nvim"
@@ -138,6 +155,54 @@ $env.config = {
       keycode: char_y
       mode: [vi_insert vi_normal]
       event: { send: enter }
+    }
+  ]
+  menus: [
+    {
+      name: completion_menu
+      only_buffer_difference: false
+      marker: "| "
+      type: {
+        layout: columnar
+        columns: 4
+        col_padding: 2
+      }
+      style: {
+        text: "#d8dee9"
+        selected_text: { fg: "#eceff4" bg: "#5e81ac" attr: b }
+        description_text: "#81a1c1"
+      }
+    }
+    {
+      name: history_menu
+      only_buffer_difference: true
+      marker: "? "
+      type: {
+        layout: list
+        page_size: 10
+      }
+      style: {
+        text: "#d8dee9"
+        selected_text: { fg: "#eceff4" bg: "#5e81ac" attr: b }
+        description_text: "#88c0d0"
+      }
+    }
+    {
+      name: help_menu
+      only_buffer_difference: true
+      marker: "? "
+      type: {
+        layout: description
+        columns: 4
+        col_padding: 2
+        selection_rows: 4
+        description_rows: 10
+      }
+      style: {
+        text: "#d8dee9"
+        selected_text: { fg: "#eceff4" bg: "#5e81ac" attr: b }
+        description_text: "#a3be8c"
+      }
     }
   ]
   color_config: {
