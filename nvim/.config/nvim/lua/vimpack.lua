@@ -25,16 +25,13 @@ vim.pack.add({
   { src = "https://github.com/nvim-treesitter/nvim-treesitter-context" },
 
   -- icons (required by user configuration)
-  {
-    src = "https://github.com/nvim-mini/mini.icons",
-    version = "main",
-  }, -- required by blink.cmp, render-markdown.nvim, slimline.nvim
+  { src = "https://github.com/nvim-mini/mini.icons" }, -- required by blink.cmp, render-markdown.nvim, slimline.nvim
 
   -- plugins
   { src = "https://github.com/gbprod/nord.nvim" },
   { src = "https://github.com/folke/snacks.nvim" },
   { src = "https://github.com/lewis6991/gitsigns.nvim" },
-  { src = "https://github.com/nvim-mini/mini-git", version = "main" },
+  { src = "https://github.com/nvim-mini/mini-git" },
   { src = "https://github.com/spacedentist/resolve.nvim" },
   { src = "https://github.com/rafamadriz/friendly-snippets" },
   { src = "https://github.com/archie-judd/blink-cmp-words" },
@@ -46,14 +43,8 @@ vim.pack.add({
   { src = "https://github.com/sschleemilch/slimline.nvim" },
   { src = "https://github.com/gbprod/substitute.nvim" },
   { src = "https://github.com/chentoast/marks.nvim" },
-  {
-    src = "https://github.com/nvim-mini/mini.surround",
-    version = "main",
-  },
-  {
-    src = "https://github.com/nvim-mini/mini.ai",
-    version = "main",
-  },
+  { src = "https://github.com/nvim-mini/mini.surround" },
+  { src = "https://github.com/nvim-mini/mini.ai" },
   { src = "https://github.com/Wansmer/treesj" },
   { src = "https://github.com/mfussenegger/nvim-lint" },
   { src = "https://github.com/nvim-neotest/neotest" },
