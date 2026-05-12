@@ -1,7 +1,7 @@
 {
   "plugins": {
     "SchemaStore.nvim": {
-      "rev": "7127911cc824a1d2f600492edd9667b476cf3eda",
+      "rev": "abf1366feace18107cea680a7d26d6c69fae2086",
       "src": "https://github.com/b0o/SchemaStore.nvim"
     },
     "aerial.nvim": {
@@ -46,24 +46,20 @@
       "src": "https://github.com/mason-org/mason.nvim"
     },
     "mini-git": {
-      "rev": "a007cc40a4585c4f54787ddcf07295c2689daeb4",
-      "src": "https://github.com/nvim-mini/mini-git",
-      "version": "'main'"
+      "rev": "7c81d173462042cd3a3571643bce03a6c255fd41",
+      "src": "https://github.com/nvim-mini/mini-git"
     },
     "mini.ai": {
-      "rev": "7e10ce8468c0fce4f527ae2c0e5c484f7667f73d",
-      "src": "https://github.com/nvim-mini/mini.ai",
-      "version": "'main'"
+      "rev": "a783ce6e1a5b3bc90519f20b51f4a5f6702734af",
+      "src": "https://github.com/nvim-mini/mini.ai"
     },
     "mini.icons": {
-      "rev": "bac6317300e205335df425296570d84322730067",
-      "src": "https://github.com/nvim-mini/mini.icons",
-      "version": "'main'"
+      "rev": "9c7b1b90b15bdd69c52f6e31889dbc9987c30ec4",
+      "src": "https://github.com/nvim-mini/mini.icons"
     },
     "mini.surround": {
-      "rev": "2715e04bea3ec9244f15b421dc5b18c0fe326210",
-      "src": "https://github.com/nvim-mini/mini.surround",
-      "version": "'main'"
+      "rev": "990ce30f724d08e79670107de6b915a3f1bb9a9b",
+      "src": "https://github.com/nvim-mini/mini.surround"
     },
     "neogen": {
       "rev": "23e7e9f883d01289ebd90e98025acc860ea26366",
