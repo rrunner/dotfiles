@@ -116,7 +116,112 @@ for ft, lang in pairs({
   vim.treesitter.language.register(lang, ft)
 end
 
--- TS textobjects
+-- TS textobjects (around/inner selection and movement via nvim-treesitter-textobjects)
+local select = require("nvim-treesitter-textobjects.select")
+local move = require("nvim-treesitter-textobjects.move")
+
+require("nvim-treesitter-textobjects").setup({
+  select = {
+    lookahead = true,
+    selection_modes = {
+      ["@function.outer"] = "V",
+      ["@class.outer"] = "V",
+    },
+    include_surrounding_whitespace = false,
+  },
+  move = {
+    set_jumps = true,
+  },
+})
+
+-- select keymaps
+
+-- function
+vim.keymap.set({ "x", "o" }, "af", function()
+  select.select_textobject("@function.outer", "textobjects")
+end, { desc = "Select around function" })
+vim.keymap.set({ "x", "o" }, "if", function()
+  select.select_textobject("@function.inner", "textobjects")
+end, { desc = "Select inside function" })
+-- class
+vim.keymap.set({ "x", "o" }, "ac", function()
+  select.select_textobject("@class.outer", "textobjects")
+end, { desc = "Select around class" })
+vim.keymap.set({ "x", "o" }, "ic", function()
+  select.select_textobject("@class.inner", "textobjects")
+end, { desc = "Select inside class" })
+-- parameter/argument
+vim.keymap.set({ "x", "o" }, "aa", function()
+  select.select_textobject("@parameter.outer", "textobjects")
+end, { desc = "Select around argument" })
+vim.keymap.set({ "x", "o" }, "ia", function()
+  select.select_textobject("@parameter.inner", "textobjects")
+end, { desc = "Select inside argument" })
+-- block / conditional / loop
+vim.keymap.set({ "x", "o" }, "ao", function()
+  select.select_textobject("@block.outer", "textobjects")
+end, { desc = "Select around block" })
+vim.keymap.set({ "x", "o" }, "io", function()
+  select.select_textobject("@block.inner", "textobjects")
+end, { desc = "Select inside block" })
+
+-- move keymaps
+-- function
+vim.keymap.set({ "n", "x", "o" }, "]f", function()
+  move.goto_next_start("@function.outer", "textobjects")
+end, { desc = "Next function start" })
+vim.keymap.set({ "n", "x", "o" }, "]F", function()
+  move.goto_next_end("@function.outer", "textobjects")
+end, { desc = "Next function end" })
+vim.keymap.set({ "n", "x", "o" }, "[f", function()
+  move.goto_previous_start("@function.outer", "textobjects")
+end, { desc = "Prev function start" })
+vim.keymap.set({ "n", "x", "o" }, "[F", function()
+  move.goto_previous_end("@function.outer", "textobjects")
+end, { desc = "Prev function end" })
+-- class
+vim.keymap.set({ "n", "x", "o" }, "]c", function()
+  move.goto_next_start("@class.outer", "textobjects")
+end, { desc = "Next class start" })
+vim.keymap.set({ "n", "x", "o" }, "]C", function()
+  move.goto_next_end("@class.outer", "textobjects")
+end, { desc = "Next class end" })
+vim.keymap.set({ "n", "x", "o" }, "[c", function()
+  move.goto_previous_start("@class.outer", "textobjects")
+end, { desc = "Prev class start" })
+vim.keymap.set({ "n", "x", "o" }, "[C", function()
+  move.goto_previous_end("@class.outer", "textobjects")
+end, { desc = "Prev class end" })
+-- parameter/argument
+vim.keymap.set({ "n", "x", "o" }, "]a", function()
+  move.goto_next_start("@parameter.outer", "textobjects")
+end, { desc = "Next argument start" })
+vim.keymap.set({ "n", "x", "o" }, "]A", function()
+  move.goto_next_end("@parameter.outer", "textobjects")
+end, { desc = "Next argument end" })
+vim.keymap.set({ "n", "x", "o" }, "[a", function()
+  move.goto_previous_start("@parameter.outer", "textobjects")
+end, { desc = "Prev argument start" })
+vim.keymap.set({ "n", "x", "o" }, "[A", function()
+  move.goto_previous_end("@parameter.outer", "textobjects")
+end, { desc = "Prev argument end" })
+-- block / conditional / loop
+vim.keymap.set({ "n", "x", "o" }, "]o", function()
+  move.goto_next_start("@block.outer", "textobjects")
+end, { desc = "Next block start" })
+vim.keymap.set({ "n", "x", "o" }, "]O", function()
+  move.goto_next_end("@block.outer", "textobjects")
+end, { desc = "Next block end" })
+vim.keymap.set({ "n", "x", "o" }, "[o", function()
+  move.goto_previous_start("@block.outer", "textobjects")
+end, { desc = "Prev block start" })
+vim.keymap.set({ "n", "x", "o" }, "[O", function()
+  move.goto_previous_end("@block.outer", "textobjects")
+end, { desc = "Prev block end" })
+
+-- incremental treesitter selection on <c-a> / <c-x> (remap to built-in an/in)
+vim.keymap.set("x", "<c-a>", "an", { remap = true, desc = "Increase treesitter node selection" })
+vim.keymap.set("x", "<c-x>", "in", { remap = true, desc = "Decrease treesitter node selection" })
 
 -- disable entire built-in ftplugin mappings to avoid conflicts (plugin nvim-treesitter-textobjects)
 vim.g.no_plugin_maps = true

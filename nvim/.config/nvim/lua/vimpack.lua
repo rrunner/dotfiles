@@ -21,7 +21,7 @@ vim.pack.add({
   { src = "https://github.com/nvim-lua/plenary.nvim" }, -- required by neotest
   -- treesitter (core functionality and main plugin dependency)
   { src = "https://github.com/nvim-treesitter/nvim-treesitter" },
-  { src = "https://github.com/nvim-treesitter/nvim-treesitter-textobjects", version = "main" },
+  { src = "https://github.com/nvim-treesitter/nvim-treesitter-textobjects" },
   { src = "https://github.com/nvim-treesitter/nvim-treesitter-context" },
 
   -- icons (required by user configuration)
@@ -44,7 +44,6 @@ vim.pack.add({
   { src = "https://github.com/gbprod/substitute.nvim" },
   { src = "https://github.com/chentoast/marks.nvim" },
   { src = "https://github.com/nvim-mini/mini.surround" },
-  { src = "https://github.com/nvim-mini/mini.ai" },
   { src = "https://github.com/Wansmer/treesj" },
   { src = "https://github.com/mfussenegger/nvim-lint" },
   { src = "https://github.com/nvim-neotest/neotest" },
