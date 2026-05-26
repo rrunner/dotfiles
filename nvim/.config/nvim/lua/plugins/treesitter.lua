@@ -64,7 +64,6 @@ local ts_parsers = {
   "heex",
   "html",
   "http",
-  "hurl",
   "json",
   "json5",
   "julia",
