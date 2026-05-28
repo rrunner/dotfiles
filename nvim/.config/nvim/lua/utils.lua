@@ -187,7 +187,7 @@ M.quarto_preview = function(opts)
   local buffer_path = vim.api.nvim_buf_get_name(0)
   local cmd = "quarto preview '" .. buffer_path .. "'" .. " " .. args
 
-  local quarto_extensions = { ".qmd", ".Rmd", ".ipynb", ".md" }
+  local quarto_extensions = { ".qmd", ".rmd", ".Rmd", ".ipynb", ".md" }
   local file_extension = buffer_path:match("^.+(%..+)$")
   if not vim.tbl_contains(quarto_extensions, file_extension) then
     vim.notify("Not a quarto, rmarkdown, Jupyter notebook or markdown file. Exiting.")
