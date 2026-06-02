@@ -35,10 +35,10 @@ local python_configurations = {
     stopOnEntry = false,
   },
   ["kedro"] = {
-    -- 1. open the debuggee (application or script to debug) from the folder where "venv" folder is located
-    -- 2. ensure the cwd path is correct (pyproject.toml and src/app folders should all reside in the cwd),
+    -- 1. ensure the cwd path is correct (pyproject.toml and src/app folders should all reside in the cwd),
     --    the cwd may be set in pyproject.toml (see package_name = "..." and project_name = "..." under [tool.kedro])
-    -- 3. update args to fit the pipeline/node to be debugged
+    -- 2. update args to fit the pipeline/node to be debugged
+    -- 3. open the debuggee (application or script to debug), set breakpoint(s) and initiate the debugger
     type = "debugpy",
     request = "launch",
     name = "Debug/launch Kedro Run (stop on entry)",
