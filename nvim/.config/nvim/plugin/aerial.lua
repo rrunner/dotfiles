@@ -4,7 +4,6 @@ require("aerial").setup({
   backends = {
     ["_"] = { "lsp", "treesitter" },
     json = { "treesitter" },
-    jsonc = { "treesitter" },
   },
   layout = {
     max_width = { 40, 0.1 },
@@ -36,6 +35,7 @@ require("aerial").setup({
   },
   icons = {
     ["_"] = { Config.icons.lsp_mini_icons() },
+    Collapsed = Config.icons.chars.foldclose,
   },
 })
 
