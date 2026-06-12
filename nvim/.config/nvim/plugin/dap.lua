@@ -226,6 +226,14 @@ end, {
 -- load debugger
 local dap, dapui = require("dap"), require("dapui")
 
+-- custom on_output handler to output on a new line (DAP repl)
+dap.defaults["debugpy"].on_output = function(session, body)
+  if body.category == "telemetry" then
+    return
+  end
+  require("dap.repl").append(body.output, "$", { newline = true })
+end
+
 -- set gui layout
 dapui.setup({
   mappings = {
