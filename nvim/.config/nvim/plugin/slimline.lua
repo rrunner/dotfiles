@@ -58,6 +58,5 @@ require("slimline").setup({
     "mason",
     "snacks_picker_input",
     "snacks_picker_list",
-    "snacks_terminal",
   },
 })

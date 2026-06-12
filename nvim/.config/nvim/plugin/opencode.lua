@@ -20,5 +20,17 @@ vim.keymap.set({ "n", "x" }, "<leader>os", function()
 end, { desc = "Select opencode" })
 
 vim.keymap.set("n", "<leader>oo", function()
-  require("opencode").toggle()
+  local exists_snacks, snacks = pcall(require, "snacks")
+  if not exists_snacks then
+    return
+  end
+  snacks.terminal.toggle("opencode --port", {
+    win = {
+      position = "right",
+      enter = false,
+      height = 1,
+      width = 0.35,
+      keys = { q = false },
+    },
+  })
 end, { desc = "Toggle opencode" })
