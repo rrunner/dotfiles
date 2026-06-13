@@ -3,7 +3,7 @@ local config = vim.api.nvim_create_augroup("Config", { clear = true })
 
 vim.api.nvim_create_autocmd("TextYankPost", {
   callback = function()
-    (vim.hl or vim.highlight).on_yank({ timeout = 700 })
+    vim.hl.on_yank({ timeout = 700 })
   end,
   group = config,
   pattern = "*",
