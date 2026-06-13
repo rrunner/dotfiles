@@ -228,7 +228,7 @@ end, {
 local dap, dapui = require("dap"), require("dapui")
 
 -- custom on_output handler to output on a new line (DAP repl)
-dap.defaults["debugpy"].on_output = function(session, body)
+dap.defaults["debugpy"].on_output = function(_, body)
   if body.category == "telemetry" then
     return
   end
