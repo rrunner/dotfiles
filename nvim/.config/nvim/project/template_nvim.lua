@@ -56,14 +56,12 @@ if exists_dap then
   -- hook when repl opens: improve default printing of pandas dataframes
   dap.listeners.after.event_initialized["pandas_repl"] = function()
     dap.repl.execute([[
-
-            import pandas as pd
-            pd.set_option("display.max_rows", 100)
-            pd.set_option("display.max_columns", None)
-            pd.set_option("display.width", 1000)
-            pd.set_option("display.max_colwidth", 100)
-            pd.set_option("display.expand_frame_repr", False)
-
+import pandas as pd
+pd.set_option("display.max_rows", 100)
+pd.set_option("display.max_columns", None)
+pd.set_option("display.width", 1000)
+pd.set_option("display.max_colwidth", 100)
+pd.set_option("display.expand_frame_repr", False)
         ]])
   end
 end
