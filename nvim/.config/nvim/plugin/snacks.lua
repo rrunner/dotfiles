@@ -43,8 +43,8 @@ local opts = {
       backdrop = { transparent = false },
     },
     on_open = function(win)
-      -- increase window width for DAP repl buffers
-      local ftypes = { "dap-repl" }
+      -- increase window width for DAP repl/console buffers
+      local ftypes = { "dap-repl", "dapui_console" }
       if vim.tbl_contains(ftypes, vim.bo.filetype) then
         win.opts.width = 180
         win:update()
