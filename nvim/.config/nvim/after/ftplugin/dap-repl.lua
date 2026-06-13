@@ -1,7 +1,7 @@
 -- dap-repl specific settings
 
 local dap_repl = vim.api.nvim_create_augroup("DapRepl", { clear = true })
-vim.api.nvim_create_autocmd({ "WinEnter" }, {
+vim.api.nvim_create_autocmd("WinEnter", {
   callback = function()
     if vim.bo.filetype == "dap-repl" then
       vim.cmd.startinsert()
