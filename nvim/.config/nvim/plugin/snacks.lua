@@ -46,7 +46,8 @@ local opts = {
       -- increase window width for DAP repl buffers
       local ftypes = { "dap-repl" }
       if vim.tbl_contains(ftypes, vim.bo.filetype) then
-        vim.api.nvim_win_set_width(win, 150)
+        win.opts.width = 180
+        win:update()
       end
     end,
     on_close = function()
