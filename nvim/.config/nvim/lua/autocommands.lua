@@ -144,8 +144,8 @@ vim.api.nvim_create_autocmd({ "BufWinEnter", "BufFilePost", "WinEnter" }, {
 vim.api.nvim_create_autocmd({ "InsertLeave", "WinEnter" }, {
   callback = function(event)
     local winid = vim.fn.bufwinid(event.buf)
-    -- don't set cursorline in opencode window (see snacks.terminal.toggle in opencode.lua)
-    if vim.bo.filetype == "snacks_terminal" then
+    -- don't set cursorline for buffers w/o filetype or snacks terminals (see snacks.terminal.toggle in opencode.lua)
+    if vim.tbl_contains({ "snacks_terminal", "" }, vim.bo.filetype) then
       return
     end
     vim.wo[winid][0].cursorline = true
