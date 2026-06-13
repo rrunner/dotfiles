@@ -48,7 +48,8 @@ local python_configurations = {
     cwd = vim.env.HOME .. "/projects/python/kedro-environment/iris",
     module = "kedro",
     args = "run",
-    -- args = { "run", "--pipeline", "pipeline_name", "--arg1", "value1", "--arg2", "value2" },
+    -- args = { "run", "--pipelines", "pipeline_name", "--arg1", "value1", "--arg2", "value2" },
+    -- args = { "run", "--pipelines", "pipeline_name", "--nodes", "node_name" },
     pythonPath = function()
       return Config.utils.get_python_path()
     end,
@@ -247,28 +248,30 @@ dapui.setup({
   },
   layouts = {
     {
-      position = "left",
-      size = 40, -- 40 columns
       elements = {
         { id = "scopes", size = 0.4 },
         { id = "breakpoints", size = 0.1 },
         { id = "stacks", size = 0.3 },
         { id = "watches", size = 0.2 },
       },
+      size = 40, -- 40 columns
+      position = "left",
     },
     {
-      elements = { "repl" },
-      size = 0.45,
+      elements = {
+        "console",
+      },
+      size = 5,
       position = "bottom",
     },
     {
-      elements = { "console" },
-      size = 0.25,
-      position = "right",
+      elements = { "repl" },
+      size = 0.3,
+      position = "bottom",
     },
   },
   controls = {
-    enabled = true,
+    enabled = false,
     elements = "repl",
   },
   icons = {
