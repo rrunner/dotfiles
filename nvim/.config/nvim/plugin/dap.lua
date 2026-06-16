@@ -227,12 +227,44 @@ end, {
 -- load debugger
 local dap, dapui = require("dap"), require("dapui")
 
--- custom on_output handler to output on a new line (DAP repl)
-dap.defaults["debugpy"].on_output = function(_, body)
-  if body.category == "telemetry" then
-    return
+-- with support from AI tools: debugpy may split one write into several DAP
+-- output events (e.g. "hello" + "\n"). Buffer partial chunks and flush only
+-- when we see a trailing newline. Also wrap dap.repl.append: the evaluate
+-- handler appends an empty line for every REPL evaluation (print() returns
+-- None -> result=""), creating spurious blank lines. The wrapper skips those
+-- empty appends while allowing genuine ones from us.
+do
+  local from_output = false
+  local orig_append = require("dap.repl").append
+
+  dap.defaults["debugpy"].on_output = function(_, body)
+    if body.category == "telemetry" then
+      return
+    end
+    local str = body.output:gsub("\r\n", "\n")
+    if str == "" then
+      return
+    end
+    if not dap.defaults["debugpy"]._pending then
+      dap.defaults["debugpy"]._pending = ""
+    end
+    dap.defaults["debugpy"]._pending = dap.defaults["debugpy"]._pending .. str
+    if str:sub(-1) == "\n" then
+      local complete = dap.defaults["debugpy"]._pending
+      dap.defaults["debugpy"]._pending = ""
+      from_output = true
+      require("dap.repl").append(complete:sub(1, -2), "$", { newline = true })
+      from_output = false
+    end
   end
-  require("dap.repl").append(body.output, "$", { newline = true })
+
+  require("dap.repl").append = function(line, lnum, opts)
+    opts = opts or {}
+    if line == "" and not from_output then
+      return
+    end
+    orig_append(line, lnum, opts)
+  end
 end
 
 -- set gui layout
