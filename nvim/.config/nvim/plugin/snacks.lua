@@ -704,7 +704,7 @@ vim.keymap.set("n", "<leader>z", function()
   snacks.zen()
 end, { desc = "Toggle zen mode", noremap = true, silent = true })
 
-vim.keymap.set({ "n", "t" }, "<c-;>", function()
+vim.keymap.set({ "i", "n", "t" }, "<c-;>", function()
   snacks.terminal.toggle()
 end, { desc = "Toggle terminal", noremap = true, silent = true })
 
