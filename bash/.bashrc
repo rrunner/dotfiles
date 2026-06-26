@@ -5,6 +5,9 @@
 # if not running interactively, don't do anything
 [[ $- != *i* ]] && return
 
+# user-specific configurations
+export XDG_CONFIG_HOME="$HOME/.config"
+
 # configure bash to mark the start of each prompt
 PROMPT_COMMAND='printf "\033]133;A\007"'
 
