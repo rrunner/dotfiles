@@ -57,6 +57,7 @@ if exists_dap then
   dap.listeners.after.event_initialized["pandas_repl"] = function()
     dap.repl.execute([[
 import pandas as pd
+pd.set_option("display.min_rows", 40)
 pd.set_option("display.max_rows", 100)
 pd.set_option("display.max_columns", None)
 pd.set_option("display.width", 1000)
