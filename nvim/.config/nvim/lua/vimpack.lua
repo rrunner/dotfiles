@@ -18,7 +18,6 @@ vim.pack.add({
   -- dependencies
   -- strict dependencies (not directly required by user configuration)
   { src = "https://github.com/nvim-neotest/nvim-nio" }, -- required by nvim-dap-ui, neotest
-  { src = "https://github.com/nvim-lua/plenary.nvim" }, -- required by neotest
   -- treesitter (core functionality and main plugin dependency)
   { src = "https://github.com/nvim-treesitter/nvim-treesitter" },
   { src = "https://github.com/nvim-treesitter/nvim-treesitter-textobjects" },

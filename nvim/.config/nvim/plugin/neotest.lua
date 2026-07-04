@@ -14,7 +14,8 @@ require("neotest").setup({
         return Config.utils.get_python_path()
       end,
     }),
-    require("neotest-elixir"),
+    -- 2026-07-04: neotest-elixir requires plenary plugin
+    -- require("neotest-elixir"),
   },
   summary = {
     mappings = {
