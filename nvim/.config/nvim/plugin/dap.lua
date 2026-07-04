@@ -237,26 +237,32 @@ do
   local from_output = false
   local orig_append = require("dap.repl").append
 
-  dap.defaults["debugpy"].on_output = function(_, body)
-    if body.category == "telemetry" then
-      return
-    end
-    local str = body.output:gsub("\r\n", "\n")
-    if str == "" then
-      return
-    end
-    if not dap.defaults["debugpy"]._pending then
-      dap.defaults["debugpy"]._pending = ""
-    end
-    dap.defaults["debugpy"]._pending = dap.defaults["debugpy"]._pending .. str
-    if str:sub(-1) == "\n" then
-      local complete = dap.defaults["debugpy"]._pending
-      dap.defaults["debugpy"]._pending = ""
-      from_output = true
-      require("dap.repl").append(complete:sub(1, -2), "$", { newline = true })
-      from_output = false
+  local function make_on_output(type_key)
+    return function(_, body)
+      if body.category == "telemetry" then
+        return
+      end
+      local str = body.output:gsub("\r\n", "\n")
+      if str == "" then
+        return
+      end
+      local defaults = dap.defaults[type_key]
+      if not defaults._pending then
+        defaults._pending = ""
+      end
+      defaults._pending = defaults._pending .. str
+      if str:sub(-1) == "\n" then
+        local complete = defaults._pending
+        defaults._pending = ""
+        from_output = true
+        require("dap.repl").append(complete:sub(1, -2), "$", { newline = true })
+        from_output = false
+      end
     end
   end
+
+  dap.defaults["debugpy"].on_output = make_on_output("debugpy")
+  dap.defaults["python"].on_output  = make_on_output("python")
 
   require("dap.repl").append = function(line, lnum, opts)
     opts = opts or {}
