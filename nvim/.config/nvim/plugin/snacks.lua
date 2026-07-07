@@ -43,20 +43,11 @@ local opts = {
       backdrop = { transparent = false },
     },
     on_open = function(win)
-      -- increase window width for DAP repl/console buffers
-      local ftypes = { "dap-repl", "dapui_console" }
+      -- increase window width for DAP repl/Console buffers
+      local ftypes = { "dap-repl", "dap-view-term" }
       if vim.tbl_contains(ftypes, vim.bo.filetype) then
         win.opts.width = 180
         win:update()
-      end
-    end,
-    on_close = function()
-      -- reset DAP buffers on close
-      if Config.utils.is_debugger_running() then
-        local exists_dapui, dapui = pcall(require, "dapui")
-        if exists_dapui then
-          dapui.open({ reset = true })
-        end
       end
     end,
   },
@@ -537,26 +528,6 @@ local opts = {
             last = "  ",
           },
         },
-        on_show = function()
-          if Config.utils.is_debugger_running() then
-            vim.schedule(function()
-              -- TODO: console window is not reset properly
-              require("dapui").open({ reset = true })
-            end)
-          else
-            vim.cmd("horizontal wincmd =")
-          end
-        end,
-        on_close = function()
-          if Config.utils.is_debugger_running() then
-            vim.schedule(function()
-              -- TODO: console window is not reset properly
-              require("dapui").open({ reset = true })
-            end)
-          else
-            vim.cmd("horizontal wincmd =")
-          end
-        end,
         actions = {
           confirm_jump = function(picker, item, action)
             if not item or item.dir then

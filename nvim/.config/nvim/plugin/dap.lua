@@ -157,14 +157,6 @@ end, {
   desc = "Start/continue (debugger)",
 })
 
-vim.keymap.set("n", "<leader>dr", function()
-  require("dapui").open({ reset = true })
-end, {
-  noremap = true,
-  silent = true,
-  desc = "Reset windows (debugger)",
-})
-
 vim.keymap.set("n", "<leader>dn", function()
   require("dap").step_over()
 end, {
@@ -191,11 +183,10 @@ end, {
 
 vim.keymap.set("n", "<leader>dq", function()
   require("dap").terminate()
-  require("dapui").close()
 end, {
   noremap = true,
   silent = true,
-  desc = "Terminate and close GUI (debugger)",
+  desc = "Terminate debugger",
 })
 
 vim.keymap.set("n", "<leader>dl", function()
@@ -215,9 +206,7 @@ end, {
 
 vim.keymap.set("x", "<leader>ds", function()
   local lines = vim.fn.getregion(vim.fn.getpos("."), vim.fn.getpos("v"))
-  if Config.utils.is_debugger_running() then
-    require("dap").repl.execute(table.concat(lines, "\n"))
-  end
+  require("dap").repl.execute(table.concat(lines, "\n"))
 end, {
   noremap = true,
   silent = true,
@@ -225,7 +214,7 @@ end, {
 })
 
 -- load debugger
-local dap, dapui = require("dap"), require("dapui")
+local dap = require("dap")
 
 -- with support from AI tools: debugpy may split one write into several DAP
 -- output events (e.g. "hello" + "\n"). Buffer partial chunks and flush only
@@ -262,7 +251,7 @@ do
   end
 
   dap.defaults["debugpy"].on_output = make_on_output("debugpy")
-  dap.defaults["python"].on_output  = make_on_output("python")
+  dap.defaults["python"].on_output = make_on_output("python")
 
   require("dap.repl").append = function(line, lnum, opts)
     opts = opts or {}
@@ -273,62 +262,36 @@ do
   end
 end
 
--- set gui layout
-dapui.setup({
-  mappings = {
-    open = "<cr>",
-    expand = "o",
+-- DAP view
+require("dap-view").setup({
+  winbar = {
+    sections = { "repl", "console", "scopes", "exceptions", "breakpoints", "threads", "watches" },
+    default_section = "repl",
   },
-  element_mappings = {
-    stacks = {
-      open = { "<cr>" },
+  keymaps = {
+    scopes = {
+      toggle = { "o" },
     },
-  },
-  layouts = {
-    {
-      elements = {
-        { id = "scopes", size = 0.4 },
-        { id = "breakpoints", size = 0.1 },
-        { id = "stacks", size = 0.3 },
-        { id = "watches", size = 0.2 },
-      },
-      size = 40, -- 40 columns
-      position = "left",
+    watches = {
+      toggle = { "o" },
     },
-    {
-      elements = {
-        "console",
-      },
-      size = 5,
-      position = "bottom",
+    hover = {
+      toggle = { "o" },
     },
-    {
-      elements = { "repl" },
-      size = 0.3,
-      position = "bottom",
+    threads = {
+      toggle_subtle_frames = { "o" },
+      invert_filter = "i",
     },
-  },
-  controls = {
-    enabled = false,
-    elements = "repl",
+    exceptions = {
+      toggle_filter = { "o" },
+    },
   },
   icons = {
-    collapsed = Config.icons.chars.foldclose,
-    current_frame = Config.icons.chars.foldclose,
-    expanded = Config.icons.chars.foldopen,
+    collapsed = Config.icons.chars.foldclose .. " ",
+    expanded = Config.icons.chars.foldopen .. " ",
   },
+  auto_toggle = true,
 })
-
--- open and close dapui automatically in debugging mode (based on dap events)
-dap.listeners.after.event_initialized["dapui_config"] = function()
-  -- close Snacks explorer picker and aerial windows when debugger opens
-  Config.utils.close_explorer_picker()
-  local exists_aerial, cmd_aerial = pcall(require, "aerial")
-  if exists_aerial then
-    cmd_aerial.close_all()
-  end
-  dapui.open()
-end
 
 -- register adapters
 dap.adapters = {

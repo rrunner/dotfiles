@@ -17,7 +17,7 @@ vim.g.loaded_netrwPlugin = 1
 vim.pack.add({
   -- dependencies
   -- strict dependencies (not directly required by user configuration)
-  { src = "https://github.com/nvim-neotest/nvim-nio" }, -- required by nvim-dap-ui, neotest
+  { src = "https://github.com/nvim-neotest/nvim-nio" }, -- required by neotest
   -- treesitter (core functionality and main plugin dependency)
   { src = "https://github.com/nvim-treesitter/nvim-treesitter" },
   { src = "https://github.com/nvim-treesitter/nvim-treesitter-textobjects" },
@@ -55,7 +55,7 @@ vim.pack.add({
   { src = "https://github.com/b0o/SchemaStore.nvim" },
   { src = "https://github.com/folke/persistence.nvim" },
   { src = "https://github.com/mfussenegger/nvim-dap" },
-  { src = "https://github.com/rcarriga/nvim-dap-ui" },
+  { src = "https://github.com/igorlfs/nvim-dap-view", version = vim.version.range("1.*") },
   {
     src = "https://github.com/nickjvandyke/opencode.nvim",
     version = vim.version.range("*"),

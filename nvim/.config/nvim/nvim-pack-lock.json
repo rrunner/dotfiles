@@ -1,7 +1,7 @@
 {
   "plugins": {
     "SchemaStore.nvim": {
-      "rev": "6ff1f21b2e2b77ec59f7433ce2d9fbc052d908ac",
+      "rev": "19adbfb1c4d4049b691be0d840936b109de0f5ea",
       "src": "https://github.com/b0o/SchemaStore.nvim"
     },
     "aerial.nvim": {
@@ -46,15 +46,15 @@
       "src": "https://github.com/mason-org/mason.nvim"
     },
     "mini-git": {
-      "rev": "96db7676696e53add56726e9e80f92dff9f63d17",
+      "rev": "19ecaa5b1eea1edb291178412a77f29dee487406",
       "src": "https://github.com/nvim-mini/mini-git"
     },
     "mini.icons": {
-      "rev": "24dbea2195c477e57d581215839a6ab915f34b14",
+      "rev": "98faae31e9be1cc054ae63485e58ceb185efcad0",
       "src": "https://github.com/nvim-mini/mini.icons"
     },
     "mini.surround": {
-      "rev": "a2f644f3759edd3d3f8b6a6d55378408bfe6d290",
+      "rev": "19b44c1bbe4eecaf191896b8bec657d5fdd549e4",
       "src": "https://github.com/nvim-mini/mini.surround"
     },
     "neogen": {
@@ -81,9 +81,10 @@
       "rev": "9e848e09a697ee95302a3ef2dd43fd6eb709e570",
       "src": "https://github.com/mfussenegger/nvim-dap"
     },
-    "nvim-dap-ui": {
-      "rev": "1a66cabaa4a4da0be107d5eda6d57242f0fe7e49",
-      "src": "https://github.com/rcarriga/nvim-dap-ui"
+    "nvim-dap-view": {
+      "rev": "ba5c838e731003abefb8bc1c403c59aa5b3aa194",
+      "src": "https://github.com/igorlfs/nvim-dap-view",
+      "version": "1.0.0 - 2.0.0"
     },
     "nvim-lint": {
       "rev": "a219b2c9e5b4765e5c845aba119dad55806fcaf1",

@@ -131,26 +131,6 @@ M.all_buffer_filetypes_in_win = function()
   return buffer_names
 end
 
--- function to identify if there is debugger session (DAP) running
----@return boolean -- true if DAP is running, false otherwise
-M.is_debugger_running = function()
-  local buffer_filetypes = M.all_buffer_filetypes_in_win()
-  local dapui_filetypes = {
-    "dapui_scopes",
-    "dapui_breakpoints",
-    "dapui_stacks",
-    "dapui_watches",
-    "dapui_console",
-    "dap-repl",
-  }
-  for _, buffer_ft in ipairs(buffer_filetypes) do
-    if vim.tbl_contains(dapui_filetypes, buffer_ft) then
-      return true
-    end
-  end
-  return false
-end
-
 -- function to close Snacks explorer pickers
 ---@return nil
 M.close_explorer_picker = function()

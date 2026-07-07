@@ -298,9 +298,17 @@ vim.api.nvim_create_autocmd("FileType", {
 
 vim.api.nvim_create_autocmd("BufWinEnter", {
   callback = function()
-    local ft = vim.bo.filetype
-    if ft == "dap-repl" or ft:match("^dapui_") then
+    if
+      vim.tbl_contains({
+        "dap-view",
+        "dap-view-term",
+        "dap-view-hover",
+        "dap-view-help",
+        "dap-repl",
+      }, vim.bo.filetype)
+    then
       vim.wo.statuscolumn = ""
+      vim.wo.list = false
     end
   end,
   group = config,
