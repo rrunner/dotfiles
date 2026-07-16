@@ -48,6 +48,10 @@ local opts = {
       if vim.tbl_contains(ftypes, vim.bo.filetype) then
         win.opts.width = 180
         win:update()
+        -- start in insert mode for DAP repl buffers
+        if vim.bo.filetype == "dap-repl" then
+          vim.cmd.startinsert()
+        end
       end
     end,
   },
