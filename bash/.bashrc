@@ -141,6 +141,10 @@ export DEBUG_PYTHON="0"
 
 # uv (uses HTTP_PROXY, HTTPS_PROXY, ALL_PROXY)
 export UV_DEFAULT_INDEX="https://pypi.org/simple"
+export UV_CACHE_DIR="${HOME}/.cache/uv"
+export UV_TOOL_DIR="${HOME}/.local/share/uv/tools"
+export UV_PYTHON_INSTALL_DIR="${HOME}/.local/share/uv/python"
+export UV_MALWARE_CHECK=1
 eval "$(uv generate-shell-completion bash)"
 eval "$(uvx --generate-shell-completion bash)"
 export PATH="${HOME}/.local/bin:$PATH" # tool executables
