@@ -127,11 +127,21 @@ vim.api.nvim_create_autocmd({ "BufWinEnter", "BufFilePost", "WinEnter" }, {
     }
 
     local ft = vim.bo[0].filetype
-    local winid = vim.fn.bufwinid(event.buf)
+    -- local winid = vim.fn.bufwinid(event.buf)
 
-    if vim.tbl_contains(ft_with_winbar, ft) then
-      vim.wo[winid][0].winbar = "%=" .. Config.utils.get_filetype_icon(ft) .. "%m%r%{expand('%:p:h:t')}/%t"
+    if vim.tbl_contains({ "dap-repl", "dap-view" }, ft) then
+      -- nvim-dap-view plugin sets its own winbar
+      return
     end
+
+    if Config.utils.is_non_normal_buffer() or not vim.tbl_contains(ft_with_winbar, ft) then
+      -- vim.wo[winid][0].winbar = ""
+      vim.wo.winbar = ""
+      return
+    end
+
+    -- vim.wo[winid][0].winbar = "%=" .. Config.utils.get_filetype_icon(ft) .. "%m%r%{expand('%:p:h:t')}/%t"
+    vim.wo.winbar = "%=" .. Config.utils.get_filetype_icon(ft) .. "%m%r%{expand('%:p:h:t')}/%t"
   end,
   group = config,
   pattern = "*",
