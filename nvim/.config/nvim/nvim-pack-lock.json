@@ -1,7 +1,7 @@
 {
   "plugins": {
     "SchemaStore.nvim": {
-      "rev": "e954496f8ef22904e8a84f5078f4a110fdc7a0d3",
+      "rev": "0df41ab13b54151fcb6ab023cc2a761482070f76",
       "src": "https://github.com/b0o/SchemaStore.nvim"
     },
     "aerial.nvim": {
@@ -95,7 +95,7 @@
       "src": "https://github.com/nvim-neotest/nvim-nio"
     },
     "nvim-treesitter": {
-      "rev": "4916d6592ede8c07973490d9322f187e07dfefac",
+      "rev": "24977147550d53589e53b874ec75e14e4fbc304e",
       "src": "https://github.com/nvim-treesitter/nvim-treesitter"
     },
     "nvim-treesitter-context": {
