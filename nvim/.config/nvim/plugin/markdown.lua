@@ -43,9 +43,17 @@ rendermd.setup({
         code = {
           width = "full",
           language_name = true,
-          disable_background = true,
         },
-        anti_conceal = { enabled = false },
+        heading = {
+          icons = { "" },
+          position = "inline",
+        },
+        paragraph = {
+          left_margin = 1,
+        },
+        anti_conceal = {
+          enabled = false,
+        },
       },
     },
     filetype = {},
