@@ -1,5 +1,8 @@
 -- lsp
 
+-- set LSP log level
+vim.lsp.log.set_level(vim.log.levels.ERROR)
+
 -- enable LSP servers
 vim.lsp.enable({
   "bashls",
