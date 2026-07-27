@@ -48,9 +48,6 @@ rendermd.setup({
           icons = { "" },
           position = "inline",
         },
-        paragraph = {
-          left_margin = 1,
-        },
         anti_conceal = {
           enabled = false,
         },
