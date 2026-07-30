@@ -1,7 +1,7 @@
 {
   "plugins": {
     "SchemaStore.nvim": {
-      "rev": "3d2c297f7152208daf4a382ea7123f9e4ebf9da1",
+      "rev": "19e40cef03a380bfb578793a08222826118664dd",
       "src": "https://github.com/b0o/SchemaStore.nvim"
     },
     "aerial.nvim": {
@@ -95,7 +95,7 @@
       "src": "https://github.com/nvim-neotest/nvim-nio"
     },
     "nvim-treesitter": {
-      "rev": "61df84986b4b4ec469ee745a182e433d49f8c27e",
+      "rev": "0f32dff7f19476629c77467f887b95e5e2d33509",
       "src": "https://github.com/nvim-treesitter/nvim-treesitter"
     },
     "nvim-treesitter-context": {
@@ -107,7 +107,7 @@
       "src": "https://github.com/nvim-treesitter/nvim-treesitter-textobjects"
     },
     "opencode.nvim": {
-      "rev": "427dd9c64c90dfa05479c52e5d6c9febdf31f83c",
+      "rev": "41622312d5d8fb074699c1d5d96f089286191376",
       "src": "https://github.com/nickjvandyke/opencode.nvim",
       "version": ">=0.0.0"
     },
