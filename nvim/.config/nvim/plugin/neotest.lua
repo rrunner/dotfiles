@@ -23,6 +23,14 @@ require("neotest").setup({
       help = { "<c-/>" },
     },
   },
+  output = {
+    enabled = true,
+    open_on_run = false,
+  },
+  output_panel = {
+    enabled = true,
+    open = "split | resize 15",
+  },
 })
 
 vim.keymap.set("n", "<leader>tf", function()
@@ -60,3 +68,7 @@ end, {
   silent = true,
   desc = "Toggle the neotest summary window",
 })
+
+vim.keymap.set("n", "<leader>to", function()
+  require("neotest").output_panel.toggle()
+end, { desc = "Toggle Output Panel" })
