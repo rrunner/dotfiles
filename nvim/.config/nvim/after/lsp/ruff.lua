@@ -20,6 +20,7 @@ return {
           ["future-annotations"] = true,
           select = { "ALL" },
           ignore = {
+            "CPY001",
             "D406",
             "D407",
             "E501",
