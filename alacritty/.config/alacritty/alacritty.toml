@@ -33,9 +33,9 @@ style = "Regular"
 x = 0
 y = 2  # decrease/increase vertical line spacing between lines (integer)
 
+# note: Control + Shift + Space to toggle vi mode
 [keyboard]
 bindings = [
-  { chars = "\u001B[13;2u", key = "Return", mods = "Shift" },
   { chars = "\u001B[13;2u", key = "Return", mods = "Shift" },
   { chars = "\u001B[13;5u", key = "Return", mods = "Control" },
   { chars = "\u001B[32;2u", key = "Space", mods = "Shift" },
@@ -43,8 +43,8 @@ bindings = [
   { chars = "\u001B[59;5u", key = ";", mods = "Control" },
   # map <c-bs> to <c-w> to get the same experience in vim/nvim
   { chars = "\u0017", key = "Back", mods = "Control" },
-  # { key = "Return", mods = "Control|Shift", action = "SpawnNewInstance" },
-  { key = "Space", mods = "Shift|Control", mode = "~Search", action = "ToggleViMode" },
+  { key = "M", mods = "Control", mode = "Search|Vi", action = "SearchConfirm" },
+  { key = "M", mods = "Control", mode = "Vi|~Search", action = "Open" },
 ]
 
 [scrolling]
