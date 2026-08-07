@@ -17,7 +17,7 @@ return {
       },
       completions = {
         autoImport = true,
-        completeFunctionParentheses = false,
+        completeFunctionParentheses = true,
       },
       -- configurationFile = "./.config/ty.toml",
       -- inline settings always take precedence over the settings from configuration files (incl. configurationFile)
