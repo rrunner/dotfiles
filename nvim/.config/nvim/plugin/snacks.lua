@@ -434,6 +434,19 @@ local opts = {
         layout = {
           preset = "vscode_slim",
         },
+        filter = {
+          python = {
+            "Class",
+            "Constructor",
+            "Enum",
+            "Function",
+            "Method",
+            "Module",
+            "Namespace",
+            "Package",
+            "Property",
+          },
+        },
       },
       spelling = {
         layout = {
