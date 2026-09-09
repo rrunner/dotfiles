@@ -111,11 +111,3 @@ vim.api.nvim_create_user_command("ScratchNew", function(opts)
   end
   snacks.scratch.open(parms)
 end, { desc = "Create new scratch pad", nargs = "*" })
-
-vim.api.nvim_create_user_command("PlugUpdate", function()
-  vim.pack.update()
-end, { desc = "Update plugins" })
-
-vim.api.nvim_create_user_command("PlugUpdateSync", function()
-  vim.pack.update(nil, { target = "lockfile" })
-end, { desc = "Sync plugins to lockfile" })
