@@ -148,6 +148,7 @@ export UV_MALWARE_CHECK=1
 eval "$(uv generate-shell-completion bash)"
 eval "$(uvx --generate-shell-completion bash)"
 export PATH="${HOME}/.local/bin:$PATH" # tool executables
+#export TY_UV=scripts                   # ty/uv integration (PEP723 scripts)
 
 # starship prompt
 eval "$(starship init bash)"
