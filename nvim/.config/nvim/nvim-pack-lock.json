@@ -1,7 +1,7 @@
 {
   "plugins": {
     "SchemaStore.nvim": {
-      "rev": "10c76a652d7b1a81bacf5449df76e6e83d367bff",
+      "rev": "05e938c0aa5dfbdbb11972fa4c8a85f27f402ba0",
       "src": "https://github.com/b0o/SchemaStore.nvim"
     },
     "aerial.nvim": {
@@ -26,7 +26,7 @@
       "src": "https://github.com/stevearc/conform.nvim"
     },
     "friendly-snippets": {
-      "rev": "a5a73e586521fe5c12d751ad81a0db67649a94ed",
+      "rev": "b4d01b0fdf3c9a549961c2f9ffe8dc09be166219",
       "src": "https://github.com/rafamadriz/friendly-snippets"
     },
     "gitsigns.nvim": {
@@ -46,7 +46,7 @@
       "src": "https://github.com/mason-org/mason.nvim"
     },
     "mini-git": {
-      "rev": "62aa54f41c50181dceff90b55f989efe69ad198c",
+      "rev": "cf5aaa83be51d0419aeb0a2060fc4ec13ea22b74",
       "src": "https://github.com/nvim-mini/mini-git"
     },
     "mini.icons": {
@@ -78,7 +78,7 @@
       "src": "https://github.com/gbprod/nord.nvim"
     },
     "nvim-dap": {
-      "rev": "c9a0738e45f1bd41d792a126941348dce661cf9b",
+      "rev": "cfa2d58f4537aca6ca83e2de1a0d9f1491121264",
       "src": "https://github.com/mfussenegger/nvim-dap"
     },
     "nvim-dap-view": {
@@ -95,7 +95,7 @@
       "src": "https://github.com/nvim-neotest/nvim-nio"
     },
     "nvim-treesitter": {
-      "rev": "5cb0114e6242625db56dd6440e945ed1ece10bc7",
+      "rev": "9a168f6357ed21c3a636e1727bc7d382abc451b8",
       "src": "https://github.com/nvim-treesitter/nvim-treesitter"
     },
     "nvim-treesitter-context": {
@@ -107,7 +107,7 @@
       "src": "https://github.com/nvim-treesitter/nvim-treesitter-textobjects"
     },
     "opencode.nvim": {
-      "rev": "4576b372034495b8868e6cbe878e85c717998867",
+      "rev": "bf8db37e600bd83f4bec1303b7a41476381e455c",
       "src": "https://github.com/nickjvandyke/opencode.nvim",
       "version": ">=0.0.0"
     },
