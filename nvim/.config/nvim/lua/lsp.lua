@@ -75,6 +75,11 @@ vim.api.nvim_create_autocmd("LspAttach", {
     local client = vim.lsp.get_client_by_id(event.data.client_id)
     local exists_snacks, snacks = pcall(require, "snacks")
 
+    if client and client:supports_method(vim.lsp.protocol.Methods.textDocument_semanticTokens) then
+      -- disable LSP semantic highlighting (use treesitter for highlighting)
+      client.server_capabilities.semanticTokensProvider = nil
+    end
+
     if client and client:supports_method(vim.lsp.protocol.Methods.textDocument_completion) then
       -- enable completion triggered by <c-x><c-o>
       vim.bo[bufnr].omnifunc = "v:lua.vim.lsp.omnifunc"
