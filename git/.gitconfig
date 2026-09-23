@@ -71,3 +71,5 @@
   algorithm = patience
 [difftool "nvim_difftool"]
   cmd = nvim -c \"packadd nvim.difftool\" -c \"DiffTool $LOCAL $REMOTE\"
+[rerere]
+  enabled = true
