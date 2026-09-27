@@ -11,6 +11,7 @@ vim.lsp.enable({
   "harper_ls",
   "jsonls",
   "lua_ls",
+  "mojo",
   "nushell",
   "ruff",
   "sqlls",
