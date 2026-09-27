@@ -116,6 +116,7 @@ conform.setup({
     json = { "prettier" },
     lua = { "stylua" },
     markdown = { "prettier", "markdownlint-cli2", "markdown-toc" },
+    mojo = { "mojo_format" },
     mysql = { "sqlfluff" },
     python = { "ruff_fix", "ruff_format" },
     quarto = { "injected" },
