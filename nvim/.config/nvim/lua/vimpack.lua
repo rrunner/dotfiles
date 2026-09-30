@@ -56,10 +56,6 @@ vim.pack.add({
   { src = "https://github.com/folke/persistence.nvim" },
   { src = "https://github.com/mfussenegger/nvim-dap" },
   { src = "https://github.com/igorlfs/nvim-dap-view", version = vim.version.range("1.*") },
-  {
-    src = "https://github.com/nickjvandyke/opencode.nvim",
-    version = vim.version.range("*"),
-  },
   { src = "https://github.com/MeanderingProgrammer/render-markdown.nvim" },
   { src = "https://github.com/danymat/neogen" },
 })
