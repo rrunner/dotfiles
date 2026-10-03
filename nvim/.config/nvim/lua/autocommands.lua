@@ -107,7 +107,7 @@ else
 end
 
 vim.api.nvim_create_autocmd({ "BufWinEnter", "BufFilePost", "WinEnter" }, {
-  callback = function(event)
+  callback = function()
     -- set winbar for these file types (global winbar option must be set to the empty string)
     local ft_with_winbar = {
       "elixir",
@@ -116,6 +116,7 @@ vim.api.nvim_create_autocmd({ "BufWinEnter", "BufFilePost", "WinEnter" }, {
       "jsonc",
       "lua",
       "markdown",
+      "mojo",
       "python",
       "quarto",
       "r",
