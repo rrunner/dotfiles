@@ -19,14 +19,11 @@ conform.formatters.stylua = {
 }
 
 -- sqlfluff (complete overide of default values)
--- different sql dialects:
--- ansi, athena, bigquery, clickhouse, databricks, db2,
--- exasol, hive, mysql, oracle, postgres, redshift,
--- snowflake, soql, sparksql, sqlite, teradata, tsql
+-- `sql dialects` returns available dialects
 conform.formatters.sqlfluff = {
   command = Config.utils.app_prio("sqlfluff"),
   inherit = false,
-  args = { "fix", "--dialect=postgres", "-" },
+  args = { "fix", "--dialect=ansi", "--rules=CP01,CV01", "-" },
 }
 
 -- ruff fix (apply ruff linter fixes)
@@ -41,10 +38,9 @@ conform.formatters.ruff_fix = {
     "--no-cache",
     "--no-preview",
     "--select=ALL",
-    -- ERA001: ignores messages about code that is commented out
     -- E501: ensures ruff splits lines (line-length) the same as black
     -- F401: do not remove unused imports (lint rule indicate unused imports still)
-    "--ignore=ERA001,E501,F401",
+    "--ignore=E501,F401",
     "--stdin-filename",
     "$FILENAME",
     "-",
