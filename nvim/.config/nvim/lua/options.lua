@@ -1,10 +1,6 @@
 -- options
 vim.o.exrc = true
 vim.o.termguicolors = true
-vim.cmd("filetype plugin indent on")
-if vim.fn.exists("syntax_on") ~= 1 then
-  vim.cmd("syntax enable")
-end
 if vim.fn.executable("rg") == 1 then
   vim.o.grepprg = "rg -H --no-heading --vimgrep --smart-case --follow"
 end
