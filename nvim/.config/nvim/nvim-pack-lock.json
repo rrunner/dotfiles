@@ -30,7 +30,7 @@
       "src": "https://github.com/rafamadriz/friendly-snippets"
     },
     "gitsigns.nvim": {
-      "rev": "070a5d7b985546cc57e1fc61e5bc507fecac6045",
+      "rev": "851a051e2bd2caba97e23314c68d69f1b1cf5d19",
       "src": "https://github.com/lewis6991/gitsigns.nvim"
     },
     "marks.nvim": {
@@ -46,7 +46,7 @@
       "src": "https://github.com/mason-org/mason.nvim"
     },
     "mini-git": {
-      "rev": "cf5aaa83be51d0419aeb0a2060fc4ec13ea22b74",
+      "rev": "d1c160576be4f55993152e940717773cdb2ad1cc",
       "src": "https://github.com/nvim-mini/mini-git"
     },
     "mini.icons": {
