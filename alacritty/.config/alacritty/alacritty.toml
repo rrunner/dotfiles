@@ -45,6 +45,7 @@ bindings = [
   { chars = "\u0017", key = "Back", mods = "Control" },
   { key = "M", mods = "Control", mode = "Search|Vi", action = "SearchConfirm" },
   { key = "M", mods = "Control", mode = "Vi|~Search", action = "Open" },
+  { key = "V", mods = "Control", action = "Paste" },
 ]
 
 [scrolling]
