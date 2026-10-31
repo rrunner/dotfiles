@@ -156,5 +156,8 @@ eval "$(starship init bash)"
 # direnv (project based environment variables set in .envrc)
 eval "$(direnv hook bash)"
 
+# mise
+eval "$(mise activate bash)"
+
 # zoxide
 eval "$(zoxide init bash)"

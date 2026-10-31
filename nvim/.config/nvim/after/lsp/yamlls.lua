@@ -1,7 +1,7 @@
 local schemas = Config.utils.schema_settings("yaml")
 
 return {
-  cmd = { Config.utils.app_prio("yaml-language-server"), "--stdio" },
+  cmd = { "yaml-language-server", "--stdio" },
   root_markers = { ".git" },
   filetypes = { "yaml", "yaml.docker-compose", "yaml.gitlab" },
   settings = {

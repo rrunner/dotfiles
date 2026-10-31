@@ -1,4 +1,4 @@
 return {
-  cmd = { Config.utils.app_prio("docker-langserver"), "--stdio" },
+  cmd = { "docker-langserver", "--stdio" },
   filetypes = { "dockerfile" },
 }

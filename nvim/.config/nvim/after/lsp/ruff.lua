@@ -1,5 +1,5 @@
 return {
-  cmd = { Config.utils.app_prio("ruff", { python_tool = true }), "server" },
+  cmd = { "ruff", "server" },
   root_markers = vim.g.py_root_markers,
   filetypes = { "python" },
   init_options = {

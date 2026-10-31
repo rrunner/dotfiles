@@ -1,5 +1,5 @@
 return {
-  cmd = { Config.utils.app_prio("ty", { python_tool = true }), "server" },
+  cmd = { "ty", "server" },
   root_markers = vim.g.py_root_markers,
   filetypes = { "python" },
   settings = {

@@ -1,5 +1,5 @@
 return {
-  cmd = { Config.utils.app_prio("bash-language-server"), "start" },
+  cmd = { "bash-language-server", "start" },
   filetypes = { "sh", "bash" },
   settings = {
     bashIde = {

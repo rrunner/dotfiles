@@ -50,8 +50,6 @@ vim.pack.add({
   { src = "https://github.com/jfpedroza/neotest-elixir" },
   { src = "https://github.com/stevearc/aerial.nvim" },
   { src = "https://github.com/stevearc/conform.nvim" },
-  { src = "https://github.com/mason-org/mason.nvim" },
-  { src = "https://github.com/WhoIsSethDaniel/mason-tool-installer.nvim" },
   { src = "https://github.com/b0o/SchemaStore.nvim" },
   { src = "https://github.com/folke/persistence.nvim" },
   { src = "https://github.com/mfussenegger/nvim-dap" },

@@ -1,5 +1,5 @@
 return {
-  cmd = { Config.utils.app_prio("pyright-langserver", { python_tool = true }), "--stdio" },
+  cmd = { "pyright-langserver", "--stdio" },
   root_markers = vim.g.py_root_markers,
   filetypes = { "python" },
   settings = {

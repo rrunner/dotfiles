@@ -14,7 +14,7 @@ vim.lsp.enable({
   "mojo",
   "nushell",
   "ruff",
-  "sqlls",
+  "sqls",
   "tombi",
   "ty",
   "yamlls",

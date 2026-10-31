@@ -1,5 +1,5 @@
 return {
-  cmd = { Config.utils.app_prio("r-languageserver") },
+  cmd = { "r-languageserver" },
   filetypes = { "r", "rmd", "quarto" },
   on_attach = function(client, _)
     -- use air for formatting

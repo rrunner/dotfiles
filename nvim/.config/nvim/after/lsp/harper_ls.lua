@@ -1,5 +1,5 @@
 return {
-  cmd = { Config.utils.app_prio("harper-ls"), "--stdio" },
+  cmd = { "harper-ls", "--stdio" },
   root_markers = { ".git" },
   filetypes = { "gitcommit", "markdown", "mail", "text" },
   settings = {

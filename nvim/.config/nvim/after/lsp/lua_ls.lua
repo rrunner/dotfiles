@@ -12,7 +12,7 @@ local root_markers2 = {
 }
 
 return {
-  cmd = { Config.utils.app_prio("lua-language-server") },
+  cmd = { "lua-language-server" },
   root_markers = { root_markers1, root_markers2, { ".git" } },
   filetypes = { "lua" },
   settings = {

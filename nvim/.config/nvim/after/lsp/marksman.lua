@@ -1,5 +1,5 @@
 return {
-  cmd = { Config.utils.app_prio("marksman"), "server" },
+  cmd = { "marksman", "server" },
   filetypes = { "markdown" },
   settings = {},
 }

@@ -5,7 +5,7 @@ local utl = require("conform.util")
 -- stylua (complete overide of default values)
 conform.formatters.stylua = {
   inherit = false,
-  command = Config.utils.app_prio("stylua"),
+  command = "stylua",
   args = {
     "--indent-type",
     "Spaces",
@@ -21,7 +21,7 @@ conform.formatters.stylua = {
 -- sqlfluff (complete overide of default values)
 -- `sql dialects` returns available dialects
 conform.formatters.sqlfluff = {
-  command = Config.utils.app_prio("sqlfluff"),
+  command = "sqlfluff",
   inherit = false,
   args = { "fix", "--dialect=ansi", "--rules=CP01,CV01", "-" },
 }
@@ -29,7 +29,7 @@ conform.formatters.sqlfluff = {
 -- ruff fix (apply ruff linter fixes)
 -- ruff_organize_imports (select=I001) is already covered by ruff_fix since --select=ALL is used below
 conform.formatters.ruff_fix = {
-  command = Config.utils.app_prio("ruff", { python_tool = true }),
+  command = "ruff",
   args = {
     "check",
     "--fix",
@@ -55,7 +55,7 @@ conform.formatters.ruff_fix = {
 
 -- ruff format (runs ruff formatter, same as ruff format preset)
 conform.formatters.ruff_format = {
-  command = Config.utils.app_prio("ruff", { python_tool = true }),
+  command = "ruff",
   args = {
     "format",
     "--force-exclude",

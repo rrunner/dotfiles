@@ -49,54 +49,9 @@ M.get_python_path = function()
   return py_path
 end
 
--- set the priority order for a given application's binary package. Binaries
--- provided by the virtual environment (if python_tool = true) is prioritized
--- over Mason and system provided binaries.
----@param app string  -- the name of the application binary
----@param opts? { python_tool?: boolean }  -- optional options table
----@return string  -- the path to the app binary
-M.app_prio = function(app, opts)
-  opts = opts or {}
-  local debug = false
-  local application
-
-  if opts.python_tool then
-    local venv = vim.env.VIRTUAL_ENV or nil
-    if venv then
-      application = venv .. "/bin/" .. app
-
-      -- application is available as a package binary inside the virtual environment
-      if vim.fn.executable(application) == 1 then
-        if debug then
-          vim.notify(application, vim.log.INFO)
-        end
-        return application
-      end
-    end
-  end
-
-  -- application is available as a Mason package binary
-  application = vim.fs.joinpath(vim.fn.stdpath("data"), "/mason/bin/", app)
-  if vim.fn.executable(application) == 1 then
-    if debug then
-      vim.notify(application, vim.log.INFO)
-    end
-    return application
-  end
-
-  -- application is available as a system binary
-  if vim.fn.executable(app) == 1 then
-    if debug then
-      vim.notify(application, vim.log.INFO)
-    end
-    return app
-  end
-  return ""
-end
-
--- retrieve current working directory (cwd) prefixed with 'a snake' followed by
--- the name of the Python virtual environment if this is active (consumed by
--- the statusline plugin)
+-- retrieve current working directory (cwd) prefixed with a python icon
+-- followed by the name of the Python virtual environment if this is active
+-- (consumed by the statusline plugin)
 ---@return string  -- the cwd possibly prefixed with name of Python virtual environment
 M.venv_with_cwd = function()
   local venv = vim.env.VIRTUAL_ENV or nil

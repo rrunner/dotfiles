@@ -1,5 +1,5 @@
 return {
-  cmd = { Config.utils.app_prio("taplo"), "lsp", "stdio" },
+  cmd = { "taplo", "lsp", "stdio" },
   root_markers = { ".taplo.toml", "taplo.toml", ".git" },
   filetypes = { "toml" },
   settings = {
