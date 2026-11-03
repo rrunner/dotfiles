@@ -25,3 +25,7 @@ stylua = "latest"
 tombi = "latest"
 ty = "latest"
 uv = "latest"
+
+[settings]
+minimum_release_age = "3h"
+cache_prune_age = "10d"
