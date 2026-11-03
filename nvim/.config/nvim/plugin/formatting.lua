@@ -1,6 +1,6 @@
 -- formatting
 require("conform").setup({
-  -- check conform.log for actual command/args parsed to the formatter etc.
+  -- check conform.log for the actual command/args passed to the formatter etc.
   -- log_level = vim.log.levels.DEBUG,
 
   formatters = {
@@ -19,7 +19,8 @@ require("conform").setup({
       args = { "fix", "--dialect=ansi", "--rules=CP01,CV01", "-" },
     },
 
-    -- sql-formatter (for injected)
+    -- sql-formatter:
+    --   dialect should match with sqlfluff
     sql_formatter = {
       prepend_args = {
         "-c",
@@ -58,6 +59,7 @@ require("conform").setup({
     sql = { "sqlfluff" },
     yaml = { "prettier", "injected" },
   },
+
   format_after_save = function(bufnr)
     -- remove carriage return characters in linux/wsl on save
     local fileformat = vim.bo.fileformat
