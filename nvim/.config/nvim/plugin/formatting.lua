@@ -38,7 +38,7 @@ require("conform").setup({
     },
   },
 
-  -- use lsp fallback to format: toml
+  -- use lsp format fallback: toml, quarto
   formatters_by_ft = {
     bash = { "shfmt" },
     css = { "prettier" },
@@ -52,7 +52,6 @@ require("conform").setup({
     mojo = { "mojo_format" }, -- use system installation of mojo_format (ships with mojo)
     mysql = { "sqlfluff" },
     python = { "ruff_fix", "ruff_format" },
-    quarto = { "panache" },
     r = { "air" }, -- air is a both a formatter and LSP (watch https://posit-dev.github.io/air/editor-neovim.html for capabilities)
     rmd = { "injected" },
     sh = { "shfmt" },

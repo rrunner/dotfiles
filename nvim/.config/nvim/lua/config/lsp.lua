@@ -13,6 +13,7 @@ vim.lsp.enable({
   "lua_ls",
   "mojo",
   "nushell",
+  "panache",
   "ruff",
   "sqls",
   "tombi",
