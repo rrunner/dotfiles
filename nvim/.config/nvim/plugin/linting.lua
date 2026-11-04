@@ -8,6 +8,8 @@ lint.linters_by_ft = {
   -- `mix credo` is installed on project basis as a mix dependency
   elixir = { "credo" },
   haskell = { "hlint" },
+  json = { "jsonlint" },
+  jsonc = { "jsonlint" },
   markdown = { "markdownlint-cli2" },
   mysql = { "sqlfluff" },
   sql = { "sqlfluff" },
