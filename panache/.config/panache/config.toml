@@ -18,24 +18,20 @@ cmd = "sqlfluff"
 args = ["fix", "--dialect=ansi", "--rules=CP01,CV01", "-"]
 
 [lint]
-select = ["ALL"]
-ignore = [
-  "CPY001",
-  "D406",
-  "D407",
-  "E501",
-  "ERA001",
-  "PLR0913",
-  "PLR2004",
-  "RET504",
-  "T100",
-  "T201",
+extend-select = [
+  "heading-strip-comments-residue",
+  "quarto-schema-unknown-key",
 ]
 
 [linters]
 python = "ruff"
+r = "jarl"
+
+[linters.jarl]
+append-args = ["--select", "ALL"]
 
 [extensions]
 hard-line-breaks = false
 citations = true
 task-lists = true
+emoji = true
