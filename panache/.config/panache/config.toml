@@ -1,0 +1,41 @@
+[format]
+wrap = "reflow"
+line-width = 150
+line-ending = "auto"
+horizontal-rule-style = "line-width"
+math = "reflow"
+math-delimiter-style = "preserve"
+math-indent = 2
+
+[formatters]
+python = "ruff"
+r = "air"
+sql = "my_sqlfluff"
+json = "prettier"
+
+[formatters.my_sqlfluff]
+cmd = "sqlfluff"
+args = ["fix", "--dialect=ansi", "--rules=CP01,CV01", "-"]
+
+[lint]
+select = ["ALL"]
+ignore = [
+  "CPY001",
+  "D406",
+  "D407",
+  "E501",
+  "ERA001",
+  "PLR0913",
+  "PLR2004",
+  "RET504",
+  "T100",
+  "T201",
+]
+
+[linters]
+python = "ruff"
+
+[extensions]
+hard-line-breaks = false
+citations = true
+task-lists = true
