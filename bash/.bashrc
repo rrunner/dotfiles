@@ -145,8 +145,6 @@ export UV_CACHE_DIR="${HOME}/.cache/uv"
 export UV_TOOL_DIR="${HOME}/.local/share/uv/tools"
 export UV_PYTHON_INSTALL_DIR="${HOME}/.local/share/uv/python"
 export UV_MALWARE_CHECK=1
-eval "$(uv generate-shell-completion bash)"
-eval "$(uvx --generate-shell-completion bash)"
 export PATH="${HOME}/.local/bin:$PATH" # tool executables
 #export TY_UV=scripts                   # ty/uv integration (PEP723 scripts)
 
@@ -156,8 +154,10 @@ eval "$(starship init bash)"
 # direnv (project based environment variables set in .envrc)
 eval "$(direnv hook bash)"
 
-# mise
+# mise (uv is managed by mise)
 eval "$(mise activate bash)"
+eval "$(uv generate-shell-completion bash)"
+eval "$(uvx --generate-shell-completion bash)"
 
 # zoxide
 eval "$(zoxide init bash)"

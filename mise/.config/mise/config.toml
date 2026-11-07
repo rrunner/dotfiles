@@ -1,9 +1,14 @@
 [tools]
 "aqua:jolars/panache" = "latest"
+"aqua:nushell/nushell" = "latest"
 "aqua:sqls-server/sqls" = "latest"
+bat = "latest"
 "conda:air" = "latest"
 "conda:jarl" = "latest"
+delta = "latest"
 expert = "latest"
+fd = "latest"
+"github:prefix-dev/pixi" = "latest"
 harper-ls = "latest"
 hlint = "latest"
 jq = "latest"
@@ -32,3 +37,12 @@ uv = "latest"
 [settings]
 minimum_release_age = "3h"
 cache_prune_age = "10d"
+# applications managed by the system (pacman)
+disable_tools = [
+  "neovim",
+  "ripgrep",
+  "tree-sitter",
+  "fzf",
+  "elixir",
+  "erlang",
+]
