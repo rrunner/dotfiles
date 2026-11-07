@@ -178,8 +178,6 @@ local opts = {
     previewers = {
       diff = {
         style = "fancy",
-        -- style = "terminal",
-        -- cmd = { "delta", "--dark", "--side-by-side", "--line-numbers" },
       },
     },
     jump = {
@@ -302,16 +300,30 @@ local opts = {
       git_diff_layout = {
         layout = {
           box = "vertical",
-          width = 0.9,
-          height = 0.9,
+          border = "top_bottom",
+          title = " {title} {live} {flags}",
+          title_pos = "left",
+          { win = "input", height = 1, border = "bottom" },
+          {
+            box = "vertical",
+            { win = "preview", title = "{preview}", border = "none" },
+            { win = "list", border = "top", height = 0.15 },
+          },
+        },
+      },
+      git_status_layout = {
+        layout = {
+          box = "vertical",
+          width = 0.95,
+          height = 0.95,
           border = "top_bottom",
           title = " {title} {live} {flags}",
           title_pos = "left",
           { win = "input", height = 1, border = "bottom" },
           {
             box = "horizontal",
-            { win = "list", border = "none" },
-            { win = "preview", title = "{preview}", width = 0.85, border = "left" },
+            { win = "list", border = "left" },
+            { win = "preview", title = "{preview}", border = "none", width = 0.75 },
           },
         },
       },
@@ -396,12 +408,22 @@ local opts = {
           },
         },
         layout = {
-          preset = "git_diff_layout",
+          preset = "git_status_layout",
         },
       },
       git_diff = {
         group = false, --show individual hunks
         -- base = "", --SHA commit/branch/tag to diff against
+        previewers = {
+          diff = {
+            style = "terminal",
+            cmd = {
+              "delta",
+              "--width",
+              math.floor(vim.api.nvim_win_get_width(vim.api.nvim_get_current_win()) * 1),
+            },
+          },
+        },
         win = {
           input = {
             keys = {
