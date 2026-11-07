@@ -10,7 +10,22 @@ require("aerial").setup({
     min_width = 40,
   },
   disable_max_lines = 20000,
-  -- filter_kind = false, -- display all symbols
+  filter_kind = {
+    -- display all symbols for markdown and quarto
+    quarto = false,
+    markdown = false,
+    -- default for all other filetypes
+    ["_"] = {
+      "Class",
+      "Constructor",
+      "Enum",
+      "Function",
+      "Interface",
+      "Module",
+      "Method",
+      "Struct",
+    },
+  },
   highlight_closest = false,
   highlight_on_jump = 700,
   highlight_on_hover = true,
