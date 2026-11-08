@@ -1,7 +1,3 @@
-#
-# ~/.bashrc
-#
-
 # if not running interactively, don't do anything
 [[ $- != *i* ]] && return
 
@@ -13,7 +9,7 @@ PROMPT_COMMAND='printf "\033]133;A\007"'
 
 # check WSL
 IS_WSL=0
-if [[ $(grep -iq microsoft /proc/version) ]]; then
+if grep -iq microsoft /proc/version; then
   IS_WSL=1
 fi
 
@@ -79,20 +75,8 @@ export VISUAL=nvim
 export R_ENVIRON_USER=~/.config/r/.Renviron
 export R_PROFILE_USER=~/.config/r/.Rprofile
 
-# go
-# export GOPATH=~/projects/go
-# export PATH=$PATH:$GOPATH/bin
-
 # completion for git
 source /usr/share/git/completion/git-completion.bash
-
-# completion for cht.sh
-source "$HOME"/.bash.d/cht.sh
-
-# fzf for fuzzy completion and keybindings (ctrl-t, ctrl-r and alt-c) in bash
-#  - ** is the prefix
-source /usr/share/fzf/completion.bash
-source /usr/share/fzf/key-bindings.bash
 
 # bash completion (install bash-completion package)
 [[ $PS1 && -f /usr/share/bash-completion/bash_completion ]] && . /usr/share/bash-completion/bash_completion
@@ -110,11 +94,15 @@ if type rg &>/dev/null; then
   export FZF_CTRL_T_COMMAND="rg $RG_OPTIONS"
 fi
 
+# fzf for fuzzy completion and keybindings (ctrl-t, ctrl-r and alt-c) in bash
+#  - ** is the prefix
+source /usr/share/fzf/completion.bash
+source /usr/share/fzf/key-bindings.bash
+
 # use fd to search folders (alt-c)
 # - fd uses smart-case by default
 if type fd &>/dev/null; then
   FD_OPTIONS="--follow --hidden --exclude .git"
-  # export FZF_CTRL_T_COMMAND="fd $FD_OPTIONS"
   export FZF_ALT_C_COMMAND="fd --type d $FD_OPTIONS"
 fi
 
@@ -123,7 +111,6 @@ alias tmux="tmux -2"
 export TERM="xterm-256color"
 
 if [ -z "${DISPLAY}" ] && [ "$(tty)" = "/dev/tty1" ]; then
-  #exec startx
   exec startx >/dev/null 2>&1
 fi
 
