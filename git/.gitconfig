@@ -28,10 +28,10 @@
   date = iso
 [alias]
   st = status
-  co = checkout
-  ci = commit
+  ch = checkout
+  co = commit --message
   di = diff
-  ds = diff --staged
+  dc = diff --cached
   br = branch --all
   lg = log --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit
   last = log -1 HEAD --stat
