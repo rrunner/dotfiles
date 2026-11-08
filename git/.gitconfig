@@ -53,6 +53,8 @@
   dark = true
   side-by-side = true
   line-numbers = true
+  diff-so-fancy = true
+  max-line-distance = 0.85
 [maintenance]
   auto = false
   strategy = incremental
