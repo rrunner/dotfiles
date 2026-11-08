@@ -32,7 +32,7 @@
   ci = commit
   di = diff
   ds = diff --staged
-  br = branch
+  br = branch --all
   lg = log --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit
   last = log -1 HEAD --stat
   sta = stash --all ; stash ignored and untracked files
