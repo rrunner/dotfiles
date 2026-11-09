@@ -13,6 +13,11 @@ if grep -iq microsoft /proc/version; then
   IS_WSL=1
 fi
 
+if [ $IS_WSL -eq 0 ]; then
+  # dotfiles
+  alias dotfiles='/usr/bin/git --git-dir=$HOME/Dropbox/dotfiles --work-tree=$HOME'
+fi
+
 # history related
 export HISTCONTROL=ignoredups:erasedups # no duplicate entries
 export HISTSIZE=100000                  # big history
@@ -49,20 +54,10 @@ alias activate="source .venv/bin/activate 2>/dev/null || source venv/bin/activat
 PS1='[\u@\h \W]\$ '
 #LANG="sv_SE.UTF-8"
 
-# force Alacritty to use software rendering
-if [ $IS_WSL -eq 0 ]; then
-  export LIBGL_ALWAYS_SOFTWARE=1
-fi
-
 # vi mode
 # - used to cause conflicts in tmux mode
 # - also update .inputrc if vi mode should be turned on
 # set -o vi
-
-# dotfiles
-if [ $IS_WSL -eq 0 ]; then
-  alias dotfiles='/usr/bin/git --git-dir=$HOME/Dropbox/dotfiles --work-tree=$HOME'
-fi
 
 # to view manual pages in browser (for example 'man -H man')
 export BROWSER=firefox
