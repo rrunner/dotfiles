@@ -671,6 +671,10 @@ local opts = {
         ["<c-k>"] = { "<esc>lDa", mode = "i", expr = true, desc = "delete from cursor to the right (input)" },
       },
     },
+    float = {
+      -- raise floating such as terminal above other window types
+      zindex = 60,
+    },
     terminal = {
       keys = {
         term_normal = {
