@@ -303,10 +303,10 @@ local opts = {
           border = "top_bottom",
           title = " {title} {live} {flags} (hunks)",
           title_pos = "left",
-          { win = "input", height = 1, border = "bottom" },
           {
             box = "vertical",
             { win = "preview", title = "{preview}", border = "none" },
+            { win = "input", height = 1, border = "bottom" },
             { win = "list", border = "top", height = 0.15 },
           },
         },
