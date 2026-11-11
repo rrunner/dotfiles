@@ -1,7 +1,7 @@
 {
   "plugins": {
     "SchemaStore.nvim": {
-      "rev": "df82e0f927cbd20169265733d909b1c7042ce180",
+      "rev": "fec0f4098b764f14eec5d8225f2b573e802c82fb",
       "src": "https://github.com/b0o/SchemaStore.nvim"
     },
     "aerial.nvim": {
