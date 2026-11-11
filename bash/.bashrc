@@ -122,7 +122,6 @@ export UV_TOOL_DIR="${HOME}/.local/share/uv/tools"
 export UV_PYTHON_INSTALL_DIR="${HOME}/.local/share/uv/python"
 export UV_MALWARE_CHECK=1
 export PATH="${HOME}/.local/bin:$PATH" # tool executables
-#export TY_UV=scripts                   # ty/uv integration (PEP723 scripts)
 
 # starship prompt
 eval "$(starship init bash)"

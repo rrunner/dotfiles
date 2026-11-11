@@ -2,11 +2,16 @@ return {
   cmd = { "ty", "server" },
   root_markers = vim.g.py_root_markers,
   filetypes = { "python" },
-  settings = {
-    init_options = {
-      -- logFile = "~/ty.log",
-      -- logLevel = "debug",
+  init_options = {
+    -- logFile = "~/ty.log",
+    -- logLevel = "debug",
+    experimental = {
+      -- uv/ty integration: no uv/ty integration ("off"), uv/ty integration for
+      -- PEP723 scripts ("scripts") and script and uv project discovery ("on")
+      useUv = "off",
     },
+  },
+  settings = {
     ty = {
       disableLanguageServices = false,
       diagnosticMode = "workspace",
