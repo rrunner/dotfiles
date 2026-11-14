@@ -26,7 +26,6 @@ ormolu = "latest"
 prettier = "latest"
 "pypi:debugpy" = "latest"
 "pypi:sqlfluff" = "latest"
-python = "3.14"
 ruff = "latest"
 shfmt = "latest"
 stylua = "latest"
@@ -38,7 +37,9 @@ uv = "latest"
 minimum_release_age = "3h"
 cache_prune_age = "10d"
 # applications managed by the system (pacman)
+# - python is managed by system and uv
 disable_tools = [
+  "python",
   "neovim",
   "ripgrep",
   "tree-sitter",
