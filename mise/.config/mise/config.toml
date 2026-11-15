@@ -28,6 +28,7 @@ ormolu = "latest"
 prettier = "latest"
 "pypi:debugpy" = "latest"
 "pypi:sqlfluff" = "latest"
+ripgrep = "latest"
 ruff = "latest"
 shfmt = "latest"
 stylua = "latest"
@@ -43,7 +44,6 @@ cache_prune_age = "10d"
 disable_tools = [
   "python",
   "neovim",
-  "ripgrep",
   "tree-sitter",
   "fzf",
   "elixir",
