@@ -1,7 +1,7 @@
 return {
   cmd = { "harper-ls", "--stdio" },
-  root_markers = { ".git" },
-  filetypes = { "gitcommit", "markdown", "mail", "text" },
+  root_markers = { ".harper-dictionary.txt", ".git" },
+  filetypes = { "gitcommit", "markdown", "mail", "text", "quarto" },
   settings = {
     ["harper-ls"] = {
       -- userDictPath = "~/dict.txt",
