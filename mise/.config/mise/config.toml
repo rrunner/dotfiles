@@ -41,6 +41,7 @@ minimum_release_age = "3h"
 cache_prune_age = "10d"
 # applications managed by the system (pacman)
 # - python is managed by system and uv
+# - fzf is managed by system for completions and keybindings
 disable_tools = [
   "python",
   "neovim",
