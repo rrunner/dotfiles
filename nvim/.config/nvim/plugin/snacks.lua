@@ -214,6 +214,7 @@ local opts = {
           ["<c-f>"] = { "<right>", mode = "i", expr = true, desc = "move cursor to the right" },
           ["<c-b>"] = { "<left>", mode = "i", expr = true, desc = "move cursor to the left" },
           ["<c-w>"] = { "<c-s-w>", mode = "i", expr = true, desc = "delete word" },
+          ["<s-cr>"] = { { "pick_win", "jump" }, mode = { "i", "n" } },
           -- normal mode
           ["v"] = { { "pick_win", "edit_vsplit" }, mode = "n" },
           ["x"] = { { "pick_win", "edit_split" }, mode = "n" },
@@ -226,6 +227,7 @@ local opts = {
       -- result list window
       list = {
         keys = {
+          ["<s-cr>"] = { { "pick_win", "jump" } },
           ["<c-a>"] = false,
           ["<c-c>"] = false,
           ["<c-s>"] = false,
