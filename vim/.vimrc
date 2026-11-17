@@ -99,7 +99,6 @@ call plug#begin('~/.vim/pack')
   Plug 'tpope/vim-surround'
   Plug 'tpope/vim-commentary'
   Plug 'tpope/vim-repeat'
-  Plug 'lervag/vimtex', { 'for': ['tex', 'latex'] }
   Plug 'inkarkat/vim-ReplaceWithRegister'
   Plug 'kana/vim-textobj-user'
   Plug 'kana/vim-textobj-indent'
@@ -109,7 +108,6 @@ call plug#begin('~/.vim/pack')
   Plug 'christoomey/vim-tmux-navigator'
   Plug 'tommcdo/vim-exchange'
   Plug 'kshenoy/vim-signature'
-  Plug 'jiangmiao/auto-pairs'
   Plug 'machakann/vim-highlightedyank'
   Plug 'preservim/nerdtree'
   Plug 'ryanoasis/vim-devicons' " requires nerdfonts to be installed on system
@@ -131,22 +129,6 @@ let g:netrw_browse_split = 4
 nmap cr <Plug>ReplaceWithRegisterOperator
 nmap crr <Plug>ReplaceWithRegisterLine
 xmap cr <Plug>ReplaceWithRegisterVisual
-" }}}
-
-
-" plugin settings: vimtex {{{
-let g:vimtex_view_general_viewer = 'xpdf'
-let g:vimtex_mappings_enabled=0
-" }}}
-
-
-" plugin settings: autopairs {{{
-let g:AutoPairsFlyMode = 0
-let g:AutoPairsShortcutToggle = ''
-let g:AutoPairsShortcutFastWrap = '<M-l>'
-let g:AutoPairsShortcutJump = '<M-n>'
-let g:AutoPairsShortcutBackInsert = '<M-h>'
-let g:AutoPairsCenterLine = 0
 " }}}
 
 
