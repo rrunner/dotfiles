@@ -9,6 +9,7 @@ $git_state\
 $git_status\
 $cmd_duration\
 $line_break\
+$pixi\
 $python\
 $rlang\
 $character"""
@@ -53,11 +54,19 @@ style = "yellow"
 symbol = " "
 format = '[${symbol}${pyenv_prefix}(${version} )(\($virtualenv\) )]($style)'
 # style = "bright-black"
-detect_extensions = [] # don't trigger for .py files only
+detect_extensions = []  # don't trigger for .py files only
+python_binary = ["python", ".pixi/envs/default/bin/python"]  # resolves inside `pixi shell` via PATH, otherwise falls back to the local env
 
 [rlang]
-format = '[$symbol ($version )]($style)'
-symbol = 'ﳒ'
+symbol = "ﳒ"
+format = "[$symbol ($version )]($style)"
 # detect_files = ['.Rprofile', '.Renviron']
 # detect_folders = ['r', 'R']
-detect_extensions = ['.R']
+detect_extensions = [".R"]
+
+[pixi]
+symbol = "🧚 "
+show_default_environment = false
+format = '[$symbol( $project_name)(\( $environment\))]($style) '
+detect_files = ["pixi.toml", "pixi.lock"]
+detect_folders = []  # exclude env directory .pixi
