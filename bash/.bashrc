@@ -123,16 +123,14 @@ export UV_PYTHON_INSTALL_DIR="${HOME}/.local/share/uv/python"
 export UV_MALWARE_CHECK=1
 export PATH="${HOME}/.local/bin:$PATH" # tool executables
 
-# starship prompt
-eval "$(starship init bash)"
-
-# direnv (project based environment variables set in .envrc)
-eval "$(direnv hook bash)"
-
-# mise (uv is managed by mise)
+# mise (applications below are managed by mise)
+# - uv (python project manager and build tool)
+# - direnv (project configuration via .envrc)
+# - starship (project aware prompt)
+# - zoxide (quick cd)
 eval "$(mise activate bash)"
 eval "$(uv generate-shell-completion bash)"
 eval "$(uvx --generate-shell-completion bash)"
-
-# zoxide
+eval "$(direnv hook bash)"
+eval "$(starship init bash)"
 eval "$(zoxide init bash)"
