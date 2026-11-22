@@ -42,6 +42,9 @@ augroup vimrc
   " only use number in insert mode (not relativenumber) if number option is set
   autocmd InsertEnter * if &number == 1 | setlocal number norelativenumber | endif
   autocmd InsertLeave * if &number == 1 | setlocal number relativenumber | endif
+
+  " always override formatoptions imposed by filetype plugins
+  autocmd FileType * setlocal formatoptions-=c formatoptions-=r formatoptions-=o
 augroup end
 " }}}
 
