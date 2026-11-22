@@ -351,7 +351,7 @@ vim.api.nvim_create_autocmd("FileType", {
 })
 
 vim.api.nvim_create_autocmd("FileType", {
-  command = [[setlocal formatoptions-=cro]],
+  command = [[setlocal formatoptions-=c formatoptions-=r formatoptions-=o]],
   group = config,
   pattern = "*",
   desc = "Always override formatoptions imposed by filetype plugins",
