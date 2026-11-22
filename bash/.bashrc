@@ -71,7 +71,7 @@ export R_ENVIRON_USER=~/.config/r/.Renviron
 export R_PROFILE_USER=~/.config/r/.Rprofile
 
 # completion for git
-source /usr/share/git/completion/git-completion.bash
+[[ -f /usr/share/git/completion/git-completion.bash ]] && source /usr/share/git/completion/git-completion.bash
 
 # bash completion (install bash-completion package)
 [[ $PS1 && -f /usr/share/bash-completion/bash_completion ]] && . /usr/share/bash-completion/bash_completion
@@ -91,8 +91,8 @@ fi
 
 # fzf for fuzzy completion and keybindings (ctrl-t, ctrl-r and alt-c) in bash
 #  - ** is the prefix
-source /usr/share/fzf/completion.bash
-source /usr/share/fzf/key-bindings.bash
+[[ -f /usr/share/fzf/completion.bash ]] && source /usr/share/fzf/completion.bash
+[[ -f /usr/share/fzf/key-bindings.bash ]] && source /usr/share/fzf/key-bindings.bash
 
 # use fd to search folders (alt-c)
 # - fd uses smart-case by default
@@ -123,14 +123,24 @@ export UV_PYTHON_INSTALL_DIR="${HOME}/.local/share/uv/python"
 export UV_MALWARE_CHECK=1
 export PATH="${HOME}/.local/bin:$PATH" # tool executables
 
+# evaluate that the tool is installed
+eval_if_installed() {
+  local tool="$1"
+  shift
+  if type "$tool" &>/dev/null; then
+    eval "$("$tool" "$@")"
+  fi
+}
+
 # mise (applications below are managed by mise)
 # - uv (python project manager and build tool)
 # - direnv (project configuration via .envrc)
 # - starship (project aware prompt)
 # - zoxide (quick cd)
-eval "$(mise activate bash)"
-eval "$(uv generate-shell-completion bash)"
-eval "$(uvx --generate-shell-completion bash)"
-eval "$(direnv hook bash)"
-eval "$(starship init bash)"
-eval "$(zoxide init bash)"
+# - mise must come first to put the managed tools on PATH
+eval_if_installed mise activate bash
+eval_if_installed uv generate-shell-completion bash
+eval_if_installed uvx --generate-shell-completion bash
+eval_if_installed direnv hook bash
+eval_if_installed starship init bash
+eval_if_installed zoxide init bash
