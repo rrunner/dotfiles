@@ -414,7 +414,7 @@ set cmdheight=2
 set nohlsearch incsearch ignorecase smartcase
 set backspace=indent,eol,start
 set spell spelllang=en,sv
-set formatoptions=rqnl1jt
+set formatoptions=qnl1jt
 set formatlistpat=[[^\s*[0-9\-\+\*]\+[\.\)]*\s\+]]
 set ttyfast
 set nolazyredraw
