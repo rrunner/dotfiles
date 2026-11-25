@@ -6,15 +6,14 @@ return {
     -- logFile = "~/ty.log",
     -- logLevel = "debug",
     experimental = {
-      -- uv/ty integration: no uv/ty integration ("off"), uv/ty integration for
-      -- PEP723 scripts ("scripts") and script and uv project discovery ("on")
-      useUv = "off",
+      useUv = "scripts", -- uv/ty integration: "off" or "scripts" or "on"
     },
   },
   settings = {
     ty = {
       disableLanguageServices = false,
       diagnosticMode = "workspace",
+      -- diagnosticMode = "openFilesOnly", -- use for PEP723 scripts to limit type checking to the current file
       showSyntaxErrors = false, -- ruff displays syntax errors
       inlayHints = {
         variableTypes = true,
@@ -26,11 +25,14 @@ return {
       },
       -- configurationFile = "./.config/ty.toml",
       -- inline settings always take precedence over the settings from configuration files (incl. configurationFile)
-      -- configuration = {
-      --   rules = {
-      --     ["unresolved-reference"] = "warn",
-      --   },
-      -- },
+      configuration = {
+        -- rules = {
+        --   ["unresolved-reference"] = "warn",
+        -- },
+        ["project-manager"] = {
+          script = "uv", -- "uv" or "none" to enable/disable PEP723 scripts
+        },
+      },
     },
   },
 }

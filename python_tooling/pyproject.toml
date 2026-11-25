@@ -87,6 +87,9 @@ python-version = "3.13"
 [tool.ty.rules]
 # division-by-zero = "ignore"
 
+[tool.ty.project-manager]
+script = "none"  # "uv" or "none" to enable/disable PEP723 scripts
+
 [[tool.uv.index]]
 name = "pypi"
 url = "https://pypi.org/simple"
