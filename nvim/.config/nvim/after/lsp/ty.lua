@@ -1,12 +1,10 @@
--- settings related to uv/ty integration and PEP723
-local ws_or_script = function(option)
+-- uv/ty integration and PEP723 settings
+local script_settings = (function(option)
   if option == "script" then
     return { useUv = "scripts", diagnosticMode = "openFilesOnly", script = "uv" }
   end
   return { useUv = "off", diagnosticMode = "workspace", script = "none" }
-end
-
-local script_settings = ws_or_script()
+end)("script")
 
 return {
   cmd = { "ty", "server" },
