@@ -69,4 +69,3 @@ symbol = "🧚 "
 show_default_environment = false
 format = '[$symbol( $project_name)(\( $environment\))]($style) '
 detect_files = ["pixi.toml", "pixi.lock"]
-detect_folders = []  # exclude env directory .pixi
