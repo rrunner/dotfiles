@@ -1,10 +1,10 @@
 -- uv/ty integration and PEP723 settings
-local script_settings = (function(option)
-  if option == "script" then
+local ty_settings = (function()
+  if vim.g.python_uv_ty_script == "script" then
     return { useUv = "scripts", diagnosticMode = "openFilesOnly", script = "uv" }
   end
   return { useUv = "off", diagnosticMode = "workspace", script = "none" }
-end)("script")
+end)()
 
 return {
   cmd = { "ty", "server" },
@@ -14,13 +14,13 @@ return {
     -- logFile = "~/ty.log",
     -- logLevel = "debug",
     experimental = {
-      useUv = script_settings.useUv, -- uv/ty integration: "off" or "scripts" or "on"
+      useUv = ty_settings.useUv, -- uv/ty integration: "off" or "scripts" or "on"
     },
   },
   settings = {
     ty = {
       disableLanguageServices = false,
-      diagnosticMode = script_settings.diagnosticMode, -- use for PEP723 scripts to limit type checking to the current file
+      diagnosticMode = ty_settings.diagnosticMode, -- use for PEP723 scripts to limit type checking to the current file
       showSyntaxErrors = false, -- ruff displays syntax errors
       inlayHints = {
         variableTypes = true,
@@ -37,7 +37,7 @@ return {
         --   ["unresolved-reference"] = "warn",
         -- },
         ["project-manager"] = {
-          script = script_settings.script, -- "uv" or "none" to enable/disable PEP723 scripts
+          script = ty_settings.script, -- "uv" or "none" to enable/disable PEP723 scripts
         },
       },
     },
