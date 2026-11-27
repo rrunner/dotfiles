@@ -88,6 +88,7 @@ python-version = "3.13"
 # division-by-zero = "ignore"
 
 [tool.ty.project-manager]
+project = "none"  # "uv" or "none" to use uv for project discovery
 script = "none"  # "uv" or "none" to enable/disable PEP723 scripts
 
 [[tool.uv.index]]
