@@ -132,6 +132,15 @@ eval_if_installed() {
   fi
 }
 
+# utility to debug PEP723 python UV script with nvim-dap (debugpy must be added as a script dependency)
+# > uv sync --script pep723_script.py
+# > uv_script_venv pep723_script.py
+uv_script_venv() {
+  local path_venv
+  path_venv=$(uv python find --script "$1") || return
+  VIRTUAL_ENV="${path_venv%/bin/*}" nvim "$@"
+}
+
 # mise (applications below are managed by mise)
 # - uv (python project manager and build tool)
 # - direnv (project configuration via .envrc)
