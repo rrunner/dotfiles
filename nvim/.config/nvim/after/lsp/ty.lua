@@ -37,6 +37,7 @@ return {
         --   ["unresolved-reference"] = "warn",
         -- },
         ["project-manager"] = {
+          project = "uv",
           script = ty_settings.script, -- "uv" or "none" to enable/disable PEP723 scripts
         },
       },
