@@ -10,4 +10,4 @@ vim.g.loaded_ruby_provider = 0
 vim.g.clipboard = "xclip"
 vim.g.py_root_markers = { { "pyproject.toml", "uv.lock" }, "requirements.txt", "Pipfile" }
 ---@type ""|"script"
-vim.g.python_uv_ty_script = ""
+vim.g.python_uv_ty_script = "script"
