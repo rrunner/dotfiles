@@ -132,10 +132,12 @@ eval_if_installed() {
   fi
 }
 
-# utility to debug PEP723 python UV script with nvim-dap (debugpy must be added as a script dependency)
-# > uv sync --script pep723_script.py
-# > uv_script_venv pep723_script.py
-uv_script_venv() {
+# open a PEP723 python script in nvim with VIRTUAL_ENV set
+# - enable debugging of PEP723 script using nvim-dap (debugpy must be added as a dependency in the script)
+# - ty LSP requires uv to be in "script" mode and ideally diagnosticMode = "openFilesOnly"
+# > uv sync --script pep723_script.py # sync the virtual env
+# > uv_script_nvim pep723_script.py   # open PEP723 script in nvim with VIRTUAL_ENV set
+uv_script_nvim() {
   local path_venv
   path_venv=$(uv python find --script "$1") || return
   VIRTUAL_ENV="${path_venv%/bin/*}" nvim "$@"
